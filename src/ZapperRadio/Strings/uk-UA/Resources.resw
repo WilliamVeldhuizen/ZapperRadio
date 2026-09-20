@@ -402,4 +402,37 @@
   <data name="StreamEnded" xml:space="preserve">
     <value>Потік завершився.</value>
   </data>
+  <data name="UpdateNotice.Message" xml:space="preserve">
+    <value>Перезапустіть, щоб встановити її зараз. Інакше її буде встановлено, коли ви закриєте ZapperRadio.</value>
+  </data>
+  <data name="RestartToUpdateButton.Content" xml:space="preserve">
+    <value>Перезапустити для оновлення</value>
+  </data>
+  <data name="UpdatesHeading.Text" xml:space="preserve">
+    <value>Оновлення</value>
+  </data>
+  <data name="UpdatesText.Text" xml:space="preserve">
+    <value>ZapperRadio кілька разів на день перевіряє наявність нової версії й завантажує її у фоновому режимі. Її буде встановлено, коли ви закриєте застосунок. Ваше вибране та налаштування збережуться.</value>
+  </data>
+  <data name="CheckForUpdatesButton.Content" xml:space="preserve">
+    <value>Перевірити наявність оновлень</value>
+  </data>
+  <data name="UpdateChecking" xml:space="preserve">
+    <value>Перевірка оновлень…</value>
+  </data>
+  <data name="UpdateDownloading" xml:space="preserve">
+    <value>Завантаження нової версії… {0}%</value>
+  </data>
+  <data name="UpdateReady" xml:space="preserve">
+    <value>Версія {0} готова й буде встановлена, коли ZapperRadio закриється.</value>
+  </data>
+  <data name="UpdateUpToDate" xml:space="preserve">
+    <value>ZapperRadio оновлено до останньої версії.</value>
+  </data>
+  <data name="UpdateFailed" xml:space="preserve">
+    <value>Не вдалося перевірити оновлення: {0}</value>
+  </data>
+  <data name="UpdateNoticeTitle" xml:space="preserve">
+    <value>Версія {0} ZapperRadio готова</value>
+  </data>
 </root>

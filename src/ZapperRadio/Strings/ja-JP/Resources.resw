@@ -402,4 +402,37 @@
   <data name="StreamEnded" xml:space="preserve">
     <value>ストリームが終了しました。</value>
   </data>
+  <data name="UpdateNotice.Message" xml:space="preserve">
+    <value>今すぐインストールするには再起動してください。再起動しない場合は、ZapperRadio を閉じたときにインストールされます。</value>
+  </data>
+  <data name="RestartToUpdateButton.Content" xml:space="preserve">
+    <value>再起動して更新</value>
+  </data>
+  <data name="UpdatesHeading.Text" xml:space="preserve">
+    <value>更新</value>
+  </data>
+  <data name="UpdatesText.Text" xml:space="preserve">
+    <value>ZapperRadio は数時間ごとに新しいバージョンを確認し、バックグラウンドでダウンロードします。アプリを閉じたときにインストールされます。お気に入りと設定は引き継がれます。</value>
+  </data>
+  <data name="CheckForUpdatesButton.Content" xml:space="preserve">
+    <value>更新を確認</value>
+  </data>
+  <data name="UpdateChecking" xml:space="preserve">
+    <value>更新を確認しています…</value>
+  </data>
+  <data name="UpdateDownloading" xml:space="preserve">
+    <value>新しいバージョンをダウンロードしています… {0}%</value>
+  </data>
+  <data name="UpdateReady" xml:space="preserve">
+    <value>バージョン {0} の準備ができました。ZapperRadio を閉じるとインストールされます。</value>
+  </data>
+  <data name="UpdateUpToDate" xml:space="preserve">
+    <value>ZapperRadio は最新の状態です。</value>
+  </data>
+  <data name="UpdateFailed" xml:space="preserve">
+    <value>更新を確認できませんでした: {0}</value>
+  </data>
+  <data name="UpdateNoticeTitle" xml:space="preserve">
+    <value>ZapperRadio {0} の準備ができました</value>
+  </data>
 </root>

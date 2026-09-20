@@ -8,10 +8,12 @@ Internet radio for Windows (.NET 10 + WinUI 3 / Windows App SDK).
 
 Windows 10 (version 2004) or later:
 
-- [**ZapperRadio-x64.msi**](https://github.com/WilliamVeldhuizen/ZapperRadio/releases/latest/download/ZapperRadio-x64.msi) for most PCs
-- [ZapperRadio-arm64.msi](https://github.com/WilliamVeldhuizen/ZapperRadio/releases/latest/download/ZapperRadio-arm64.msi) for ARM devices (e.g. Snapdragon laptops)
+- [**ZapperRadio-x64-Setup.exe**](https://github.com/WilliamVeldhuizen/ZapperRadio/releases/latest/download/ZapperRadio-x64-Setup.exe) for most PCs
+- [ZapperRadio-arm64-Setup.exe](https://github.com/WilliamVeldhuizen/ZapperRadio/releases/latest/download/ZapperRadio-arm64-Setup.exe) for ARM devices (e.g. Snapdragon laptops)
 
 All versions are on the [Releases](https://github.com/WilliamVeldhuizen/ZapperRadio/releases) page. The installer is not digitally signed, so Windows SmartScreen may warn you: choose **More info** → **Run anyway**.
+
+It installs for your user only, without asking for administrator rights, and keeps itself up to date (see below). Versions up to 1.18 came as an MSI that installs for all users and cannot update itself; uninstall that one from **Installed apps** before you install this one. Your favorites and settings are kept.
 
 ## Why
 
@@ -35,7 +37,8 @@ It does cost bandwidth: each favorite is a continuous stream of roughly 64 to 32
 - **Tidier song titles**: stations that SHOUT their titles are converted to normal capitalization ("QUEEN - BOHEMIAN RHAPSODY" becomes "Queen - Bohemian Rhapsody"), while deliberate capitals like "AC/DC", "ABBA" and "R.E.M." are left alone.
 - **Compact window**: the title bar button shrinks the player to just your favorites, each with its song, a status indicator (music, speech, connecting, ad break, error), a heart, and volume. It sizes itself to your favorites, and both windows remember their size and position.
 - **Ten languages**: English, Dutch, German, French, Spanish, Italian, Portuguese (Brazil), Ukrainian, Chinese (simplified) and Japanese. The app follows your Windows language list and falls back to English. Change it in the settings (applies on next start).
-- **Settings** (the gear): language, app version, station list info and update check, shortcuts, per-favorite loudness, and clearing the logo and popularity cache.
+- **Updates itself**: half a minute after the start and every six hours, the app looks for a new version on the GitHub releases page and downloads it in the background. It is installed when you close the app, or right away from the **Restart to update** button in the notice at the top of the window. Only an installed app does this, not one that runs from source. The settings have a button to check now.
+- **Settings** (the gear): language, app version, checking for a new version of the app, station list info and update check, shortcuts, per-favorite loudness, and clearing the logo and popularity cache.
 - **Lock screen, media keys and volume flyout**: station, song and logo appear on the Windows media card, with play, pause and next. Media keys on your keyboard, headset or Bluetooth speaker move through your favorites.
 - **Shortcuts**: `Ctrl+Space` stop/play, `Ctrl+M` mute, `Ctrl+F` search. From any app: `Ctrl+Alt+P` stop/play, `Ctrl+Alt+M` mute, `Ctrl+Alt+→` / `Ctrl+Alt+←` next/previous favorite. The global ones can be switched off in the settings.
 - **Taskbar**: right-click the taskbar button to switch to a favorite (with its current song) or mute.
@@ -60,24 +63,27 @@ To add a language, copy the `en-US` folder, translate the values, and add the la
 
 ## Building the installer
 
+The installer and the updates are made with [Velopack](https://velopack.io/). Install its `vpk` tool once, in the same version as the `Velopack` package in `ZapperRadio.csproj`:
+
 ```powershell
-.\build-installer.ps1                         # artifacts\installer\ZapperRadio-1.0.0-x64.msi
+dotnet tool install -g vpk --version 1.2.0
+.\build-installer.ps1                         # artifacts\velopack\ZapperRadioApp-win-x64-Setup.exe
 .\build-installer.ps1 -Version 1.1.0 -Arch arm64
 ```
 
-The MSI (WiX 6) installs the app in `Program Files\ZapperRadio` and adds a Start menu shortcut.
-.NET and the Windows App SDK are included, so nothing else needs to be installed on the target PC.
-An MSI with a higher `-Version` replaces the old installation. Your favorites are kept.
-The MSI is not digitally signed, so Windows SmartScreen may ask for confirmation the first time.
+The Setup program installs the app in `%LOCALAPPDATA%\ZapperRadioApp` and adds a Start menu shortcut. That is not the `ZapperRadio` folder with the settings, because uninstalling removes the whole install folder and the favorites should survive it. .NET and the Windows App SDK are included, so nothing else needs to be installed on the target PC. The Setup program is not digitally signed, so Windows SmartScreen may ask for confirmation the first time.
 
-To publish a release, bump `<Version>` in `src/ZapperRadio/ZapperRadio.csproj` and push to `main`. The [Release workflow](.github/workflows/release.yml) runs on every push. When no release exists yet for that version, it builds the x64 and ARM64 installers and attaches them to a new GitHub release tagged `v<version>`.
+The same folder gets the packages and the `releases.<channel>.json` feed that installed apps read to find updates. Each architecture has its own channel (`win-x64`, `win-arm64`). `Updates/AppUpdater` reads the feed from the GitHub releases of this repository, so an update is nothing more than a new release.
+
+To publish a release, bump `<Version>` in `src/ZapperRadio/ZapperRadio.csproj` and push to `main`. The [Release workflow](.github/workflows/release.yml) runs on every push. When no release exists yet for that version, it builds the x64 and ARM64 installers and update packages (with delta packages against the previous release) and attaches them to a new GitHub release tagged `v<version>`. Apps that are installed pick it up within hours.
+
+An app that is started from source (`dotnet run`) or copied around is not installed by Velopack and does not look for updates.
 
 ## Structure
 
 - `src/ZapperRadio.Core`: downloading and parsing the station list, search, playlist resolving, the local relay that reads song titles from the streams, the ad break and music/speech rules, the loudness measurement, and settings. No UI, fully tested.
-- `src/ZapperRadio`: WinUI app. `Playback/RadioEngine` manages the muted streams, `Playback/StationStream` is a single `MediaPlayer` with reconnect logic that also keeps the loudness of its station, `Playback/SoundClassifier` decodes the relayed audio (Media Foundation via NAudio), runs YAMNet with the ONNX Runtime that comes with the Windows App SDK and measures the loudness of the same samples, `Shell` holds the taskbar jump list, the Windows media card and the global shortcuts, and `Localizer` picks the language and looks up the texts in `Strings`.
+- `src/ZapperRadio`: WinUI app. `Playback/RadioEngine` manages the muted streams, `Playback/StationStream` is a single `MediaPlayer` with reconnect logic that also keeps the loudness of its station, `Playback/SoundClassifier` decodes the relayed audio (Media Foundation via NAudio), runs YAMNet with the ONNX Runtime that comes with the Windows App SDK and measures the loudness of the same samples, `Updates/AppUpdater` finds, downloads and installs new versions with Velopack (`ViewModels/MainViewModel.Updates.cs` schedules it and shows the result), `Shell` holds the taskbar jump list, the Windows media card and the global shortcuts, and `Localizer` picks the language and looks up the texts in `Strings`.
 - `tests/ZapperRadio.Core.Tests`: xUnit tests.
-- `installer`: WiX project for the MSI (not in the solution, build it with `build-installer.ps1`).
 
 ## License
 

@@ -167,6 +167,8 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
         // Read from the registry rather than settings.json: it also picks up a change made from
         // Windows' own Startup Apps settings instead of from here.
         AutoStart = StartupRegistration.IsEnabled();
+
+        StartUpdateChecks();
     }
 
     /// <summary>
@@ -1233,6 +1235,9 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
         SaveSettings();
         _historyPruneTimer.Stop();
         SaveHistory();
+        _updateTimer?.Stop();
+        // A downloaded update is installed once this process has exited, whether the user closed the app or asked to restart it.
+        _updater.InstallWhenClosed(_restartToUpdate);
         // Songs and the mute state are outdated once the app is closed.
         _jumpListTimer.Stop();
         UpdateJumpList(withSongs: false);

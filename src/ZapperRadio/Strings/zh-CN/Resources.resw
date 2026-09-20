@@ -402,4 +402,37 @@
   <data name="StreamEnded" xml:space="preserve">
     <value>流已结束。</value>
   </data>
+  <data name="UpdateNotice.Message" xml:space="preserve">
+    <value>重新启动即可立即安装。否则将在你关闭 ZapperRadio 时安装。</value>
+  </data>
+  <data name="RestartToUpdateButton.Content" xml:space="preserve">
+    <value>重新启动以更新</value>
+  </data>
+  <data name="UpdatesHeading.Text" xml:space="preserve">
+    <value>更新</value>
+  </data>
+  <data name="UpdatesText.Text" xml:space="preserve">
+    <value>ZapperRadio 每隔几个小时检查一次新版本，并在后台下载。关闭应用时会安装更新。你的收藏和设置会保留。</value>
+  </data>
+  <data name="CheckForUpdatesButton.Content" xml:space="preserve">
+    <value>检查更新</value>
+  </data>
+  <data name="UpdateChecking" xml:space="preserve">
+    <value>正在检查更新…</value>
+  </data>
+  <data name="UpdateDownloading" xml:space="preserve">
+    <value>正在下载新版本… {0}%</value>
+  </data>
+  <data name="UpdateReady" xml:space="preserve">
+    <value>版本 {0} 已就绪，将在 ZapperRadio 关闭时安装。</value>
+  </data>
+  <data name="UpdateUpToDate" xml:space="preserve">
+    <value>ZapperRadio 已是最新版本。</value>
+  </data>
+  <data name="UpdateFailed" xml:space="preserve">
+    <value>无法检查更新：{0}</value>
+  </data>
+  <data name="UpdateNoticeTitle" xml:space="preserve">
+    <value>ZapperRadio {0} 已就绪</value>
+  </data>
 </root>

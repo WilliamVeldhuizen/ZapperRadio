@@ -402,4 +402,37 @@
   <data name="StreamEnded" xml:space="preserve">
     <value>The stream ended.</value>
   </data>
+  <data name="UpdateNotice.Message" xml:space="preserve">
+    <value>Restart to install it now. Otherwise it is installed when you close ZapperRadio.</value>
+  </data>
+  <data name="RestartToUpdateButton.Content" xml:space="preserve">
+    <value>Restart to update</value>
+  </data>
+  <data name="UpdatesHeading.Text" xml:space="preserve">
+    <value>Updates</value>
+  </data>
+  <data name="UpdatesText.Text" xml:space="preserve">
+    <value>ZapperRadio checks for a new version every few hours and downloads it in the background. It is installed when you close the app. Your favorites and settings are kept.</value>
+  </data>
+  <data name="CheckForUpdatesButton.Content" xml:space="preserve">
+    <value>Check for updates</value>
+  </data>
+  <data name="UpdateChecking" xml:space="preserve">
+    <value>Checking for updates…</value>
+  </data>
+  <data name="UpdateDownloading" xml:space="preserve">
+    <value>Downloading the new version… {0}%</value>
+  </data>
+  <data name="UpdateReady" xml:space="preserve">
+    <value>Version {0} is ready and is installed when ZapperRadio closes.</value>
+  </data>
+  <data name="UpdateUpToDate" xml:space="preserve">
+    <value>ZapperRadio is up to date.</value>
+  </data>
+  <data name="UpdateFailed" xml:space="preserve">
+    <value>Could not check for updates: {0}</value>
+  </data>
+  <data name="UpdateNoticeTitle" xml:space="preserve">
+    <value>ZapperRadio {0} is ready</value>
+  </data>
 </root>

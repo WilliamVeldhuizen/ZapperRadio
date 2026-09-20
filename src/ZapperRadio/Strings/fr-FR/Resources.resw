@@ -402,4 +402,37 @@
   <data name="StreamEnded" xml:space="preserve">
     <value>Le flux s'est terminé.</value>
   </data>
+  <data name="UpdateNotice.Message" xml:space="preserve">
+    <value>Redémarrez pour l'installer maintenant. Sinon, elle sera installée à la fermeture de ZapperRadio.</value>
+  </data>
+  <data name="RestartToUpdateButton.Content" xml:space="preserve">
+    <value>Redémarrer pour mettre à jour</value>
+  </data>
+  <data name="UpdatesHeading.Text" xml:space="preserve">
+    <value>Mises à jour</value>
+  </data>
+  <data name="UpdatesText.Text" xml:space="preserve">
+    <value>ZapperRadio recherche une nouvelle version toutes les quelques heures et la télécharge en arrière-plan. Elle est installée à la fermeture de l'application. Vos favoris et vos réglages sont conservés.</value>
+  </data>
+  <data name="CheckForUpdatesButton.Content" xml:space="preserve">
+    <value>Rechercher des mises à jour</value>
+  </data>
+  <data name="UpdateChecking" xml:space="preserve">
+    <value>Recherche de mises à jour…</value>
+  </data>
+  <data name="UpdateDownloading" xml:space="preserve">
+    <value>Téléchargement de la nouvelle version… {0} %</value>
+  </data>
+  <data name="UpdateReady" xml:space="preserve">
+    <value>La version {0} est prête et sera installée à la fermeture de ZapperRadio.</value>
+  </data>
+  <data name="UpdateUpToDate" xml:space="preserve">
+    <value>ZapperRadio est à jour.</value>
+  </data>
+  <data name="UpdateFailed" xml:space="preserve">
+    <value>Impossible de rechercher des mises à jour : {0}</value>
+  </data>
+  <data name="UpdateNoticeTitle" xml:space="preserve">
+    <value>La version {0} de ZapperRadio est prête</value>
+  </data>
 </root>

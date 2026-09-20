@@ -21,7 +21,7 @@
     <DefineConstants>$(DefineConstants);DISABLE_XAML_GENERATED_MAIN</DefineConstants>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <Version>1.18.0</Version>
+    <Version>1.19.0</Version>
     <DefaultLanguage>en-US</DefaultLanguage>
     <Product>ZapperRadio</Product>
     <Description>ZapperRadio: instant station switching, no ads when you tune in.</Description>
@@ -39,6 +39,8 @@
     <PackageReference Include="NAudio.Wasapi" Version="2.2.1" />
     <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.28000.2705" />
     <PackageReference Include="Microsoft.WindowsAppSDK" Version="2.4.0" />
+    <!-- Installs the app and updates it from the GitHub releases. Keep in step with the vpk version in the release workflow. -->
+    <PackageReference Include="Velopack" Version="1.2.0" />
   </ItemGroup>
 
   <ItemGroup>

@@ -402,4 +402,37 @@
   <data name="StreamEnded" xml:space="preserve">
     <value>De stream is beëindigd.</value>
   </data>
+  <data name="UpdateNotice.Message" xml:space="preserve">
+    <value>Herstart om het nu te installeren. Anders wordt het geïnstalleerd zodra je ZapperRadio sluit.</value>
+  </data>
+  <data name="RestartToUpdateButton.Content" xml:space="preserve">
+    <value>Herstarten om bij te werken</value>
+  </data>
+  <data name="UpdatesHeading.Text" xml:space="preserve">
+    <value>Updates</value>
+  </data>
+  <data name="UpdatesText.Text" xml:space="preserve">
+    <value>ZapperRadio zoekt om de paar uur naar een nieuwe versie en downloadt die op de achtergrond. De installatie gebeurt zodra je de app sluit. Je favorieten en instellingen blijven behouden.</value>
+  </data>
+  <data name="CheckForUpdatesButton.Content" xml:space="preserve">
+    <value>Controleren op updates</value>
+  </data>
+  <data name="UpdateChecking" xml:space="preserve">
+    <value>Controleren op updates…</value>
+  </data>
+  <data name="UpdateDownloading" xml:space="preserve">
+    <value>De nieuwe versie downloaden… {0}%</value>
+  </data>
+  <data name="UpdateReady" xml:space="preserve">
+    <value>Versie {0} staat klaar en wordt geïnstalleerd zodra ZapperRadio sluit.</value>
+  </data>
+  <data name="UpdateUpToDate" xml:space="preserve">
+    <value>ZapperRadio is bijgewerkt.</value>
+  </data>
+  <data name="UpdateFailed" xml:space="preserve">
+    <value>Kon niet op updates controleren: {0}</value>
+  </data>
+  <data name="UpdateNoticeTitle" xml:space="preserve">
+    <value>ZapperRadio {0} staat klaar</value>
+  </data>
 </root>

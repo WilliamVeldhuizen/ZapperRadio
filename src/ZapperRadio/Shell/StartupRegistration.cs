@@ -18,6 +18,21 @@ public static class StartupRegistration
         return key?.GetValue(ValueName) is string;
     }
 
+    /// <summary>
+    /// Turns it off when the entry starts the copy of the app that is running, which is what an uninstall wants:
+    /// the entry would otherwise be left pointing at a file that is gone. An entry that starts another
+    /// copy, such as an older MSI install next to this one, is not this copy's to remove.
+    /// </summary>
+    public static void DisableForThisInstall()
+    {
+        using var key = Registry.CurrentUser.OpenSubKey(RunKey, writable: true);
+        if (key?.GetValue(ValueName) is string command
+            && string.Equals(command.Trim('"'), Environment.ProcessPath, StringComparison.OrdinalIgnoreCase))
+        {
+            key.DeleteValue(ValueName, throwOnMissingValue: false);
+        }
+    }
+
     public static void SetEnabled(bool enabled)
     {
         using var key = Registry.CurrentUser.CreateSubKey(RunKey);

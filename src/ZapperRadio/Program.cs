@@ -2,6 +2,8 @@ using System.Runtime.InteropServices;
 using Microsoft.UI.Dispatching;
 using Microsoft.UI.Xaml;
 using Microsoft.Windows.AppLifecycle;
+using Velopack;
+using ZapperRadio.Shell;
 
 namespace ZapperRadio;
 
@@ -10,6 +12,12 @@ public static class Program
     [STAThread]
     private static int Main()
     {
+        // First of all: when Velopack runs the app to install, update or uninstall it, this does that work and exits.
+        VelopackApp.Build()
+            // The Run key points into the install folder, which is deleted along with the app.
+            .OnBeforeUninstallFastCallback(_ => StartupRegistration.DisableForThisInstall())
+            .Run();
+
         WinRT.ComWrappersSupport.InitializeComWrappers();
 
         // One instance plays the radio. Starting the app again, for example from the jump list,

@@ -63,6 +63,9 @@ public sealed partial class MainWindow : Window
 
         AddKeyboardShortcuts();
 
+        // Closing saves everything; the view model then has the updater install the update and start the app again.
+        ViewModel.RestartRequested += (_, _) => Close();
+
         Closed += (_, _) =>
         {
             _hotkeys.Dispose();
