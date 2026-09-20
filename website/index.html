@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<script src="i18n.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ZapperRadio – Internet radio without the ads</title>
 <meta name="description" content="Internet radio for Windows with instant station switching, in ten languages. Your favorites stay open and muted, so there is no pre-roll ad when you tune in.">
@@ -190,8 +191,27 @@ kbd {
 .langs h3 { font-size: 18px; color: var(--on-ink-muted); font-weight: 600; margin-bottom: 18px; }
 .chips { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
 .chips li { padding: 9px 16px; border-radius: 99px; background: var(--ink-3); border: 1px solid rgba(244,242,236,.12); font-size: 17px; font-weight: 600; line-height: 1.2; }
-.chips li:first-child { background: rgba(242,169,59,.14); border-color: rgba(242,169,59,.5); color: var(--amber); }
+.chips li.current { background: rgba(242,169,59,.14); border-color: rgba(242,169,59,.5); color: var(--amber); }
 @media (min-width: 881px) { .split.flip .langs { order: -1; } }
+
+/* Language picker in the nav; filled in by i18n.js */
+.lang-switch { display: flex; align-items: center; gap: 8px; color: var(--on-ink-muted); }
+.lang-switch[hidden] { display: none; }
+.lang-switch svg { width: 18px; height: 18px; flex: none; }
+.lang-switch select {
+  font: inherit; font-size: 14px; color: var(--on-ink); background: var(--ink-2); color-scheme: dark;
+  border: 1px solid rgba(244,242,236,.2); border-radius: 10px; padding: 7px 10px; max-width: 190px; cursor: pointer;
+}
+.lang-switch select:hover { border-color: rgba(244,242,236,.5); }
+.lang-switch select:focus-visible { outline: 3px solid var(--amber); outline-offset: 3px; }
+
+/* Hide the page for a moment while a translation loads, so it does not flash in English first. */
+html.i18n-pending body { visibility: hidden; }
+/* Tight tracking suits Latin headlines, not Chinese and Japanese characters. */
+:is(:lang(ja), :lang(zh-Hans)) :is(h1, h2, h3, .eyebrow) { letter-spacing: 0; }
+/* Break lines between phrases rather than in the middle of a word where the browser can tell. */
+:is(:lang(ja), :lang(zh-Hans)) :is(h1, h2, h3) { text-wrap: balance; }
+html:lang(ja) { word-break: auto-phrase; }
 
 /* Download */
 .download { background: var(--ink); color: var(--on-ink); text-align: center; }
@@ -240,33 +260,37 @@ footer { background: var(--ink); color: var(--on-ink-muted); padding: 40px 0; fo
 
 <header class="hero">
   <div class="wrap">
-    <nav class="nav" aria-label="Main">
+    <nav class="nav" aria-label="Main" data-i18n-aria="nav.aria">
       <a class="brand" href="#top"><img src="logo.svg" alt="" width="36" height="36">ZapperRadio</a>
       <ul>
-        <li><a href="#how">How it works</a></li>
-        <li><a href="#features">Features</a></li>
-        <li><a href="#faq">FAQ</a></li>
-        <li><a href="#download">Download</a></li>
+        <li><a href="#how" data-i18n="nav.how">How it works</a></li>
+        <li><a href="#features" data-i18n="nav.features">Features</a></li>
+        <li><a href="#faq" data-i18n="nav.faq">FAQ</a></li>
+        <li><a href="#download" data-i18n="nav.download">Download</a></li>
       </ul>
+      <div class="lang-switch" hidden>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.7 3.9 5.7 3.9 9s-1.3 6.3-3.9 9c-2.6-2.7-3.9-5.7-3.9-9S9.4 5.7 12 3z"/></svg>
+        <select id="lang-select" aria-label="Language" data-i18n-aria="lang.label"></select>
+      </div>
     </nav>
 
     <div class="hero-grid" id="top">
       <div>
-        <span class="eyebrow">Internet radio for Windows</span>
-        <h1>Switch stations instantly. <em>No ads</em> when you tune in.</h1>
-        <p class="lede">Most stations play an ad the moment you connect. ZapperRadio keeps your favorites streaming, muted, in the background, so tuning in is just turning the volume up.</p>
+        <span class="eyebrow" data-i18n="hero.eyebrow">Internet radio for Windows</span>
+        <h1 data-i18n="hero.title">Switch stations instantly. <em>No ads</em> when you tune in.</h1>
+        <p class="lede" data-i18n="hero.lede">Most stations play an ad the moment you connect. ZapperRadio keeps your favorites streaming, muted, in the background, so tuning in is just turning the volume up.</p>
         <div class="cta">
           <a class="btn btn-primary" href="https://github.com/WilliamVeldhuizen/ZapperRadio/releases/latest/download/ZapperRadio-x64.msi">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0l-5-5m5 5l5-5M4 20h16"/></svg>
-            Download for Windows
+            <span data-i18n="hero.download">Download for Windows</span>
           </a>
-          <a class="btn btn-ghost" href="#how">See how it works</a>
+          <a class="btn btn-ghost" href="#how" data-i18n="hero.how">See how it works</a>
         </div>
-        <p class="fine">Free and open source · Windows 10 or later · <span id="ver">v1.18.0</span></p>
+        <p class="fine"><span data-i18n="hero.fine">Free and open source · Windows 10 or later</span> · <span id="ver">v1.18.0</span></p>
       </div>
 
       <div class="mock-wrap">
-        <div class="win" role="img" aria-label="The compact ZapperRadio window: a list of favorite stations, each with the song it is playing now">
+        <div class="win" role="img" aria-label="The compact ZapperRadio window: a list of favorite stations, each with the song it is playing now" data-i18n-aria="demo.aria">
           <div class="win-bar"><img src="favicon.svg" alt="">ZapperRadio<span class="spacer"></span><i></i><i></i><i></i></div>
           <div class="rows" id="rows">
             <div class="row live" data-id="nightwave" data-state="music">
@@ -281,7 +305,7 @@ footer { background: var(--ink); color: var(--on-ink-muted); padding: 40px 0; fo
             </div>
             <div class="row" data-id="klassiek" data-state="speech">
               <div class="logo-tile" style="background:#2F8F83">K</div>
-              <div><div class="name">Klassiek Live</div><div class="song">Morning news</div></div>
+              <div><div class="name">Klassiek Live</div><div class="song" data-i18n="demo.news">Morning news</div></div>
               <div class="dot"><svg class="ic-note" viewBox="0 0 24 24" fill="currentColor"><path d="M9 3v11.3A3.5 3.5 0 1 0 11 17.5V7.6l8-1.6v6.3a3.5 3.5 0 1 0 2 3.2V3z"/></svg><svg class="ic-talk" viewBox="0 0 24 24" fill="currentColor"><path d="M4 4h16a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-9l-5 4v-4H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/></svg><svg class="ic-ad" viewBox="0 0 24 24" fill="currentColor"><path d="M4 4h16a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-9l-5 4v-4H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/></svg><svg class="ic-wait" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><circle cx="12" cy="12" r="8" stroke-dasharray="30 20"/></svg></div>
             </div>
             <div class="row" data-id="coast" data-state="music">
@@ -296,7 +320,7 @@ footer { background: var(--ink); color: var(--on-ink-muted); padding: 40px 0; fo
             <div class="slider"></div>
           </div>
         </div>
-        <p class="caption" id="caption" aria-hidden="true">Listening to <b>Nightwave Radio</b></p>
+        <p class="caption" id="caption" aria-hidden="true" data-i18n="demo.listening">Listening to <b>Nightwave Radio</b></p>
       </div>
     </div>
   </div>
@@ -306,54 +330,54 @@ footer { background: var(--ink); color: var(--on-ink-muted); padding: 40px 0; fo
   <section id="how">
     <div class="wrap">
       <div class="section-head">
-        <h2>The trick: never disconnect</h2>
-        <p>An ad plays when a stream starts. So ZapperRadio makes sure your streams have already started.</p>
+        <h2 data-i18n="how.title">The trick: never disconnect</h2>
+        <p data-i18n="how.lede">An ad plays when a stream starts. So ZapperRadio makes sure your streams have already started.</p>
       </div>
       <div class="steps">
-        <div class="step"><h3>Pick up to 20 favorites</h3><p>Star the stations you like and drag them into the order you want.</p></div>
-        <div class="step"><h3>They all play, muted</h3><p>Every favorite stays connected in the background. The pre-roll ad already played, on a stream you weren't listening to.</p></div>
-        <div class="step"><h3>Click to unmute</h3><p>You're instantly live in the broadcast. No connecting, no buffering, no ad.</p></div>
+        <div class="step"><h3 data-i18n="how.s1.title">Pick up to 20 favorites</h3><p data-i18n="how.s1.text">Star the stations you like and drag them into the order you want.</p></div>
+        <div class="step"><h3 data-i18n="how.s2.title">They all play, muted</h3><p data-i18n="how.s2.text">Every favorite stays connected in the background. The pre-roll ad already played, on a stream you weren't listening to.</p></div>
+        <div class="step"><h3 data-i18n="how.s3.title">Click to unmute</h3><p data-i18n="how.s3.text">You're instantly live in the broadcast. No connecting, no buffering, no ad.</p></div>
       </div>
-      <p class="note"><strong>The catch:</strong> each favorite is a continuous stream of roughly 64 to 320 kbit/s. Twenty of them usually add up to about 2 to 4 Mbit/s, which is nothing on most home connections.</p>
+      <p class="note" data-i18n="how.note"><strong>The catch:</strong> each favorite is a continuous stream of roughly 64 to 320 kbit/s. Twenty of them usually add up to about 2 to 4 Mbit/s, which is nothing on most home connections.</p>
     </div>
   </section>
 
   <section class="features" id="features">
     <div class="wrap">
       <div class="section-head">
-        <h2>Small player, smart ears</h2>
-        <p>Because every favorite is already decoded, ZapperRadio can do things a normal radio player can't.</p>
+        <h2 data-i18n="features.title">Small player, smart ears</h2>
+        <p data-i18n="features.lede">Because every favorite is already decoded, ZapperRadio can do things a normal radio player can't.</p>
       </div>
       <div class="grid">
         <article class="card">
           <div class="ico"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 2 4 14h6l-1 8 9-12h-6z"/></svg></div>
-          <h3>Zaps away from ads and talk</h3>
-          <p>It hears when a station goes from music to an ad break or a presenter, jumps to a favorite that is playing a song, and returns when the music comes back.</p>
+          <h3 data-i18n="f1.title">Zaps away from ads and talk</h3>
+          <p data-i18n="f1.text">It hears when a station goes from music to an ad break or a presenter, jumps to a favorite that is playing a song, and returns when the music comes back.</p>
         </article>
         <article class="card">
           <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M4 10v4M8 6v12M12 3v18M16 7v10M20 10v4"/></svg></div>
-          <h3>Same loudness everywhere</h3>
-          <p>No more blasted ears when you zap to a loud station. Every favorite is measured the broadcast way (EBU R128) and levelled to about −14 LUFS.</p>
+          <h3 data-i18n="f2.title">Same loudness everywhere</h3>
+          <p data-i18n="f2.text">No more blasted ears when you zap to a loud station. Every favorite is measured the broadcast way (EBU R128) and levelled to about −14 LUFS.</p>
         </article>
         <article class="card">
           <div class="ico"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 3v11.3A3.5 3.5 0 1 0 11 17.5V7.6l8-1.6v6.3a3.5 3.5 0 1 0 2 3.2V3z"/></svg></div>
-          <h3>See what's playing on all of them</h3>
-          <p>Each favorite shows its current song, with an indicator for music, speech, an ad break or a broken stream.</p>
+          <h3 data-i18n="f3.title">See what's playing on all of them</h3>
+          <p data-i18n="f3.text">Each favorite shows its current song, with an indicator for music, speech, an ad break or a broken stream.</p>
         </article>
         <article class="card">
           <div class="ico"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-8-5.3-8-11a4.6 4.6 0 0 1 8-3 4.6 4.6 0 0 1 8 3c0 5.7-8 11-8 11z"/></svg></div>
-          <h3>Never lose a song again</h3>
-          <p>Heart a track to keep it. The play history lists everything your favorites played in the last 12 hours, and one click finds it on Spotify or YouTube.</p>
+          <h3 data-i18n="f4.title">Never lose a song again</h3>
+          <p data-i18n="f4.text">Heart a track to keep it. The play history lists everything your favorites played in the last 12 hours, and one click finds it on Spotify or YouTube.</p>
         </article>
         <article class="card">
           <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg></div>
-          <h3>52,000 stations, forgiving search</h3>
-          <p>Search by name, genre or country. Typos are fine: <em>radoi 538</em> still finds Radio 538, and popular stations of your country come first.</p>
+          <h3 data-i18n="f5.title">52,000 stations, forgiving search</h3>
+          <p data-i18n="f5.text">Search by name, genre or country. Typos are fine: <em>radoi 538</em> still finds Radio 538, and popular stations of your country come first.</p>
         </article>
         <article class="card">
           <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M8 10h8M8 14h5" stroke-linecap="round"/></svg></div>
-          <h3>A compact window</h3>
-          <p>One click shrinks the player to just your favorites, sized to fit. Keep it in a corner and zap with a click.</p>
+          <h3 data-i18n="f6.title">A compact window</h3>
+          <p data-i18n="f6.text">One click shrinks the player to just your favorites, sized to fit. Keep it in a corner and zap with a click.</p>
         </article>
       </div>
     </div>
@@ -362,21 +386,21 @@ footer { background: var(--ink); color: var(--on-ink-muted); padding: 40px 0; fo
   <section>
     <div class="wrap split">
       <div>
-        <h2>Zap without leaving your work</h2>
-        <p>ZapperRadio plugs into Windows, so it is there when you aren't looking at it.</p>
+        <h2 data-i18n="integ.title">Zap without leaving your work</h2>
+        <p data-i18n="integ.lede">ZapperRadio plugs into Windows, so it is there when you aren't looking at it.</p>
         <ul class="checks">
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg>Media keys on your keyboard, headset or Bluetooth speaker: next and previous walk your favorites</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg>Station, song and logo on the lock screen and in the volume flyout</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg>Right-click the taskbar button to switch favorite, each with its current song</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg>Starts with Windows, so your favorites are already streaming when you sit down</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg><span data-i18n="integ.c1">Media keys on your keyboard, headset or Bluetooth speaker: next and previous walk your favorites</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg><span data-i18n="integ.c2">Station, song and logo on the lock screen and in the volume flyout</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg><span data-i18n="integ.c3">Right-click the taskbar button to switch favorite, each with its current song</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg><span data-i18n="integ.c4">Starts with Windows, so your favorites are already streaming when you sit down</span></li>
         </ul>
       </div>
       <div class="keys">
-        <h3>Shortcuts that work from any app</h3>
-        <div class="key-row"><span>Stop or play</span><span class="key-combo"><kbd>Ctrl</kbd><kbd>Alt</kbd><kbd>P</kbd></span></div>
-        <div class="key-row"><span>Mute or unmute</span><span class="key-combo"><kbd>Ctrl</kbd><kbd>Alt</kbd><kbd>M</kbd></span></div>
-        <div class="key-row"><span>Next favorite</span><span class="key-combo"><kbd>Ctrl</kbd><kbd>Alt</kbd><kbd>→</kbd></span></div>
-        <div class="key-row"><span>Previous favorite</span><span class="key-combo"><kbd>Ctrl</kbd><kbd>Alt</kbd><kbd>←</kbd></span></div>
+        <h3 data-i18n="keys.title">Shortcuts that work from any app</h3>
+        <div class="key-row"><span data-i18n="keys.stop">Stop or play</span><span class="key-combo"><kbd>Ctrl</kbd><kbd>Alt</kbd><kbd>P</kbd></span></div>
+        <div class="key-row"><span data-i18n="keys.mute">Mute or unmute</span><span class="key-combo"><kbd>Ctrl</kbd><kbd>Alt</kbd><kbd>M</kbd></span></div>
+        <div class="key-row"><span data-i18n="keys.next">Next favorite</span><span class="key-combo"><kbd>Ctrl</kbd><kbd>Alt</kbd><kbd>→</kbd></span></div>
+        <div class="key-row"><span data-i18n="keys.prev">Previous favorite</span><span class="key-combo"><kbd>Ctrl</kbd><kbd>Alt</kbd><kbd>←</kbd></span></div>
       </div>
     </div>
   </section>
@@ -384,28 +408,28 @@ footer { background: var(--ink); color: var(--on-ink-muted); padding: 40px 0; fo
   <section class="features" id="languages">
     <div class="wrap split flip">
       <div>
-        <h2>Speaks your language</h2>
-        <p>ZapperRadio is translated into ten languages, and starts in the one your Windows is set to.</p>
+        <h2 data-i18n="langs.title">Speaks your language</h2>
+        <p data-i18n="langs.lede">ZapperRadio is translated into ten languages, and starts in the one your Windows is set to.</p>
         <ul class="checks">
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg>Follows your Windows language list, and falls back to English when it is not one of these</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg>Every button, tooltip, status line and error message, plus the settings, the taskbar list and the dates and numbers</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg>Prefer another one? Pick it in the settings; it applies the next time the app starts</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg><span data-i18n="langs.c1">Follows your Windows language list, and falls back to English when it is not one of these</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg><span data-i18n="langs.c2">Every button, tooltip, status line and error message, plus the settings, the taskbar list and the dates and numbers</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg><span data-i18n="langs.c3">Prefer another one? Pick it in the settings; it applies the next time the app starts</span></li>
         </ul>
-        <p class="note">Station names, countries, genres and song titles come from the station list and the stations themselves, so those stay as they are.</p>
+        <p class="note" data-i18n="langs.note">Station names, countries, genres and song titles come from the station list and the stations themselves, so those stay as they are.</p>
       </div>
       <div class="langs">
-        <h3>Available now</h3>
+        <h3 data-i18n="langs.available">Available now</h3>
         <ul class="chips">
-          <li lang="en">English</li>
-          <li lang="nl">Nederlands</li>
-          <li lang="de">Deutsch</li>
-          <li lang="fr">Français</li>
-          <li lang="es">Español</li>
-          <li lang="it">Italiano</li>
-          <li lang="pt-BR">Português (Brasil)</li>
-          <li lang="uk">Українська</li>
-          <li lang="zh-Hans">中文 (简体)</li>
-          <li lang="ja">日本語</li>
+          <li lang="en" data-code="en" class="current">English</li>
+          <li lang="nl" data-code="nl">Nederlands</li>
+          <li lang="de" data-code="de">Deutsch</li>
+          <li lang="fr" data-code="fr">Français</li>
+          <li lang="es" data-code="es">Español</li>
+          <li lang="it" data-code="it">Italiano</li>
+          <li lang="pt-BR" data-code="pt-BR">Português (Brasil)</li>
+          <li lang="uk" data-code="uk">Українська</li>
+          <li lang="zh-Hans" data-code="zh-CN">中文 (简体)</li>
+          <li lang="ja" data-code="ja">日本語</li>
         </ul>
       </div>
     </div>
@@ -413,8 +437,8 @@ footer { background: var(--ink); color: var(--on-ink-muted); padding: 40px 0; fo
 
   <section class="download" id="download">
     <div class="wrap">
-      <h2>Get ZapperRadio</h2>
-      <p class="lede">Free, open source and ready in a minute. .NET and everything else it needs is included.</p>
+      <h2 data-i18n="download.title">Get ZapperRadio</h2>
+      <p class="lede" data-i18n="download.lede">Free, open source and ready in a minute. .NET and everything else it needs is included.</p>
       <div class="cta">
         <a class="btn btn-primary" href="https://github.com/WilliamVeldhuizen/ZapperRadio/releases/latest/download/ZapperRadio-x64.msi">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0l-5-5m5 5l5-5M4 20h16"/></svg>
@@ -422,42 +446,42 @@ footer { background: var(--ink); color: var(--on-ink-muted); padding: 40px 0; fo
         </a>
         <a class="btn btn-ghost" href="https://github.com/WilliamVeldhuizen/ZapperRadio/releases/latest/download/ZapperRadio-arm64.msi">Windows on ARM</a>
       </div>
-      <span class="badge">Windows 10 (2004) or later · <span id="ver2">v1.18.0</span></span>
-      <p class="fine">The installer is not digitally signed yet, so Windows SmartScreen may warn you. Choose <strong>More info</strong>, then <strong>Run anyway</strong>. All versions are on the <a href="https://github.com/WilliamVeldhuizen/ZapperRadio/releases">releases page</a>.</p>
+      <span class="badge"><span data-i18n="download.badge">Windows 10 (2004) or later</span> · <span id="ver2">v1.18.0</span></span>
+      <p class="fine" data-i18n="download.fine">The installer is not digitally signed yet, so Windows SmartScreen may warn you. Choose <strong>More info</strong>, then <strong>Run anyway</strong>. All versions are on the <a href="https://github.com/WilliamVeldhuizen/ZapperRadio/releases">releases page</a>.</p>
     </div>
   </section>
 
   <section id="faq">
     <div class="wrap">
-      <div class="section-head"><h2>Questions</h2></div>
+      <div class="section-head"><h2 data-i18n="faq.title">Questions</h2></div>
       <div class="faq">
         <details>
-          <summary>Does it really block ads?</summary>
-          <p>It avoids the ad you get when connecting to a stream, because your favorites are already connected. Ads in the middle of the broadcast are still there, but ZapperRadio recognizes them and can zap to another favorite that plays music until the break is over.</p>
+          <summary data-i18n="faq.q1">Does it really block ads?</summary>
+          <p data-i18n="faq.a1">It avoids the ad you get when connecting to a stream, because your favorites are already connected. Ads in the middle of the broadcast are still there, but ZapperRadio recognizes them and can zap to another favorite that plays music until the break is over.</p>
         </details>
         <details>
-          <summary>How much bandwidth does it use?</summary>
-          <p>Each favorite is a continuous stream of roughly 64 to 320 kbit/s. Twenty favorites usually add up to about 2 to 4 Mbit/s, at most a little over 6. Stations you only browse are played on demand and stopped when you switch.</p>
+          <summary data-i18n="faq.q2">How much bandwidth does it use?</summary>
+          <p data-i18n="faq.a2">Each favorite is a continuous stream of roughly 64 to 320 kbit/s. Twenty favorites usually add up to about 2 to 4 Mbit/s, at most a little over 6. Stations you only browse are played on demand and stopped when you switch.</p>
         </details>
         <details>
-          <summary>How does it know what is music and what is speech?</summary>
-          <p>The audio of each stream is analyzed on your own PC with YAMNet, Google's open-source sound classifier. It uses the audio that is streamed anyway, so it needs no extra bandwidth, and about 20 ms of processing per station every 5 seconds.</p>
+          <summary data-i18n="faq.q3">How does it know what is music and what is speech?</summary>
+          <p data-i18n="faq.a3">The audio of each stream is analyzed on your own PC with YAMNet, Google's open-source sound classifier. It uses the audio that is streamed anyway, so it needs no extra bandwidth, and about 20 ms of processing per station every 5 seconds.</p>
         </details>
         <details>
-          <summary>Which languages does it speak?</summary>
-          <p>English, Dutch, German, French, Spanish, Italian, Portuguese (Brazil), Ukrainian, Chinese (simplified) and Japanese. ZapperRadio starts in the first language of your Windows language list that it speaks, and in English when none of them is. You can pick another one in the settings. The installer itself is still English.</p>
+          <summary data-i18n="faq.q4">Which languages does it speak?</summary>
+          <p data-i18n="faq.a4">English, Dutch, German, French, Spanish, Italian, Portuguese (Brazil), Ukrainian, Chinese (simplified) and Japanese. ZapperRadio starts in the first language of your Windows language list that it speaks, and in English when none of them is. You can pick another one in the settings. The installer itself is still English.</p>
         </details>
         <details>
-          <summary>Where do the stations come from?</summary>
-          <p>The station list has about 52,000 stations and is stored locally, so it also works offline. Popularity data comes from <a href="https://www.radio-browser.info/">radio-browser.info</a>.</p>
+          <summary data-i18n="faq.q5">Where do the stations come from?</summary>
+          <p data-i18n="faq.a5">The station list has about 52,000 stations and is stored locally, so it also works offline. Popularity data comes from <a href="https://www.radio-browser.info/">radio-browser.info</a>.</p>
         </details>
         <details>
-          <summary>Why does Windows warn me about the installer?</summary>
-          <p>The installer is not digitally signed, which makes SmartScreen cautious about any new app. Choose <em>More info</em> and then <em>Run anyway</em>. The complete source code is on GitHub if you want to check what you are installing.</p>
+          <summary data-i18n="faq.q6">Why does Windows warn me about the installer?</summary>
+          <p data-i18n="faq.a6">The installer is not digitally signed, which makes SmartScreen cautious about any new app. Choose <em>More info</em> and then <em>Run anyway</em>. The complete source code is on GitHub if you want to check what you are installing.</p>
         </details>
         <details>
-          <summary>Is it free?</summary>
-          <p>Yes. ZapperRadio is open source under the MIT license.</p>
+          <summary data-i18n="faq.q7">Is it free?</summary>
+          <p data-i18n="faq.a7">Yes. ZapperRadio is open source under the MIT license.</p>
         </details>
       </div>
     </div>
@@ -468,12 +492,12 @@ footer { background: var(--ink); color: var(--on-ink-muted); padding: 40px 0; fo
   <div class="wrap foot">
     <div>
       <a class="brand" href="#top"><img src="logo.svg" alt="" width="28" height="28">ZapperRadio</a>
-      <p>Station data from rb2rs and <a href="https://www.radio-browser.info/">radio-browser.info</a>. Sound classification by YAMNet (Google, Apache License 2.0). Station names and logos belong to their owners.</p>
+      <p data-i18n="foot.text">Station data from rb2rs and <a href="https://www.radio-browser.info/">radio-browser.info</a>. Sound classification by YAMNet (Google, Apache License 2.0). Station names and logos belong to their owners.</p>
     </div>
     <div class="links">
       <a href="https://github.com/WilliamVeldhuizen/ZapperRadio">GitHub</a>
-      <a href="https://github.com/WilliamVeldhuizen/ZapperRadio/releases">Releases</a>
-      <a href="https://github.com/WilliamVeldhuizen/ZapperRadio/blob/main/LICENSE">MIT license</a>
+      <a href="https://github.com/WilliamVeldhuizen/ZapperRadio/releases" data-i18n="foot.releases">Releases</a>
+      <a href="https://github.com/WilliamVeldhuizen/ZapperRadio/blob/main/LICENSE" data-i18n="foot.license">MIT license</a>
     </div>
   </div>
 </footer>
@@ -496,11 +520,11 @@ footer { background: var(--ink); color: var(--on-ink-muted); padding: 40px 0; fo
   }
 
   var steps = [
-    function () { set('nightwave', 'music', 'Marlow – Paper Boats'); live('nightwave'); caption.innerHTML = 'Listening to <b>Nightwave Radio</b>'; },
-    function () { set('nightwave', 'ad', 'Advertisement'); caption.innerHTML = 'Ad break on Nightwave Radio…'; },
-    function () { live('sunrise'); caption.innerHTML = 'Zapped to <b>Sunrise FM</b>, instantly'; },
-    function () { set('nightwave', 'music', 'Ida Lane – Small Hours'); caption.innerHTML = 'Music is back on Nightwave Radio'; },
-    function () { live('nightwave'); caption.innerHTML = 'Back on <b>Nightwave Radio</b>'; }
+    function () { set('nightwave', 'music', 'Marlow – Paper Boats'); live('nightwave'); caption.innerHTML = zr.t('demo.listening', 'Listening to <b>Nightwave Radio</b>'); },
+    function () { set('nightwave', 'ad', zr.t('demo.ad', 'Advertisement')); caption.innerHTML = zr.t('demo.adBreak', 'Ad break on Nightwave Radio…'); },
+    function () { live('sunrise'); caption.innerHTML = zr.t('demo.zapped', 'Zapped to <b>Sunrise FM</b>, instantly'); },
+    function () { set('nightwave', 'music', 'Ida Lane – Small Hours'); caption.innerHTML = zr.t('demo.musicBack', 'Music is back on Nightwave Radio'); },
+    function () { live('nightwave'); caption.innerHTML = zr.t('demo.backOn', 'Back on <b>Nightwave Radio</b>'); }
   ];
   var delays = [3200, 2400, 3600, 2200, 2800];
 
