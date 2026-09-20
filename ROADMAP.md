@@ -212,6 +212,61 @@ it never shows again and never blocks a settings-file-less fresh install from be
 one either. A "show the tour again" entry in settings covers the case of an update landing a new
 tour step later.
 
+## 15. Production ready
+
+No new features: this is the work that makes what exists safe to ship to people who cannot ask the author
+what went wrong. Ranked by payoff per effort. Auto-update is already half built (`Updates/AppUpdater`,
+Velopack in `Program`), so 1 comes first and 3 right after it.
+
+1. **Finish the Velopack release pipeline.** `release.yml` still builds per-machine WiX MSIs into Program
+   Files, which Velopack cannot update. It needs a `vpk pack` step per architecture (x64 and arm64) that uploads
+   the Setup.exe, the nupkg files and the releases feed to the GitHub release; the csproj already refers to a
+   "vpk version in the release workflow" that does not exist yet. Decide what happens to existing MSI users: a
+   Velopack install goes to `%LOCALAPPDATA%`, so both would otherwise sit side by side. Keep the MSI as a
+   secondary download, or add a migration step.
+
+2. **Code-sign the app and the installer.** Unsigned Setup.exe and MSI files hit SmartScreen warnings and look
+   suspicious to antivirus software. Azure Trusted Signing or a certificate, passed to `vpk --signParams`.
+
+3. **Crash handling and logging.** There is no unhandled-exception handling and no log file, and `AppUpdater`
+   (like `IcyProxy` and `StationStream`) swallows its exceptions. Hook `Application.UnhandledException`,
+   `AppDomain.UnhandledException` and `TaskScheduler.UnobservedTaskException`, write a rolling log to
+   `%LOCALAPPDATA%`, and add an "Open log folder" button in settings so a bug report carries something useful.
+
+4. **CI builds the WinUI app on pull requests.** CI only runs the Core tests, and only on pushes to main; the
+   app project first compiles in the release job itself. Build both architectures on PRs, turn on
+   warnings-as-errors, add NuGet caching and Dependabot, and guard the release so it cannot be published from a
+   broken build or from a commit that did not bump the version.
+
+5. **Test the update path end to end.** Install one version, publish the next, and check that it downloads,
+   installs on close, restarts and keeps the settings. GitHub's unauthenticated API allows 60 requests an hour
+   per IP, which shared networks can hit, so consider hosting the feed on zapperradio.com or a CDN. Add delta
+   packages so updates are small, and a beta channel to stage releases.
+
+6. **Version and protect user data.** Auto-update pushes new builds to everyone, so `settings.json` and the
+   history file need a schema version and a migration path. `AppSettings.Save` already writes to a temp file
+   and moves it into place; check what a corrupt or half-written file does on load. It should be backed up and
+   replaced by defaults, not crash the app.
+
+7. **Soak test.** The app runs 20 decoded streams plus YAMNet at once, so run it for 24 hours or more and watch
+   memory, handles and CPU. Also test network drops, sleep and wake, and a change of network. Check that a
+   reconnect backs off and that every request has a timeout.
+
+8. **Legal and metadata.** A privacy note that lists the network calls: the update check, the station
+   directory, logos and popularity data. Third-party notices for NAudio, Velopack, the Windows App SDK and
+   YAMNet, and a check of the terms of the station and logo data. Fix the small things: the MSI's
+   `ARPURLINFOABOUT` points at `rb2rs.freemyip.com`, and the exe has no company, copyright or file description.
+
+9. **Runtime prerequisites and installer behavior.** The app is `SelfContained=false`, so confirm the
+   installer brings in the .NET 10 Desktop runtime (Velopack's `--framework` does this). Test a clean-machine
+   install on x64 and arm64, uninstall cleanup, and an upgrade over an old WinRadioPlayer install. Keep the PDBs
+   as release artifacts, so a stack trace from a crash can be read.
+
+10. **Accessibility and UI-layer tests.** Screen reader names (`AutomationProperties`), keyboard-only use, high
+    contrast and 150-200% scaling. Give `AppUpdater` a test seam, an update source interface a fake feed can
+    drive, because it is the riskiest new code and has no tests. Add a short manual checklist for the parts CI
+    cannot cover.
+
 ## Suggested order
 
 With 3, 4, 8, 11 and 12 built, 5 is next: it pairs with the media keys and is about a day, and 13 follows
