@@ -437,7 +437,7 @@ public sealed class StationStream : IDisposable
         }
         else if (DateTime.UtcNow - _lastPlayingUtc > StallTimeout)
         {
-            ScheduleReconnect("The stream stopped responding.");
+            ScheduleReconnect(Localizer.Get("StreamStopped"));
         }
     }
 
@@ -455,7 +455,7 @@ public sealed class StationStream : IDisposable
     }
 
     private void OnMediaEnded(MediaPlayer sender, object args) =>
-        OnUiThread(() => ScheduleReconnect("The stream ended."));
+        OnUiThread(() => ScheduleReconnect(Localizer.Get("StreamEnded")));
 
     private void OnPlaybackStateChanged(MediaPlaybackSession sender, object args)
     {

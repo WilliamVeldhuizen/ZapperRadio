@@ -86,8 +86,8 @@ public static class SongTexts
 {
     public static string For(StationStream stream) => stream switch
     {
-        { Metadata.IsAd: true } => "Advertisement",
-        { IsAssumedAdBreak: true } => "Probably an ad break",
+        { Metadata.IsAd: true } => Localizer.Get("SongAdvertisement"),
+        { IsAssumedAdBreak: true } => Localizer.Get("SongProbablyAdBreak"),
         // Stations that shout their whole library are toned down, so the list does not shout along.
         { Metadata.Title: { } title } => TrackTitle.Normalize(title),
         _ => "",
@@ -97,7 +97,7 @@ public static class SongTexts
 /// <summary>What the loudness section of the settings shows per station.</summary>
 public static class LoudnessTexts
 {
-    public const string NotMeasured = "Not measured yet";
+    public static string NotMeasured => Localizer.Get("LoudnessNotMeasured");
 
     /// <summary>The numbers are the same in every language the app might be read in, so they are not localized.</summary>
     private static readonly System.Globalization.CultureInfo Numbers = System.Globalization.CultureInfo.InvariantCulture;
@@ -117,10 +117,11 @@ public static class LoudnessTexts
         var level = string.Format(Numbers, "{0:0.0} LUFS", measured);
         if (normalize && Math.Abs(gainDb) >= 0.05)
         {
-            level += string.Format(Numbers, " · turned {0} {1:0.0} dB", gainDb < 0 ? "down" : "up", Math.Abs(gainDb));
+            var db = Math.Abs(gainDb).ToString("0.0", Numbers);
+            level += " · " + Localizer.Format(gainDb < 0 ? "LoudnessTurnedDown" : "LoudnessTurnedUp", db);
         }
 
-        return remeasuring ? level + " · measuring again…" : level;
+        return remeasuring ? level + " · " + Localizer.Get("LoudnessMeasuringAgain") : level;
     }
 }
 
@@ -128,18 +129,18 @@ public static class StatusTexts
 {
     public static string For(StreamStatus status, bool isActive, Sound sound) => status switch
     {
-        StreamStatus.Connecting => "Connecting…",
-        StreamStatus.Live => (isActive ? "Now playing" : "Live · muted") + SoundSuffix(sound),
-        StreamStatus.Buffering => "Buffering…",
-        StreamStatus.Reconnecting => "Reconnecting…",
-        StreamStatus.Failed => "Unreachable, still retrying",
+        StreamStatus.Connecting => Localizer.Get("StatusConnecting"),
+        StreamStatus.Live => Localizer.Get(isActive ? "StatusNowPlaying" : "StatusLiveMuted") + SoundSuffix(sound),
+        StreamStatus.Buffering => Localizer.Get("StatusBuffering"),
+        StreamStatus.Reconnecting => Localizer.Get("StatusReconnecting"),
+        StreamStatus.Failed => Localizer.Get("StatusFailed"),
         _ => "",
     };
 
     private static string SoundSuffix(Sound sound) => sound switch
     {
-        Sound.Music => " · music",
-        Sound.Speech => " · speech",
+        Sound.Music => " · " + Localizer.Get("SoundMusic"),
+        Sound.Speech => " · " + Localizer.Get("SoundSpeech"),
         _ => "",
     };
 }

@@ -119,25 +119,39 @@ A shareable JSON (or `.m3u`) of the favorites makes it possible to move machines
 publish a preset. Alongside it, named favorite sets (Work, Weekend, Dance) keep the cap of 20 open
 streams while removing the ceiling as a practical limit: only the active set streams.
 
-## 11. More languages
+## 11. More languages - built in 1.18.0
 
-Every string in the app is English today, written out where it is used. The station list is worldwide
-and most of its listeners are not, so the player should speak the language Windows is set to, starting
-with the ones the favorites are in: Dutch, German, French and Spanish.
+The station list is worldwide and most of its listeners do not read English, so the player now speaks the
+language Windows is set to. There are ten: English, Chinese (simplified), Spanish, Portuguese (Brazil),
+French, German, Japanese, Ukrainian, Italian and Dutch: mostly the widest-spoken languages of the Windows desktop,
+with Dutch and Ukrainian chosen by request. Hindi and Bengali are spoken by more people but come after these,
+and Arabic and Urdu would first need the layout checked right to left. Adding a language is a folder of
+texts and a line in a list.
 
-The work is mostly mechanical: an `x:Uid` on each XAML element and a `Resources.resw` per language,
-a `ResourceLoader` for the strings that are built in code (`StatusTexts`, `SongTexts`,
-`JumpListCommand.Title`, the error messages and the settings texts), and the installer texts on top
-of that. The dates and times are pinned to `en-US` in `FavoriteTrack`, `PlayedTrack` and
-`MainViewModel`, which should follow the chosen language instead.
+`Strings\<language>\Resources.resw` holds every text. The XAML gets its texts through an `x:Uid` on each
+element, so `MainWindow.xaml` has no English left in it, and the texts built in code (`StatusTexts`,
+`SongTexts`, `LoudnessTexts`, the jump list, the error messages) go through `Localizer.Get` and
+`Localizer.Format`, one place that wraps the `ResourceLoader`. `Localizer.Use` runs first thing in the
+`MainViewModel` constructor, before the window is built from its XAML, because that is when the `x:Uid`s are
+looked up. It takes the language from `AppSettings.Language` and otherwise from the first language in the
+Windows list that the app has, with `nl-BE` and `pt-PT` falling under Dutch and Portuguese and traditional
+Chinese falling through to the next language rather than being shown in the wrong script.
 
-Two things are not mechanical. `MainViewModel.AllCountries` is the text "All countries" *and* the
-value the country box is compared against to mean "no filter", so as soon as it is translated the
-comparisons stop matching for anyone who switches language; it needs a sentinel of its own, separate
-from what is shown. And the country and genre names come from the station list in English, so either
-they stay English while the rest of the window is translated, or a mapping per language is kept for
-the few dozen countries that matter. Neither is hard, but both decide how finished the result feels.
+The language is chosen once and stays for the run. A window built from XAML and its bindings is not redrawn
+in another language, so the language box in the settings only says "restart to switch". That is also what
+makes the two problems from the plan cheap: `MainViewModel.AllCountries` is now an instance property set from
+the language at the start, and it is stored in the settings as `null` and never as text, so a country choice
+survives switching languages without needing a sentinel of its own. The dates and numbers, which were pinned
+to `en-US`, follow the language: `Localizer.Use` sets the current culture, and `FavoriteTrack`,
+`PlayedTrack` and the catalog line only ask for the short date and the clock. `Localizer.Use` also sets the
+culture of the threads that come later, which keeps the number formats of one window consistent.
 
+What is not done: the installer is still English. A WiX MSI is built per culture, and the release workflow
+publishes one file per architecture under a name the README links to, so translating it means either an
+installer per language or the language transforms an MSI can carry, and neither is worth it for the handful of
+dialogs before the app is running. The country and genre names come from the station list in English and
+stay that way; a mapping per language for the few dozen countries that matter would make the country box read
+like the rest of the window and is the obvious next step.
 ## 12. Start the song clock when the song starts, not when its title arrives - built in 1.14.0
 
 The unmarked ad break detection of item 4 in the README used to time a song from the moment its title
@@ -200,6 +214,6 @@ tour step later.
 
 ## Suggested order
 
-With 3, 4, 8 and 12 built, 5 is next: it pairs with the media keys and is about a day, and 13 follows
+With 3, 4, 8, 11 and 12 built, 5 is next: it pairs with the media keys and is about a day, and 13 follows
 it straight away, because a player that starts with Windows wants somewhere quiet to start into. Then
 1, because it is the feature that cannot be copied without also keeping every stream open.

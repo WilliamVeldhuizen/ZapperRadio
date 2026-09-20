@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!--
+    Microsoft ResX Schema
+
+    Version 2.0
+
+    The primary goals of this format is to allow a simple XML format
+    that is mostly human readable. The generation and parsing of the
+    various data types are done through the TypeConverter classes
+    associated with the data types.
+  -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="FavoritesHint.Text" xml:space="preserve">
+    <value>お気に入りはバックグラウンドでミュートのまま再生され続けるため、切り替えはすぐにライブになります。再接続もなく、最初に広告が流れることもありません。お気に入りを上下にドラッグすると並べ替えられます。</value>
+  </data>
+  <data name="ZappCheckBox.Content" xml:space="preserve">
+    <value>広告 / トーク中にザッピングする</value>
+  </data>
+  <data name="ZappCheckBox.ToolTipService.ToolTip" xml:space="preserve">
+    <value>音楽だけを聴きたい方向け: 聴いている局が広告に入ったり誰かが話し始めたりしたら、曲を流している一番上のお気に入りにザッピングし、音楽が戻ったら元に戻ります。曲の途中では絶対に切り替えません。戻るのは、移動先の局が自分の区切りに来るまで待ちます。広告を示さない局は、曲が本来の長さを大きく超えて音楽の代わりに話し声が聞こえるとき、広告中とみなされます。</value>
+  </data>
+  <data name="NoFavoritesText.Text" xml:space="preserve">
+    <value>お気に入りはまだありません。右側で局を探して、星をクリックしてください。</value>
+  </data>
+  <data name="RemoveFavoriteButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>お気に入りから削除</value>
+  </data>
+  <data name="StationsTab.Text" xml:space="preserve">
+    <value>放送局</value>
+  </data>
+  <data name="PlayHistoryTab.Text" xml:space="preserve">
+    <value>再生履歴</value>
+  </data>
+  <data name="SettingsButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>設定</value>
+  </data>
+  <data name="SettingsButton.AutomationProperties.Name" xml:space="preserve">
+    <value>設定</value>
+  </data>
+  <data name="SearchBox.PlaceholderText" xml:space="preserve">
+    <value>名前、ジャンル、国で検索 (Ctrl+F)</value>
+  </data>
+  <data name="CountryBox.PlaceholderText" xml:space="preserve">
+    <value>国</value>
+  </data>
+  <data name="CountryBox.AutomationProperties.Name" xml:space="preserve">
+    <value>国</value>
+  </data>
+  <data name="ReloadStationsButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>放送局リストを再読み込み</value>
+  </data>
+  <data name="ToggleFavoriteButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>お気に入りの追加 / 削除</value>
+  </data>
+  <data name="FavoriteTracksHint.Text" xml:space="preserve">
+    <value>再生中の曲の横にあるハートで保存した曲です。Spotify や YouTube で探すか、タイトルをコピーできます。</value>
+  </data>
+  <data name="NoFavoriteTracksText.Text" xml:space="preserve">
+    <value>お気に入りの曲はまだありません。局が好きな曲を流したら、下の曲の横にあるハートをクリックしてください。</value>
+  </data>
+  <data name="FindSongButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>この曲を探す</value>
+  </data>
+  <data name="FindSongButton.AutomationProperties.Name" xml:space="preserve">
+    <value>この曲を探す</value>
+  </data>
+  <data name="FindOnSpotifyItem.Text" xml:space="preserve">
+    <value>Spotify で探す</value>
+  </data>
+  <data name="FindOnYouTubeItem.Text" xml:space="preserve">
+    <value>YouTube で探す</value>
+  </data>
+  <data name="CopyTitleButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>タイトルをコピー</value>
+  </data>
+  <data name="RemoveFavoriteTrackButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>お気に入りの曲から削除</value>
+  </data>
+  <data name="HistoryHint.Text" xml:space="preserve">
+    <value>聴いていたかどうかにかかわらず、お気に入りが過去 12 時間に流したすべての曲を新しい順に表示します。ハートをクリックすると曲を保存できます。</value>
+  </data>
+  <data name="ClearHistoryButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>再生履歴を消去</value>
+  </data>
+  <data name="ClearHistoryButton.AutomationProperties.Name" xml:space="preserve">
+    <value>再生履歴を消去</value>
+  </data>
+  <data name="HistorySearchBox.PlaceholderText" xml:space="preserve">
+    <value>曲名、アーティスト、放送局で検索 (Ctrl+F)</value>
+  </data>
+  <data name="HistorySearchBox.AutomationProperties.Name" xml:space="preserve">
+    <value>再生履歴を検索</value>
+  </data>
+  <data name="NoHistoryText.Text" xml:space="preserve">
+    <value>まだ何も再生されていません。お気に入りがストリーミングを始めると、流れた曲がすべてここに表示されます。</value>
+  </data>
+  <data name="NoHistoryMatchesText.Text" xml:space="preserve">
+    <value>検索に一致する曲は履歴にありません。</value>
+  </data>
+  <data name="CompactNoFavorites.Text" xml:space="preserve">
+    <value>お気に入りはまだありません。フルウィンドウに切り替えて局を検索し、星で追加してください。</value>
+  </data>
+  <data name="PlayStopButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>再生 / 停止 (Ctrl+Space)</value>
+  </data>
+  <data name="VolumeSlider.AutomationProperties.Name" xml:space="preserve">
+    <value>音量</value>
+  </data>
+  <data name="SettingsDialog.Title" xml:space="preserve">
+    <value>設定</value>
+  </data>
+  <data name="SettingsDialog.CloseButtonText" xml:space="preserve">
+    <value>閉じる</value>
+  </data>
+  <data name="StartupHeading.Text" xml:space="preserve">
+    <value>スタートアップ</value>
+  </data>
+  <data name="AutoStartCheckBox.Content" xml:space="preserve">
+    <value>Windows の起動時に ZapperRadio を起動する</value>
+  </data>
+  <data name="LanguageHeading.Text" xml:space="preserve">
+    <value>言語</value>
+  </data>
+  <data name="LanguageText.Text" xml:space="preserve">
+    <value>アプリの言語です。日付や数値の表記も、この言語に合わせて決まります。</value>
+  </data>
+  <data name="LanguageBox.AutomationProperties.Name" xml:space="preserve">
+    <value>言語</value>
+  </data>
+  <data name="LanguageRestartText.Text" xml:space="preserve">
+    <value>この言語に切り替えるには、ZapperRadio を再起動してください。</value>
+  </data>
+  <data name="AboutHeading.Text" xml:space="preserve">
+    <value>情報</value>
+  </data>
+  <data name="AboutText.Text" xml:space="preserve">
+    <value>お気に入りのストリームを開いたままにするインターネットラジオです。切り替えは一瞬で、接続時に局が流す広告も聞こえません。</value>
+  </data>
+  <data name="GitHubLink.Content" xml:space="preserve">
+    <value>GitHub の ZapperRadio</value>
+  </data>
+  <data name="StationListHeading.Text" xml:space="preserve">
+    <value>放送局リスト</value>
+  </data>
+  <data name="CheckStationListButton.Content" xml:space="preserve">
+    <value>新しいリストを確認</value>
+  </data>
+  <data name="ShortcutsHeading.Text" xml:space="preserve">
+    <value>ショートカット</value>
+  </data>
+  <data name="ShortcutsText.Text" xml:space="preserve">
+    <value>ウィンドウ内: Ctrl+Space で停止 / 再生、Ctrl+M でミュート、Ctrl+F で検索。Windows の音量フライアウト、ロック画面、キーボードのメディアキー、ヘッドセットの再生・一時停止・次へのボタンも使え、次へ / 前へはお気に入りを順に移動します。</value>
+  </data>
+  <data name="GlobalHotkeysCheckBox.Content" xml:space="preserve">
+    <value>どのアプリからでもショートカットを使う</value>
+  </data>
+  <data name="GlobalHotkeysCheckBox.ToolTipService.ToolTip" xml:space="preserve">
+    <value>他のアプリで作業している間も使えます。Ctrl ではなく Ctrl+Alt を使うのは、このアプリが Ctrl+Space を占有すると、他のすべてのアプリで使えなくなるためです。他のアプリがすでに使っている組み合わせはそちらに任せ、下に表示します。</value>
+  </data>
+  <data name="GlobalHotkeysText.Text" xml:space="preserve">
+    <value>Ctrl+Alt+P で停止 / 再生、Ctrl+Alt+M でミュート、Ctrl+Alt+→ と Ctrl+Alt+← で次 / 前のお気に入りへ。作業中のどのアプリからでも使えます。</value>
+  </data>
+  <data name="LoudnessHeading.Text" xml:space="preserve">
+    <value>音量レベル</value>
+  </data>
+  <data name="LoudnessText.Text" xml:space="preserve">
+    <value>局によってマスタリングの音量が数デシベル違うのは、ザッピングで一番困る点です。お気に入りの音声はもともとデコードされているので、そこから音楽の本当の音量を測定し (EBU R128)、大きい局を同じレベルまで下げます。広告やパーソナリティの声で結果がずれないよう、音楽だけを対象にしており、1 局あたり約 1 分の音楽が必要です。聴けない局 (HLS) は、届いたままの音量になります。</value>
+  </data>
+  <data name="NormalizeLoudnessCheckBox.Content" xml:space="preserve">
+    <value>放送局の音量をそろえる</value>
+  </data>
+  <data name="NormalizeLoudnessCheckBox.ToolTipService.ToolTip" xml:space="preserve">
+    <value>どの局も約 -14 LUFS (ストリーミングサービスが正規化するレベル) に、下げは最大 12 dB、上げは最大 6 dB の範囲で合わせます。上げが必要な局は最大音量を超えられないため、スライダーが一番上のときは少し小さいままになることがあります。</value>
+  </data>
+  <data name="NoFavoritesLoudnessText.Text" xml:space="preserve">
+    <value>お気に入りはまだありません。</value>
+  </data>
+  <data name="RemeasureLoudnessButton.Content" xml:space="preserve">
+    <value>音量を再測定</value>
+  </data>
+  <data name="RemeasureLoudnessButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>これまでに聞き取ったお気に入りの内容を忘れて、測定し直します。約 1 分の音楽を聞き取るまでは現在の補正が続き、その後は新しい結果に切り替わります。</value>
+  </data>
+  <data name="CacheHeading.Text" xml:space="preserve">
+    <value>キャッシュされたロゴ</value>
+  </data>
+  <data name="CacheText.Text" xml:space="preserve">
+    <value>放送局のロゴと人気ランキングは、一度調べたら保存されます。消去するとすべてのロゴを調べ直すので、局に違うロゴが表示されているときに役立ちます。放送局リスト自体は残ります。</value>
+  </data>
+  <data name="ClearCacheButton.Content" xml:space="preserve">
+    <value>キャッシュを消去</value>
+  </data>
+  <data name="AllCountries" xml:space="preserve">
+    <value>すべての国</value>
+  </data>
+  <data name="LanguageWindows" xml:space="preserve">
+    <value>Windows の言語</value>
+  </data>
+  <data name="FavoritesHeader" xml:space="preserve">
+    <value>お気に入り ({0}/{1})</value>
+  </data>
+  <data name="FavoriteTracksHeader" xml:space="preserve">
+    <value>お気に入りの曲 ({0})</value>
+  </data>
+  <data name="CacheEmpty" xml:space="preserve">
+    <value>キャッシュはまだありません</value>
+  </data>
+  <data name="CacheSummary" xml:space="preserve">
+    <value>{0:N0} 件の検索結果 · {1}</value>
+  </data>
+  <data name="CacheClearFailed" xml:space="preserve">
+    <value>キャッシュを消去できませんでした: {0}</value>
+  </data>
+  <data name="CatalogLoading" xml:space="preserve">
+    <value>放送局リストを読み込み中…</value>
+  </data>
+  <data name="CatalogStatus" xml:space="preserve">
+    <value>{0:N0} 局 · {1} 付けのリスト</value>
+  </data>
+  <data name="CatalogStatusOffline" xml:space="preserve">
+    <value>{0:N0} 局 · {1} 付けのリスト (オフラインのコピー)</value>
+  </data>
+  <data name="CatalogUnavailable" xml:space="preserve">
+    <value>放送局リストを利用できません</value>
+  </data>
+  <data name="CatalogDownloadFailed" xml:space="preserve">
+    <value>{0} から放送局リストをダウンロードできず、ローカルのコピーもありません。({1})</value>
+  </data>
+  <data name="StationListDownloaded" xml:space="preserve">
+    <value>{0:d} {0:t} にダウンロード</value>
+  </data>
+  <data name="FavoritesLimitReached" xml:space="preserve">
+    <value>お気に入りはすべてバックグラウンドでストリーミングを続けるため、最大 {0} 局までです。先に 1 局削除してください。</value>
+  </data>
+  <data name="SettingsSaveFailed" xml:space="preserve">
+    <value>設定を保存できませんでした: {0}</value>
+  </data>
+  <data name="ChooseStation" xml:space="preserve">
+    <value>放送局を選んでください</value>
+  </data>
+  <data name="ClickFavoriteToListen" xml:space="preserve">
+    <value>お気に入りをクリックすると、すぐにライブで聴けます</value>
+  </data>
+  <data name="Stopped" xml:space="preserve">
+    <value>停止中</value>
+  </data>
+  <data name="NowPlayingMuted" xml:space="preserve">
+    <value>ミュート中</value>
+  </data>
+  <data name="NowPlayingNotFavorite" xml:space="preserve">
+    <value>お気に入りではないため、切り替えるとストリームが止まります</value>
+  </data>
+  <data name="JumpListFavorites" xml:space="preserve">
+    <value>お気に入り</value>
+  </data>
+  <data name="JumpListListenTo" xml:space="preserve">
+    <value>{0} を聴く</value>
+  </data>
+  <data name="JumpListListenToSong" xml:space="preserve">
+    <value>{0} を聴く
+{1}</value>
+  </data>
+  <data name="JumpListMute" xml:space="preserve">
+    <value>ミュート</value>
+  </data>
+  <data name="JumpListUnmute" xml:space="preserve">
+    <value>ミュート解除</value>
+  </data>
+  <data name="JumpListMuteToolTip" xml:space="preserve">
+    <value>局を止めずに音を消します</value>
+  </data>
+  <data name="JumpListUnmuteToolTip" xml:space="preserve">
+    <value>局の音を再び聴きます</value>
+  </data>
+  <data name="SongAdvertisement" xml:space="preserve">
+    <value>広告</value>
+  </data>
+  <data name="SongProbablyAdBreak" xml:space="preserve">
+    <value>広告の可能性があります</value>
+  </data>
+  <data name="LoudnessNotMeasured" xml:space="preserve">
+    <value>未測定</value>
+  </data>
+  <data name="LoudnessTurnedDown" xml:space="preserve">
+    <value>{0} dB 下げ</value>
+  </data>
+  <data name="LoudnessTurnedUp" xml:space="preserve">
+    <value>{0} dB 上げ</value>
+  </data>
+  <data name="LoudnessMeasuringAgain" xml:space="preserve">
+    <value>再測定中…</value>
+  </data>
+  <data name="StatusConnecting" xml:space="preserve">
+    <value>接続中…</value>
+  </data>
+  <data name="StatusNowPlaying" xml:space="preserve">
+    <value>再生中</value>
+  </data>
+  <data name="StatusLiveMuted" xml:space="preserve">
+    <value>ライブ · ミュート</value>
+  </data>
+  <data name="StatusBuffering" xml:space="preserve">
+    <value>バッファリング中…</value>
+  </data>
+  <data name="StatusReconnecting" xml:space="preserve">
+    <value>再接続中…</value>
+  </data>
+  <data name="StatusFailed" xml:space="preserve">
+    <value>接続できません。再試行中</value>
+  </data>
+  <data name="SoundMusic" xml:space="preserve">
+    <value>音楽</value>
+  </data>
+  <data name="SoundSpeech" xml:space="preserve">
+    <value>トーク</value>
+  </data>
+  <data name="ViewSwitchToFull" xml:space="preserve">
+    <value>フルウィンドウに切り替え</value>
+  </data>
+  <data name="ViewSwitchToCompact" xml:space="preserve">
+    <value>コンパクトウィンドウに切り替え</value>
+  </data>
+  <data name="SaveTrackRemove" xml:space="preserve">
+    <value>お気に入りの曲から削除</value>
+  </data>
+  <data name="SaveTrackAdd" xml:space="preserve">
+    <value>お気に入りの曲に追加</value>
+  </data>
+  <data name="MuteToolTipUnmute" xml:space="preserve">
+    <value>ミュート解除 (Ctrl+M)</value>
+  </data>
+  <data name="MuteToolTipMute" xml:space="preserve">
+    <value>ミュート (Ctrl+M)</value>
+  </data>
+  <data name="HotkeyInUseOne" xml:space="preserve">
+    <value>{0} はすでに他のアプリが使っているため、ウィンドウの外では動作しません。</value>
+  </data>
+  <data name="HotkeyInUseMany" xml:space="preserve">
+    <value>{0} はすでに他のアプリが使っているため、ウィンドウの外では動作しません。</value>
+  </data>
+  <data name="StreamStopped" xml:space="preserve">
+    <value>ストリームが応答しなくなりました。</value>
+  </data>
+  <data name="StreamEnded" xml:space="preserve">
+    <value>ストリームが終了しました。</value>
+  </data>
+</root>

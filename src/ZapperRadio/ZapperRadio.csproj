@@ -21,7 +21,8 @@
     <DefineConstants>$(DefineConstants);DISABLE_XAML_GENERATED_MAIN</DefineConstants>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <Version>1.17.0</Version>
+    <Version>1.18.0</Version>
+    <DefaultLanguage>en-US</DefaultLanguage>
     <Product>ZapperRadio</Product>
     <Description>ZapperRadio: instant station switching, no ads when you tune in.</Description>
     <ApplicationIcon>Assets\ZapperRadio.ico</ApplicationIcon>

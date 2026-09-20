@@ -18,6 +18,9 @@ public sealed class AppSettings
 
     public string? Country { get; set; }
 
+    /// <summary>The language tag chosen for the app, e.g. "nl-NL", or null to follow the language of Windows.</summary>
+    public string? Language { get; set; }
+
     /// <summary>Zap to another favorite during the ad breaks of the station being listened to, and back afterwards.</summary>
     public bool ZappOnAdBreaks { get; set; }
 

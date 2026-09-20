@@ -13,11 +13,13 @@ public sealed record JumpListItem(string Title, string ToolTip, JumpListCommand 
 /// </summary>
 public static class TaskbarJumpList
 {
-    private const string FavoritesCategory = "Favorites";
-
     private static readonly object Gate = new();
 
-    public static void Update(IReadOnlyList<JumpListItem> favorites, JumpListItem muteTask)
+    /// <summary>
+    /// Replaces the jump list. The name of the favorites category is handed in, rather than looked up here,
+    /// because this runs on a background thread and the language is chosen on the UI thread.
+    /// </summary>
+    public static void Update(string favoritesCategory, IReadOnlyList<JumpListItem> favorites, JumpListItem muteTask)
     {
         lock (Gate)
         {
@@ -32,7 +34,7 @@ public static class TaskbarJumpList
                 // Items the user removed from the list may not be added again; they return after changing favorites.
                 var shown = favorites.Where(f => !removed.Contains(f.Command.ToArguments())).Take((int)maxSlots).ToList();
                 var tasks = new List<JumpListItem>();
-                if (shown.Count > 0 && list.AppendCategory(FavoritesCategory, ToCollection(shown)) < 0)
+                if (shown.Count > 0 && list.AppendCategory(favoritesCategory,ToCollection(shown)) < 0)
                 {
                     // Windows refuses custom categories when "Show recently opened items" is turned off.
                     tasks.AddRange(shown);
