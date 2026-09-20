@@ -83,5 +83,6 @@
   "faq.a7": "是的。ZapperRadio 是开源软件，采用 MIT 许可证。",
   "foot.text": "电台数据来自 rb2rs 和 <a href=\"https://www.radio-browser.info/\">radio-browser.info</a>。声音分类由 YAMNet 提供（Google，Apache 许可证 2.0）。电台名称和徽标归其所有者所有。",
   "foot.releases": "发布版本",
-  "foot.license": "MIT 许可证"
+  "foot.license": "MIT 许可证",
+  "foot.privacy": "隐私"
 }

@@ -83,5 +83,6 @@
   "faq.a7": "はい。ZapperRadio は MIT ライセンスのオープンソースです。",
   "foot.text": "局のデータは rb2rs と <a href=\"https://www.radio-browser.info/\">radio-browser.info</a> によるものです。音の分類には YAMNet（Google、Apache License 2.0）を使用しています。局名とロゴは各権利者に帰属します。",
   "foot.releases": "リリース",
-  "foot.license": "MIT ライセンス"
+  "foot.license": "MIT ライセンス",
+  "foot.privacy": "プライバシー"
 }

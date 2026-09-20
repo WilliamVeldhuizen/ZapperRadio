@@ -85,6 +85,10 @@ An app that is started from source (`dotnet run`) or copied around is not instal
 - `src/ZapperRadio`: WinUI app. `Playback/RadioEngine` manages the muted streams, `Playback/StationStream` is a single `MediaPlayer` with reconnect logic that also keeps the loudness of its station, `Playback/SoundClassifier` decodes the relayed audio (Media Foundation via NAudio), runs YAMNet with the ONNX Runtime that comes with the Windows App SDK and measures the loudness of the same samples, `Updates/AppUpdater` finds, downloads and installs new versions with Velopack (`ViewModels/MainViewModel.Updates.cs` schedules it and shows the result), `Shell` holds the taskbar jump list, the Windows media card and the global shortcuts, and `Localizer` picks the language and looks up the texts in `Strings`.
 - `tests/ZapperRadio.Core.Tests`: xUnit tests.
 
+## Privacy
+
+No account, no analytics, no telemetry. Everything the app remembers stays in `%LOCALAPPDATA%\ZapperRadio`, and [PRIVACY.md](PRIVACY.md) lists every request the app makes over the internet, and to whom.
+
 ## License
 
-[MIT](LICENSE). The station list and popularity data are downloaded at runtime from rb2rs and [radio-browser.info](https://www.radio-browser.info/) and are not part of this repository. The YAMNet model in `src/ZapperRadio/Assets/Models` is by Google, converted to ONNX by [zeropointnine/yamnet-onnx](https://huggingface.co/zeropointnine/yamnet-onnx), and licensed under the Apache License 2.0.
+[MIT](LICENSE). The licenses of the components that ship with the app are in [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md), and are installed with it. The station list and popularity data are downloaded at runtime from rb2rs and [radio-browser.info](https://www.radio-browser.info/) and are not part of this repository. The YAMNet model in `src/ZapperRadio/Assets/Models` is by Google, converted to ONNX by [zeropointnine/yamnet-onnx](https://huggingface.co/zeropointnine/yamnet-onnx), and licensed under the Apache License 2.0.

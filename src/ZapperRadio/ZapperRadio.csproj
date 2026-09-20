@@ -24,6 +24,11 @@
     <Version>1.19.0</Version>
     <DefaultLanguage>en-US</DefaultLanguage>
     <Product>ZapperRadio</Product>
+    <!-- Shown in the file properties of ZapperRadio.exe; the title is what Task Manager and the firewall call the app. -->
+    <AssemblyTitle>ZapperRadio</AssemblyTitle>
+    <Authors>William Veldhuizen</Authors>
+    <Company>William Veldhuizen</Company>
+    <Copyright>Copyright (c) 2026 William Veldhuizen</Copyright>
     <Description>ZapperRadio: instant station switching, no ads when you tune in.</Description>
     <ApplicationIcon>Assets\ZapperRadio.ico</ApplicationIcon>
   </PropertyGroup>
@@ -31,6 +36,12 @@
   <ItemGroup>
     <Content Include="Assets\ZapperRadio.ico" CopyToOutputDirectory="PreserveNewest" />
     <Content Include="Assets\Models\yamnet.onnx;Assets\Models\LICENSE-yamnet.txt" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+  <!-- The licenses and notices that go with the app, so they are in the install folder (see THIRD-PARTY-NOTICES.md). -->
+  <ItemGroup>
+    <Content Include="..\..\LICENSE;..\..\PRIVACY.md;..\..\THIRD-PARTY-NOTICES.md" Link="%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="..\..\licenses\*.txt" Link="licenses\%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 
   <ItemGroup>

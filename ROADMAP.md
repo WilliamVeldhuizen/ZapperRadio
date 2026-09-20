@@ -261,12 +261,24 @@ start now.
    memory, handles and CPU. Also test network drops, sleep and wake, and a change of network. Check that a
    reconnect backs off and that every request has a timeout.
 
-8. **Legal and metadata.** A privacy note that lists the network calls: the update check, the station
-   directory, logos and popularity data. Third-party notices for NAudio, Velopack, the Windows App SDK and
-   YAMNet, and a check of the terms of the station and logo data. Fix the small things: look at what Installed
-   apps shows for the Velopack install (the MSI's `ARPURLINFOABOUT` link to `rb2rs.freemyip.com` went with the
-   MSI), and the exe has no company, copyright or file description.
+8. **Legal and metadata - mostly done.** `PRIVACY.md` lists every request the app makes and to whom (linked from
+   the README and the website footer); `THIRD-PARTY-NOTICES.md` and the Microsoft notice files in `licenses/`
+   are installed next to the exe; the exe has a company, copyright and file description; and the user agent
+   carries the app version instead of a fixed `1.0`. Still open:
 
+   - **Installed apps.** Check what the Velopack install shows there (name, publisher, icon) on a machine that
+     has one. Velopack takes the publisher from `--packAuthors`; it has no link to an about page.
+   - **rb2rs.** The station list comes from a bare directory listing on `rb2rs.freemyip.com` that only serves plain
+     `http`, with no terms and no contact on it. Ask its owner whether the app may use it, and whether it can be
+     served over `https`, or mirror the list yourself.
+   - **radio-browser.info.** Its documentation asks clients to find the servers with a DNS lookup of
+     `all.api.radio-browser.info` instead of a fixed list, and to send a `/json/url` request for every station a
+     user plays, which is what marks stations as popular. The app does neither. The second is a new request per
+     play, so it needs a line in `PRIVACY.md` as well.
+   - **Windows App SDK license.** Section 3 makes the app's own terms the place where end users agree to
+     conditions that protect Microsoft at least as much as the Windows App SDK license does, and asks for an
+     indemnity. The MIT license's disclaimer of warranty and liability is the only such text now; decide whether
+     that is enough, or add a short terms page to the Setup program.
 9. **Runtime prerequisites and installer behavior.** The release build is self-contained (`dotnet publish
    --self-contained true`), so .NET and the Windows App SDK are in the package and Velopack's `--framework`
    is not needed. The price is about 105 MB per architecture, which deltas keep out of the updates but not out

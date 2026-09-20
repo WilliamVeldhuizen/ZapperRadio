@@ -83,5 +83,6 @@
   "faq.a7": "Ja. ZapperRadio is open source onder de MIT-licentie.",
   "foot.text": "Zendergegevens van rb2rs en <a href=\"https://www.radio-browser.info/\">radio-browser.info</a>. Geluidsclassificatie door YAMNet (Google, Apache License 2.0). Zendernamen en logo's zijn eigendom van hun eigenaren.",
   "foot.releases": "Releases",
-  "foot.license": "MIT-licentie"
+  "foot.license": "MIT-licentie",
+  "foot.privacy": "Privacy"
 }

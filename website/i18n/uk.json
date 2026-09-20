@@ -83,5 +83,6 @@
   "faq.a7": "Так. ZapperRadio має відкритий код за ліцензією MIT.",
   "foot.text": "Дані про станції з rb2rs і <a href=\"https://www.radio-browser.info/\">radio-browser.info</a>. Класифікація звуку за допомогою YAMNet (Google, ліцензія Apache 2.0). Назви й логотипи станцій належать їхнім власникам.",
   "foot.releases": "Релізи",
-  "foot.license": "Ліцензія MIT"
+  "foot.license": "Ліцензія MIT",
+  "foot.privacy": "Конфіденційність"
 }

@@ -64,7 +64,9 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
         {
             Timeout = TimeSpan.FromMinutes(2),
         };
-        _http.DefaultRequestHeaders.UserAgent.ParseAdd("ZapperRadio/1.0");
+        // radio-browser.info asks its clients for a user agent with the name and the version of the app.
+        var userAgent = $"ZapperRadio/{(AppVersion.Length > 0 ? AppVersion : "0")}";
+        _http.DefaultRequestHeaders.UserAgent.ParseAdd(userAgent);
 
         var settingsPath = Path.Combine(dataFolder, "settings.json");
         _isFirstRun = !File.Exists(settingsPath);
@@ -85,7 +87,7 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
 
         // Streams run for hours, so the relay gets a client without the overall request timeout.
         _streamHttp = new HttpClient { Timeout = Timeout.InfiniteTimeSpan };
-        _streamHttp.DefaultRequestHeaders.UserAgent.ParseAdd("ZapperRadio/1.0");
+        _streamHttp.DefaultRequestHeaders.UserAgent.ParseAdd(userAgent);
         _proxy = new IcyProxy(_streamHttp);
 
         _classifier = SoundClassifier.TryCreate(Path.Combine(AppContext.BaseDirectory, "Assets", "Models", "yamnet.onnx"));
