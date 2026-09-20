@@ -245,8 +245,8 @@ start now.
    broken build or from a commit that did not bump the version.
 
 5. **Test the update path end to end.** Done by hand so far: a Setup built locally installs, starts, finds
-   no newer release on GitHub and reports "up to date", a graceful close and an uninstall leave nothing
-   behind, and a second version packs a 0.2 MB delta against the first. Not done, because it needs two real
+   no newer release on GitHub and reports "up to date", a graceful close exits the process, an uninstall
+   removes the install folder, and a second version packs a 0.2 MB delta against the first. Not done, because it needs two real
    releases: install 1.19.0 from the release, publish the next version, and check that it downloads (as a
    delta), installs on close, restarts from the button and keeps the settings, on both architectures.
    GitHub's unauthenticated API allows 60 requests an hour per IP, which shared networks can hit, so consider
