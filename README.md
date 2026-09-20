@@ -87,7 +87,7 @@ An app that is started from source (`dotnet run`) or copied around is not instal
 
 ## Privacy
 
-No account, no analytics, no telemetry. Everything the app remembers stays in `%LOCALAPPDATA%\ZapperRadio`, and [PRIVACY.md](PRIVACY.md) lists every request the app makes over the internet, and to whom.
+The app has no account, no analytics, no telemetry. Everything the app remembers stays in `%LOCALAPPDATA%\ZapperRadio`, and [PRIVACY.md](PRIVACY.md) lists every request the app makes over the internet, and to whom. The website counts its visitors with [GoatCounter](https://www.goatcounter.com/), without cookies; that is described in the same file.
 
 ## License
 

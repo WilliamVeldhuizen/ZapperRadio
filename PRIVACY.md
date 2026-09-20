@@ -1,8 +1,9 @@
 # Privacy
 
-ZapperRadio has no account, no analytics and no telemetry. It does not collect anything about you and there is no
-server of its own that it reports to. What it does do is talk to a handful of other services to get the station list,
-the audio, and a few small extras. This page lists every one of them, so you can judge for yourself.
+The ZapperRadio app has no account, no analytics and no telemetry. It does not collect anything about you and there is
+no server of its own that it reports to. What it does do is talk to a handful of other services to get the station
+list, the audio, and a few small extras. This page lists every one of them, so you can judge for yourself. The
+[website](#the-website) is separate from the app and counts its visitors, which is described at the end.
 
 ## What stays on your PC
 
@@ -40,6 +41,30 @@ the Spotify app opens with a search for that artist and title, and from then on 
 Each of these services has its own privacy policy, and the stations decide for themselves what they do with the
 requests they get. Only the streams are needed to play the radio: the station list is kept on your PC, so
 the other requests can be blocked in a firewall without stopping the app from playing.
+
+## The website
+
+This section is about [zapperradio.com](https://zapperradio.com/) only, not about the app. The person responsible for
+the website is the maintainer of this project, William Veldhuizen; questions can go in an
+[issue](https://github.com/WilliamVeldhuizen/ZapperRadio/issues).
+
+- **Visitor statistics.** The website counts its visitors with [GoatCounter](https://www.goatcounter.com/), to see how
+  many people come by, from where they were sent, and with which kind of browser and screen. GoatCounter is run by
+  Martin Tournoij in Ireland. It sets no cookies and stores nothing in your browser. According to its
+  [privacy policy](https://www.goatcounter.com/privacy) it does not store your IP address, your full user agent or any
+  tracker ID: it keeps only totals per hour, such as the page, the referring site, the browser, the operating system,
+  the language, the screen width and the country, and shares nothing with third parties. To tell repeat views from
+  new visitors it makes a random ID from your IP address and user agent, which lives in memory for at most 8 hours and
+  is not stored. Your request does reach GoatCounter's server, so your IP address is briefly there like with every
+  request. Because of this, and because the statistics cannot be traced back to a person, the website has no cookie
+  banner. The counting is done by a script from `gc.zgo.at` that the page loads, and you can block it in your browser
+  or with an ad blocker without anything else on the page changing.
+- **Hosting.** The website is served by [GitHub Pages](https://docs.github.com/en/pages), so GitHub receives your
+  request, with your IP address and user agent, as with any page it hosts. See GitHub's
+  [privacy statement](https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement).
+- **Latest version.** The page asks GitHub's API (`api.github.com`) for the version number of the newest release, to
+  show it next to the download buttons. That request comes from your browser and carries your IP address.
+- **Downloads.** The download buttons and the links to the releases go to GitHub, which then handles your request.
 
 ## Changes
 

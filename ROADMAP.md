@@ -279,6 +279,12 @@ start now.
      conditions that protect Microsoft at least as much as the Windows App SDK license does, and asks for an
      indemnity. The MIT license's disclaimer of warranty and liability is the only such text now; decide whether
      that is enough, or add a short terms page to the Setup program.
+   - **Website statistics.** The website counts visitors with GoatCounter (`zapperradio.goatcounter.com`) and
+     `PRIVACY.md` has a section on it. There is no data processing agreement (verwerkersovereenkomst) with
+     GoatCounter, and its privacy policy does not offer one. It states that it stores no IP address, no full user
+     agent and no cookies, but the IP address is briefly processed in memory. Decide whether that is enough, or ask
+     its operator for a DPA. Check in the GoatCounter settings that nothing else is enabled (such as collecting
+     more than the defaults), and that the data retention fits the privacy text.
 9. **Runtime prerequisites and installer behavior.** The release build is self-contained (`dotnet publish
    --self-contained true`), so .NET and the Windows App SDK are in the package and Velopack's `--framework`
    is not needed. The price is about 105 MB per architecture, which deltas keep out of the updates but not out
