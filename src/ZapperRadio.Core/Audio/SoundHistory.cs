@@ -14,9 +14,11 @@ public enum Sound
 /// <summary>
 /// One classified window of a stream: what it sounded like, and how loud it was in LUFS. The loudness is only
 /// measured while the window is music, because what a station does to its music is what makes it louder than the
-/// next station; ads and talk are mixed at a level of their own.
+/// next station; ads and talk are mixed at a level of their own. <paramref name="SpeechFrom"/> is how far into a
+/// window of speech the talking begins, as a fraction of the window: 0 when it talks throughout, more when the song
+/// was still playing at its start.
 /// </summary>
-public readonly record struct SoundWindow(Sound Sound, double? Loudness);
+public readonly record struct SoundWindow(Sound Sound, double? Loudness, double SpeechFrom = 0);
 
 /// <summary>
 /// The sound of the last windows of a stream, each about 5 seconds of audio. Songs sound like music almost throughout.
@@ -30,6 +32,7 @@ public sealed class SoundHistory
 
     private const int Capacity = 6;
     private readonly Queue<Sound> _windows = new(Capacity);
+    private readonly Queue<double> _speechFrom = new(Capacity);
 
     /// <summary>How many windows in a row were music, also beyond the ones kept.</summary>
     public int ConsecutiveMusic { get; private set; }
@@ -55,12 +58,13 @@ public sealed class SoundHistory
     }
 
     /// <summary>
-    /// How many windows ago the latest stretch of talking began: counted back from the newest window with speech,
-    /// through speech and the unclear windows between it (a jingle, a sound effect), up to the oldest speech window
-    /// before a window of music. Zero when none of the kept windows is speech. Says where a break heard as speech
-    /// really started, which is a window or two before it counts as one.
+    /// How long ago the latest stretch of talking began: counted back from the newest window with speech, through
+    /// speech and the unclear windows between it (a jingle, a sound effect), up to the oldest speech window before a
+    /// window of music, and within that window to where the talking starts. Zero when none of the kept windows is
+    /// speech. Says where a break heard as speech really started, which is a window or two before it counts as one.
+    /// Dating it to the start of its first window instead cuts off the last seconds of the song before it.
     /// </summary>
-    public int SpeechStretch
+    public TimeSpan SpeechStretch
     {
         get
         {
@@ -68,7 +72,7 @@ public sealed class SoundHistory
             var newest = Array.LastIndexOf(windows, Sound.Speech);
             if (newest < 0)
             {
-                return 0;
+                return TimeSpan.Zero;
             }
 
             var oldest = newest;
@@ -80,7 +84,7 @@ public sealed class SoundHistory
                 }
             }
 
-            return windows.Length - oldest;
+            return (windows.Length - oldest - _speechFrom.ElementAt(oldest)) * SongClock.Window;
         }
     }
 
@@ -90,14 +94,46 @@ public sealed class SoundHistory
         : speech > music ? Sound.Speech
         : Sound.Music;
 
-    public void Add(Sound window)
+    /// <summary>
+    /// Where in a window of speech the talking begins, as a fraction of the window, from the YAMNet scores of its
+    /// frames. The window is split where the frames before lean most to music and the frames after most to speech,
+    /// which one stray frame either way does not move far.
+    /// </summary>
+    public static double SpeechFrom(IReadOnlyList<float> speech, IReadOnlyList<float> music)
+    {
+        if (speech.Count == 0)
+        {
+            return 0;
+        }
+
+        // Splitting at a frame moves the frames before it to the music side; the best split has the most speech
+        // before it taken away, so it is where the running sum of speech over music is lowest.
+        double sum = 0, lowest = 0;
+        var split = 0;
+        for (var frame = 0; frame < speech.Count; frame++)
+        {
+            sum += speech[frame] - music[frame];
+            if (sum < lowest)
+            {
+                lowest = sum;
+                split = frame + 1;
+            }
+        }
+
+        return (double)split / speech.Count;
+    }
+
+    /// <param name="speechFrom">How far into a window of speech the talking begins, as a fraction of the window.</param>
+    public void Add(Sound window, double speechFrom = 0)
     {
         if (_windows.Count == Capacity)
         {
             _windows.Dequeue();
+            _speechFrom.Dequeue();
         }
 
         _windows.Enqueue(window);
+        _speechFrom.Enqueue(window == Sound.Speech ? Math.Clamp(speechFrom, 0, 1) : 0);
         ConsecutiveMusic = window == Sound.Music ? ConsecutiveMusic + 1 : 0;
     }
 
@@ -105,6 +141,7 @@ public sealed class SoundHistory
     public void Clear()
     {
         _windows.Clear();
+        _speechFrom.Clear();
         ConsecutiveMusic = 0;
     }
 }

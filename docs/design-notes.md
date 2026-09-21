@@ -246,7 +246,11 @@ the station has already moved on to.
 Two kinds of moments are dated back when they are recorded. A break that only the sound gives away
 begins where the talking did (`SoundHistory.SpeechStretch`: back from the newest speech window,
 through speech and unclear windows, up to the first window of music), because the classifier needs a
-window or two to be sure of it. A new song begins where the song clock says it did, less a 2-second
+window or two to be sure of it. Within the first window of talking it starts where the talking does
+(`SoundHistory.SpeechFrom`), found from YAMNet's own frames of about half a second: the window is split
+where the frames before lean most to music and the frames after most to speech. Dating the break to
+the start of that window cut off on average two and a half seconds of the song before it, and up to
+five. A new song begins where the song clock says it did, less a 2-second
 pre-roll (`StreamTimeline.SongPreRoll`), which is exactly where a zap to it lands. Without that, the
 seconds before the music was confirmed would still read as the talk before it, and the zapper would zap
 straight away again from the station it just landed on. A song is never dated back into a break the

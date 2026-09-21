@@ -155,6 +155,43 @@ public class SoundHistoryTests
     [InlineData("MMuuSS", 2)]
     public void SpeechStretch_SaysWhereTheTalkingBegan(string windows, int expected)
     {
-        Assert.Equal(expected, Heard(windows).SpeechStretch);
+        Assert.Equal(expected * SongClock.Window, Heard(windows).SpeechStretch);
+    }
+
+    [Fact]
+    public void SpeechStretch_StartsWhereTheTalkingBeginsInItsFirstWindow()
+    {
+        var sound = Heard("MMMM");
+        sound.Add(Sound.Speech, speechFrom: 0.6);
+        sound.Add(Sound.Speech, speechFrom: 0.2);
+
+        // The song still played for three of the five seconds of the first window of talking.
+        Assert.Equal(1.4 * SongClock.Window, sound.SpeechStretch);
+    }
+
+    [Fact]
+    public void SpeechStretch_IgnoresWhereTalkingBeginsInAWindowOfMusic()
+    {
+        var sound = Heard("MMMM");
+        sound.Add(Sound.Music, speechFrom: 0.8);
+        sound.Add(Sound.Speech);
+
+        Assert.Equal(SongClock.Window, sound.SpeechStretch);
+    }
+
+    [Theory]
+    // Talking throughout, or from the start after one stray frame of music.
+    [InlineData("SSSSSSSSSS", 0.0)]
+    [InlineData("MSSSSSSSSS", 0.1)]
+    // The end of a song, then a presenter.
+    [InlineData("MMMMMMSSSS", 0.6)]
+    // A word over the fade-out does not pull the start to it.
+    [InlineData("MMSMMMSSSS", 0.6)]
+    public void SpeechFrom_SplitsTheWindowWhereTheTalkingBegins(string frames, double expected)
+    {
+        var speech = frames.Select(f => f == 'S' ? 0.9f : 0.1f).ToList();
+        var music = frames.Select(f => f == 'M' ? 0.9f : 0.1f).ToList();
+
+        Assert.Equal(expected, SoundHistory.SpeechFrom(speech, music), precision: 6);
     }
 }

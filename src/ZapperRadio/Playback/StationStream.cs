@@ -410,7 +410,7 @@ public sealed class StationStream : IDisposable
     {
         var before = Sound;
         _lastSoundUtc = DateTime.UtcNow;
-        _sound.Add(window.Sound);
+        _sound.Add(window.Sound, window.SpeechFrom);
         if (window.Loudness is { } loudness)
         {
             _loudness.Add(loudness);

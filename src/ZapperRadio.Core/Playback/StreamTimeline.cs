@@ -47,7 +47,7 @@ public sealed class StreamTimeline
         var before = Latest;
         if (moment.IsBreak && before?.IsBreak != true && moment.Metadata?.IsAd != true)
         {
-            return now - sound.SpeechStretch * SongClock.Window;
+            return now - sound.SpeechStretch;
         }
 
         if (moment.State == ChannelState.Song && (before?.State != ChannelState.Song || before.Metadata != moment.Metadata)

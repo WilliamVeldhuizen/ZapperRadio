@@ -94,10 +94,10 @@ public sealed class SoundClassifier : IDisposable
                     try
                     {
                         var samples = Decode(audio);
-                        var sound = Classify(samples);
+                        var (sound, speechFrom) = Classify(samples);
                         // Only the music of a station says how loud it is mastered, so nothing else is measured.
                         var loudness = sound == Sound.Music ? Loudness.Measure(samples, SampleRate) : null;
-                        listener.Report(new SoundWindow(sound, loudness));
+                        listener.Report(new SoundWindow(sound, loudness, speechFrom));
                     }
                     catch (Exception)
                     {
@@ -138,26 +138,34 @@ public sealed class SoundClassifier : IDisposable
         return result.Count > MaxSamples ? result[^MaxSamples..].ToArray() : result.ToArray();
     }
 
-    private Sound Classify(float[] samples)
+    /// <returns>What the window sounds like, and for speech how far into it the talking begins.</returns>
+    private (Sound Sound, double SpeechFrom) Classify(float[] samples)
     {
         // YAMNet needs just under a second for a single frame.
         if (samples.Length < SampleRate)
         {
-            return Sound.Unknown;
+            return (Sound.Unknown, 0);
         }
 
         var input = NamedOnnxValue.CreateFromTensor(_inputName, new DenseTensor<float>(samples, [samples.Length]));
         using var results = _session.Run([input]);
         var scores = results.First().AsTensor<float>();
         var frames = scores.Dimensions[0];
-        float speech = 0, music = 0;
-        for (var frame = 0; frame < frames; frame++)
+        if (frames == 0)
         {
-            speech += scores[frame, SpeechClass];
-            music += scores[frame, MusicClass];
+            return (Sound.Unknown, 0);
         }
 
-        return frames == 0 ? Sound.Unknown : SoundHistory.Label(speech / frames, music / frames);
+        var speech = new float[frames];
+        var music = new float[frames];
+        for (var frame = 0; frame < frames; frame++)
+        {
+            speech[frame] = scores[frame, SpeechClass];
+            music[frame] = scores[frame, MusicClass];
+        }
+
+        var sound = SoundHistory.Label(speech.Average(), music.Average());
+        return (sound, sound == Sound.Speech ? SoundHistory.SpeechFrom(speech, music) : 0);
     }
 
     public void Dispose()
