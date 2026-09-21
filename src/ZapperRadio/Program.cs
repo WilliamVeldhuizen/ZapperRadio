@@ -16,6 +16,9 @@ public static class Program
         VelopackApp.Build()
             // The Run key points into the install folder, which is deleted along with the app.
             .OnBeforeUninstallFastCallback(_ => StartupRegistration.DisableForThisInstall())
+            // So that a taskbar pin survives the next update; see StableShortcuts.
+            .OnAfterInstallFastCallback(_ => StableShortcuts.PointAtLauncher())
+            .OnAfterUpdateFastCallback(_ => StableShortcuts.PointAtLauncher())
             .Run();
 
         WinRT.ComWrappersSupport.InitializeComWrappers();
@@ -31,6 +34,10 @@ public static class Program
             Task.Run(() => mainInstance.RedirectActivationToAsync(activation).AsTask()).Wait();
             return 0;
         }
+
+        // Also here, for installs from before it was done on install and update, and because an update
+        // points the shortcut's icon back at the app.
+        _ = Task.Run(StableShortcuts.PointAtLauncher);
 
         Application.Start(callback =>
         {

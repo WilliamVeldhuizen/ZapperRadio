@@ -170,6 +170,15 @@ The app is installed per user in `%LOCALAPPDATA%\ZapperRadioApp`, apart from the
 `%LOCALAPPDATA%\ZapperRadio`, because uninstalling deletes the whole install folder and the
 favorites should survive it.
 
+Velopack swaps in a new version by renaming `current` to a temp folder, renaming the new version
+to `current`, and deleting the temp folder. Windows follows the rename, so a taskbar pin on
+`current\ZapperRadio.exe` ended up pointing into the deleted folder and was dropped after every
+update. `Shell/StableShortcuts` therefore points the Start menu shortcut, which a pin is made from,
+and any pinned copy of it at Velopack's launcher `ZapperRadioApp\ZapperRadio.exe`. The launcher is
+overwritten in place and never moves. It does this on install, on update and at every start.
+Velopack itself only retargets a shortcut whose target is missing, so the new target stays, but
+every update points the icon back at the app.
+
 The price is the people who still have the MSI (up to 1.18): it installs for all users and has no
 update check, so they only learn about the change from the README and the website, and have to
 uninstall it by hand once. There is no migration step, and the app cannot see the old install from
