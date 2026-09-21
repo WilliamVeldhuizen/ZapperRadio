@@ -175,3 +175,18 @@ The price is the people who still have the MSI (up to 1.18): it installs for all
 update check, so they only learn about the change from the README and the website, and have to
 uninstall it by hand once. There is no migration step, and the app cannot see the old install from
 the new one.
+
+## Search ranking
+
+`StationFilter.Relevance` scores every match, lower being better: 0 when the query is the station's
+whole name (ignoring spaces and dashes, so `qmusic` is "Q-Music"), and otherwise 1 plus, per term,
+where it was found: the start of the name, the start of a word in it, the middle of it, the tags,
+the country, or only with a typo. Summing rather than taking the worst term keeps "Radio 538
+Non-stop" above "Hitradio 538" for `radio 538`. The results sort on that score, then on the
+radio-browser popularity, then on the name.
+
+With no country picked, the popularity comes from radio-browser's worldwide top 1,000, fetched and
+cached like the per-country lists, so "All countries" opens on the stations people actually play
+instead of whatever sorts first by name. Ranking by the tags of your favorites was considered for the
+same empty list and left out: 36% of the stations in the rb2rs list have no tags at all, so it would
+push down many of the stations worth finding.

@@ -19,6 +19,15 @@ public class StationPopularityTests
         Assert.Contains("order=clickcount&reverse=true", query);
     }
 
+    [Fact]
+    public void BuildQuery_WithoutCountry_RanksTheWholeWorld()
+    {
+        var query = StationPopularity.BuildQuery(null);
+
+        Assert.StartsWith("json/stations/search?order=clickcount&reverse=true", query);
+        Assert.DoesNotContain("country", query);
+    }
+
     [Theory]
     [InlineData("NL", "Netherlands")]
     [InlineData("gb", "United Kingdom")]

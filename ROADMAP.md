@@ -67,11 +67,6 @@ which favorites the zapper gets to work with.
 - **Cluster the stations of one broadcaster.** Many stations come with a row of variants, such as the
   non-stop or theme channels of a main station, which now show up as separate, near-identical rows.
   Group them under the main station, which can be expanded to pick a variant.
-- **Rank by relevance.** `StationFilter.Match` only tells an exact match from one with a typo, and after
-  that the order is popularity (only with a country picked) or the name. So "538" ranks a station with
-  538 in its tags as high as Radio 538 itself. A small score fixes most "why is it not on top" moments:
-  the name starts with the term, then a word in the name does, then the compacted name matches, then a
-  tag, then the country, then a typo; popularity breaks the ties. It stays in the tested core.
 - **Leave out or demote dead stations.** The rb2rs list has no health data (its second column is `-` on
   every line) and does not filter on it: of 2,000 stations radio-browser lists as broken (`lastcheckok=0`),
   86% are in the rb2rs file, against 90% of 2,000 working ones. At radio-browser's 6,710 broken stations

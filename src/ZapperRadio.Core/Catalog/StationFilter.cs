@@ -16,52 +16,129 @@ public sealed class StationFilter
 {
     private readonly string[] _terms;
     private readonly string? _country;
+    private readonly string _compactQuery;
 
     public StationFilter(string? query, string? country = null)
     {
         _terms = (query ?? string.Empty).Split(' ', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
         _country = string.IsNullOrWhiteSpace(country) ? null : country;
+        _compactQuery = Compact(query ?? string.Empty);
     }
 
     public bool IsEmpty => _terms.Length == 0 && _country is null;
 
     public bool Matches(Station station) => Match(station) != StationMatch.None;
 
-    public StationMatch Match(Station station)
+    public StationMatch Match(Station station) =>
+        Evaluate(station, out var typo) is null ? StationMatch.None
+        : typo ? StationMatch.Fuzzy
+        : StationMatch.Exact;
+
+    /// <summary>
+    /// How well the station matches, lower being better, or null when it does not match. 0 is the query being the
+    /// station's whole name; after that every term adds where it was found (see <see cref="Place"/>), so "538"
+    /// puts Radio 538 above a station that only has 538 in its tags. Equal scores are left to the popularity.
+    /// </summary>
+    public int? Relevance(Station station) => Evaluate(station, out _);
+
+    private int? Evaluate(Station station, out bool typo)
     {
+        typo = false;
         if (_country is not null && !string.Equals(station.Country, _country, StringComparison.OrdinalIgnoreCase))
         {
-            return StationMatch.None;
+            return null;
         }
 
-        var result = StationMatch.Exact;
-        string? compactName = null;
+        var compactName = Compact(station.Name);
+        if (_compactQuery.Length > 0 && string.Equals(compactName, _compactQuery, StringComparison.OrdinalIgnoreCase))
+        {
+            return 0;
+        }
+
+        var score = 1;
         foreach (var term in _terms)
         {
-            if (station.Name.Contains(term, StringComparison.OrdinalIgnoreCase)
-                || station.Tags.Contains(term, StringComparison.OrdinalIgnoreCase)
-                || station.Country.Contains(term, StringComparison.OrdinalIgnoreCase)
-                // "qmusic" should find "Q music" and "Q-Music".
-                || (compactName ??= Compact(station.Name)).Contains(term, StringComparison.OrdinalIgnoreCase))
+            if (Find(station, compactName, term) is not { } place)
             {
-                continue;
+                return null;
             }
 
-            var maxEdits = MaxEdits(term);
-            if (maxEdits > 0
-                && (ContainsSimilarWord(station.Name, term, maxEdits)
-                    || ContainsSimilarWord(station.Tags, term, maxEdits)
-                    || ContainsSimilarWord(station.Country, term, maxEdits)
-                    || ContainsSimilarWord(compactName ??= Compact(station.Name), term, maxEdits)))
-            {
-                result = StationMatch.Fuzzy;
-                continue;
-            }
-
-            return StationMatch.None;
+            typo |= place == Place.Typo;
+            score += (int)place;
         }
 
-        return result;
+        return score;
+    }
+
+    /// <summary>Where a term was found, from the best place to the worst.</summary>
+    private enum Place
+    {
+        NameStart,
+        NameWordStart,
+        Name,
+        Tags,
+        Country,
+        Typo,
+    }
+
+    private static Place? Find(Station station, string compactName, string term)
+    {
+        // "qmusic" should find "Q music" and "Q-Music", so the name is also tried without its spaces and dashes.
+        if (station.Name.StartsWith(term, StringComparison.OrdinalIgnoreCase)
+            || compactName.StartsWith(term, StringComparison.OrdinalIgnoreCase))
+        {
+            return Place.NameStart;
+        }
+
+        if (StartsWord(station.Name, term))
+        {
+            return Place.NameWordStart;
+        }
+
+        if (station.Name.Contains(term, StringComparison.OrdinalIgnoreCase)
+            || compactName.Contains(term, StringComparison.OrdinalIgnoreCase))
+        {
+            return Place.Name;
+        }
+
+        if (station.Tags.Contains(term, StringComparison.OrdinalIgnoreCase))
+        {
+            return Place.Tags;
+        }
+
+        if (station.Country.Contains(term, StringComparison.OrdinalIgnoreCase))
+        {
+            return Place.Country;
+        }
+
+        var maxEdits = MaxEdits(term);
+        if (maxEdits > 0
+            && (ContainsSimilarWord(station.Name, term, maxEdits)
+                || ContainsSimilarWord(station.Tags, term, maxEdits)
+                || ContainsSimilarWord(station.Country, term, maxEdits)
+                || ContainsSimilarWord(compactName, term, maxEdits)))
+        {
+            return Place.Typo;
+        }
+
+        return null;
+    }
+
+    /// <summary>True when a word in <paramref name="text"/> starts with the term, like "538" in "Radio 538".</summary>
+    private static bool StartsWord(string text, string term)
+    {
+        var i = text.IndexOf(term, StringComparison.OrdinalIgnoreCase);
+        while (i >= 0)
+        {
+            if (i == 0 || !char.IsLetterOrDigit(text[i - 1]))
+            {
+                return true;
+            }
+
+            i = text.IndexOf(term, i + 1, StringComparison.OrdinalIgnoreCase);
+        }
+
+        return false;
     }
 
     /// <summary>Short terms get no typo tolerance: "rock" would otherwise also find "rick" and "roc".</summary>

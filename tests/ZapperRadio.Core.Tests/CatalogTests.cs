@@ -84,6 +84,47 @@ public class CatalogTests
 
         Assert.Equal(expected, new StationFilter(query, country).Matches(station));
     }
+
+    [Theory]
+    // The whole name, then the name starting with the term, a word in it, the middle of it, the tags, the country, a typo.
+    [InlineData("radio 538", "Radio 538", "Radio 538 Non-stop", "Hitradio 538", "Top 40")]
+    [InlineData("538", "538 Hitzone", "Radio 538", "Hitradio538", "Top 40")]
+    [InlineData("qmusic", "Q-Music", "Qmusic Foute Uur", "Joe", "Qmusik")]
+    [InlineData("netherlands", "Netherlands Radio", "Radio 538", "Radio Nethrlands")]
+    public void StationFilter_RanksBetterMatchesFirst(string query, params string[] namesInOrder)
+    {
+        var stations = new Dictionary<string, Station>
+        {
+            ["Radio 538"] = new("Radio 538", "pop", "Netherlands", "", "http://a.example/"),
+            ["538 Hitzone"] = new("538 Hitzone", "hits", "Netherlands", "", "http://b.example/"),
+            ["Radio 538 Non-stop"] = new("Radio 538 Non-stop", "pop", "Netherlands", "", "http://c.example/"),
+            ["Hitradio 538"] = new("Hitradio 538", "", "Netherlands", "", "http://d.example/"),
+            ["Hitradio538"] = new("Hitradio538", "", "Netherlands", "", "http://d2.example/"),
+            ["Top 40"] = new("Top 40", "538,radio", "Netherlands", "", "http://e.example/"),
+            ["Radio Nethrlands"] = new("Radio Nethrlands", "", "Germany", "", "http://f.example/"),
+            ["Q-Music"] = new("Q-Music", "", "Netherlands", "", "http://g.example/"),
+            ["Qmusic Foute Uur"] = new("Qmusic Foute Uur", "", "Netherlands", "", "http://h.example/"),
+            ["Joe"] = new("Joe", "qmusic", "Belgium", "", "http://i.example/"),
+            ["Qmusik"] = new("Qmusik", "", "Germany", "", "http://j.example/"),
+            ["Netherlands Radio"] = new("Netherlands Radio", "", "Netherlands", "", "http://k.example/"),
+        };
+        var filter = new StationFilter(query);
+
+        var scores = namesInOrder.Select(name => filter.Relevance(stations[name])).ToList();
+
+        Assert.DoesNotContain(null, scores);
+        Assert.Equal(scores.Order(), scores);
+        Assert.Equal(scores.Count, scores.Distinct().Count());
+    }
+
+    [Fact]
+    public void StationFilter_EmptyQueryMatchesEveryStationEqually()
+    {
+        var filter = new StationFilter("");
+
+        Assert.Equal(filter.Relevance(new Station("A", "", "", "", "http://a.example/")),
+                     filter.Relevance(new Station("Radio B", "pop", "Belgium", "", "http://b.example/")));
+    }
 }
 
 internal static class TestPathExtensions

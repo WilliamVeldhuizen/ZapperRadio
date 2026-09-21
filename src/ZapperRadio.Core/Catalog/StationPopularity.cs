@@ -5,7 +5,7 @@ namespace ZapperRadio.Core.Catalog;
 
 /// <summary>
 /// The rb2rs station list has no popularity data, but it is generated from radio-browser.info.
-/// This asks the radio-browser API for a country's most clicked stations and ranks them by stream URL.
+/// This asks the radio-browser API for a country's most clicked stations, or the world's, and ranks them by stream URL.
 /// Results are cached on disk for a day and reused (even when stale) if the API is unreachable.
 /// </summary>
 public sealed class StationPopularity(HttpClient http, string cacheFolder, IReadOnlyList<Uri>? apiServers = null)
@@ -27,12 +27,12 @@ public sealed class StationPopularity(HttpClient http, string cacheFolder, IRead
     private readonly IReadOnlyList<Uri> _apiServers = apiServers ?? DefaultApiServers;
 
     /// <summary>
-    /// Returns a map from stream URL to rank (0 = most popular) for the given country name as used
-    /// in the station list, or an empty map when nothing could be fetched or cached.
+    /// Returns a map from stream URL to rank (0 = most popular) for the given country name as used in the station
+    /// list, or for the whole world when it is null, or an empty map when nothing could be fetched or cached.
     /// </summary>
-    public async Task<IReadOnlyDictionary<string, int>> GetRanksAsync(string country, CancellationToken cancellationToken = default)
+    public async Task<IReadOnlyDictionary<string, int>> GetRanksAsync(string? country, CancellationToken cancellationToken = default)
     {
-        var cacheFile = Path.Combine(cacheFolder, $"popularity-{SafeFileName(country)}.txt");
+        var cacheFile = Path.Combine(cacheFolder, country is null ? "popularity-worldwide.txt" : $"popularity-{SafeFileName(country)}.txt");
         if (File.Exists(cacheFile) && DateTime.UtcNow - File.GetLastWriteTimeUtc(cacheFile) < MaxCacheAge)
         {
             return ToRanks(await File.ReadAllLinesAsync(cacheFile, cancellationToken));
@@ -60,8 +60,8 @@ public sealed class StationPopularity(HttpClient http, string cacheFolder, IRead
             : new Dictionary<string, int>();
     }
 
-    public static string BuildQuery(string country) =>
-        $"json/stations/search?{CountryFilter(country)}&order=clickcount&reverse=true&hidebroken=true&limit={Limit}";
+    public static string BuildQuery(string? country) =>
+        $"json/stations/search?{(country is null ? "" : CountryFilter(country) + "&")}order=clickcount&reverse=true&hidebroken=true&limit={Limit}";
 
     /// <summary>
     /// The radio-browser query parameter for a country as used in the station list. radio-browser spells

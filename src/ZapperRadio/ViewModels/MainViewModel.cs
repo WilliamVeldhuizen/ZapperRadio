@@ -28,6 +28,9 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
     private readonly StationPopularity _popularity;
     private readonly StationLogos _logos;
     private readonly Dictionary<string, IReadOnlyDictionary<string, int>> _popularityByCountry = new(StringComparer.OrdinalIgnoreCase);
+
+    /// <summary>The key of the worldwide ranking in <see cref="_popularityByCountry"/>, which no country in the list has.</summary>
+    private const string WorldwidePopularity = "";
     private readonly HttpClient _streamHttp;
     private readonly IcyProxy _proxy;
     private readonly SoundClassifier? _classifier;
@@ -927,31 +930,29 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
         var filter = new StationFilter(SearchText, country);
         var source = _allStations;
 
-        IReadOnlyDictionary<string, int>? ranks = null;
-        if (country is not null && !_popularityByCountry.TryGetValue(country, out ranks))
+        // Without a country the worldwide ranking is used, so the list does not open on whatever sorts first by name.
+        if (!_popularityByCountry.TryGetValue(country ?? WorldwidePopularity, out var ranks))
         {
             _ = LoadPopularityAsync(country);
         }
 
         try
         {
-            var results = filter.IsEmpty
-                ? source
-                : await Task.Run(() =>
+            var results = await Task.Run(() =>
+            {
+                // The best matches come first, and the most popular among equally good ones; the sorts are stable,
+                // so the stations that are neither keep name order.
+                var matches = source
+                    .Select(s => (Item: s, Relevance: filter.Relevance(s.Station)))
+                    .Where(m => m.Relevance is not null)
+                    .OrderBy(m => m.Relevance);
+                if (ranks is { Count: > 0 })
                 {
-                    // Exact matches come before matches with a typo; the sorts are stable, so name order is kept otherwise.
-                    var matches = source
-                        .Select(s => (Item: s, Match: filter.Match(s.Station)))
-                        .Where(m => m.Match != StationMatch.None)
-                        .OrderBy(m => m.Match == StationMatch.Fuzzy);
-                    // Within a country, the most popular stations come first; unranked ones keep name order.
-                    if (ranks is { Count: > 0 })
-                    {
-                        matches = matches.ThenBy(m => ranks.TryGetValue(m.Item.Station.Url, out var rank) ? rank : int.MaxValue);
-                    }
+                    matches = matches.ThenBy(m => ranks.TryGetValue(m.Item.Station.Url, out var rank) ? rank : int.MaxValue);
+                }
 
-                    return matches.Select(m => m.Item).ToList();
-                }, cts.Token);
+                return matches.Select(m => m.Item).ToList();
+            }, cts.Token);
 
             if (!cts.IsCancellationRequested)
             {
@@ -963,22 +964,24 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
         }
     }
 
-    private async Task LoadPopularityAsync(string country)
+    /// <param name="country">The country to rank, or null for the whole world.</param>
+    private async Task LoadPopularityAsync(string? country)
     {
+        var key = country ?? WorldwidePopularity;
         // Mark as loading so repeated searches don't start the same request again.
-        _popularityByCountry[country] = new Dictionary<string, int>();
+        _popularityByCountry[key] = new Dictionary<string, int>();
         try
         {
-            _popularityByCountry[country] = await _popularity.GetRanksAsync(country);
+            _popularityByCountry[key] = await _popularity.GetRanksAsync(country);
         }
         catch (Exception)
         {
             // Popularity is a nice-to-have; without it the list stays sorted by name.
-            _popularityByCountry.Remove(country);
+            _popularityByCountry.Remove(key);
             return;
         }
 
-        if (string.Equals(SelectedCountry, country, StringComparison.OrdinalIgnoreCase))
+        if (string.Equals(SelectedCountry == AllCountries ? WorldwidePopularity : SelectedCountry, key, StringComparison.OrdinalIgnoreCase))
         {
             await ApplySearchAsync();
         }
