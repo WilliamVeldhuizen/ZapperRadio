@@ -55,6 +55,7 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
     private bool _favoritesSyncPending;
     private Station? _lastPlayed;
     private readonly AdBreakZapper _zapper = new();
+    private bool _isSwitching;
     private bool _isFirstRun;
     private string? _nowPlayingLogoStationUrl;
     private string? _jumpListShown;
@@ -585,7 +586,7 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
         _lastPlayed = station;
         // A station picked by hand, with a click, a shortcut, a media key or the jump list, plays live: you chose what
         // is on right now. Only the zapper starts a station at the beginning of its song.
-        _engine.Play(station);
+        Switch(station, null);
         if (_engine.Active is { } active)
         {
             // Picking a station ends any zapping, and picking it during its ad break means you want to hear it anyway.
@@ -619,12 +620,18 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
     private void StepFavorite(int step)
     {
         var urls = Favorites.Select(f => f.Station.Url).ToList();
-        if (FavoriteRing.Step(urls, _engine.Active?.Station.Url, step) is { } url
+        // While zapping is on, next and previous pass over the favorites in an ad break or talking, which is what
+        // the zapper would leave anyway.
+        if (FavoriteRing.Step(urls, _engine.Active?.Station.Url, step, IsInBreak) is { } url
             && Favorites.FirstOrDefault(f => f.Station.Url == url) is { } favorite)
         {
             Play(favorite.Station);
         }
     }
+
+    /// <summary>Whether a favorite is in a break the zapper leaves; always false while zapping is off.</summary>
+    private bool IsInBreak(string url) =>
+        ZappOnAdBreaks && _engine.Find(url) is { } stream && ChannelOf(stream) is ChannelState.Ad or ChannelState.Speech;
 
     [RelayCommand]
     private void TogglePlayback()
@@ -992,7 +999,24 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
             && _engine.Find(url) is { } next)
         {
             _lastPlayed = next.Station;
-            _engine.Play(next.Station, SongStartOf(next));
+            Switch(next.Station, SongStartOf(next));
+        }
+    }
+
+    /// <summary>
+    /// Switches the engine to a station. The switch itself reports that what is heard changed, and the zapper must not
+    /// act on that halfway: a station picked by hand in its break would be zapped away from before the pick counts.
+    /// </summary>
+    private void Switch(Station station, DateTimeOffset? from)
+    {
+        _isSwitching = true;
+        try
+        {
+            _engine.Play(station, from);
+        }
+        finally
+        {
+            _isSwitching = false;
         }
     }
 
@@ -1022,7 +1046,11 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
         }
 
         UpdateNowPlaying();
-        ZapOnAdBreak();
+        if (!_isSwitching)
+        {
+            ZapOnAdBreak();
+        }
+
         ScheduleHeardChange();
     }
 

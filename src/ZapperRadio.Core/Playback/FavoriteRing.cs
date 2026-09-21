@@ -28,6 +28,28 @@ public static class FavoriteRing
         return urls[((index + step) % urls.Count + urls.Count) % urls.Count];
     }
 
+    /// <summary>
+    /// Like <see cref="Step(IReadOnlyList{string}, string?, int)"/>, but passes over the favorites
+    /// <paramref name="skip"/> says to, such as the ones in an ad break, and keeps going in the same direction.
+    /// When every other favorite would be passed over, it lands on the plain next one after all, so the button is
+    /// never dead.
+    /// </summary>
+    public static string? Step(IReadOnlyList<string> urls, string? current, int step, Func<string, bool> skip)
+    {
+        var first = Step(urls, current, step);
+        for (var (candidate, tried) = (first, 0); candidate is not null && tried < urls.Count; tried++)
+        {
+            if (candidate != current && !skip(candidate))
+            {
+                return candidate;
+            }
+
+            candidate = Step(urls, candidate, step);
+        }
+
+        return first;
+    }
+
     private static int IndexOf(IReadOnlyList<string> urls, string url)
     {
         for (var i = 0; i < urls.Count; i++)
