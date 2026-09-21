@@ -105,6 +105,24 @@ The iTunes Search API that `TrackDurations` already calls could pin the exact tr
 search, and would give an Apple Music link for free, but it costs a lookup per click and misses
 often enough that a search is the better answer for a radio title.
 
+## Start with Windows (1.17.0)
+
+The app is meant to be on all day, and a radio you have to remember to open is a radio you forget,
+so a switch at the top of the settings lets Windows start it when the user signs in.
+
+The app is unpackaged (`WindowsPackageType` is `None`), so there is no `StartupTask` manifest
+extension to declare. `Shell/StartupRegistration` writes a `ZapperRadio` value under
+`HKCU\Software\Microsoft\Windows\CurrentVersion\Run` naming the running executable. The app writes
+and removes it itself rather than leaving it to the installer, because it is a preference and not
+part of being installed, and it is per user, so it needs no admin rights and does not turn itself
+on for everyone on the machine.
+
+The registry is the source of truth: the switch reads the key back at start rather than trusting a
+setting, because the Startup Apps page of Windows can switch the entry off behind the app's back,
+and a switch that says "on" while Windows disagrees is worse than no switch.
+`DisableForThisInstall` removes the entry on uninstall, but only when it starts the copy that is
+being removed, so it never breaks the entry of another install, such as an old MSI next to it.
+
 ## More languages (1.18.0)
 
 The station list is worldwide and most of its listeners do not read English, so the player speaks

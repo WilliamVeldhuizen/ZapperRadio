@@ -54,40 +54,14 @@ The zapper is the identity of the app, so give it knobs:
 All of this belongs in `AdBreakZapper` and `AppSettings`, the UI-free and fully tested core, so it
 is cheap to build and cheap to test.
 
-## 6. Import and export of favorites, and favorite sets
-
-A shareable JSON (or `.m3u`) of the favorites makes it possible to move machines, keep a backup or
-publish a preset. Alongside it, named favorite sets (Work, Weekend, Dance) keep the cap of 20 open
-streams while removing the ceiling as a practical limit: only the active set streams.
-
-## 7. Translated country and genre names
+## 6. Translated country and genre names
 
 The app speaks ten languages since 1.18.0, but the country and genre names come from the station
 list in English and stay that way, so the country box is the one part of the window that does not
 follow the language. A mapping per language for the few dozen countries that matter would make it
 read like the rest of the window.
 
-## 8. Start with Windows
-
-The app is meant to be on all day, and a radio you have to remember to open is a radio you forget.
-A switch in the settings, next to the global hotkeys, that lets Windows start the player with the
-session, and a second one beside it for starting quietly: minimized, and muted until you ask for
-sound, so a machine that boots does not start playing at whatever volume it was left at.
-
-The installer is a plain MSI and the app is unpackaged (`WindowsPackageType` is `None`), so there is
-no `StartupTask` manifest extension to declare. It is a value under
-`HKCU\Software\Microsoft\Windows\CurrentVersion\Run` naming the installed executable, written and
-removed by the app itself rather than by the installer, because it is a preference and not part of
-being installed, and per user, so it neither needs the elevation the MSI has nor turns itself on for
-everyone on the machine. The switch should read the key back rather than trust the setting: the
-Startup tab of Task Manager can switch an entry off behind the app's back, and a switch that says
-"on" while Windows disagrees is worse than no switch.
-
-A `--minimized` argument carries the quiet start from the registry value into `App.OnLaunched`, which
-is where this meets 3: with a tray icon it should start into the tray rather than the taskbar, so the
-two are best built together.
-
-## 9. Guided tour on first launch
+## 7. Guided tour on first launch
 
 A first-time window is a grid of stations and an empty favorites list, with nothing that says what
 makes this player different from any other. A short, dismissable tour on the very first launch -
@@ -101,12 +75,10 @@ it never shows again and never blocks a settings-file-less fresh install from be
 one either. A "show the tour again" entry in settings covers the case of an update landing a new
 tour step later.
 
-## 10. Production ready
+## 8. Production ready
 
 No new features: this is the work that makes what exists safe to ship to people who cannot ask the author
-what went wrong. Ranked by payoff per effort. Auto-update and its release pipeline are built (1.19.0), so what
-is left of it is proving it works on a real release: 4 comes as soon as a second release exists, and 2 can
-start now.
+what went wrong. Ranked by payoff per effort. Auto-update and its release pipeline are built (1.19.0).
 
 1. **Code-sign the app and the installer.** The Setup.exe and the 280 or so files in the package are unsigned,
    which hits SmartScreen warnings and looks suspicious to antivirus software. Azure Trusted Signing or a
@@ -118,29 +90,12 @@ start now.
    `AppDomain.UnhandledException` and `TaskScheduler.UnobservedTaskException`, write a rolling log to
    `%LOCALAPPDATA%`, and add an "Open log folder" button in settings so a bug report carries something useful.
 
-3. **CI builds the WinUI app on pull requests.** CI only runs the Core tests, and only on pushes to main; the
-   app project first compiles in the release job itself. Build both architectures on PRs, turn on
-   warnings-as-errors, add NuGet caching and Dependabot, and guard the release so it cannot be published from a
-   broken build or from a commit that did not bump the version.
-
-4. **Test the update path end to end.** Done by hand so far: a Setup built locally installs, starts, finds
-   no newer release on GitHub and reports "up to date", a graceful close exits the process, an uninstall
-   removes the install folder, and a second version packs a 0.2 MB delta against the first. Not done, because it needs two real
-   releases: install 1.19.0 from the release, publish the next version, and check that it downloads (as a
-   delta), installs on close, restarts from the button and keeps the settings, on both architectures.
-   GitHub's unauthenticated API allows 60 requests an hour per IP, which shared networks can hit, so consider
-   hosting the feed on zapperradio.com or a CDN. A beta channel would let a release be staged first.
-
-5. **Version and protect user data.** Auto-update pushes new builds to everyone, so `settings.json` and the
+3. **Version and protect user data.** Auto-update pushes new builds to everyone, so `settings.json` and the
    history file need a schema version and a migration path. `AppSettings.Save` already writes to a temp file
    and moves it into place; check what a corrupt or half-written file does on load. It should be backed up and
    replaced by defaults, not crash the app.
 
-6. **Soak test.** The app runs 20 decoded streams plus YAMNet at once, so run it for 24 hours or more and watch
-   memory, handles and CPU. Also test network drops, sleep and wake, and a change of network. Check that a
-   reconnect backs off and that every request has a timeout.
-
-7. **Legal and metadata.** `PRIVACY.md`, `THIRD-PARTY-NOTICES.md`, the notices in `licenses/`, the exe
+4. **Legal and metadata.** `PRIVACY.md`, `THIRD-PARTY-NOTICES.md`, the notices in `licenses/`, the exe
    metadata and a versioned user agent are in place. Still open:
 
    - **Installed apps.** Check what the Velopack install shows there (name, publisher, icon) on a machine that
@@ -163,7 +118,7 @@ start now.
      its operator for a DPA. Check in the GoatCounter settings that nothing else is enabled (such as collecting
      more than the defaults), and that the data retention fits the privacy text.
 
-8. **Runtime prerequisites and installer behavior.** The release build is self-contained (`dotnet publish
+5. **Runtime prerequisites and installer behavior.** The release build is self-contained (`dotnet publish
    --self-contained true`), so .NET and the Windows App SDK are in the package and Velopack's `--framework`
    is not needed. The price is about 105 MB per architecture, which deltas keep out of the updates but not out
    of the first download. Test a clean-machine install on x64 and arm64, and upgrades from an old MSI or
@@ -173,17 +128,10 @@ start now.
    on x64, including the auto-start entry. `vpk pack` leaves out the PDBs by default; keep them as release
    artifacts, so a stack trace from a crash can be read.
 
-9. **Accessibility and UI-layer tests.** Screen reader names (`AutomationProperties`), keyboard-only use, high
-   contrast and 150-200% scaling. Give `AppUpdater` a test seam, an update source interface a fake feed can
-   drive, because it is the riskiest new code and has no tests. Add a short manual checklist for the parts CI
-   cannot cover.
-
 ## Suggested order
 
-3 is next: it pairs with the media keys and is about a day, and 8 follows it straight away, because
-a player that starts with Windows wants somewhere quiet to start into. Then 1, because it is the
-feature that cannot be copied without also keeping every stream open.
+3 is next: it pairs with the media keys and is about a day. Then 1, because it is the feature that
+cannot be copied without also keeping every stream open.
 
-Production ready (10) runs alongside: crash logging (2) can start now, the update test (4) follows the
-second release, and signing (1) is what to do before the app is pointed at people who do not know the
-author.
+Production ready (8) runs alongside: crash logging (2) can start now, and signing (1) is what to do
+before the app is pointed at people who do not know the author.
