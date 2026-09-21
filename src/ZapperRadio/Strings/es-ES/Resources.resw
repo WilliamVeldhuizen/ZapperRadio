@@ -435,4 +435,31 @@
   <data name="UpdateNoticeTitle" xml:space="preserve">
     <value>La versión {0} de ZapperRadio está lista</value>
   </data>
+  <data name="TimeShiftHeading.Text" xml:space="preserve">
+    <value>Diferido</value>
+  </data>
+  <data name="TimeShiftText.Text" xml:space="preserve">
+    <value>Un zapeo cae en una emisora que está poniendo una canción, pero normalmente a mitad. Por eso se guardan los últimos minutos de cada favorito, y un zapeo empieza la canción de la otra emisora desde el principio. Así también se corta una pausa justo donde empieza, porque se conoce antes de oírse. El precio es que escuchas un poco por detrás de la emisión: como mucho la duración de la canción en la que cayó un zapeo, fijada de nuevo con cada zapeo, y En directo se pone al día al instante. Desactivado pone cada emisora en directo.</value>
+  </data>
+  <data name="TimeShiftBox.AutomationProperties.Name" xml:space="preserve">
+    <value>Diferido</value>
+  </data>
+  <data name="TimeShiftOff" xml:space="preserve">
+    <value>Desactivado</value>
+  </data>
+  <data name="TimeShiftMinutes" xml:space="preserve">
+    <value>{0} minutos</value>
+  </data>
+  <data name="TimeShiftMemory" xml:space="preserve">
+    <value>Unos {0} MB de memoria para todos los favoritos juntos.</value>
+  </data>
+  <data name="NowPlayingBehindLive" xml:space="preserve">
+    <value>{0} por detrás del directo</value>
+  </data>
+  <data name="GoLiveButton.Content" xml:space="preserve">
+    <value>En directo</value>
+  </data>
+  <data name="GoLiveButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Volver a poner esta emisora en directo, donde va ahora la emisión</value>
+  </data>
 </root>

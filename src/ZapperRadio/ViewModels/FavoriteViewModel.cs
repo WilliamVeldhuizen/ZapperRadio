@@ -1,6 +1,7 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using ZapperRadio.Core.Audio;
 using ZapperRadio.Core.Models;
+using ZapperRadio.Core.Playback;
 using ZapperRadio.Playback;
 
 namespace ZapperRadio.ViewModels;
@@ -84,7 +85,8 @@ public sealed partial class FavoriteViewModel(Station station) : ObservableObjec
 
 public static class SongTexts
 {
-    public static string For(StationStream stream) => stream switch
+    /// <summary>What a stream plays at a moment: for the station being listened to, the moment that is heard.</summary>
+    public static string For(StreamMoment moment) => moment switch
     {
         { Metadata.IsAd: true } => Localizer.Get("SongAdvertisement"),
         { IsAssumedAdBreak: true } => Localizer.Get("SongProbablyAdBreak"),

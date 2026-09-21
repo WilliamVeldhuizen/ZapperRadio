@@ -435,4 +435,31 @@
   <data name="UpdateNoticeTitle" xml:space="preserve">
     <value>ZapperRadio {0} is ready</value>
   </data>
+  <data name="TimeShiftHeading.Text" xml:space="preserve">
+    <value>Time shift</value>
+  </data>
+  <data name="TimeShiftText.Text" xml:space="preserve">
+    <value>A zap lands on a station that plays a song, but usually halfway into it. So the last minutes of every favorite are kept, and a zap starts the song on the other station from its beginning. It also cuts a break off where it begins, because the break is known before it is heard. The price is that you listen a little behind the broadcast: at most the length of the song a zap landed in, set anew by every zap, and Go live catches up at once. Off plays every station live.</value>
+  </data>
+  <data name="TimeShiftBox.AutomationProperties.Name" xml:space="preserve">
+    <value>Time shift</value>
+  </data>
+  <data name="TimeShiftOff" xml:space="preserve">
+    <value>Off</value>
+  </data>
+  <data name="TimeShiftMinutes" xml:space="preserve">
+    <value>{0} minutes</value>
+  </data>
+  <data name="TimeShiftMemory" xml:space="preserve">
+    <value>About {0} MB of memory for the favorites together.</value>
+  </data>
+  <data name="NowPlayingBehindLive" xml:space="preserve">
+    <value>{0} behind live</value>
+  </data>
+  <data name="GoLiveButton.Content" xml:space="preserve">
+    <value>Go live</value>
+  </data>
+  <data name="GoLiveButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Play this station live again, where its broadcast is now</value>
+  </data>
 </root>

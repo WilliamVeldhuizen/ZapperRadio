@@ -12,6 +12,8 @@ namespace ZapperRadio.Core.Streaming;
 /// connection per station, so it costs no extra bandwidth.
 /// When the station cannot be relayed (playlists, errors, unusual servers) the player is redirected
 /// to the original URL, so playback is never worse than without the relay; only the titles are missing.
+/// The audio it relays can be kept in a <see cref="TimeShiftBuffer"/>, and <see cref="RegisterReplay"/> plays such a
+/// buffer back from a moment in the past, so a zap can start a song from its beginning.
 /// </summary>
 public sealed class IcyProxy : IDisposable
 {
@@ -33,19 +35,33 @@ public sealed class IcyProxy : IDisposable
     /// <summary>
     /// Returns a local URL that relays <paramref name="upstream"/>. <paramref name="onMetadata"/> is called
     /// on a background thread for every metadata block, and <paramref name="onAudio"/> for every chunk of audio passed
-    /// on to the player (only valid during the call), until <see cref="Unregister"/> is called.
+    /// on to the player (only valid during the call), until <see cref="Unregister"/> is called. The audio is also
+    /// kept in <paramref name="buffer"/>, when there is one.
     /// </summary>
-    public Uri Register(Uri upstream, Action<IcyMetadata> onMetadata, Action<ReadOnlyMemory<byte>>? onAudio = null)
+    public Uri Register(Uri upstream, Action<IcyMetadata> onMetadata, Action<ReadOnlyMemory<byte>>? onAudio = null, TimeShiftBuffer? buffer = null) =>
+        Listen(new Registration(upstream, onMetadata, onAudio, buffer, null, 0), upstream);
+
+    /// <summary>
+    /// Returns a local URL that plays <paramref name="buffer"/> from <paramref name="position"/> on, and keeps
+    /// following the station as its audio comes in, until <see cref="Unregister"/> is called. The player reads at
+    /// its own pace, so it stays as far behind the broadcast as where it started.
+    /// </summary>
+    /// <param name="station">The station's own URL, whose file name the player may use as a format hint.</param>
+    public Uri RegisterReplay(TimeShiftBuffer buffer, long position, Uri station) =>
+        Listen(new Registration(null, null, null, null, buffer, position), station);
+
+    private Uri Listen(Registration registration, Uri original)
     {
         ObjectDisposedException.ThrowIf(_shutdown.IsCancellationRequested, this);
 
         var id = Guid.NewGuid().ToString("N");
         var listener = StartListener();
-        var registration = _registrations[id] = new Registration(upstream, onMetadata, onAudio, listener);
+        registration.Listener = listener;
+        _registrations[id] = registration;
         _ = AcceptLoopAsync(registration);
 
         // Keep the original file name, in case the player uses the extension as a format hint.
-        var name = upstream.Segments.LastOrDefault()?.Trim('/') is { Length: > 0 } segment ? segment : "stream";
+        var name = original.Segments.LastOrDefault()?.Trim('/') is { Length: > 0 } segment ? segment : "stream";
         var endpoint = (IPEndPoint)listener.LocalEndpoint;
         return new Uri($"http://{endpoint.Address}:{endpoint.Port}/{id}/{name}");
     }
@@ -84,11 +100,12 @@ public sealed class IcyProxy : IDisposable
     /// <summary>
     /// Copies <paramref name="source"/> to <paramref name="audio"/> without the metadata blocks that
     /// follow every <paramref name="metaInterval"/> audio bytes (0 = no metadata), until the source ends.
-    /// <paramref name="onAudio"/> gets each chunk of audio as well, for example to listen to it.
+    /// <paramref name="onAudio"/> gets each chunk of audio as well, for example to listen to it, and
+    /// <paramref name="timeShift"/> keeps it.
     /// </summary>
     public static async Task RelayAsync(
         Stream source, Stream audio, int metaInterval, Action<IcyMetadata> onMetadata,
-        Action<ReadOnlyMemory<byte>>? onAudio, CancellationToken cancellationToken)
+        Action<ReadOnlyMemory<byte>>? onAudio, CancellationToken cancellationToken, TimeShiftBuffer? timeShift = null)
     {
         var buffer = new byte[16 * 1024];
         var metadata = new byte[255 * 16];
@@ -103,6 +120,7 @@ public sealed class IcyProxy : IDisposable
                     return;
                 }
 
+                timeShift?.Append(buffer.AsSpan(0, read), DateTimeOffset.UtcNow);
                 await audio.WriteAsync(buffer.AsMemory(0, read), cancellationToken);
                 onAudio?.Invoke(buffer.AsMemory(0, read));
                 if (metaInterval > 0)
@@ -172,7 +190,14 @@ public sealed class IcyProxy : IDisposable
             // The player closes its connection when it switches source or reconnects; that ends the relay.
             _ = CancelOnDisconnectAsync(network, cts);
 
-            using var request = new HttpRequestMessage(HttpMethod.Get, registration.Upstream);
+            if (registration.Replay is { } replay)
+            {
+                var isHead = parts[0].Equals("HEAD", StringComparison.OrdinalIgnoreCase);
+                await ReplayAsync(network, replay, registration.ReplayFrom, isHead, cts.Token);
+                return;
+            }
+
+            using var request = new HttpRequestMessage(HttpMethod.Get, registration.Upstream!);
             request.Headers.Add("Icy-MetaData", "1");
 
             HttpResponseMessage response;
@@ -184,7 +209,7 @@ public sealed class IcyProxy : IDisposable
             }
             catch (Exception ex) when (ex is HttpRequestException || (ex is OperationCanceledException && !cts.IsCancellationRequested))
             {
-                await RedirectAsync(network, registration.Upstream, cts.Token);
+                await RedirectAsync(network, registration.Upstream!, cts.Token);
                 return;
             }
 
@@ -193,7 +218,7 @@ public sealed class IcyProxy : IDisposable
                 var contentType = response.Content.Headers.ContentType;
                 if (!response.IsSuccessStatusCode || IsPlaylist(contentType?.MediaType))
                 {
-                    await RedirectAsync(network, registration.Upstream, cts.Token);
+                    await RedirectAsync(network, registration.Upstream!, cts.Token);
                     return;
                 }
 
@@ -202,25 +227,57 @@ public sealed class IcyProxy : IDisposable
                     ? interval
                     : 0;
 
-                await WriteHeadAsync(
-                    network,
-                    $"HTTP/1.1 200 OK\r\nContent-Type: {contentType?.ToString() ?? "application/octet-stream"}\r\n"
-                    + "Cache-Control: no-cache, no-store\r\nConnection: close\r\n\r\n",
-                    cts.Token);
+                var type = contentType?.ToString() ?? "application/octet-stream";
+                await WriteOkAsync(network, type, cts.Token);
 
                 if (parts[0].Equals("HEAD", StringComparison.OrdinalIgnoreCase))
                 {
                     return;
                 }
 
+                var bitrate = response.Headers.TryGetValues("icy-br", out var bitrates) ? TimeShiftBuffer.ParseBitrate(bitrates.FirstOrDefault()) : null;
+                registration.Buffer?.Connect(type, bitrate);
+
                 await using var body = await response.Content.ReadAsStreamAsync(cts.Token);
-                await RelayAsync(body, network, metaInterval, registration.OnMetadata, registration.OnAudio, cts.Token);
+                await RelayAsync(body, network, metaInterval, registration.OnMetadata!, registration.OnAudio, cts.Token, registration.Buffer);
             }
         }
         catch (Exception ex) when (ex is IOException or SocketException or ObjectDisposedException
                                        or OperationCanceledException or HttpRequestException)
         {
             // The player or the station went away; the player's own reconnect logic takes it from here.
+        }
+    }
+
+    /// <summary>
+    /// Plays a buffer back from a position, and keeps following it as the station's audio comes in. Should the player
+    /// fall so far behind that the ring overwrote where it was, it goes on from the oldest audio that is left.
+    /// </summary>
+    public static async Task ReplayAsync(Stream network, TimeShiftBuffer buffer, long position, bool isHead, CancellationToken cancellationToken)
+    {
+        await WriteOkAsync(network, buffer.ContentType ?? "application/octet-stream", cancellationToken);
+        if (isHead)
+        {
+            return;
+        }
+
+        var chunk = new byte[16 * 1024];
+        while (true)
+        {
+            var read = buffer.Read(position, chunk);
+            if (read < 0)
+            {
+                position = buffer.Start;
+            }
+            else if (read == 0)
+            {
+                await buffer.WaitForDataAsync(position, cancellationToken);
+            }
+            else
+            {
+                await network.WriteAsync(chunk.AsMemory(0, read), cancellationToken);
+                position += read;
+            }
         }
     }
 
@@ -274,7 +331,13 @@ public sealed class IcyProxy : IDisposable
     private static Task RedirectAsync(NetworkStream network, Uri target, CancellationToken cancellationToken) =>
         WriteHeadAsync(network, $"HTTP/1.1 307 Temporary Redirect\r\nLocation: {target.AbsoluteUri}\r\nContent-Length: 0\r\nConnection: close\r\n\r\n", cancellationToken);
 
-    private static async Task WriteHeadAsync(NetworkStream network, string head, CancellationToken cancellationToken) =>
+    private static Task WriteOkAsync(Stream network, string contentType, CancellationToken cancellationToken) =>
+        WriteHeadAsync(
+            network,
+            $"HTTP/1.1 200 OK\r\nContent-Type: {contentType}\r\nCache-Control: no-cache, no-store\r\nConnection: close\r\n\r\n",
+            cancellationToken);
+
+    private static async Task WriteHeadAsync(Stream network, string head, CancellationToken cancellationToken) =>
         await network.WriteAsync(Encoding.ASCII.GetBytes(head), cancellationToken);
 
     private static bool IsPlaylist(string? mediaType) =>
@@ -297,8 +360,13 @@ public sealed class IcyProxy : IDisposable
         _registrations.Clear();
     }
 
-    private sealed record Registration(Uri Upstream, Action<IcyMetadata> OnMetadata, Action<ReadOnlyMemory<byte>>? OnAudio, TcpListener Listener)
+    /// <summary>Either a station to relay (<see cref="Upstream"/>) or a buffer to play back (<see cref="Replay"/>).</summary>
+    private sealed record Registration(
+        Uri? Upstream, Action<IcyMetadata>? OnMetadata, Action<ReadOnlyMemory<byte>>? OnAudio, TimeShiftBuffer? Buffer,
+        TimeShiftBuffer? Replay, long ReplayFrom)
     {
+        public TcpListener Listener { get; set; } = null!;
+
         public CancellationTokenSource Cancellation { get; } = new();
 
         public void Stop()

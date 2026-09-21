@@ -435,4 +435,31 @@
   <data name="UpdateNoticeTitle" xml:space="preserve">
     <value>ZapperRadio {0} steht bereit</value>
   </data>
+  <data name="TimeShiftHeading.Text" xml:space="preserve">
+    <value>Zeitversatz</value>
+  </data>
+  <data name="TimeShiftText.Text" xml:space="preserve">
+    <value>Ein Zap landet auf einem Sender, der einen Song spielt, aber meist mitten darin. Deshalb werden die letzten Minuten jedes Favoriten aufbewahrt, und ein Zap startet den Song auf dem anderen Sender von vorn. So wird auch ein Werbeblock genau an seinem Anfang weggeschnitten, denn er ist bekannt, bevor er zu hören ist. Der Preis ist, dass du etwas hinter der Sendung hörst: höchstens die Länge des Songs, auf dem ein Zap gelandet ist, bei jedem Zap neu bestimmt, und Live holt sofort auf. Aus spielt jeden Sender live.</value>
+  </data>
+  <data name="TimeShiftBox.AutomationProperties.Name" xml:space="preserve">
+    <value>Zeitversatz</value>
+  </data>
+  <data name="TimeShiftOff" xml:space="preserve">
+    <value>Aus</value>
+  </data>
+  <data name="TimeShiftMinutes" xml:space="preserve">
+    <value>{0} Minuten</value>
+  </data>
+  <data name="TimeShiftMemory" xml:space="preserve">
+    <value>Etwa {0} MB Arbeitsspeicher für alle Favoriten zusammen.</value>
+  </data>
+  <data name="NowPlayingBehindLive" xml:space="preserve">
+    <value>{0} hinter live</value>
+  </data>
+  <data name="GoLiveButton.Content" xml:space="preserve">
+    <value>Live</value>
+  </data>
+  <data name="GoLiveButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Diesen Sender wieder live spielen, wo die Sendung jetzt ist</value>
+  </data>
 </root>

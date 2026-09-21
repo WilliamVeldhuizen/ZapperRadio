@@ -124,4 +124,17 @@ public class SongClockTests
         Assert.Null(clock.OverdueAt);
         Assert.False(clock.Update(Heard("MMMM"), TitleAt + TimeSpan.FromSeconds(20)));
     }
+
+    [Fact]
+    public void BeganAt_IsTheTitleUntilTheAudioSaysBetter()
+    {
+        var clock = Started();
+        Assert.Equal(TitleAt, clock.BeganAt);
+
+        clock.Update(Heard("SSSMM"), TitleAt + TimeSpan.FromSeconds(25));
+        Assert.Equal(TitleAt + TimeSpan.FromSeconds(15), clock.BeganAt);
+
+        clock.Stop();
+        Assert.Null(clock.BeganAt);
+    }
 }

@@ -40,6 +40,12 @@ public sealed class SongClock
     /// <summary>Whether a song is being timed at all.</summary>
     public bool IsRunning { get; private set; }
 
+    /// <summary>
+    /// When the song began as well as it is known now: where the audio says it started, or else when its title came
+    /// in. Null while no song is being timed.
+    /// </summary>
+    public DateTimeOffset? BeganAt => IsRunning ? StartedAt ?? _titleAt : null;
+
     /// <summary>When the song is overdue, or null while its start or its length is unknown.</summary>
     public DateTimeOffset? OverdueAt =>
         IsRunning && StartedAt is { } started && _length is { } length ? started + length + Overrun : null;

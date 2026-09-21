@@ -54,6 +54,36 @@ public sealed class SoundHistory
         }
     }
 
+    /// <summary>
+    /// How many windows ago the latest stretch of talking began: counted back from the newest window with speech,
+    /// through speech and the unclear windows between it (a jingle, a sound effect), up to the oldest speech window
+    /// before a window of music. Zero when none of the kept windows is speech. Says where a break heard as speech
+    /// really started, which is a window or two before it counts as one.
+    /// </summary>
+    public int SpeechStretch
+    {
+        get
+        {
+            var windows = _windows.ToArray();
+            var newest = Array.LastIndexOf(windows, Sound.Speech);
+            if (newest < 0)
+            {
+                return 0;
+            }
+
+            var oldest = newest;
+            for (var i = newest - 1; i >= 0 && windows[i] != Sound.Music; i--)
+            {
+                if (windows[i] == Sound.Speech)
+                {
+                    oldest = i;
+                }
+            }
+
+            return windows.Length - oldest;
+        }
+    }
+
     /// <summary>Labels a window by its average YAMNet scores for the Speech and Music classes.</summary>
     public static Sound Label(float speech, float music) =>
         Math.Max(speech, music) < MinScore ? Sound.Unknown

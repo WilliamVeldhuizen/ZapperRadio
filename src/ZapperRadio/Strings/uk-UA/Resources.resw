@@ -435,4 +435,31 @@
   <data name="UpdateNoticeTitle" xml:space="preserve">
     <value>Версія {0} ZapperRadio готова</value>
   </data>
+  <data name="TimeShiftHeading.Text" xml:space="preserve">
+    <value>Зсув у часі</value>
+  </data>
+  <data name="TimeShiftText.Text" xml:space="preserve">
+    <value>Перемикання потрапляє на станцію, де грає пісня, але зазвичай на її середину. Тому останні хвилини кожної вибраної станції зберігаються, і перемикання запускає пісню на іншій станції з початку. Так само перерва відрізається саме там, де починається, бо про неї відомо ще до того, як її чути. Ціна в тому, що ви слухаєте трохи позаду ефіру: щонайбільше тривалість пісні, на яку потрапило перемикання, щоразу заново, а кнопка «Наживо» одразу наздоганяє. «Вимкнено» грає кожну станцію наживо.</value>
+  </data>
+  <data name="TimeShiftBox.AutomationProperties.Name" xml:space="preserve">
+    <value>Зсув у часі</value>
+  </data>
+  <data name="TimeShiftOff" xml:space="preserve">
+    <value>Вимкнено</value>
+  </data>
+  <data name="TimeShiftMinutes" xml:space="preserve">
+    <value>{0} хв</value>
+  </data>
+  <data name="TimeShiftMemory" xml:space="preserve">
+    <value>Близько {0} МБ пам&apos;яті для всіх вибраних станцій разом.</value>
+  </data>
+  <data name="NowPlayingBehindLive" xml:space="preserve">
+    <value>{0} позаду ефіру</value>
+  </data>
+  <data name="GoLiveButton.Content" xml:space="preserve">
+    <value>Наживо</value>
+  </data>
+  <data name="GoLiveButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Знову грати цю станцію наживо, там, де зараз ефір</value>
+  </data>
 </root>

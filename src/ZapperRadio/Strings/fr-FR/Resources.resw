@@ -435,4 +435,31 @@
   <data name="UpdateNoticeTitle" xml:space="preserve">
     <value>La version {0} de ZapperRadio est prête</value>
   </data>
+  <data name="TimeShiftHeading.Text" xml:space="preserve">
+    <value>Différé</value>
+  </data>
+  <data name="TimeShiftText.Text" xml:space="preserve">
+    <value>Un zap tombe sur une station qui passe un morceau, mais en général au milieu. C&apos;est pourquoi les dernières minutes de chaque favori sont gardées, et un zap démarre le morceau de l&apos;autre station depuis le début. Une coupure est aussi retirée pile à son début, car elle est connue avant d&apos;être entendue. Le prix est d&apos;écouter un peu en retard sur la diffusion : au plus la durée du morceau sur lequel un zap est tombé, fixée à nouveau à chaque zap, et Direct rattrape tout de suite. Désactivé joue chaque station en direct.</value>
+  </data>
+  <data name="TimeShiftBox.AutomationProperties.Name" xml:space="preserve">
+    <value>Différé</value>
+  </data>
+  <data name="TimeShiftOff" xml:space="preserve">
+    <value>Désactivé</value>
+  </data>
+  <data name="TimeShiftMinutes" xml:space="preserve">
+    <value>{0} minutes</value>
+  </data>
+  <data name="TimeShiftMemory" xml:space="preserve">
+    <value>Environ {0} Mo de mémoire pour l&apos;ensemble des favoris.</value>
+  </data>
+  <data name="NowPlayingBehindLive" xml:space="preserve">
+    <value>{0} de retard sur le direct</value>
+  </data>
+  <data name="GoLiveButton.Content" xml:space="preserve">
+    <value>Direct</value>
+  </data>
+  <data name="GoLiveButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Rejouer cette station en direct, là où en est la diffusion</value>
+  </data>
 </root>

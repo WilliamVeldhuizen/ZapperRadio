@@ -27,6 +27,15 @@ public sealed class AppSettings
     /// <summary>Whether every station is brought to the same loudness, so zapping does not change the volume.</summary>
     public bool NormalizeLoudness { get; set; } = true;
 
+    /// <summary>The lengths the time-shift buffer can be set to, in minutes; 0 plays every station live.</summary>
+    public static readonly IReadOnlyList<int> TimeShiftChoices = [0, 2, 5, 10];
+
+    /// <summary>
+    /// How many minutes of every favorite are kept, so a zap can start the song on the other station from its
+    /// beginning. Five covers nearly every song a zap lands in.
+    /// </summary>
+    public int TimeShiftMinutes { get; set; } = 5;
+
     /// <summary>
     /// The loudness in LUFS measured per station, by stream URL, so the correction applies from the first second
     /// of the next run instead of after the minute of music it takes to measure it again.

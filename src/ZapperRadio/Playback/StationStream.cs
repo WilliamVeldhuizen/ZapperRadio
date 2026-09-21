@@ -3,6 +3,7 @@ using Windows.Media.Core;
 using Windows.Media.Playback;
 using ZapperRadio.Core.Audio;
 using ZapperRadio.Core.Models;
+using ZapperRadio.Core.Playback;
 using ZapperRadio.Core.Streaming;
 
 namespace ZapperRadio.Playback;
@@ -52,6 +53,7 @@ public sealed class StationStream : IDisposable
     private StationLoudness _loudness = new();
     private readonly SongClock _songClock = new();
     private readonly UnmarkedAdBreak _unmarkedAdBreak = new();
+    private readonly StreamTimeline _timeline = new();
     private readonly MediaPlayer _player;
     private readonly DispatcherQueueTimer _watchdog;
     private readonly DispatcherQueueTimer _retryTimer;
@@ -73,9 +75,11 @@ public sealed class StationStream : IDisposable
     /// <param name="proxy">Relays the stream to read its song titles; null plays the station directly.</param>
     /// <param name="durations">Looks up song lengths to recognize unmarked ad breaks; null relies on ad markers only.</param>
     /// <param name="classifier">Hears whether the relayed stream plays music or speech; null does not listen.</param>
-    public StationStream(Station station, StreamUrlResolver resolver, IcyProxy? proxy, TrackDurations? durations, SoundClassifier? classifier, DispatcherQueue dispatcher, double volume)
+    /// <param name="timeShift">How much of the relayed stream is kept to play back from; zero keeps nothing.</param>
+    public StationStream(Station station, StreamUrlResolver resolver, IcyProxy? proxy, TrackDurations? durations, SoundClassifier? classifier, DispatcherQueue dispatcher, double volume, TimeSpan timeShift)
     {
         Station = station;
+        Buffer = new TimeShiftBuffer(timeShift);
         _resolver = resolver;
         _proxy = proxy;
         _durations = durations;
@@ -104,6 +108,8 @@ public sealed class StationStream : IDisposable
             CheckForStall();
             // A stream that cannot be heard gets no windows to anchor its song clock to, so it is nudged here.
             UpdateSongClock();
+            // Nothing older than the buffer can be played back, so nothing older is worth remembering.
+            _timeline.Prune(DateTimeOffset.UtcNow - Buffer.Length - TimeSpan.FromMinutes(1));
         };
 
         _retryTimer = dispatcher.CreateTimer();
@@ -116,6 +122,29 @@ public sealed class StationStream : IDisposable
     }
 
     public Station Station { get; }
+
+    /// <summary>The last minutes of the station, kept while it is relayed, to play back from.</summary>
+    public TimeShiftBuffer Buffer { get; }
+
+    /// <summary>What the stream is doing now, as recorded in its timeline.</summary>
+    public StreamMoment Moment => _timeline.Latest ?? StreamMoment.Unknown;
+
+    /// <summary>What the stream was doing at <paramref name="time"/>, for playing it back from the buffer.</summary>
+    public StreamMoment MomentAt(DateTimeOffset time) => _timeline.At(time) ?? StreamMoment.Unknown;
+
+    /// <summary>When the stream did something else after <paramref name="time"/>, or null when it has not since.</summary>
+    public DateTimeOffset? NextMomentAfter(DateTimeOffset time) => _timeline.NextChangeAfter(time);
+
+    /// <summary>
+    /// When the song the station plays now began, or null when it plays none, or it cannot be told. The song clock
+    /// knows best; a station without titles is timed from the start of the music heard, counted back from the last
+    /// window rather than from now, so it does not drift in the seconds between two windows.
+    /// </summary>
+    public DateTimeOffset? SongStartedAt =>
+        IsInAdBreak ? null
+        : _songClock.BeganAt is { } began ? began
+        : Sound == Sound.Music ? new DateTimeOffset(_lastSoundUtc, TimeSpan.Zero) - _sound.ConsecutiveMusic * SongClock.Window
+        : null;
 
     public StreamStatus Status { get; private set; } = StreamStatus.Connecting;
 
@@ -296,7 +325,7 @@ public sealed class StationStream : IDisposable
                     metadata is { Title: null, IsAd: false } ? null : metadata,
                     keepSongEnd: metadata is { IsAd: false, IsSong: false });
             }
-        }), listener is null ? null : listener.Write);
+        }), listener is null ? null : listener.Write, Buffer);
         return relayUrl;
     }
 
@@ -318,12 +347,17 @@ public sealed class StationStream : IDisposable
             _sound.Clear();
         }
 
+        // Before the change is recorded, so the timeline knows where the new song begins.
+        if (_durations is not null && metadata is { IsSong: true })
+        {
+            _songClock.Start(DateTimeOffset.UtcNow);
+        }
+
         UpdateAssumedAdBreak();
-        MetadataChanged?.Invoke(this, EventArgs.Empty);
+        OnMetadataChanged();
 
         if (_durations is not null && metadata is { IsSong: true, Title: { } title })
         {
-            _songClock.Start(DateTimeOffset.UtcNow);
             _ = WatchSongEndAsync(title);
         }
     }
@@ -368,7 +402,7 @@ public sealed class StationStream : IDisposable
         {
             IsSongOverdue = true;
             UpdateAssumedAdBreak();
-            MetadataChanged?.Invoke(this, EventArgs.Empty);
+            OnMetadataChanged();
         }
     }
 
@@ -386,7 +420,7 @@ public sealed class StationStream : IDisposable
         UpdateSongClock();
         if (UpdateAssumedAdBreak() | Sound != before)
         {
-            MetadataChanged?.Invoke(this, EventArgs.Empty);
+            OnMetadataChanged();
         }
     }
 
@@ -406,7 +440,32 @@ public sealed class StationStream : IDisposable
     }
 
     /// <summary>Sets the player to the volume with the gain of this station applied; a boost stops at full volume.</summary>
-    private void ApplyVolume() => _player.Volume = Math.Clamp(_volume * Loudness.Linear(GainDb), 0, 1);
+    private void ApplyVolume()
+    {
+        _player.Volume = OutputVolume;
+        OutputVolumeChanged?.Invoke(this, EventArgs.Empty);
+    }
+
+    /// <summary>The volume the station is heard at, with its gain applied, for a player that plays it back from the buffer.</summary>
+    public double OutputVolume => Math.Clamp(_volume * Loudness.Linear(GainDb), 0, 1);
+
+    /// <summary>Raised when <see cref="OutputVolume"/> may have changed.</summary>
+    public event EventHandler? OutputVolumeChanged;
+
+    /// <summary>
+    /// Records what the stream does now in its timeline, dating a break the sound gave away back to where the talking
+    /// began and a new song back to where it began, and tells the listeners.
+    /// </summary>
+    private void OnMetadataChanged()
+    {
+        var sound = Sound;
+        var moment = new StreamMoment(Metadata, IsAssumedAdBreak, sound, Channel.StateOf(IsInAdBreak, isLive: true, Metadata?.IsSong == true, sound));
+        // Played back from the buffer, a stream is heard whether or not its live connection is up, so the timeline
+        // leaves the connection out and only says what the audio was.
+        var now = DateTimeOffset.UtcNow;
+        _timeline.Record(_timeline.StartOf(moment, _sound, SongStartedAt, now), moment);
+        MetadataChanged?.Invoke(this, EventArgs.Empty);
+    }
 
     private bool UpdateAssumedAdBreak() => _unmarkedAdBreak.Update(IsSongOverdue, IsListening, _sound);
 

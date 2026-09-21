@@ -42,6 +42,13 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
     private readonly DispatcherQueueTimer _historySaveTimer;
     private readonly DispatcherQueueTimer _historyPruneTimer;
     private readonly DispatcherQueueTimer _historySearchDebounce;
+    private readonly DispatcherQueueTimer _heardTimer;
+
+    /// <summary>
+    /// How far ahead of what is heard the zapper looks, so a break is cut at its boundary rather than a moment into it.
+    /// Losing half a second of a song's fade is better than hearing half a second of an ad.
+    /// </summary>
+    private static readonly TimeSpan ZapLead = TimeSpan.FromMilliseconds(500);
 
     private List<StationResultViewModel> _allStations = [];
     private CancellationTokenSource? _searchCts;
@@ -82,6 +89,9 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
         Countries = [AllCountries];
         Languages = [new AppLanguage(null, Localizer.Get("LanguageWindows")), .. Localizer.Languages];
         _startedWithLanguage = (Languages.FirstOrDefault(l => l.Tag == _settings.Language) ?? Languages[0]).Tag;
+        TimeShiftOptions = AppSettings.TimeShiftChoices
+            .Select(m => new TimeShiftOption(m, m == 0 ? Localizer.Get("TimeShiftOff") : Localizer.Format("TimeShiftMinutes", m)))
+            .ToList();
 
         _cacheFolder = Path.Combine(dataFolder, "cache");
         _directory = new StationDirectory(_http, _cacheFolder);
@@ -99,9 +109,17 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
         _engine.StreamStatusChanged += (_, stream) => OnStreamStatusChanged(stream);
         _engine.StreamMetadataChanged += (_, stream) => OnStreamMetadataChanged(stream);
         _engine.StreamLoudnessChanged += (_, stream) => OnStreamLoudnessChanged(stream);
+        _engine.DelayChanged += (_, _) => OnHeardChanged();
 
-        // Before the first stream is opened, so a station starts at the loudness it was measured at last time.
+        // Before the first stream is opened, so a station starts at the loudness it was measured at last time,
+        // and its buffer is made the length it will keep.
         _engine.NormalizeLoudness = _settings.NormalizeLoudness;
+        _engine.TimeShift = TimeSpan.FromMinutes(AppSettings.TimeShiftChoices.Contains(_settings.TimeShiftMinutes) ? _settings.TimeShiftMinutes : 5);
+
+        // Fires when what is heard of a station played from its buffer changes, which is not when its live stream changes.
+        _heardTimer = dispatcher.CreateTimer();
+        _heardTimer.IsRepeating = false;
+        _heardTimer.Tick += (_, _) => OnHeardChanged();
 
         foreach (var (url, loudness) in _settings.StationLoudness)
         {
@@ -166,6 +184,7 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
         // After the favorites are loaded, because changing these saves the settings.
         ZappOnAdBreaks = _settings.ZappOnAdBreaks;
         NormalizeLoudness = _settings.NormalizeLoudness;
+        SelectedTimeShift = TimeShiftOptions.FirstOrDefault(o => o.Minutes == (int)_engine.TimeShift.TotalMinutes) ?? TimeShiftOptions[0];
         GlobalHotkeys = _settings.GlobalHotkeys;
         IsCompact = _settings.IsCompact;
         SelectedLanguage = Languages.FirstOrDefault(l => l.Tag == _settings.Language) ?? Languages[0];
@@ -332,6 +351,21 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
     /// <summary>Whether the loud stations are turned down to the level of the rest, so zapping keeps one volume.</summary>
     [ObservableProperty]
     public partial bool NormalizeLoudness { get; set; } = true;
+
+    /// <summary>The lengths the time-shift buffer can be set to, as the settings name them.</summary>
+    public IReadOnlyList<TimeShiftOption> TimeShiftOptions { get; }
+
+    /// <summary>How much of every favorite is kept, so a zap can start the song on the other station from its beginning.</summary>
+    [ObservableProperty]
+    public partial TimeShiftOption? SelectedTimeShift { get; set; }
+
+    /// <summary>What the chosen buffer length costs in memory for the favorites, as the settings show it.</summary>
+    [ObservableProperty]
+    public partial string TimeShiftMemory { get; set; } = "";
+
+    /// <summary>Whether the station being listened to is played from its buffer, behind the broadcast.</summary>
+    [ObservableProperty]
+    public partial bool IsTimeShifted { get; set; }
 
     /// <summary>Whether the Ctrl+Alt shortcuts also work while another app has focus.</summary>
     [ObservableProperty]
@@ -549,13 +583,26 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
     public void Play(Station station)
     {
         _lastPlayed = station;
-        _engine.Play(station);
+        // A favorite that plays a song starts at its beginning, like a zap does, when its buffer still holds it.
+        _engine.Play(station, _engine.Find(station.Url) is { } stream ? SongStartOf(stream) : null);
         if (_engine.Active is { } active)
         {
             // Picking a station ends any zapping, and picking it during its ad break means you want to hear it anyway.
-            _zapper.OnPicked(active.Station.Url, ChannelOf(active));
+            _zapper.OnPicked(active.Station.Url, HeardChannelOf(active));
         }
     }
+
+    /// <summary>Plays the station being listened to live again, leaving what the buffer still holds of it.</summary>
+    [RelayCommand]
+    private void GoLive() => _engine.GoLive();
+
+    /// <summary>
+    /// Where to start a station so it is heard from the beginning of the song it plays, or null to play it live: when
+    /// it plays no song, or when it cannot be told where the song began. The timeline dates the song back to the same
+    /// moment, so from where it lands the station is heard as playing the song.
+    /// </summary>
+    private static DateTimeOffset? SongStartOf(StationStream stream) =>
+        ChannelOf(stream) == ChannelState.Song && stream.SongStartedAt is { } began ? began - StreamTimeline.SongPreRoll : null;
 
     /// <summary>
     /// Moves to the next favorite, wrapping around at the end of the list: the next-track button of the media
@@ -856,6 +903,32 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
         SaveSettings();
     }
 
+    partial void OnSelectedTimeShiftChanged(TimeShiftOption? value)
+    {
+        if (value is null)
+        {
+            return;
+        }
+
+        _settings.TimeShiftMinutes = value.Minutes;
+        _engine.TimeShift = TimeSpan.FromMinutes(value.Minutes);
+        RefreshTimeShiftMemory();
+        SaveSettings();
+    }
+
+    /// <summary>
+    /// Works out what the chosen buffer length costs for the favorites; called each time the settings are opened,
+    /// because the bitrates are only known once the stations have answered.
+    /// </summary>
+    public void RefreshTimeShiftMemory()
+    {
+        var minutes = SelectedTimeShift?.Minutes ?? 0;
+        var megabytes = _engine.BufferBytes(TimeSpan.FromMinutes(minutes)) / (1024.0 * 1024);
+        TimeShiftMemory = minutes == 0 || Favorites.Count == 0
+            ? ""
+            : Localizer.Format("TimeShiftMemory", Math.Max(1, Math.Round(megabytes)));
+    }
+
     /// <summary>The loudness button of the settings: every favorite measures its music again and corrects itself to the result.</summary>
     [RelayCommand]
     private void RemeasureLoudness() => _engine.RemeasureLoudness();
@@ -906,21 +979,84 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
             return;
         }
 
+        // The other favorites are judged live, because a zap to one of them starts at the beginning of the song it
+        // plays now. The station being listened to is judged by what is heard of it, which is behind the broadcast
+        // when it is played from its buffer.
         var favorites = Favorites
             .Select(f => _engine.Find(f.Station.Url))
             .OfType<StationStream>()
             .Select(s => new Channel(s.Station.Url, ChannelOf(s)))
             .ToList();
-        if (_zapper.Next(new Channel(active.Station.Url, ChannelOf(active)), favorites, DateTimeOffset.UtcNow) is { } url
+        if (_zapper.Next(new Channel(active.Station.Url, HeardChannelOf(active)), favorites, DateTimeOffset.UtcNow) is { } url
             && _engine.Find(url) is { } next)
         {
             _lastPlayed = next.Station;
-            _engine.Play(next.Station);
+            _engine.Play(next.Station, SongStartOf(next));
         }
     }
 
     private static ChannelState ChannelOf(StationStream stream) =>
         Channel.StateOf(stream.IsInAdBreak, stream.Status == StreamStatus.Live, stream.Metadata?.IsSong == true, stream.Sound);
+
+    /// <summary>
+    /// What the zapper makes of the station being listened to: what is about to be heard of it, played from the buffer,
+    /// or its live state otherwise.
+    /// </summary>
+    private ChannelState HeardChannelOf(StationStream stream) =>
+        _engine.IsTimeShifted && stream == _engine.Active ? stream.MomentAt(_engine.HeardAt + ZapLead).State : ChannelOf(stream);
+
+    /// <summary>
+    /// What is heard of the station being listened to moved on: the replay reached another moment of its timeline, or
+    /// the delay changed. Updates what the window shows, lets the zapper act on it, and waits for the next moment.
+    /// </summary>
+    private void OnHeardChanged()
+    {
+        IsTimeShifted = _engine.IsTimeShifted;
+        if (_engine.Active is { } active)
+        {
+            foreach (var favorite in Favorites.Where(f => f.Station.Url == active.Station.Url))
+            {
+                ShowOnFavorite(favorite, active);
+            }
+        }
+
+        UpdateNowPlaying();
+        ZapOnAdBreak();
+        ScheduleHeardChange();
+    }
+
+    /// <summary>Sets the timer for when what is heard of the station being listened to next changes.</summary>
+    private void ScheduleHeardChange()
+    {
+        _heardTimer.Stop();
+        if (!_engine.IsTimeShifted || _engine.Active is not { } active)
+        {
+            return;
+        }
+
+        var ahead = _engine.HeardAt + ZapLead;
+        if (active.NextMomentAfter(ahead) is { } next)
+        {
+            var wait = next - ahead;
+            _heardTimer.Interval = wait > TimeSpan.FromMilliseconds(50) ? wait : TimeSpan.FromMilliseconds(50);
+            _heardTimer.Start();
+        }
+    }
+
+    /// <summary>What a favorite's row shows: what is heard of it, which for the station being listened to may be behind the broadcast.</summary>
+    private void ShowOnFavorite(FavoriteViewModel favorite, StationStream stream)
+    {
+        var moment = _engine.HeardOf(stream);
+        favorite.Sound = moment.Sound;
+        favorite.IsAd = moment.Metadata?.IsAd == true;
+        favorite.IsAssumedAdBreak = moment is { Metadata.IsAd: not true, IsAssumedAdBreak: true };
+        var song = SongTexts.For(moment);
+        if (favorite.Song != song)
+        {
+            favorite.Song = song;
+            ScheduleJumpListUpdate();
+        }
+    }
 
     private async Task ApplySearchAsync()
     {
@@ -1025,10 +1161,7 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
             {
                 RecordPlayed(stream);
                 favorite.Status = stream.Status;
-                favorite.Sound = stream.Sound;
-                favorite.Song = SongTexts.For(stream);
-                favorite.IsAd = stream.Metadata?.IsAd == true;
-                favorite.IsAssumedAdBreak = stream is { Metadata.IsAd: not true, IsAssumedAdBreak: true };
+                ShowOnFavorite(favorite, stream);
             }
         }
 
@@ -1123,20 +1256,14 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
         RecordPlayed(stream);
         foreach (var favorite in Favorites.Where(f => f.Station.Url == stream.Station.Url))
         {
-            favorite.Sound = stream.Sound;
-            favorite.IsAd = stream.Metadata?.IsAd == true;
-            favorite.IsAssumedAdBreak = stream is { Metadata.IsAd: not true, IsAssumedAdBreak: true };
-            var song = SongTexts.For(stream);
-            if (favorite.Song != song)
-            {
-                favorite.Song = song;
-                ScheduleJumpListUpdate();
-            }
+            ShowOnFavorite(favorite, stream);
         }
 
         if (stream == _engine.Active)
         {
             UpdateNowPlaying();
+            // A break found at the live edge may lie just ahead of what is heard.
+            ScheduleHeardChange();
         }
 
         ZapOnAdBreak();
@@ -1164,14 +1291,21 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
 
         NowPlayingName = active.Station.Name;
         var isFavorite = Favorites.Any(f => f.Station.Url == active.Station.Url);
-        NowPlayingSong = SongTexts.For(active);
-        NowPlayingTrack = active is { IsInAdBreak: false, Metadata.Title: { } title } ? TrackTitle.Normalize(title) : null;
+        // What is heard, which is behind the broadcast while the station is played from its buffer.
+        var heard = _engine.HeardOf(active);
+        NowPlayingSong = SongTexts.For(heard);
+        NowPlayingTrack = heard is { IsInAdBreak: false, Metadata.Title: { } title } ? TrackTitle.Normalize(title) : null;
         IsNowPlayingTrackSaved = NowPlayingTrack is { } track && FavoriteTracks.Any(t => t.IsSameSong(track));
-        NowPlayingStatus = StatusTexts.For(active.Status, isActive: true, active.Sound)
+        NowPlayingStatus = StatusTexts.For(active.Status, isActive: true, heard.Sound)
+                           + (_engine.IsTimeShifted ? " · " + Localizer.Format("NowPlayingBehindLive", FormatDelay(_engine.Delay)) : "")
                            + (IsMuted ? " · " + Localizer.Get("NowPlayingMuted") : "")
                            + (isFavorite ? "" : " · " + Localizer.Get("NowPlayingNotFavorite"))
                            + (active.Status is StreamStatus.Reconnecting or StreamStatus.Failed && active.LastError is { } error ? $" ({error})" : "");
     }
+
+    /// <summary>A delay as minutes and seconds, such as "1:32", which reads the same in every language.</summary>
+    private static string FormatDelay(TimeSpan delay) =>
+        $"{(int)delay.TotalMinutes}:{delay.Seconds:00}";
 
     /// <summary>Resets and (re)loads the now-playing logo when the displayed station changes.</summary>
     private void UpdateNowPlayingLogo(Station? station)
@@ -1239,6 +1373,7 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
     {
         SaveSettings();
         _historyPruneTimer.Stop();
+        _heardTimer.Stop();
         SaveHistory();
         _updateTimer?.Stop();
         // A downloaded update is installed once this process has exited, whether the user closed the app or asked to restart it.
@@ -1263,3 +1398,6 @@ public enum MainTab
     FavoriteTracks,
     PlayHistory,
 }
+
+/// <summary>A length the time-shift buffer can be set to, in minutes (0 is off), and how the settings name it.</summary>
+public sealed record TimeShiftOption(int Minutes, string Name);

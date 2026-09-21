@@ -435,4 +435,31 @@
   <data name="UpdateNoticeTitle" xml:space="preserve">
     <value>La versione {0} di ZapperRadio è pronta</value>
   </data>
+  <data name="TimeShiftHeading.Text" xml:space="preserve">
+    <value>Differita</value>
+  </data>
+  <data name="TimeShiftText.Text" xml:space="preserve">
+    <value>Uno zap finisce su una stazione che trasmette una canzone, ma di solito a metà. Per questo vengono conservati gli ultimi minuti di ogni preferito, e uno zap fa partire la canzone dell&apos;altra stazione dall&apos;inizio. Così anche una pausa viene tagliata proprio dove comincia, perché è nota prima di essere sentita. Il prezzo è che ascolti un po&apos; in ritardo sulla trasmissione: al massimo la durata della canzone su cui è finito uno zap, fissata di nuovo a ogni zap, e In diretta recupera subito. Disattivata riproduce ogni stazione in diretta.</value>
+  </data>
+  <data name="TimeShiftBox.AutomationProperties.Name" xml:space="preserve">
+    <value>Differita</value>
+  </data>
+  <data name="TimeShiftOff" xml:space="preserve">
+    <value>Disattivata</value>
+  </data>
+  <data name="TimeShiftMinutes" xml:space="preserve">
+    <value>{0} minuti</value>
+  </data>
+  <data name="TimeShiftMemory" xml:space="preserve">
+    <value>Circa {0} MB di memoria per tutti i preferiti insieme.</value>
+  </data>
+  <data name="NowPlayingBehindLive" xml:space="preserve">
+    <value>{0} dietro la diretta</value>
+  </data>
+  <data name="GoLiveButton.Content" xml:space="preserve">
+    <value>In diretta</value>
+  </data>
+  <data name="GoLiveButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Riproduci di nuovo questa stazione in diretta, dove si trova ora la trasmissione</value>
+  </data>
 </root>

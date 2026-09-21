@@ -10,9 +10,8 @@ A rolling 12-hour history of everything every favorite played, as a third tab ne
 and Favorite tracks, with the title tidied up (`TrackTitle`) and a heart per entry.
 
 It is deliberately a list of titles, not of audio. `PlayHistory` stores what the streams
-announced, which costs nothing beyond what the relay already reads, so the time-shift buffer on
-the roadmap still has to bring its own audio; the two are not the same feature
-at different resolutions.
+announced, which costs nothing beyond what the relay already reads, so the time-shift buffer
+brings its own audio; the two are not the same feature at different resolutions.
 
 ## Lock screen, media keys and global hotkeys (1.11.0)
 
@@ -190,3 +189,62 @@ cached like the per-country lists, so "All countries" opens on the stations peop
 instead of whatever sorts first by name. Ranking by the tags of your favorites was considered for the
 same empty list and left out: 36% of the stations in the rb2rs list have no tags at all, so it would
 push down many of the stations worth finding.
+
+## Time-shift buffer
+
+The weak spot of zapping was where it lands: on a favorite that plays a song, but on average about 90
+seconds into it. And the classifier heard a break on the live stream, so the first second or two of it
+always slipped through before the zap. Keeping the last minutes of every favorite fixes both. A zap
+starts the song on the other station from its beginning, and a break on the station being played from
+its buffer is known before it is heard, so the zap is cut at its boundary.
+
+`Core/Streaming/TimeShiftBuffer` keeps the compressed bytes `IcyProxy` relays, not decoded PCM, which
+would be ten times larger (5 minutes of 44.1 kHz stereo for 20 favorites is about 1 GB; of 128 kbit/s
+MP3 it is 96 MB). It is sized in time, from the `icy-br` header, so a 320 kbit/s station keeps as many
+minutes as a 128 kbit/s one, and a station that announces no bitrate is sized for 320. The ring is
+allocated once, when the stream first connects, and reused across reconnects, because every array over
+85 KB lands on the Large Object Heap. Positions count every byte ever appended, and a mark every 200 ms
+ties them to the time the audio came in, which is how "the song that began at 12:03:10" is found back.
+The length is a setting (off, 2, 5 or 10 minutes, default 5); 30 to 60 seconds would cover only a third
+of the landings, and the settings show what the chosen length takes for the favorites.
+
+Playing it back reuses the relay: `IcyProxy.RegisterReplay` serves a buffer from a position on another
+local URL, and keeps following the live edge as the station's audio comes in, so the player reads at its
+own pace and stays as far behind as where it started. `RadioEngine` has one extra `MediaPlayer` for this,
+for whichever station is being listened to. The station's own player stays muted and keeps streaming
+meanwhile, because it is what keeps the titles, the classifier and the reconnects going. A station
+closer to its song start than 3 seconds, or whose song began before the buffer reaches back, plays live
+as before, from its own player, so a zap there is still instant. `RadioEngine.Delay` counts only the
+time the replay actually plays, so the seconds it spends opening or buffering show up as delay rather
+than being lost.
+
+The harder half is judging a station that is played behind its broadcast. Each `StationStream` records
+a `Core/Playback/StreamTimeline` of `StreamMoment`s (the title, the ad flags, the sound, the channel
+state) on every change, and `RadioEngine.HeardOf` returns the moment being heard rather than the live
+one. The zapper judges the station being listened to by that moment, looking 500 ms ahead
+(`MainViewModel.ZapLead`), and the other favorites by their live state, because a zap to one of them
+starts at the beginning of the song it plays now. A one-shot timer in `MainViewModel` fires when the
+replay reaches the next moment of the timeline, which is when the zap happens, and the now-playing bar,
+the heart and the media card follow the same moment, so they name the song that is heard, not the one
+the station has already moved on to.
+
+Two kinds of moments are dated back when they are recorded. A break that only the sound gives away
+begins where the talking did (`SoundHistory.SpeechStretch`: back from the newest speech window,
+through speech and unclear windows, up to the first window of music), because the classifier needs a
+window or two to be sure of it. A new song begins where the song clock says it did, less a 2-second
+pre-roll (`StreamTimeline.SongPreRoll`), which is exactly where a zap to it lands. Without that, the
+seconds before the music was confirmed would still read as the talk before it, and the zapper would zap
+straight away again from the station it just landed on. A song is never dated back into a break the
+station marked, which really did come before it. Ad markers in the titles are not dated back: they come
+in with the audio they belong to.
+
+The delay does not add up. It is at most the length of the song a zap landed in (never more than the
+buffer), every zap sets it anew rather than adding to it, and zapping back to the station after its
+break lands on its new song, which began only moments ago. What suffers is truly live content, such as
+the news on the hour, which is what the zapper leaves anyway, and **Go live** covers the times someone
+wants it. Replaying what you just missed by hand, and recording a song from the buffer, were left out
+deliberately: they hang next to the zapper instead of making it better.
+
+What was accepted: the mark of a position is the time it came in, so the burst of audio a server sends
+on connect is dated a few seconds too late, and a reconnect in the middle of a replay makes the delay a
+little off until the next zap. Both only move where the zap lands by seconds.

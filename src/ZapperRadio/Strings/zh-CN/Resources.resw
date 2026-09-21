@@ -435,4 +435,31 @@
   <data name="UpdateNoticeTitle" xml:space="preserve">
     <value>ZapperRadio {0} 已就绪</value>
   </data>
+  <data name="TimeShiftHeading.Text" xml:space="preserve">
+    <value>时移</value>
+  </data>
+  <data name="TimeShiftText.Text" xml:space="preserve">
+    <value>切台时落到的电台虽然在放歌，但通常已经放到一半。因此会保留每个收藏电台最近几分钟的内容，切台时从头播放另一个电台的这首歌。广告等间歇在听到之前就已知道，所以也能在它开始的地方准确切走。代价是你会比直播稍晚一些收听：最多是切台落到的那首歌的长度，每次切台都会重新确定，按“直播”可立即追上。选择“关闭”则所有电台都直播。</value>
+  </data>
+  <data name="TimeShiftBox.AutomationProperties.Name" xml:space="preserve">
+    <value>时移</value>
+  </data>
+  <data name="TimeShiftOff" xml:space="preserve">
+    <value>关闭</value>
+  </data>
+  <data name="TimeShiftMinutes" xml:space="preserve">
+    <value>{0} 分钟</value>
+  </data>
+  <data name="TimeShiftMemory" xml:space="preserve">
+    <value>所有收藏电台合计约占用 {0} MB 内存。</value>
+  </data>
+  <data name="NowPlayingBehindLive" xml:space="preserve">
+    <value>比直播晚 {0}</value>
+  </data>
+  <data name="GoLiveButton.Content" xml:space="preserve">
+    <value>直播</value>
+  </data>
+  <data name="GoLiveButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>从当前的直播位置重新直播此电台</value>
+  </data>
 </root>

@@ -435,4 +435,31 @@
   <data name="UpdateNoticeTitle" xml:space="preserve">
     <value>ZapperRadio {0} の準備ができました</value>
   </data>
+  <data name="TimeShiftHeading.Text" xml:space="preserve">
+    <value>タイムシフト</value>
+  </data>
+  <data name="TimeShiftText.Text" xml:space="preserve">
+    <value>ザッピング先の局は曲を流していても、たいてい途中からになります。そこで各お気に入りの直近数分を保持し、ザッピングすると相手の局の曲を最初から再生します。CM などの区切りも聞こえる前にわかるので、ちょうど始まる所で切り替えられます。その代わり、放送より少し遅れて聴くことになります。遅れは最大でもザッピング先の曲 1 曲分で、ザッピングのたびに決め直され、「ライブ」ですぐに追いつけます。「オフ」ではすべての局をライブで再生します。</value>
+  </data>
+  <data name="TimeShiftBox.AutomationProperties.Name" xml:space="preserve">
+    <value>タイムシフト</value>
+  </data>
+  <data name="TimeShiftOff" xml:space="preserve">
+    <value>オフ</value>
+  </data>
+  <data name="TimeShiftMinutes" xml:space="preserve">
+    <value>{0} 分</value>
+  </data>
+  <data name="TimeShiftMemory" xml:space="preserve">
+    <value>お気に入り全体で約 {0} MB のメモリを使います。</value>
+  </data>
+  <data name="NowPlayingBehindLive" xml:space="preserve">
+    <value>ライブから {0} 遅れ</value>
+  </data>
+  <data name="GoLiveButton.Content" xml:space="preserve">
+    <value>ライブ</value>
+  </data>
+  <data name="GoLiveButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>この局を再びライブで、今の放送の位置から再生します</value>
+  </data>
 </root>

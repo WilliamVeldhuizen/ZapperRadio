@@ -435,4 +435,31 @@
   <data name="UpdateNoticeTitle" xml:space="preserve">
     <value>A versão {0} do ZapperRadio está pronta</value>
   </data>
+  <data name="TimeShiftHeading.Text" xml:space="preserve">
+    <value>Atraso</value>
+  </data>
+  <data name="TimeShiftText.Text" xml:space="preserve">
+    <value>Um zap cai numa rádio que está tocando uma música, mas geralmente no meio dela. Por isso os últimos minutos de cada favorito são guardados, e um zap começa a música da outra rádio do início. Assim um intervalo também é cortado bem onde começa, porque ele é conhecido antes de ser ouvido. O preço é ouvir um pouco atrás da transmissão: no máximo a duração da música em que um zap caiu, definida de novo a cada zap, e Ao vivo alcança na hora. Desligado toca cada rádio ao vivo.</value>
+  </data>
+  <data name="TimeShiftBox.AutomationProperties.Name" xml:space="preserve">
+    <value>Atraso</value>
+  </data>
+  <data name="TimeShiftOff" xml:space="preserve">
+    <value>Desligado</value>
+  </data>
+  <data name="TimeShiftMinutes" xml:space="preserve">
+    <value>{0} minutos</value>
+  </data>
+  <data name="TimeShiftMemory" xml:space="preserve">
+    <value>Cerca de {0} MB de memória para todos os favoritos juntos.</value>
+  </data>
+  <data name="NowPlayingBehindLive" xml:space="preserve">
+    <value>{0} atrás do ao vivo</value>
+  </data>
+  <data name="GoLiveButton.Content" xml:space="preserve">
+    <value>Ao vivo</value>
+  </data>
+  <data name="GoLiveButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Tocar esta rádio ao vivo de novo, onde a transmissão está agora</value>
+  </data>
 </root>

@@ -141,4 +141,20 @@ public class SoundHistoryTests
     {
         Assert.Equal(expected, Channel.StateOf(isInAdBreak, isLive, hasTitle, sound));
     }
+
+    [Theory]
+    [InlineData("MMMMMM", 0)]
+    // A break that began two windows ago, and one with a jingle between the talking.
+    [InlineData("MMMMSS", 2)]
+    [InlineData("MMMSuS", 3)]
+    // Still talking after a jingle: the stretch runs up to now.
+    [InlineData("MMMSSu", 3)]
+    // A stray word in the song does not drag the start of a later break back to it.
+    [InlineData("SMMMMS", 1)]
+    // A jingle before the first word is not counted: it may as well be the end of the song.
+    [InlineData("MMuuSS", 2)]
+    public void SpeechStretch_SaysWhereTheTalkingBegan(string windows, int expected)
+    {
+        Assert.Equal(expected, Heard(windows).SpeechStretch);
+    }
 }
