@@ -462,4 +462,40 @@
   <data name="GoLiveButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>Rejouer cette station en direct, là où en est la diffusion</value>
   </data>
+  <data name="ZapperTab.Text" xml:space="preserve">
+    <value>Zapper</value>
+  </data>
+  <data name="ZapperHint.Text" xml:space="preserve">
+    <value>Comment le zappeur quitte les pages de pub et les paroles sur la station que vous écoutez, et ce qu’il fait une fois la pause terminée.</value>
+  </data>
+  <data name="ZapperSwitch.Header" xml:space="preserve">
+    <value>Zapper pendant la pub et les paroles</value>
+  </data>
+  <data name="ZapBackHeading.Text" xml:space="preserve">
+    <value>Après une pause</value>
+  </data>
+  <data name="ZapBackRadio.Content" xml:space="preserve">
+    <value>Revenir à la station de la pause, une fois terminé le morceau de la station où il a atterri</value>
+  </data>
+  <data name="ZapStayRadio.Content" xml:space="preserve">
+    <value>Rester sur la station où il a atterri</value>
+  </data>
+  <data name="CrossfadeHeading.Text" xml:space="preserve">
+    <value>Fondu enchaîné</value>
+  </data>
+  <data name="CrossfadeText.Text" xml:space="preserve">
+    <value>Passe d’une station à l’autre en fondu au lieu d’une coupure nette. Le fondu de sortie se termine avant le début de la pause, pour qu’aucune pub ne passe. Une station écoutée en direct plutôt que depuis la mémoire tampon est toujours coupée net, car sa pause s’entend déjà.</value>
+  </data>
+  <data name="CrossfadeCheckBox.Content" xml:space="preserve">
+    <value>Fondu enchaîné en zappant</value>
+  </data>
+  <data name="ZapTargetsHeading.Text" xml:space="preserve">
+    <value>Zapper vers</value>
+  </data>
+  <data name="ZapTargetsText.Text" xml:space="preserve">
+    <value>Les favoris vers lesquels une pause peut zapper. Excluez une station où l’on n’attend pas la musique, comme une station d’info ; on la quitte tout de même en zappant et on y revient.</value>
+  </data>
+  <data name="NoZapTargetsText.Text" xml:space="preserve">
+    <value>Pas encore de favoris. Ajoutez des stations à vos favoris pour choisir où le zappeur peut aller.</value>
+  </data>
 </root>

@@ -267,3 +267,41 @@ deliberately: they hang next to the zapper instead of making it better.
 What was accepted: the mark of a position is the time it came in, so the burst of audio a server sends
 on connect is dated a few seconds too late, and a reconnect in the middle of a replay makes the delay a
 little off until the next zap. Both only move where the zap lands by seconds.
+
+## Zap rules and the Zapper tab
+
+The zapper got its own tab, after Stations, with the Z-bolt of the app icon on it. It holds the switch
+that is also above the favorites, and the three rules below. They are on a tab rather than in the
+settings dialog because they are what the app is about, and the per-favorite choice needs room for a
+list.
+
+**Zap to.** Each favorite can be left out as a place to zap to (`AppSettings.NeverZapTo`, fed to
+`AdBreakZapper.NeverZapTo`). A news station is no place to wait for the music. It is only left out as a
+landing spot: a break on it is still zapped away from, and when the zapping started there, it is still
+returned to, because you picked it. The list is rebuilt from the favorites on every save, so a station
+that stops being a favorite does not linger in it.
+
+**After a break.** By default the zapper returns to the station it came from once that plays a song
+again and the station it landed on reaches its own break. `AdBreakZapper.ReturnAfterBreak` switched off
+simply never remembers where it came from: the station it landed on stays on, and its own break is zapped
+away from like any other, which may well be back to the first one. Turning the rule off in the middle
+of a break forgets the way back at once, so there is no return later that nobody asked for.
+
+**Crossfade.** A zap fades over 400 ms (`RadioEngine.CrossfadeLength`) on an equal-power curve instead
+of cutting. The fade out has to end at the break, not start there, or the ad leaks back in. That is only
+known ahead of time for a station played from its buffer, where the zapper looks 500 ms ahead
+(`MainViewModel.ZapLead`, which is kept longer than the fade for that reason). A station heard live has
+its break detected once it is already audible, so it is still cut off, and only the station zapped to
+fades in. In practice most zaps fade both ways, because a zap usually lands at the start of a song, from
+the buffer, and the zap back leaves from there.
+
+Both sides of a fade can be replays: the zap back from a station played from its buffer usually lands on
+the other station's buffer too. `RadioEngine` therefore keeps a second replay player. `FadeOutReplay`
+hands the running replay (player, source and relay URL) over to play out, and the next replay takes the
+spare player. Once the fade is over, the relay URL is unregistered and the player becomes the spare
+again. A station that was not a favorite keeps its stream until it has played out. A replay that fades
+in starts its fade when it actually plays, not when it is opened, so the time it spends connecting does
+not eat the fade. The station's own player fades through `StationStream.Fade`, which multiplies into
+the volume the loudness correction sets. Anything else that changes what is heard (a pick by hand,
+stopping, the favorites or the buffer length changing) finishes a fade that is still going on at once.
+Picks by hand never fade: they are meant to be instant.

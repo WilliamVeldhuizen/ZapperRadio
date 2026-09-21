@@ -462,4 +462,40 @@
   <data name="GoLiveButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>Speel deze zender weer live, waar de uitzending nu is</value>
   </data>
+  <data name="ZapperTab.Text" xml:space="preserve">
+    <value>Zapper</value>
+  </data>
+  <data name="ZapperHint.Text" xml:space="preserve">
+    <value>Hoe de zapper reclameblokken en gepraat verlaat op de zender waar je naar luistert, en wat hij doet als het blok voorbij is.</value>
+  </data>
+  <data name="ZapperSwitch.Header" xml:space="preserve">
+    <value>Zappen bij reclame en gepraat</value>
+  </data>
+  <data name="ZapBackHeading.Text" xml:space="preserve">
+    <value>Na een blok</value>
+  </data>
+  <data name="ZapBackRadio.Content" xml:space="preserve">
+    <value>Terug naar de zender met het blok, zodra het nummer op de zender waar hij landde voorbij is</value>
+  </data>
+  <data name="ZapStayRadio.Content" xml:space="preserve">
+    <value>Blijven op de zender waar hij landde</value>
+  </data>
+  <data name="CrossfadeHeading.Text" xml:space="preserve">
+    <value>Crossfade</value>
+  </data>
+  <data name="CrossfadeText.Text" xml:space="preserve">
+    <value>Laat de ene zender in de andere overlopen in plaats van hard te wisselen. Het uitfaden is klaar voordat het blok begint, zodat er geen reclame doorheen komt. Een zender die live speelt in plaats van uit de time-shift-buffer wordt nog steeds afgekapt, omdat zijn blok al te horen is.</value>
+  </data>
+  <data name="CrossfadeCheckBox.Content" xml:space="preserve">
+    <value>Crossfade bij het zappen</value>
+  </data>
+  <data name="ZapTargetsHeading.Text" xml:space="preserve">
+    <value>Zappen naar</value>
+  </data>
+  <data name="ZapTargetsText.Text" xml:space="preserve">
+    <value>De favorieten waar bij een blok naartoe gezapt mag worden. Laat een zender weg die geen plek is om op de muziek te wachten, zoals een nieuwszender; daar wordt nog wel van weg en naar terug gezapt.</value>
+  </data>
+  <data name="NoZapTargetsText.Text" xml:space="preserve">
+    <value>Nog geen favorieten. Voeg zenders toe aan je favorieten om te kiezen waar de zapper heen mag.</value>
+  </data>
 </root>

@@ -78,6 +78,15 @@ public sealed partial class FavoriteViewModel(Station station) : ObservableObjec
 
     public string StatusText => StatusTexts.For(Status, IsActive, Sound);
 
+    /// <summary>Whether a break may be zapped to this station; off for one that is no place to wait for the music, such as the news.</summary>
+    [ObservableProperty]
+    public partial bool CanZapTo { get; set; } = true;
+
+    /// <summary>Raised when <see cref="CanZapTo"/> is switched.</summary>
+    public event EventHandler? CanZapToChanged;
+
+    partial void OnCanZapToChanged(bool value) => CanZapToChanged?.Invoke(this, EventArgs.Empty);
+
     /// <summary>What was measured of this station's loudness, as the settings show it.</summary>
     [ObservableProperty]
     public partial string LoudnessText { get; set; } = LoudnessTexts.NotMeasured;

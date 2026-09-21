@@ -8,26 +8,9 @@ Nothing here is promised or scheduled; it is a working list. Items leave it once
 they do is then in the README, and why they work the way they do in
 [docs/design-notes.md](docs/design-notes.md).
 
-## 1. Smarter zap rules
+## 1. Ad markers that run ahead of the audio
 
-The zapper is the identity of the app, so give it knobs:
-
-- Per favorite: never zap to this one, or only zap to these. A news station should not be a music fallback.
-- After a break ends: return to the station you came from, or stay where you landed.
-- A crossfade of a few hundred milliseconds instead of a hard cut, both when zapping away and when
-  zapping back. Every favorite is its own `MediaPlayer` already playing muted, so for a zap that lands
-  live it is a matter of ramping one volume down while the other comes up, in `RadioEngine` and
-  `StationStream`. A zap that lands at the start of a song plays from the time-shift buffer on the one
-  replay player, so fading from one replayed station into another needs a second replay player to
-  overlap with. The fade has to end at the break's boundary rather than start there, or the ad leaks
-  back in.
-- A tab of its own for these settings, named **Zapper**, next to Stations, Favorite tracks and Play
-  history, instead of adding them to the settings dialog.
-
-The rules belong in `AdBreakZapper` and `AppSettings`, the UI-free and fully tested core, so they
-are cheap to build and cheap to test.
-
-A note, not yet confirmed: an ad marker in the stream title counts from the moment it comes in, and
+Not yet confirmed: an ad marker in the stream title counts from the moment it comes in, and
 is not dated back like a break heard as speech. Some stations send their titles 10 to 20 seconds
 ahead of the audio (see the song clock in the design notes). If a station sends its ad marker that
 far ahead too, the zap away from it still comes too early. Worth fixing only once a station is
@@ -161,7 +144,7 @@ it runs on without anything leaving it. Together, the labels that users choose t
 training data for the model that ships with the app, so every station someone corrected is recognized
 better for everyone.
 
-The place to give those labels is the **Zapper** tab from item 1: a list of the last automatic zaps
+The place to give those labels is the **Zapper** tab: a list of the last automatic zaps
 (station, time, the reason it zapped, and where it landed), each of which can be graded. A zap is
 marked as right, or put in a category of what went wrong: **too early** (the music was still
 playing), **too late** (part of the ad was heard), or **not an ad break** (speech, a jingle or a

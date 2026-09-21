@@ -462,4 +462,40 @@
   <data name="GoLiveButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>Play this station live again, where its broadcast is now</value>
   </data>
+  <data name="ZapperTab.Text" xml:space="preserve">
+    <value>Zapper</value>
+  </data>
+  <data name="ZapperHint.Text" xml:space="preserve">
+    <value>How the zapper leaves ad breaks and speech on the station you are listening to, and what it does once the break is over.</value>
+  </data>
+  <data name="ZapperSwitch.Header" xml:space="preserve">
+    <value>Zap on ad breaks and speech</value>
+  </data>
+  <data name="ZapBackHeading.Text" xml:space="preserve">
+    <value>After a break</value>
+  </data>
+  <data name="ZapBackRadio.Content" xml:space="preserve">
+    <value>Go back to the station the break was on, once the song on the station it landed on is over</value>
+  </data>
+  <data name="ZapStayRadio.Content" xml:space="preserve">
+    <value>Stay on the station it landed on</value>
+  </data>
+  <data name="CrossfadeHeading.Text" xml:space="preserve">
+    <value>Crossfade</value>
+  </data>
+  <data name="CrossfadeText.Text" xml:space="preserve">
+    <value>Fades from one station into the other instead of cutting over. The fade out ends before the break starts, so no ad leaks in. A station that plays live instead of from the time-shift buffer is still cut off, because its break can already be heard.</value>
+  </data>
+  <data name="CrossfadeCheckBox.Content" xml:space="preserve">
+    <value>Crossfade when zapping</value>
+  </data>
+  <data name="ZapTargetsHeading.Text" xml:space="preserve">
+    <value>Zap to</value>
+  </data>
+  <data name="ZapTargetsText.Text" xml:space="preserve">
+    <value>The favorites a break may be zapped to. Leave out a station that is no place to wait for the music, such as a news station; it is still zapped away from and returned to.</value>
+  </data>
+  <data name="NoZapTargetsText.Text" xml:space="preserve">
+    <value>No favorites yet. Add stations to your favorites to choose where the zapper may go.</value>
+  </data>
 </root>

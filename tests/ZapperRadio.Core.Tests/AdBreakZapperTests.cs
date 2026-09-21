@@ -168,6 +168,57 @@ public class AdBreakZapperTests
     }
 
     [Fact]
+    public void NeverZapsToAFavoriteThatIsLeftOut()
+    {
+        var zapper = new AdBreakZapper { NeverZapTo = new HashSet<string> { "b", "c" } };
+
+        Assert.Equal("d", zapper.Next(Ad("a"), [Ad("a"), Song("b"), Unknown("c"), Song("d")], Now));
+    }
+
+    [Fact]
+    public void WaitsWhenOnlyFavoritesThatAreLeftOutPlayASong()
+    {
+        var zapper = new AdBreakZapper { NeverZapTo = new HashSet<string> { "b" } };
+
+        Assert.Null(zapper.Next(Ad("a"), [Ad("a"), Song("b")], Now));
+        Assert.Null(zapper.ZappedFrom);
+    }
+
+    [Fact]
+    public void StillZapsAwayFromAndBackToAFavoriteThatIsLeftOut()
+    {
+        var zapper = new AdBreakZapper { NeverZapTo = new HashSet<string> { "a" } };
+
+        Assert.Equal("b", zapper.Next(Speech("a"), [Speech("a"), Song("b")], Now));
+        Assert.Equal("a", zapper.Next(Ad("b"), [Song("a"), Ad("b")], Now.AddMinutes(2)));
+    }
+
+    [Fact]
+    public void StaysWhereItLanded_WhenItDoesNotReturnAfterABreak()
+    {
+        var zapper = new AdBreakZapper { ReturnAfterBreak = false };
+
+        Assert.Equal("b", zapper.Next(Ad("a"), [Ad("a"), Song("b")], Now));
+        Assert.Null(zapper.ZappedFrom);
+        Assert.Null(zapper.Next(Song("b"), [Song("a"), Song("b")], Now.AddMinutes(1)));
+        // Its own break is zapped away from as usual, which may well be back to where it came from.
+        Assert.Equal("a", zapper.Next(Ad("b"), [Song("a"), Ad("b")], Now.AddMinutes(2)));
+    }
+
+    [Fact]
+    public void TurningTheReturnOffForgetsWhereItCameFrom()
+    {
+        var zapper = new AdBreakZapper();
+        Assert.Equal("b", zapper.Next(Ad("a"), [Unavailable("c"), Ad("a"), Song("b")], Now));
+
+        zapper.ReturnAfterBreak = false;
+
+        Assert.Null(zapper.ZappedFrom);
+        // A plain zap to the highest favorite playing a song, rather than a return to "a".
+        Assert.Equal("c", zapper.Next(Ad("b"), [Song("c"), Song("a"), Ad("b")], Now.AddMinutes(1)));
+    }
+
+    [Fact]
     public void ZapsAwayFromAStationThatIsNotAFavorite_ButNotBack()
     {
         var zapper = new AdBreakZapper();

@@ -338,7 +338,8 @@ public sealed partial class MainWindow : Window
 
     private void Tabs_SelectionChanged(SelectorBar sender, SelectorBarSelectionChangedEventArgs args) =>
         ViewModel.SelectedTab =
-            sender.SelectedItem == FavoriteTracksTab ? MainTab.FavoriteTracks
+            sender.SelectedItem == ZapperTab ? MainTab.Zapper
+            : sender.SelectedItem == FavoriteTracksTab ? MainTab.FavoriteTracks
             : sender.SelectedItem == PlayHistoryTab ? MainTab.PlayHistory
             : MainTab.Stations;
 

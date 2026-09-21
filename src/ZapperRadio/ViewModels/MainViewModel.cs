@@ -47,6 +47,7 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
     /// <summary>
     /// How far ahead of what is heard the zapper looks, so a break is cut at its boundary rather than a moment into it.
     /// Losing half a second of a song's fade is better than hearing half a second of an ad.
+    /// A zap that fades out has to be over within this lead, so it is longer than <see cref="RadioEngine.CrossfadeLength"/>.
     /// </summary>
     private static readonly TimeSpan ZapLead = TimeSpan.FromMilliseconds(500);
 
@@ -184,6 +185,9 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
         SyncFavorites();
         // After the favorites are loaded, because changing these saves the settings.
         ZappOnAdBreaks = _settings.ZappOnAdBreaks;
+        ZapBackAfterBreak = _settings.ZapBackAfterBreak;
+        CrossfadeZaps = _settings.CrossfadeZaps;
+        UpdateNeverZapTo();
         NormalizeLoudness = _settings.NormalizeLoudness;
         SelectedTimeShift = TimeShiftOptions.FirstOrDefault(o => o.Minutes == (int)_engine.TimeShift.TotalMinutes) ?? TimeShiftOptions[0];
         GlobalHotkeys = _settings.GlobalHotkeys;
@@ -270,14 +274,17 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
     /// <summary>Whether songs were played but the search hides every one of them.</summary>
     public bool HasNoHistoryMatches => PlayHistory.Count > 0 && PlayHistoryResults.Count == 0;
 
-    /// <summary>Which of the three tabs is shown.</summary>
+    /// <summary>Which of the tabs is shown.</summary>
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(IsShowingStations))]
+    [NotifyPropertyChangedFor(nameof(IsShowingZapper))]
     [NotifyPropertyChangedFor(nameof(IsShowingFavoriteTracks))]
     [NotifyPropertyChangedFor(nameof(IsShowingPlayHistory))]
     public partial MainTab SelectedTab { get; set; }
 
     public bool IsShowingStations => SelectedTab == MainTab.Stations;
+
+    public bool IsShowingZapper => SelectedTab == MainTab.Zapper;
 
     public bool IsShowingFavoriteTracks => SelectedTab == MainTab.FavoriteTracks;
 
@@ -348,6 +355,22 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
     /// <summary>Zap to another favorite during the ad breaks of the station being listened to, and back once they are over.</summary>
     [ObservableProperty]
     public partial bool ZappOnAdBreaks { get; set; }
+
+    /// <summary>Whether the zapper goes back to the station it zapped away from once its break is over, or stays where it landed.</summary>
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(StayAfterBreak))]
+    public partial bool ZapBackAfterBreak { get; set; } = true;
+
+    /// <summary>The other choice of <see cref="ZapBackAfterBreak"/>, for the second of the two radio buttons.</summary>
+    public bool StayAfterBreak
+    {
+        get => !ZapBackAfterBreak;
+        set => ZapBackAfterBreak = !value;
+    }
+
+    /// <summary>Whether a zap fades from one station into the other instead of cutting over.</summary>
+    [ObservableProperty]
+    public partial bool CrossfadeZaps { get; set; } = true;
 
     /// <summary>Whether the loud stations are turned down to the level of the rest, so zapping keeps one volume.</summary>
     [ObservableProperty]
@@ -667,7 +690,8 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
 
     private void AddFavorite(Station station)
     {
-        var favorite = new FavoriteViewModel(station);
+        var favorite = new FavoriteViewModel(station) { CanZapTo = !_settings.NeverZapTo.Contains(station.Url) };
+        favorite.CanZapToChanged += OnCanZapToChanged;
         Favorites.Add(favorite);
         _ = LoadFavoriteLogoAsync(favorite);
     }
@@ -903,6 +927,29 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
 
     partial void OnAutoStartChanged(bool value) => StartupRegistration.SetEnabled(value);
 
+    partial void OnZapBackAfterBreakChanged(bool value)
+    {
+        _settings.ZapBackAfterBreak = value;
+        _zapper.ReturnAfterBreak = value;
+        SaveSettings();
+    }
+
+    partial void OnCrossfadeZapsChanged(bool value)
+    {
+        _settings.CrossfadeZaps = value;
+        SaveSettings();
+    }
+
+    /// <summary>A favorite was switched to be zapped to or not.</summary>
+    private void OnCanZapToChanged(object? sender, EventArgs e)
+    {
+        UpdateNeverZapTo();
+        SaveSettings();
+    }
+
+    private void UpdateNeverZapTo() =>
+        _zapper.NeverZapTo = Favorites.Where(f => !f.CanZapTo).Select(f => f.Station.Url).ToHashSet(StringComparer.Ordinal);
+
     partial void OnNormalizeLoudnessChanged(bool value)
     {
         _settings.NormalizeLoudness = value;
@@ -999,7 +1046,7 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
             && _engine.Find(url) is { } next)
         {
             _lastPlayed = next.Station;
-            Switch(next.Station, SongStartOf(next));
+            Switch(next.Station, SongStartOf(next), CrossfadeZaps);
         }
     }
 
@@ -1007,12 +1054,12 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
     /// Switches the engine to a station. The switch itself reports that what is heard changed, and the zapper must not
     /// act on that halfway: a station picked by hand in its break would be zapped away from before the pick counts.
     /// </summary>
-    private void Switch(Station station, DateTimeOffset? from)
+    private void Switch(Station station, DateTimeOffset? from, bool crossfade = false)
     {
         _isSwitching = true;
         try
         {
-            _engine.Play(station, from);
+            _engine.Play(station, from, crossfade);
         }
         finally
         {
@@ -1379,6 +1426,8 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
     {
         _settings.Favorites = Favorites.Select(f => f.Station).ToList();
         _settings.FavoriteTracks = FavoriteTracks.ToList();
+        // Taken from the favorites, so a station that is no longer one does not stay in the list.
+        _settings.NeverZapTo = Favorites.Where(f => !f.CanZapTo).Select(f => f.Station.Url).ToList();
         _settings.Volume = _engine.Volume;
 
         // A station that was played once should not keep its measurement in the settings file forever.
@@ -1424,6 +1473,7 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
 public enum MainTab
 {
     Stations,
+    Zapper,
     FavoriteTracks,
     PlayHistory,
 }

@@ -462,4 +462,40 @@
   <data name="GoLiveButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>从当前的直播位置重新直播此电台</value>
   </data>
+  <data name="ZapperTab.Text" xml:space="preserve">
+    <value>切台</value>
+  </data>
+  <data name="ZapperHint.Text" xml:space="preserve">
+    <value>切台器如何离开你正在收听的电台的广告和谈话，以及插播结束后它会怎么做。</value>
+  </data>
+  <data name="ZapperSwitch.Header" xml:space="preserve">
+    <value>遇到广告和谈话时切台</value>
+  </data>
+  <data name="ZapBackHeading.Text" xml:space="preserve">
+    <value>插播结束后</value>
+  </data>
+  <data name="ZapBackRadio.Content" xml:space="preserve">
+    <value>等切到的电台播完当前歌曲后，回到有插播的电台</value>
+  </data>
+  <data name="ZapStayRadio.Content" xml:space="preserve">
+    <value>留在切到的电台</value>
+  </data>
+  <data name="CrossfadeHeading.Text" xml:space="preserve">
+    <value>交叉淡入淡出</value>
+  </data>
+  <data name="CrossfadeText.Text" xml:space="preserve">
+    <value>从一个电台渐变到另一个电台，而不是生硬切换。淡出会在插播开始前结束，因此不会漏进广告。直播播放而非从时移缓冲区播放的电台仍会被直接切断，因为它的插播已经能听到了。</value>
+  </data>
+  <data name="CrossfadeCheckBox.Content" xml:space="preserve">
+    <value>切台时交叉淡入淡出</value>
+  </data>
+  <data name="ZapTargetsHeading.Text" xml:space="preserve">
+    <value>切到</value>
+  </data>
+  <data name="ZapTargetsText.Text" xml:space="preserve">
+    <value>插播时可以切到的收藏电台。排除不适合等待音乐的电台，例如新闻台；仍会从它切走，也会切回它。</value>
+  </data>
+  <data name="NoZapTargetsText.Text" xml:space="preserve">
+    <value>还没有收藏。将电台加入收藏后，即可选择切台器可以去哪里。</value>
+  </data>
 </root>

@@ -67,6 +67,7 @@ public sealed class StationStream : IDisposable
     private DateTime _lastPlayingUtc;
     private int _songNumber;
     private double _volume;
+    private double _fade = 1;
     private bool _normalizeLoudness = true;
     private double? _measuredLoudness;
     private bool _isRemeasuring;
@@ -439,10 +440,24 @@ public sealed class StationStream : IDisposable
         LoudnessChanged?.Invoke(this, EventArgs.Empty);
     }
 
+    /// <summary>
+    /// How far the station's own player is faded in, from 0 to 1, while a zap fades from one station into another.
+    /// Only its own player: one that plays the station back from the buffer is faded apart from it.
+    /// </summary>
+    public double Fade
+    {
+        get => _fade;
+        set
+        {
+            _fade = value;
+            _player.Volume = OutputVolume * value;
+        }
+    }
+
     /// <summary>Sets the player to the volume with the gain of this station applied; a boost stops at full volume.</summary>
     private void ApplyVolume()
     {
-        _player.Volume = OutputVolume;
+        _player.Volume = OutputVolume * _fade;
         OutputVolumeChanged?.Invoke(this, EventArgs.Empty);
     }
 

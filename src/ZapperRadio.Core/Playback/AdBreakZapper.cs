@@ -43,6 +43,8 @@ public readonly record struct Channel(string Url, ChannelState State)
 /// the middle of one: as long as the station it landed on plays music, that music is what you came for, so the
 /// return waits for that station's own break. Picking a station yourself ends the zapping: that station stays on,
 /// even if it is in a break right then.
+/// Two rules shape that: the favorites in <see cref="NeverZapTo"/> are never landed on, and without
+/// <see cref="ReturnAfterBreak"/> the station it landed on stays on instead of the zapper going back.
 /// </summary>
 public sealed class AdBreakZapper
 {
@@ -54,6 +56,30 @@ public sealed class AdBreakZapper
     public static readonly TimeSpan MaxAdBreak = TimeSpan.FromMinutes(10);
 
     private DateTimeOffset _zappedAt;
+    private bool _returnAfterBreak = true;
+
+    /// <summary>
+    /// Favorites a break is never zapped to, such as a news station, which is no place to wait for the music. They
+    /// are still zapped away from, and still returned to after a break when that is where the zapping started.
+    /// </summary>
+    public IReadOnlySet<string> NeverZapTo { get; set; } = new HashSet<string>(StringComparer.Ordinal);
+
+    /// <summary>
+    /// Whether it goes back to the station a break was zapped away from once that plays a song again. Without it the
+    /// station it landed on stays on, until that one reaches a break of its own.
+    /// </summary>
+    public bool ReturnAfterBreak
+    {
+        get => _returnAfterBreak;
+        set
+        {
+            _returnAfterBreak = value;
+            if (!value)
+            {
+                ZappedFrom = null;
+            }
+        }
+    }
 
     /// <summary>The station a break was zapped away from, which is returned to when it plays a song again.</summary>
     public string? ZappedFrom { get; private set; }
@@ -105,9 +131,9 @@ public sealed class AdBreakZapper
             return null;
         }
 
-        var next = favorites.FirstOrDefault(f => f.Url != active.Url && f.State == ChannelState.Song).Url
-                   ?? favorites.FirstOrDefault(f => f.Url != active.Url && f.State == ChannelState.Unknown).Url;
-        if (next is not null && ZappedFrom is null)
+        var next = favorites.FirstOrDefault(f => CanLandOn(f, active) && f.State == ChannelState.Song).Url
+                   ?? favorites.FirstOrDefault(f => CanLandOn(f, active) && f.State == ChannelState.Unknown).Url;
+        if (next is not null && ZappedFrom is null && ReturnAfterBreak)
         {
             ZappedFrom = active.Url;
             _zappedAt = now;
@@ -115,6 +141,8 @@ public sealed class AdBreakZapper
 
         return next;
     }
+
+    private bool CanLandOn(Channel favorite, Channel active) => favorite.Url != active.Url && !NeverZapTo.Contains(favorite.Url);
 
     private static bool IsBreak(ChannelState state) => state is ChannelState.Ad or ChannelState.Speech;
 

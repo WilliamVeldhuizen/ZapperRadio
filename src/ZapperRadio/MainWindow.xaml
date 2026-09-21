@@ -232,6 +232,12 @@
                                     <FontIcon Glyph="&#xE93E;" />
                                 </SelectorBarItem.Icon>
                             </SelectorBarItem>
+                            <!-- The Z-bolt of the app icon, as in the title bar, scaled from its 64-unit frame to the 16 of an icon. -->
+                            <SelectorBarItem x:Name="ZapperTab" x:Uid="ZapperTab">
+                                <SelectorBarItem.Icon>
+                                    <PathIcon Data="M10.5,2 L6,2 L6,3.75 L8,3.75 L5.75,14 L10.25,14 L10.25,12.25 L8.25,12.25 Z" />
+                                </SelectorBarItem.Icon>
+                            </SelectorBarItem>
                             <SelectorBarItem x:Name="FavoriteTracksTab" Text="{x:Bind ViewModel.FavoriteTracksHeader, Mode=OneWay}">
                                 <SelectorBarItem.Icon>
                                     <FontIcon Glyph="&#xE006;" />
@@ -339,6 +345,64 @@
                             </ListView.ItemTemplate>
                         </ListView>
                     </Grid>
+
+                    <!-- Zapper: the rules the zapper follows -->
+                    <ScrollViewer
+                        Grid.Row="1"
+                        HorizontalScrollMode="Disabled"
+                        VerticalScrollBarVisibility="Auto"
+                        Visibility="{x:Bind ViewModel.IsShowingZapper, Mode=OneWay}">
+                        <StackPanel Padding="16,8,16,16" Spacing="20">
+                            <StackPanel Spacing="2">
+                                <TextBlock
+                                    x:Uid="ZapperHint"
+                                    Style="{StaticResource CaptionTextBlockStyle}"
+                                    Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                                    TextWrapping="Wrap" />
+                                <ToggleSwitch x:Uid="ZapperSwitch" IsOn="{x:Bind ViewModel.ZappOnAdBreaks, Mode=TwoWay}" />
+                            </StackPanel>
+
+                            <StackPanel Spacing="2">
+                                <TextBlock x:Uid="ZapBackHeading" Style="{StaticResource BodyStrongTextBlockStyle}" />
+                                <RadioButton x:Uid="ZapBackRadio" GroupName="ZapBack" IsChecked="{x:Bind ViewModel.ZapBackAfterBreak, Mode=TwoWay}" />
+                                <RadioButton x:Uid="ZapStayRadio" GroupName="ZapBack" IsChecked="{x:Bind ViewModel.StayAfterBreak, Mode=TwoWay}" />
+                            </StackPanel>
+
+                            <StackPanel Spacing="2">
+                                <TextBlock x:Uid="CrossfadeHeading" Style="{StaticResource BodyStrongTextBlockStyle}" />
+                                <TextBlock
+                                    x:Uid="CrossfadeText"
+                                    Style="{StaticResource CaptionTextBlockStyle}"
+                                    Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                                    TextWrapping="Wrap" />
+                                <CheckBox x:Uid="CrossfadeCheckBox" Margin="0,4,0,0" IsChecked="{x:Bind ViewModel.CrossfadeZaps, Mode=TwoWay}" />
+                            </StackPanel>
+
+                            <StackPanel Spacing="2">
+                                <TextBlock x:Uid="ZapTargetsHeading" Style="{StaticResource BodyStrongTextBlockStyle}" />
+                                <TextBlock
+                                    x:Uid="ZapTargetsText"
+                                    Style="{StaticResource CaptionTextBlockStyle}"
+                                    Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                                    TextWrapping="Wrap" />
+                                <TextBlock
+                                    x:Uid="NoZapTargetsText"
+                                    Margin="0,8,0,0"
+                                    TextWrapping="Wrap"
+                                    Foreground="{ThemeResource TextFillColorTertiaryBrush}"
+                                    Visibility="{x:Bind ViewModel.HasNoFavorites, Mode=OneWay}" />
+                                <ItemsControl Margin="0,4,0,0" ItemsSource="{x:Bind ViewModel.Favorites}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate x:DataType="vm:FavoriteViewModel">
+                                            <CheckBox IsChecked="{x:Bind CanZapTo, Mode=TwoWay}">
+                                                <TextBlock Text="{x:Bind Name}" TextTrimming="CharacterEllipsis" />
+                                            </CheckBox>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </StackPanel>
+                        </StackPanel>
+                    </ScrollViewer>
 
                     <!-- Favorite tracks -->
                     <Grid Grid.Row="1" Visibility="{x:Bind ViewModel.IsShowingFavoriteTracks, Mode=OneWay}">

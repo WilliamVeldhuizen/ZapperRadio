@@ -14,11 +14,20 @@ namespace ZapperRadio.Playback;
 /// A station can also be played from a moment in the past, out of its time-shift buffer, so it starts at the
 /// beginning of the song it plays rather than halfway into it. One more player does that for whichever station is
 /// being listened to; the stream's own player stays muted meanwhile and keeps the station's titles and sound coming.
+/// A zap can fade from one station into the next. The station faded out is always one played from its buffer,
+/// because only there is the break known before it is heard; a spare replay player plays it out meanwhile, so the
+/// replay of the next station can start alongside it.
 /// </summary>
 public sealed class RadioEngine : IDisposable
 {
     /// <summary>A moment closer to the broadcast than this is not worth leaving the live stream for.</summary>
     private static readonly TimeSpan MinTimeShift = TimeSpan.FromSeconds(3);
+
+    /// <summary>
+    /// How long a zap takes to fade from one station into the next. The zapper acts a little ahead of what is heard,
+    /// and the fade out has to fit in that lead, so it is over before the break it leaves begins.
+    /// </summary>
+    public static readonly TimeSpan CrossfadeLength = TimeSpan.FromMilliseconds(400);
 
     private readonly StreamUrlResolver _resolver;
     private readonly IcyProxy? _proxy;
@@ -47,6 +56,29 @@ public sealed class RadioEngine : IDisposable
     private DateTimeOffset? _replayPlayingSince;
     private int _shownDelaySeconds;
 
+    /// <summary>How far the replay is faded in; below 1 only while a zap fades into it.</summary>
+    private double _replayFade = 1;
+
+    private readonly DispatcherQueueTimer _fadeTimer;
+
+    /// <summary>The replay of the station zapped away from, playing out while the next one fades in.</summary>
+    private MediaPlayer? _fadeOutPlayer;
+    private MediaSource? _fadeOutSource;
+    private Uri? _fadeOutUrl;
+    private StationStream? _fadeOutStream;
+    private DateTimeOffset _fadeOutStart;
+
+    /// <summary>A replay player with nothing to play, kept for the next fade so it need not be made again.</summary>
+    private MediaPlayer? _spareReplayPlayer;
+
+    /// <summary>The station whose own player fades in, when a zap lands on it live.</summary>
+    private StationStream? _fadeInStream;
+
+    /// <summary>Whether the replay fades in, which starts once it actually plays.</summary>
+    private bool _fadeInReplay;
+
+    private DateTimeOffset? _fadeInStart;
+
     public RadioEngine(StreamUrlResolver resolver, IcyProxy? proxy, TrackDurations? durations, SoundClassifier? classifier, DispatcherQueue dispatcher)
     {
         _resolver = resolver;
@@ -59,6 +91,10 @@ public sealed class RadioEngine : IDisposable
         _delayTimer = dispatcher.CreateTimer();
         _delayTimer.Interval = TimeSpan.FromSeconds(1);
         _delayTimer.Tick += (_, _) => RaiseDelayChanged();
+
+        _fadeTimer = dispatcher.CreateTimer();
+        _fadeTimer.Interval = TimeSpan.FromMilliseconds(15);
+        _fadeTimer.Tick += (_, _) => OnFadeTick();
     }
 
     public StationStream? Active { get; private set; }
@@ -116,6 +152,7 @@ public sealed class RadioEngine : IDisposable
             }
 
             _timeShift = value;
+            FinishFade();
             GoLive();
             foreach (var stream in AllStreams())
             {
@@ -182,6 +219,11 @@ public sealed class RadioEngine : IDisposable
         set
         {
             _isMuted = value;
+            if (_fadeOutPlayer is not null)
+            {
+                _fadeOutPlayer.IsMuted = value;
+            }
+
             if (IsTimeShifted)
             {
                 _replayPlayer!.IsMuted = value;
@@ -199,6 +241,8 @@ public sealed class RadioEngine : IDisposable
     /// <summary>Starts streams for new favorites and stops streams for removed ones.</summary>
     public void SetFavorites(IEnumerable<Station> favorites)
     {
+        // A station that fades out may be one that is no longer wanted, so it is played out first.
+        FinishFade();
         var wanted = favorites.DistinctBy(s => s.Url).ToDictionary(s => s.Url, StringComparer.Ordinal);
 
         foreach (var (url, stream) in _favorites.Where(f => !wanted.ContainsKey(f.Key)).ToList())
@@ -237,8 +281,10 @@ public sealed class RadioEngine : IDisposable
     /// <summary>
     /// Listens to a station. With <paramref name="from"/> it is played from that moment of its broadcast, when its
     /// buffer still holds it, and live otherwise. Picking the station that is already on changes nothing.
+    /// With <paramref name="crossfade"/> it fades in over <see cref="CrossfadeLength"/>, and a station played from its
+    /// buffer before it fades out meanwhile; one played live is cut off, because its break is already being heard.
     /// </summary>
-    public void Play(Station station, DateTimeOffset? from = null)
+    public void Play(Station station, DateTimeOffset? from = null, bool crossfade = false)
     {
         var stream = Find(station.Url) ?? CreateAndStart(station);
         var previous = Active;
@@ -247,16 +293,29 @@ public sealed class RadioEngine : IDisposable
             return;
         }
 
+        FinishFade();
         if (previous is not null)
         {
             previous.IsMuted = true;
         }
 
-        StopReplay();
+        if (crossfade && IsTimeShifted)
+        {
+            FadeOutReplay(previous!);
+        }
+        else
+        {
+            StopReplay();
+        }
 
         if (_transient is not null && _transient != stream)
         {
-            Release(_transient);
+            // A station that fades out still plays from its buffer, so it is released once it has faded out.
+            if (_transient != _fadeOutStream)
+            {
+                Release(_transient);
+            }
+
             _transient = null;
         }
 
@@ -268,7 +327,15 @@ public sealed class RadioEngine : IDisposable
         Active = stream;
         if (FindPosition(stream, from) is { } position)
         {
-            StartReplay(stream, position);
+            StartReplay(stream, position, crossfade);
+        }
+        else if (crossfade)
+        {
+            stream.Fade = 0;
+            stream.IsMuted = _isMuted;
+            _fadeInStream = stream;
+            _fadeInStart = DateTimeOffset.UtcNow;
+            _fadeTimer.Start();
         }
         else
         {
@@ -300,6 +367,7 @@ public sealed class RadioEngine : IDisposable
             return;
         }
 
+        FinishFade();
         Active.IsMuted = true;
         StopReplay();
         if (Active == _transient)
@@ -319,16 +387,19 @@ public sealed class RadioEngine : IDisposable
             ? stream.Buffer.PositionAt(moment)
             : null;
 
-    private void StartReplay(StationStream stream, long position)
+    /// <param name="fadeIn">Whether it fades in, from the moment it starts to play.</param>
+    private void StartReplay(StationStream stream, long position, bool fadeIn = false)
     {
-        _replayPlayer ??= CreateReplayPlayer();
+        _replayPlayer ??= TakeSpareReplayPlayer();
         _replayUrl = _proxy!.RegisterReplay(stream.Buffer, position, new Uri(stream.Station.Url));
         _replayFrom = stream.Buffer.TimeAt(position) ?? DateTimeOffset.UtcNow;
         _replayPlayed = TimeSpan.Zero;
         _replayPlayingSince = null;
+        _replayFade = fadeIn ? 0 : 1;
+        _fadeInReplay = fadeIn;
 
         _replaySource = MediaSource.CreateFromUri(_replayUrl);
-        _replayPlayer.Volume = stream.OutputVolume;
+        _replayPlayer.Volume = stream.OutputVolume * _replayFade;
         _replayPlayer.IsMuted = _isMuted;
         _replayPlayer.Source = _replaySource;
         _delayTimer.Start();
@@ -348,6 +419,146 @@ public sealed class RadioEngine : IDisposable
         _proxy!.Unregister(_replayUrl);
         _replayUrl = null;
         _replayPlayingSince = null;
+
+        // A replay that is gone has nothing left to fade in.
+        _replayFade = 1;
+        _fadeInReplay = false;
+        if (_fadeInStream is null)
+        {
+            _fadeInStart = null;
+        }
+    }
+
+    /// <summary>
+    /// Hands the replay of <paramref name="stream"/> over to fade out, which frees the replay player for the station
+    /// zapped to. The time it plays out is not counted as delay: it is no longer the station being listened to.
+    /// </summary>
+    private void FadeOutReplay(StationStream stream)
+    {
+        _delayTimer.Stop();
+        _fadeOutPlayer = _replayPlayer;
+        _fadeOutSource = _replaySource;
+        _fadeOutUrl = _replayUrl;
+        _fadeOutStream = stream;
+        _fadeOutStart = DateTimeOffset.UtcNow;
+
+        _replayPlayer = null;
+        _replaySource = null;
+        _replayUrl = null;
+        _replayPlayingSince = null;
+        _fadeTimer.Start();
+    }
+
+    private void OnFadeTick()
+    {
+        var now = DateTimeOffset.UtcNow;
+        if (_fadeOutPlayer is not null)
+        {
+            var progress = FadeProgress(_fadeOutStart, now);
+            if (progress >= 1)
+            {
+                EndFadeOut();
+            }
+            else
+            {
+                // An equal-power curve, so the two stations together do not dip in loudness halfway.
+                _fadeOutPlayer.Volume = _fadeOutStream!.OutputVolume * Math.Cos(progress * Math.PI / 2);
+            }
+        }
+
+        if (_fadeInStart is { } start)
+        {
+            var progress = FadeProgress(start, now);
+            if (progress >= 1)
+            {
+                EndFadeIn();
+            }
+            else
+            {
+                SetFadeIn(Math.Sin(progress * Math.PI / 2));
+            }
+        }
+
+        // A replay that fades in is still opening; it starts the timer again once it plays.
+        if (_fadeOutPlayer is null && _fadeInStart is null)
+        {
+            _fadeTimer.Stop();
+        }
+    }
+
+    private static double FadeProgress(DateTimeOffset start, DateTimeOffset now) =>
+        Math.Clamp((now - start) / CrossfadeLength, 0, 1);
+
+    private void SetFadeIn(double level)
+    {
+        if (_fadeInStream is not null)
+        {
+            _fadeInStream.Fade = level;
+        }
+        else if (_fadeInReplay && IsTimeShifted && Active is not null)
+        {
+            _replayFade = level;
+            _replayPlayer!.Volume = Active.OutputVolume * level;
+        }
+    }
+
+    private void EndFadeIn()
+    {
+        SetFadeIn(1);
+        _fadeInStream = null;
+        _fadeInReplay = false;
+        _fadeInStart = null;
+    }
+
+    private void EndFadeOut()
+    {
+        if (_fadeOutPlayer is null)
+        {
+            return;
+        }
+
+        _fadeOutPlayer.Source = null;
+        _fadeOutSource?.Dispose();
+        _proxy!.Unregister(_fadeOutUrl!);
+        if (_spareReplayPlayer is null)
+        {
+            _spareReplayPlayer = _fadeOutPlayer;
+        }
+        else
+        {
+            _fadeOutPlayer.Dispose();
+        }
+
+        // A station that was not a favorite had its stream kept only to play it out.
+        var stream = _fadeOutStream!;
+        if (stream != Active && stream != _transient && !_favorites.ContainsValue(stream))
+        {
+            Release(stream);
+        }
+
+        _fadeOutPlayer = null;
+        _fadeOutSource = null;
+        _fadeOutUrl = null;
+        _fadeOutStream = null;
+    }
+
+    /// <summary>Ends a fade that is still going on at once, for when something else is about to change what is heard.</summary>
+    private void FinishFade()
+    {
+        EndFadeOut();
+        if (_fadeInStream is not null || _fadeInReplay)
+        {
+            EndFadeIn();
+        }
+
+        _fadeTimer.Stop();
+    }
+
+    private MediaPlayer TakeSpareReplayPlayer()
+    {
+        var player = _spareReplayPlayer ?? CreateReplayPlayer();
+        _spareReplayPlayer = null;
+        return player;
     }
 
     private MediaPlayer CreateReplayPlayer()
@@ -358,7 +569,14 @@ public sealed class RadioEngine : IDisposable
         player.PlaybackSession.PlaybackStateChanged += (session, _) =>
         {
             var state = session.PlaybackState;
-            _dispatcher.TryEnqueue(() => OnReplayStateChanged(state));
+            // Two replay players take turns, and only the one playing the station being listened to counts.
+            _dispatcher.TryEnqueue(() =>
+            {
+                if (player == _replayPlayer)
+                {
+                    OnReplayStateChanged(state);
+                }
+            });
         };
         player.MediaFailed += (_, _) =>
         {
@@ -387,6 +605,11 @@ public sealed class RadioEngine : IDisposable
         if (state == MediaPlaybackState.Playing)
         {
             _replayPlayingSince ??= now;
+            if (_fadeInReplay && _fadeInStart is null)
+            {
+                _fadeInStart = now;
+                _fadeTimer.Start();
+            }
         }
         else if (_replayPlayingSince is { } since)
         {
@@ -458,7 +681,7 @@ public sealed class RadioEngine : IDisposable
     {
         if (IsTimeShifted && sender == Active)
         {
-            _replayPlayer!.Volume = Active!.OutputVolume;
+            _replayPlayer!.Volume = Active!.OutputVolume * _replayFade;
         }
     }
 
@@ -467,8 +690,10 @@ public sealed class RadioEngine : IDisposable
 
     public void Dispose()
     {
+        FinishFade();
         StopReplay();
         _replayPlayer?.Dispose();
+        _spareReplayPlayer?.Dispose();
         foreach (var stream in AllStreams().ToList())
         {
             Release(stream);

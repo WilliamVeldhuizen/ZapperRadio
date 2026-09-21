@@ -24,6 +24,15 @@ public sealed class AppSettings
     /// <summary>Zap to another favorite during the ad breaks of the station being listened to, and back afterwards.</summary>
     public bool ZappOnAdBreaks { get; set; }
 
+    /// <summary>The stream URLs of the favorites a break is never zapped to, such as a news station.</summary>
+    public List<string> NeverZapTo { get; set; } = [];
+
+    /// <summary>Whether the zapper goes back to the station it zapped away from once its break is over, or stays where it landed.</summary>
+    public bool ZapBackAfterBreak { get; set; } = true;
+
+    /// <summary>Whether a zap fades from one station into the other instead of cutting over.</summary>
+    public bool CrossfadeZaps { get; set; } = true;
+
     /// <summary>Whether every station is brought to the same loudness, so zapping does not change the volume.</summary>
     public bool NormalizeLoudness { get; set; } = true;
 

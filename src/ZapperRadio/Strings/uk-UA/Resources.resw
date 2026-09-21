@@ -462,4 +462,40 @@
   <data name="GoLiveButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>Знову грати цю станцію наживо, там, де зараз ефір</value>
   </data>
+  <data name="ZapperTab.Text" xml:space="preserve">
+    <value>Запер</value>
+  </data>
+  <data name="ZapperHint.Text" xml:space="preserve">
+    <value>Як запер залишає рекламні паузи та розмови на станції, яку ви слухаєте, і що він робить, коли пауза закінчується.</value>
+  </data>
+  <data name="ZapperSwitch.Header" xml:space="preserve">
+    <value>Перемикати під час реклами та розмов</value>
+  </data>
+  <data name="ZapBackHeading.Text" xml:space="preserve">
+    <value>Після паузи</value>
+  </data>
+  <data name="ZapBackRadio.Content" xml:space="preserve">
+    <value>Повертатися на станцію з паузою, щойно закінчиться пісня на станції, куди він перемкнув</value>
+  </data>
+  <data name="ZapStayRadio.Content" xml:space="preserve">
+    <value>Залишатися на станції, куди він перемкнув</value>
+  </data>
+  <data name="CrossfadeHeading.Text" xml:space="preserve">
+    <value>Плавний перехід</value>
+  </data>
+  <data name="CrossfadeText.Text" xml:space="preserve">
+    <value>Плавно переходить з однієї станції на іншу замість різкого перемикання. Затухання закінчується до початку паузи, тож реклама не прослизає. Станція, що грає наживо, а не з буфера, як і раніше обривається, бо її пауза вже звучить.</value>
+  </data>
+  <data name="CrossfadeCheckBox.Content" xml:space="preserve">
+    <value>Плавний перехід під час перемикання</value>
+  </data>
+  <data name="ZapTargetsHeading.Text" xml:space="preserve">
+    <value>Перемикати на</value>
+  </data>
+  <data name="ZapTargetsText.Text" xml:space="preserve">
+    <value>Обрані станції, на які можна перемикати під час паузи. Виключіть станцію, на якій не варто чекати музики, наприклад новинну; з неї все одно перемикається і на неї повертається.</value>
+  </data>
+  <data name="NoZapTargetsText.Text" xml:space="preserve">
+    <value>Обраних станцій ще немає. Додайте станції до обраних, щоб вибрати, куди може перемикати запер.</value>
+  </data>
 </root>
