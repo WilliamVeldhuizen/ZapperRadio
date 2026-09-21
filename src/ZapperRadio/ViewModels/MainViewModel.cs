@@ -91,6 +91,10 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
         _isFirstRun = !File.Exists(settingsPath);
         _settingsStore = new SettingsStore(settingsPath);
         _settings = _settingsStore.Load();
+        if (_isFirstRun)
+        {
+            _settings.HasSeenTour = false;
+        }
 
         // Before anything reads a text, and before the window is built from its XAML: this is where the language is chosen.
         Localizer.Use(_settings.Language);
@@ -484,6 +488,15 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
 
     /// <summary>Writes the settings out, e.g. once the window has been moved or resized.</summary>
     public void Save() => SaveSettings();
+
+    /// <summary>Whether the tour of the window still has to be shown: on a first start, until it is finished or skipped.</summary>
+    public bool ShouldShowTour => !_settings.HasSeenTour;
+
+    public void MarkTourSeen()
+    {
+        _settings.HasSeenTour = true;
+        SaveSettings();
+    }
 
     /// <summary>The version of the app, as shown in the settings.</summary>
     public string AppVersion { get; } =

@@ -325,3 +325,17 @@ bitrate each station announced, and when the switch is off, what they would take
 once rather than at the next start. Settings files from before stored 0 minutes for off;
 `AppSettings.Upgrade` turns that into the switch and gives it the default length of 5 minutes for when it
 is switched on again.
+
+## Tour on the first start (1.25.0)
+
+A first window is a list of stations and an empty list of favorites, with nothing that says the
+point of the app is the zapper. Five `TeachingTip`s in a row point at the real controls: the search,
+the results with their star, the favorites (what the zapper switches between, in order), the zap
+checkbox and the compact window button. They are tips next to the window rather than a wizard in
+front of it, so the window stays what is being explained; Skip, the cross or Escape ends the tour.
+
+`AppSettings.HasSeenTour` is true unless set otherwise, so a settings file from before the tour
+existed does not show it to someone who already knows the app; only a start without a settings file
+sets it to false, and finishing or skipping the tour sets it back. Quitting halfway shows it again
+next time. The way back in is a double-click on the version number in the settings, hidden on
+purpose: it is for testing the tour and for the rare user who asks, not a feature of its own.

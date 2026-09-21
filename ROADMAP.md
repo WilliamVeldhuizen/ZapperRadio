@@ -8,21 +8,7 @@ Nothing here is promised or scheduled; it is a working list. Items leave it once
 they do is then in the README, and why they work the way they do in
 [docs/design-notes.md](docs/design-notes.md).
 
-## 1. Guided tour on first launch
-
-A first-time window is a grid of stations and an empty favorites list, with nothing that says what
-makes this player different from any other. A short, dismissable tour on the very first launch -
-a few coach marks in sequence, not a modal wizard - points at the pieces that are not obvious from
-looking: heart a station to favorite it, the zap button, the loudness switch in settings, the find
-button that links out to Spotify and YouTube, and the compact window.
-
-`AppSettings` gains a `HasSeenTour` flag (default `false`), checked once in `App.OnLaunched` /
-`MainWindow` alongside the other first-run state, and set the moment the tour ends or is skipped, so
-it never shows again and never blocks a settings-file-less fresh install from being reset back into
-one either. A "show the tour again" entry in settings covers the case of an update landing a new
-tour step later.
-
-## 2. Production ready
+## 1. Production ready
 
 No new features: this is the work that makes what exists safe to ship to people who cannot ask the author
 what went wrong. Ranked by payoff per effort. Auto-update and its release pipeline are built (1.19.0).
@@ -75,7 +61,7 @@ what went wrong. Ranked by payoff per effort. Auto-update and its release pipeli
    on x64, including the auto-start entry. `vpk pack` leaves out the PDBs by default; keep them as release
    artifacts, so a stack trace from a crash can be read.
 
-## 3. Bandwidth and power guard
+## 2. Bandwidth and power guard
 
 The permanent 2 to 6 Mbit/s of background streaming is the one real cost of the design. An eco
 mode keeps only the top few favorites open on a metered connection or on battery below a set
@@ -83,7 +69,7 @@ percentage, and re-opens the rest on Wi-Fi or AC power. A live "currently using 
 readout in the settings makes the cost visible instead of implied. Uses `NetworkInformation` and
 the system power status, mostly inside `RadioEngine`.
 
-## 4. Ad markers that run ahead of the audio
+## 3. Ad markers that run ahead of the audio
 
 Not yet confirmed: an ad marker in the stream title counts from the moment it comes in, and
 is not dated back like a break heard as speech. Some stations send their titles 10 to 20 seconds
@@ -92,7 +78,7 @@ far ahead too, the zap away from it still comes too early. Worth fixing only onc
 seen doing it; the fix would be to date the marker back to where the music stops, in
 `StreamTimeline.StartOf`.
 
-## 5. Better search
+## 4. Better search
 
 Finding a station among the ~52,000 in the list is where a new user starts, and it is what decides
 which favorites the zapper gets to work with.
@@ -105,14 +91,14 @@ which favorites the zapper gets to work with.
   Preparing those rankings (the position and whatever else is worth showing) ahead of time would make
   the first pick instant and let it work offline too.
 
-## 6. Translated country and genre names
+## 5. Translated country and genre names
 
 The app speaks ten languages since 1.18.0, but the country and genre names come from the station
 list in English and stay that way, so the country box is the one part of the window that does not
 follow the language. A mapping per language for the few dozen countries that matter would make it
 read like the rest of the window.
 
-## 7. Learn from the listeners: train the break detection locally, improve it together
+## 6. Learn from the listeners: train the break detection locally, improve it together
 
 A large item for the longer term, and only worth starting once the app has users. The music, speech
 and ad break detection is YAMNet, a general sound classifier, with hand-written rules on top. Every

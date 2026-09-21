@@ -39,6 +39,15 @@ public sealed partial class MainWindow : Window
 
         // The compact window is fitted around its favorites, which are still being loaded when it opens.
         Root.Loaded += (_, _) => FitCompactWindow();
+
+        // The tour waits until the window is there to point at.
+        Root.Loaded += (_, _) =>
+        {
+            if (ViewModel.ShouldShowTour)
+            {
+                StartTour();
+            }
+        };
         ViewModel.Favorites.CollectionChanged += (_, _) => FitCompactWindow();
 
         // What sits above the list grows after a fit too: a song line or a notice appearing takes its height
@@ -305,6 +314,76 @@ public sealed partial class MainWindow : Window
         ViewModel.RefreshCacheSummary();
         SettingsDialog.XamlRoot = Root.XamlRoot;
         await SettingsDialog.ShowAsync();
+    }
+
+    /// <summary>The steps of the tour, in order.</summary>
+    private TeachingTip[] TourSteps => [TourSearch, TourStations, TourFavorites, TourZapper, TourCompact];
+
+    /// <summary>The step of the tour that is showing, or -1 when there is none.</summary>
+    private int _tourStep = -1;
+
+    /// <summary>
+    /// Shows the tour from its first step. It points at the full window, so the compact one is left for it, and at the
+    /// station search, so that tab is shown; both take a turn of the layout before there is anything to point at.
+    /// </summary>
+    private void StartTour()
+    {
+        ViewModel.IsCompact = false;
+        StationsTab.IsSelected = true;
+        DispatcherQueue.TryEnqueue(Microsoft.UI.Dispatching.DispatcherQueuePriority.Low, () => ShowTourStep(0));
+    }
+
+    private void ShowTourStep(int step)
+    {
+        var steps = TourSteps;
+        var previous = _tourStep;
+        _tourStep = step;
+        if (previous >= 0 && previous < steps.Length)
+        {
+            steps[previous].IsOpen = false;
+        }
+
+        if (step >= steps.Length)
+        {
+            EndTour();
+            return;
+        }
+
+        var tip = steps[step];
+        var last = step == steps.Length - 1;
+        tip.ActionButtonContent = last ? Localizer.Get("TourDone") : Localizer.Format("TourNext", step + 1, steps.Length);
+        tip.CloseButtonContent = last ? null : Localizer.Get("TourSkip");
+        tip.IsOpen = true;
+    }
+
+    private void EndTour()
+    {
+        _tourStep = -1;
+        foreach (var tip in TourSteps)
+        {
+            tip.IsOpen = false;
+        }
+
+        ViewModel.MarkTourSeen();
+    }
+
+    private void TourStep_ActionButtonClick(TeachingTip sender, object args) => ShowTourStep(_tourStep + 1);
+
+    /// <summary>A tip closed by the user, with Skip, its cross or Escape, ends the tour; one closed to show the next does not.</summary>
+    private void TourStep_Closed(TeachingTip sender, TeachingTipClosedEventArgs args)
+    {
+        if (args.Reason != TeachingTipCloseReason.Programmatic && _tourStep >= 0)
+        {
+            EndTour();
+        }
+    }
+
+    /// <summary>The way back into the tour: a double-click on the version number in the settings.</summary>
+    private void Version_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
+    {
+        SettingsDialog.Hide();
+        // The dialog has to be gone first, or the tips would open under it.
+        DispatcherQueue.TryEnqueue(Microsoft.UI.Dispatching.DispatcherQueuePriority.Low, StartTour);
     }
 
     private void AddKeyboardShortcuts()

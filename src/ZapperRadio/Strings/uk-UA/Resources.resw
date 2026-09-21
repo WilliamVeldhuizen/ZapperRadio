@@ -525,4 +525,43 @@
   <data name="TimeShiftMemoryPerFavorite" xml:space="preserve">
     <value>Займає близько {0} МБ пам’яті на одну обрану станцію з бітрейтом 128 кбіт/с.</value>
   </data>
+  <data name="TourSearch.Title" xml:space="preserve">
+    <value>Знайдіть свої станції</value>
+  </data>
+  <data name="TourSearch.Subtitle" xml:space="preserve">
+    <value>Шукайте за назвою, жанром або країною. Enter вмикає найкращий збіг.</value>
+  </data>
+  <data name="TourStations.Title" xml:space="preserve">
+    <value>Слухайте й зберігайте найкращі</value>
+  </data>
+  <data name="TourStations.Subtitle" xml:space="preserve">
+    <value>Клацніть станцію, щоб слухати. Клацніть її зірочку, щоб додати до вибраних.</value>
+  </data>
+  <data name="TourFavorites.Title" xml:space="preserve">
+    <value>Ваші вибрані</value>
+  </data>
+  <data name="TourFavorites.Subtitle" xml:space="preserve">
+    <value>Між ними перемикає запер. Усі вони продовжують мовлення, тож перемикання миттєве. Перетягніть їх у потрібному порядку: що вище станція, то раніше її обирають.</value>
+  </data>
+  <data name="TourZapper.Title" xml:space="preserve">
+    <value>Геть від реклами й балачок</value>
+  </data>
+  <data name="TourZapper.Subtitle" xml:space="preserve">
+    <value>Позначте це, і коли ваша станція почне рекламу, новини чи ведучого, плеєр перемкнеться на вибрану станцію, де грає пісня. На вкладці «Запер» можна вирішити, куди він може перемикати і чи повертається.</value>
+  </data>
+  <data name="TourCompact.Title" xml:space="preserve">
+    <value>Компактне вікно</value>
+  </data>
+  <data name="TourCompact.Subtitle" xml:space="preserve">
+    <value>Лише ваші вибрані станції та що на них грає, достатньо мале для кутка екрана.</value>
+  </data>
+  <data name="TourNext" xml:space="preserve">
+    <value>Далі ({0}/{1})</value>
+  </data>
+  <data name="TourSkip" xml:space="preserve">
+    <value>Пропустити огляд</value>
+  </data>
+  <data name="TourDone" xml:space="preserve">
+    <value>Почати слухати</value>
+  </data>
 </root>

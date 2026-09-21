@@ -77,6 +77,13 @@ public sealed class AppSettings
     /// <summary>Whether the Ctrl+Alt shortcuts also work while another app has focus.</summary>
     public bool GlobalHotkeys { get; set; } = true;
 
+    /// <summary>
+    /// Whether the tour of the window has been shown, or skipped. True unless set otherwise, so that a settings file
+    /// from before the tour existed does not show it to someone who already knows the app; a first start sets it to
+    /// false.
+    /// </summary>
+    public bool HasSeenTour { get; set; } = true;
+
     /// <summary>Where the full window was last left, so switching back to it returns it there.</summary>
     public WindowPlacement? FullWindow { get; set; }
 

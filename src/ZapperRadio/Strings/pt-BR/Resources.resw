@@ -525,4 +525,43 @@
   <data name="TimeShiftMemoryPerFavorite" xml:space="preserve">
     <value>Ocupa cerca de {0} MB de memória por favorito, para uma estação de 128 kbit/s.</value>
   </data>
+  <data name="TourSearch.Title" xml:space="preserve">
+    <value>Encontre suas rádios</value>
+  </data>
+  <data name="TourSearch.Subtitle" xml:space="preserve">
+    <value>Busque por nome, gênero ou país. Enter toca o melhor resultado.</value>
+  </data>
+  <data name="TourStations.Title" xml:space="preserve">
+    <value>Ouça e guarde as boas</value>
+  </data>
+  <data name="TourStations.Subtitle" xml:space="preserve">
+    <value>Clique numa rádio para ouvir. Clique na estrela para torná-la favorita.</value>
+  </data>
+  <data name="TourFavorites.Title" xml:space="preserve">
+    <value>Suas favoritas</value>
+  </data>
+  <data name="TourFavorites.Subtitle" xml:space="preserve">
+    <value>O zapper alterna entre estas. Todas continuam transmitindo, então a troca é instantânea. Arraste para ordenar: quanto mais alto, mais cedo é escolhida.</value>
+  </data>
+  <data name="TourZapper.Title" xml:space="preserve">
+    <value>Fuja de anúncios e conversa</value>
+  </data>
+  <data name="TourZapper.Subtitle" xml:space="preserve">
+    <value>Marque isto e, quando sua rádio começar anúncios, o noticiário ou um locutor, o player troca para uma favorita que esteja tocando uma música. A aba Zapper decide para onde pode ir e se volta.</value>
+  </data>
+  <data name="TourCompact.Title" xml:space="preserve">
+    <value>A janela compacta</value>
+  </data>
+  <data name="TourCompact.Subtitle" xml:space="preserve">
+    <value>Só suas favoritas e o que tocam, pequena o bastante para um canto da tela.</value>
+  </data>
+  <data name="TourNext" xml:space="preserve">
+    <value>Próximo ({0}/{1})</value>
+  </data>
+  <data name="TourSkip" xml:space="preserve">
+    <value>Pular o tour</value>
+  </data>
+  <data name="TourDone" xml:space="preserve">
+    <value>Começar a ouvir</value>
+  </data>
 </root>
