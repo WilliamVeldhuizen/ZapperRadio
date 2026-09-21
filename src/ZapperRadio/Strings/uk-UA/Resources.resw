@@ -119,6 +119,12 @@
   <data name="SearchAllCountriesButton.Content" xml:space="preserve">
     <value>Шукати в усіх країнах</value>
   </data>
+  <data name="OfflineSince" xml:space="preserve">
+    <value>Недоступна з {0:d}</value>
+  </data>
+  <data name="OfflineAtLastCheck" xml:space="preserve">
+    <value>Недоступна під час останньої перевірки</value>
+  </data>
   <data name="ReloadStationsButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>Перезавантажити список станцій</value>
   </data>

@@ -119,6 +119,12 @@
   <data name="SearchAllCountriesButton.Content" xml:space="preserve">
     <value>すべての国で検索</value>
   </data>
+  <data name="OfflineSince" xml:space="preserve">
+    <value>{0:d} からオフライン</value>
+  </data>
+  <data name="OfflineAtLastCheck" xml:space="preserve">
+    <value>前回の確認時にオフライン</value>
+  </data>
   <data name="ReloadStationsButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>放送局リストを再読み込み</value>
   </data>

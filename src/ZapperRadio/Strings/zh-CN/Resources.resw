@@ -119,6 +119,12 @@
   <data name="SearchAllCountriesButton.Content" xml:space="preserve">
     <value>在所有国家/地区中搜索</value>
   </data>
+  <data name="OfflineSince" xml:space="preserve">
+    <value>自 {0:d} 起离线</value>
+  </data>
+  <data name="OfflineAtLastCheck" xml:space="preserve">
+    <value>上次检查时离线</value>
+  </data>
   <data name="ReloadStationsButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>重新加载电台列表</value>
   </data>

@@ -190,8 +190,18 @@ the new one.
 whole name (ignoring spaces and dashes, so `qmusic` is "Q-Music"), and otherwise 1 plus, per term,
 where it was found: the start of the name, the start of a word in it, the middle of it, the tags,
 the country, or only with a typo. Summing rather than taking the worst term keeps "Radio 538
-Non-stop" above "Hitradio 538" for `radio 538`. The results sort on that score, then on the
-radio-browser popularity, then on the name.
+Non-stop" above "Hitradio 538" for `radio 538`. The results sort on that score, then on whether the
+station is down, then on the radio-browser popularity, then on the name.
+
+The rb2rs list has no health data and does not filter on it: about one in ten of its stream URLs
+failed radio-browser's last check. `StationHealth` fetches radio-browser's `json/stations/broken`,
+which lists exactly those stations with the moment each last worked (6,700 stations, 7.6 MB of JSON
+that cannot be trimmed to fewer fields), once a day, and keeps only the URLs and dates. A station that
+is down is demoted, not hidden: a failed check can be an outage of an hour, and a name typed in full
+should still find it, which is why being down counts after the match score and not before it. Its row
+says since when it is down, so it is not mistaken for a station that is merely quiet. Taking the whole
+station list from radio-browser instead would have given the same answer, at roughly ten times the
+download.
 
 With no country picked, the popularity comes from radio-browser's worldwide top 1,000, fetched and
 cached like the per-country lists, so "All countries" opens on the stations people actually play

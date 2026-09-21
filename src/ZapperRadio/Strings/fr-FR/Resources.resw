@@ -119,6 +119,12 @@
   <data name="SearchAllCountriesButton.Content" xml:space="preserve">
     <value>Rechercher dans tous les pays</value>
   </data>
+  <data name="OfflineSince" xml:space="preserve">
+    <value>Hors ligne depuis le {0:d}</value>
+  </data>
+  <data name="OfflineAtLastCheck" xml:space="preserve">
+    <value>Hors ligne lors de la dernière vérification</value>
+  </data>
   <data name="ReloadStationsButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>Recharger la liste des stations</value>
   </data>

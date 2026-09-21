@@ -25,16 +25,6 @@ which favorites the zapper gets to work with.
 - **Cluster the stations of one broadcaster.** Many stations come with a row of variants, such as the
   non-stop or theme channels of a main station, which now show up as separate, near-identical rows.
   Group them under the main station, which can be expanded to pick a variant.
-- **Leave out or demote dead stations.** The rb2rs list has no health data (its second column is `-` on
-  every line) and does not filter on it: of 2,000 stations radio-browser lists as broken (`lastcheckok=0`),
-  86% are in the rb2rs file, against 90% of 2,000 working ones. At radio-browser's 6,710 broken stations
-  out of 59,323, that is roughly 5,000 to 6,000 dead rows in the search, and a dead favorite is one less
-  place to zap to. One bulk request to radio-browser (`json/stations?hidebroken=false`, keeping only
-  `url`, `lastcheckok`, and the `bitrate` and `codec` worth showing in the subtitle), cached for a day like
-  the popularity lists, is enough to push them down or hide them. A failed last check can be a station
-  that is down for an hour, so demoting is safer than removing. The bigger alternative is to take the
-  whole station list from radio-browser instead of rb2rs, which would also settle the rb2rs question
-  under Production ready.
 - **Preprocess the top stations per country.** `StationPopularity` now asks the radio-browser API for a
   country's most clicked stations the moment the country is picked, and caches the answer for a day.
   Preparing those rankings (the position and whatever else is worth showing) ahead of time would make

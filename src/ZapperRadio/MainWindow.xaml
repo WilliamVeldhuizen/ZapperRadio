@@ -354,11 +354,23 @@
                                             Visibility="{x:Bind IsActive, Mode=OneWay}" />
                                         <StackPanel Grid.Column="1" Spacing="2">
                                             <TextBlock Text="{x:Bind Name}" TextTrimming="CharacterEllipsis" />
-                                            <TextBlock
-                                                Text="{x:Bind Subtitle}"
-                                                Style="{StaticResource CaptionTextBlockStyle}"
-                                                Foreground="{ThemeResource TextFillColorSecondaryBrush}"
-                                                TextTrimming="CharacterEllipsis" />
+                                            <!-- A station that failed its last check says so first, so it is not mistaken for a quiet one. -->
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <TextBlock
+                                                    Text="{x:Bind OfflinePrefix, Mode=OneWay}"
+                                                    Style="{StaticResource CaptionTextBlockStyle}"
+                                                    Foreground="{ThemeResource SystemFillColorCautionBrush}" />
+                                                <TextBlock
+                                                    Grid.Column="1"
+                                                    Text="{x:Bind Subtitle}"
+                                                    Style="{StaticResource CaptionTextBlockStyle}"
+                                                    Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                                                    TextTrimming="CharacterEllipsis" />
+                                            </Grid>
                                         </StackPanel>
                                         <Button
                                             x:Uid="ToggleFavoriteButton"

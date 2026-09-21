@@ -26,7 +26,11 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
     private readonly string _cacheFolder;
     private readonly StationDirectory _directory;
     private readonly StationPopularity _popularity;
+    private readonly StationHealth _health;
     private readonly StationLogos _logos;
+
+    /// <summary>The stations that failed their last check, by stream URL, with when each last worked.</summary>
+    private IReadOnlyDictionary<string, DateTime?> _broken = new Dictionary<string, DateTime?>();
     private readonly Dictionary<string, IReadOnlyDictionary<string, int>> _popularityByCountry = new(StringComparer.OrdinalIgnoreCase);
 
     /// <summary>The key of the worldwide ranking in <see cref="_popularityByCountry"/>, which no country in the list has.</summary>
@@ -101,6 +105,7 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
         _cacheFolder = Path.Combine(dataFolder, "cache");
         _directory = new StationDirectory(_http, _cacheFolder);
         _popularity = new StationPopularity(_http, _cacheFolder);
+        _health = new StationHealth(_http, _cacheFolder);
         _logos = new StationLogos(_http, _cacheFolder);
 
         // Streams run for hours, so the relay gets a client without the overall request timeout.
@@ -518,7 +523,9 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
 
     private IEnumerable<string> CachedLookups() =>
         Directory.Exists(_cacheFolder)
-            ? Directory.EnumerateFiles(_cacheFolder, "logo-*.txt").Concat(Directory.EnumerateFiles(_cacheFolder, "popularity-*.txt"))
+            ? Directory.EnumerateFiles(_cacheFolder, "logo-*.txt")
+                .Concat(Directory.EnumerateFiles(_cacheFolder, "popularity-*.txt"))
+                .Concat(Directory.EnumerateFiles(_cacheFolder, StationHealth.CacheFileName))
             : [];
 
     /// <summary>
@@ -542,6 +549,7 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
         }
 
         _popularityByCountry.Clear();
+        _ = LoadHealthAsync();
         RefreshCacheSummary();
 
         foreach (var favorite in Favorites)
@@ -565,6 +573,7 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
 
         IsLoading = true;
         _popularityByCountry.Clear();
+        _ = LoadHealthAsync();
         CatalogStatus = Localizer.Get("CatalogLoading");
         try
         {
@@ -588,6 +597,7 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
 
             _allStations = stations.all;
             RefreshFavoriteMarks();
+            RefreshHealthMarks();
             // The results are new objects, so the mark on the old ones is dropped along with them.
             _activeResult = null;
             MarkActiveResult(_engine.Active?.Station);
@@ -1226,10 +1236,13 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
             {
                 // The best matches come first, and the most popular among equally good ones; the sorts are stable,
                 // so the stations that are neither keep name order.
+                // A station that is down sinks below the working ones that match as well, but stays in the list: a
+                // failed check can be an hour's outage, and a name typed in full still finds it at the top.
                 var matches = source
                     .Select(s => (Item: s, Relevance: filter.Relevance(s.Station)))
                     .Where(m => m.Relevance is not null)
-                    .OrderBy(m => m.Relevance);
+                    .OrderBy(m => m.Relevance)
+                    .ThenBy(m => m.Item.IsOffline);
                 if (ranks is { Count: > 0 })
                 {
                     matches = matches.ThenBy(m => ranks.TryGetValue(m.Item.Station.Url, out var rank) ? rank : int.MaxValue);
@@ -1245,6 +1258,36 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
         }
         catch (OperationCanceledException)
         {
+        }
+    }
+
+    /// <summary>Finds out which stations are down, and moves them down the results once it is known.</summary>
+    private async Task LoadHealthAsync()
+    {
+        try
+        {
+            _broken = await _health.GetBrokenAsync();
+        }
+        catch (Exception)
+        {
+            // Like the popularity, a nice-to-have: without it every station counts as working.
+            return;
+        }
+
+        RefreshHealthMarks();
+        RefreshCacheSummary();
+        await ApplySearchAsync();
+    }
+
+    private void RefreshHealthMarks()
+    {
+        foreach (var result in _allStations)
+        {
+            var offline = _broken.TryGetValue(result.Station.Url, out var lastWorked);
+            if (offline || result.IsOffline)
+            {
+                result.MarkOffline(offline, lastWorked);
+            }
         }
     }
 

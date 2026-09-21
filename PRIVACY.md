@@ -11,7 +11,7 @@ Everything the app remembers is stored in `%LOCALAPPDATA%\ZapperRadio` and never
 
 - `settings.json`: your settings, favorite stations, favorite songs, window positions and the loudness measured per station;
 - `play-history.json`: the songs your favorites played in the last 12 hours;
-- `cache\`: the station list and the logos and popularity lookups (see below).
+- `cache\`: the station list and the logos, the popularity lookups and the list of stations that are down (see below).
 
 Deleting that folder removes all of it. Uninstalling the app does not, on purpose, so that your favorites survive a
 reinstall. When you switch on **Start with Windows**, the app adds one entry to your user's `Run` registry key, and it
@@ -31,6 +31,7 @@ app, `ZapperRadio/<version>`. Nothing else identifies you or your PC.
 | Radio streams | The station's own streaming server | Just a request for the stream. All your favorites (up to 20) stay connected while the app runs, muted ones too, so each of those stations sees you as a listener. | While the app runs |
 | Station list | [rb2rs.freemyip.com](http://rb2rs.freemyip.com/) | A request for the list of files, and then for the newest list. Nothing about you. This server only offers plain `http`. | When the app starts |
 | Popularity of stations | [radio-browser.info](https://www.radio-browser.info/) | The country you are looking at, or nothing for all countries | When you look at the stations of a country, or of all countries; kept for a day |
+| Stations that are down | radio-browser.info | A request for the list of stations that failed their last check. Nothing about you. | When the app starts; kept for a day |
 | Station logos | radio-browser.info, then the server the station gave for its logo | The name and country of the station, then a request for the logo image | The first time a station is shown as a favorite or as the one playing; kept until you clear it in the settings |
 | Song lengths | Apple's [iTunes Search API](https://performance-partners.apple.com/search-api) | The title of the song a favorite is playing, as the station sent it, for example `Queen - Bohemian Rhapsody`, to tell when an ad break must have started. This is done for the songs of all favorites, muted ones too, at most one lookup every 4 seconds. | Whenever a favorite starts a new song |
 | Updates | GitHub, from the [releases](https://github.com/WilliamVeldhuizen/ZapperRadio/releases) of this project | A request for the list of releases, and then the update itself | Half a minute after the start and every 6 hours, for an installed app only |
