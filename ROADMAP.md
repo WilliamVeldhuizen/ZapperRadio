@@ -4,7 +4,9 @@ Ideas for what to build next, ranked by payoff per effort. The list is deliberat
 towards features that only this player can offer, because it keeps every favorite streaming
 and already decodes and classifies their audio.
 
-Nothing here is promised or scheduled; it is a working list.
+Nothing here is promised or scheduled; it is a working list. Items leave it once they ship: what
+they do is then in the README, and why they work the way they do in
+[docs/design-notes.md](docs/design-notes.md).
 
 ## 1. Live rewind / instant replay (30-60 s ring buffer per favorite)
 
@@ -14,6 +16,9 @@ of the song you zapped into, or to replay what you just missed - across all 20 f
 which no other radio player can do. Hooks into `IcyProxy`'s audio callback and `StationStream`.
 The largest effort on this list and the biggest differentiator.
 
+The play history covers the titles of everything the favorites played, but it is a list of titles
+and not of audio, so this has to bring its own buffer.
+
 ## 2. Auto-record the current song
 
 `IcyProxy` already knows exactly when a title changes, so track boundaries come for free. A
@@ -22,50 +27,14 @@ the ring buffer onwards to `%MUSIC%\ZapperRadio\Artist - Title.mp3`, tagged. Tog
 rewind buffer it can record a song that was already halfway through when you noticed it. Intended
 for personal use of a broadcast, which the README should say plainly.
 
-## 3. Loudness normalization across stations - built in 1.12.0
-
-`Core/Audio/Loudness` measures how loud audio is the EBU R128 / ITU-R BS.1770 way: the samples are K-weighted
-(the high shelf of the head and the RLB high pass) and the mean square of overlapping 400 ms blocks is averaged,
-leaving the blocks below -70 LUFS out. It runs on the PCM `SoundClassifier` already decodes for YAMNet, so it
-costs nothing but the arithmetic, and only on the windows YAMNet calls music: what a station does to its music
-is what makes it louder than the next one, while ads and presenters are mixed at a level of their own.
-
-`Core/Audio/StationLoudness` turns those windows into one number per station. A histogram rather than a list,
-because a favorite streams for hours, and gated as BS.1770 prescribes, so a quiet intro does not drag the level
-down. After about a minute of music (12 windows) it gives a gain towards -14 LUFS, the level streaming services
-normalize to, clamped to -12..+6 dB.
-
-`StationStream` owns the estimate, so it survives a reconnect, and applies `volume * gain` to its own player;
-`RadioEngine` keeps the manual trims and the loudness measured in an earlier run, which `AppSettings` stores per
-station so the correction is there from the first second of the next run. The settings show the measurement per
-favorite with a slider for the manual trim, and a switch for the whole thing. The one real limit is that
-`MediaPlayer.Volume` stops at 1, so a station that needs a boost cannot get one with the volume slider at the top.
-
-## 4. Lock screen, media keys and global hotkeys - built in 1.11.0
-
-`Shell/SystemMediaControls` owns one `SystemMediaTransportControls` for the app and feeds it from what
-the window shows: the station, the song and the station logo in the volume flyout and on the lock
-screen, with play, pause, next and previous, which is also what the media keys of a keyboard or a
-headset press. Next and previous walk the favorites (`Core/Playback/FavoriteRing`), so the media keys
-zap. The per-player overlay stays off in `StationStream`, because twenty players would each claim the
-card. A WinUI 3 desktop app has no view to ask, so the controls are obtained for the window handle
-through `ISystemMediaTransportControlsInterop`; .NET does not marshal an IInspectable interface, so
-its one method is called through the vtable.
-
-`Shell/GlobalHotkeys` claims `Ctrl+Alt+P`, `Ctrl+Alt+M`, `Ctrl+Alt+Right` and `Ctrl+Alt+Left` with
-`RegisterHotKey` and watches for WM_HOTKEY by chaining the window procedure. They are on `Ctrl+Alt`
-rather than on the `Ctrl+Space` and `Ctrl+M` of the window, because claiming those system wide would
-take them away from every other app. A combination another app already holds is named in the settings
-instead of failing, and the whole set can be switched off there.
-
-## 5. Tray icon and minimize to tray
+## 3. Tray icon and minimize to tray
 
 The app is built to keep running, yet it only lives in the taskbar. A tray icon showing the
 current song in its tooltip, left-click to mute and unmute, right-click for the favorites (the
 same content as `TaskbarJumpList` builds) and a "close to tray" option turn it into a background
-app instead of a window. Pairs with the media key work above.
+app instead of a window. Pairs with the media keys and the global hotkeys of 1.11.0.
 
-## 6. Bandwidth and power guard
+## 4. Bandwidth and power guard
 
 The permanent 2 to 6 Mbit/s of background streaming is the one real cost of the design. An eco
 mode keeps only the top few favorites open on a metered connection or on battery below a set
@@ -73,34 +42,7 @@ percentage, and re-opens the rest on Wi-Fi or AC power. A live "currently using 
 readout in the settings makes the cost visible instead of implied. Uses `NetworkInformation` and
 the system power status, mostly inside `RadioEngine`.
 
-## 7. Play history - built in 1.10.0
-
-A rolling 12-hour history of everything every favorite played, as a third tab next to Stations and
-Favorite tracks, with the title tidied up (`TrackTitle`) and a heart per entry. It is deliberately
-kept separate from the rewind and recording features above: `PlayHistory` is a list of titles, not
-of audio, so 1 and 2 still have to bring their own buffer.
-
-## 8. Links out to Spotify and YouTube - built in 1.15.0
-
-A favorite track could only be copied as text. A find button now sits next to the song that is
-playing, in both windows, and next to every favorite track and every entry in the play history,
-with Spotify and YouTube behind it. Apple Music was deliberately left out: two services cover
-where the songs actually go, and each extra one is another row in a menu that has to stay a glance.
-
-`Core/Models/TrackLinks` builds the links and is the whole of the logic: the words of the title
-with the separator dropped, escaped into `spotify:search:`, `open.spotify.com/search/` or
-`youtube.com/results`. A stream title is not a track id, so the link searches rather than opens
-the song, which has the pleasant side effect of covering the stations that send "Title - Artist"
-instead of "Artist - Title", because a search does not care about the order. `MainWindow` asks
-`Launcher.QueryUriSupportAsync` whether `spotify:` has a handler before using it, so Spotify opens
-in its app when it is installed and in its web player when it is not, without Windows offering to
-go looking for one in the Store.
-
-The iTunes Search API that `TrackDurations` already calls could pin the exact track rather than a
-search, and would give an Apple Music link for free, but it costs a lookup per click and misses
-often enough that a search is the better answer for a radio title.
-
-## 9. Smarter zap rules
+## 5. Smarter zap rules
 
 The zapper is the identity of the app, so give it knobs:
 
@@ -112,13 +54,13 @@ The zapper is the identity of the app, so give it knobs:
 All of this belongs in `AdBreakZapper` and `AppSettings`, the UI-free and fully tested core, so it
 is cheap to build and cheap to test.
 
-## 10. Import and export of favorites, and favorite sets
+## 6. Import and export of favorites, and favorite sets
 
 A shareable JSON (or `.m3u`) of the favorites makes it possible to move machines, keep a backup or
 publish a preset. Alongside it, named favorite sets (Work, Weekend, Dance) keep the cap of 20 open
 streams while removing the ceiling as a practical limit: only the active set streams.
 
-## 11. More languages
+## 7. More languages
 
 Every string in the app is English today, written out where it is used. The station list is worldwide
 and most of its listeners are not, so the player should speak the language Windows is set to, starting
@@ -137,33 +79,7 @@ from what is shown. And the country and genre names come from the station list i
 they stay English while the rest of the window is translated, or a mapping per language is kept for
 the few dozen countries that matter. Neither is hard, but both decide how finished the result feels.
 
-## 12. Start the song clock when the song starts, not when its title arrives - built in 1.14.0
-
-The unmarked ad break detection of item 4 in the README used to time a song from the moment its title
-came in: `StationStream.WatchSongEndAsync` took `DateTime.UtcNow` there and set `_songEndTimer` to
-`title arrival + length + SongOverrun`, 30 seconds. That assumes the title and the song start together,
-and plenty of stations do not work that way. Their playout system announces the next item while the
-current one is still fading, or over the jingle in between, so the title runs 10 to 20 seconds ahead of
-the audio. The clock then started too early and the 30 seconds of slack quietly shrank to 10: the song
-was marked overdue while it was still playing, and the first presenter or station ident after it was
-enough for `UnmarkedAdBreak` to call a break that was not one.
-
-`Core/Audio/SongClock` anchors the clock to the audio instead. A title starts the clock but not the
-timer; the first two windows of music in a row after it (about 10 seconds, because one window alone is
-noise) say where the song really began, and the clock is set back to the start of that run. A title that
-arrives late, while the song is already playing, cannot move the song forward, so the clock never starts
-later than the title. Streams that are not classified at all (HLS, which skips the relay) and streams
-where 45 seconds pass without either music or speech - a quiet or instrumental intro - fall back to
-timing from the title as they did before, nudged by the 5-second watchdog rather than by a window.
-
-With the clock on the song itself, `Overrun` means what it says again and came down from 30 to 20
-seconds, which makes the real breaks show up sooner too. Two smaller holes went with it: a station that
-replaces the song title with its own name or the name of the program between the song and the ads no
-longer resets the clock (only a title shaped like "Artist - Title" is a new song), and only such a title
-counts as evidence of a song in `Channel.StateOf`, so a station name during a break is no longer mistaken
-for music.
-
-## 13. Start with Windows
+## 8. Start with Windows
 
 The app is meant to be on all day, and a radio you have to remember to open is a radio you forget.
 A switch in the settings, next to the global hotkeys, that lets Windows start the player with the
@@ -180,11 +96,11 @@ Startup tab of Task Manager can switch an entry off behind the app's back, and a
 "on" while Windows disagrees is worse than no switch.
 
 A `--minimized` argument carries the quiet start from the registry value into `App.OnLaunched`, which
-is where this meets 5: with a tray icon it should start into the tray rather than the taskbar, so the
+is where this meets 3: with a tray icon it should start into the tray rather than the taskbar, so the
 two are best built together.
 
 ## Suggested order
 
-With 3, 4, 8 and 12 built, 5 is next: it pairs with the media keys and is about a day, and 13 follows
-it straight away, because a player that starts with Windows wants somewhere quiet to start into. Then
-1, because it is the feature that cannot be copied without also keeping every stream open.
+3 is next: it pairs with the media keys and is about a day, and 8 follows it straight away, because
+a player that starts with Windows wants somewhere quiet to start into. Then 1, because it is the
+feature that cannot be copied without also keeping every stream open.

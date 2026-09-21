@@ -75,6 +75,7 @@ To publish a release, bump `<Version>` in `src/ZapperRadio/ZapperRadio.csproj` a
 - `src/ZapperRadio`: WinUI app. `Playback/RadioEngine` manages the muted streams, `Playback/StationStream` is a single `MediaPlayer` with reconnect logic that also keeps the loudness of its station, `Playback/SoundClassifier` decodes the relayed audio (Media Foundation via NAudio), runs YAMNet with the ONNX Runtime that comes with the Windows App SDK and measures the loudness of the same samples, and `Shell` holds the taskbar jump list, the Windows media card and the global shortcuts.
 - `tests/ZapperRadio.Core.Tests`: xUnit tests.
 - `installer`: WiX project for the MSI (not in the solution, build it with `build-installer.ps1`).
+- `docs/design-notes.md`: why the larger features work the way they do, per version. [ROADMAP.md](ROADMAP.md) holds what is not built yet.
 
 ## License
 
