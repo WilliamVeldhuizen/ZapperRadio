@@ -13,4 +13,8 @@ public sealed partial class StationResultViewModel(Station station) : Observable
 
     [ObservableProperty]
     public partial bool IsFavorite { get; set; }
+
+    /// <summary>Whether this is the station being listened to, marked like the favorite that plays.</summary>
+    [ObservableProperty]
+    public partial bool IsActive { get; set; }
 }

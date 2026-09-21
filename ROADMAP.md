@@ -22,7 +22,6 @@ seen doing it; the fix would be to date the marker back to where the music stops
 Finding a station among the ~52,000 in the list is where a new user starts, and it is what decides
 which favorites the zapper gets to work with.
 
-- **A better interface.** Still open how: the design is not decided yet.
 - **Cluster the stations of one broadcaster.** Many stations come with a row of variants, such as the
   non-stop or theme channels of a main station, which now show up as separate, near-identical rows.
   Group them under the main station, which can be expanded to pick a variant.

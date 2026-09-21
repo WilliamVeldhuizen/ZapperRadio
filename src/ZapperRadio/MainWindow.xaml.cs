@@ -383,6 +383,31 @@ public sealed partial class MainWindow : Window
     private void Station_ItemClick(object sender, ItemClickEventArgs e) =>
         ViewModel.Play(((StationResultViewModel)e.ClickedItem).Station);
 
+    /// <summary>
+    /// Enter plays the best match, Down moves into the results to pick another one, and Escape empties the box,
+    /// so a station can be found and played without reaching for the mouse.
+    /// </summary>
+    private async void SearchBox_KeyDown(object sender, KeyRoutedEventArgs e)
+    {
+        switch (e.Key)
+        {
+            case VirtualKey.Enter:
+                e.Handled = true;
+                await ViewModel.PlayBestMatchAsync();
+                break;
+            case VirtualKey.Down when ViewModel.Results.Count > 0:
+                e.Handled = true;
+                StationResults.ScrollIntoView(ViewModel.Results[0]);
+                StationResults.UpdateLayout();
+                (StationResults.ContainerFromIndex(0) as Control)?.Focus(FocusState.Keyboard);
+                break;
+            case VirtualKey.Escape when SearchBox.Text.Length > 0:
+                e.Handled = true;
+                SearchBox.Text = "";
+                break;
+        }
+    }
+
     private void Country_GotFocus(object sender, RoutedEventArgs e)
     {
         // The box raises GotFocus again while typing; only entering it should reset the list.

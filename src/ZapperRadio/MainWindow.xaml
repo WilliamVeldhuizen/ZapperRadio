@@ -278,7 +278,8 @@
                             <TextBox
                                 x:Name="SearchBox"
                                 x:Uid="SearchBox"
-                                Text="{x:Bind ViewModel.SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                Text="{x:Bind ViewModel.SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                KeyDown="SearchBox_KeyDown" />
                             <AutoSuggestBox
                                 x:Name="CountryBox"
                                 x:Uid="CountryBox"
@@ -299,15 +300,39 @@
                             </Button>
                         </Grid>
 
-                        <StackPanel Grid.Row="1" Orientation="Horizontal" Spacing="8" Padding="16,4,16,4">
-                            <ProgressRing Width="14" Height="14" IsActive="{x:Bind ViewModel.IsLoading, Mode=OneWay}" Visibility="{x:Bind ViewModel.IsLoading, Mode=OneWay}" />
+                        <!-- What the search found on the left, the list it searched on the right. -->
+                        <Grid Grid.Row="1" Padding="16,4,16,4" ColumnSpacing="8">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
                             <TextBlock
-                                Text="{x:Bind ViewModel.CatalogStatus, Mode=OneWay}"
+                                Text="{x:Bind ViewModel.ResultsSummary, Mode=OneWay}"
                                 Style="{StaticResource CaptionTextBlockStyle}"
                                 Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+                            <ProgressRing Grid.Column="1" Width="14" Height="14" IsActive="{x:Bind ViewModel.IsLoading, Mode=OneWay}" Visibility="{x:Bind ViewModel.IsLoading, Mode=OneWay}" />
+                            <TextBlock
+                                Grid.Column="2"
+                                Text="{x:Bind ViewModel.CatalogStatus, Mode=OneWay}"
+                                Style="{StaticResource CaptionTextBlockStyle}"
+                                Foreground="{ThemeResource TextFillColorTertiaryBrush}" />
+                        </Grid>
+
+                        <!-- Nothing found: say where was searched, and offer the rest of the world when a country hid it. -->
+                        <StackPanel Grid.Row="2" Margin="16" Spacing="8" Visibility="{x:Bind ViewModel.HasNoResults, Mode=OneWay}">
+                            <TextBlock
+                                Text="{x:Bind ViewModel.NoResultsText, Mode=OneWay}"
+                                TextWrapping="Wrap"
+                                Foreground="{ThemeResource TextFillColorTertiaryBrush}" />
+                            <Button
+                                x:Uid="SearchAllCountriesButton"
+                                Visibility="{x:Bind ViewModel.CanSearchAllCountries, Mode=OneWay}"
+                                Command="{x:Bind ViewModel.SearchAllCountriesCommand}" />
                         </StackPanel>
 
                         <ListView
+                            x:Name="StationResults"
                             Grid.Row="2"
                             Padding="0,0,0,8"
                             ItemsSource="{x:Bind ViewModel.Results, Mode=OneWay}"
@@ -318,10 +343,16 @@
                                 <DataTemplate x:DataType="vm:StationResultViewModel">
                                     <Grid Padding="0,6" ColumnSpacing="8">
                                         <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="3" />
                                             <ColumnDefinition Width="*" />
                                             <ColumnDefinition Width="Auto" />
                                         </Grid.ColumnDefinitions>
-                                        <StackPanel Spacing="2">
+                                        <!-- The station being listened to, marked as in the favorites. -->
+                                        <Rectangle
+                                            RadiusX="1.5" RadiusY="1.5"
+                                            Fill="{ThemeResource AccentFillColorDefaultBrush}"
+                                            Visibility="{x:Bind IsActive, Mode=OneWay}" />
+                                        <StackPanel Grid.Column="1" Spacing="2">
                                             <TextBlock Text="{x:Bind Name}" TextTrimming="CharacterEllipsis" />
                                             <TextBlock
                                                 Text="{x:Bind Subtitle}"
@@ -331,7 +362,7 @@
                                         </StackPanel>
                                         <Button
                                             x:Uid="ToggleFavoriteButton"
-                                            Grid.Column="1"
+                                            Grid.Column="2"
                                             Style="{StaticResource IconButtonStyle}"
                                             VerticalAlignment="Center"
                                             Click="ToggleFavorite_Click">

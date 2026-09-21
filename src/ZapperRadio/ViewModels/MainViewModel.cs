@@ -52,6 +52,9 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
     private static readonly TimeSpan ZapLead = TimeSpan.FromMilliseconds(500);
 
     private List<StationResultViewModel> _allStations = [];
+
+    /// <summary>The result marked as playing, so marking another one does not have to walk the whole list.</summary>
+    private StationResultViewModel? _activeResult;
     private CancellationTokenSource? _searchCts;
     private bool _favoritesSyncPending;
     private Station? _lastPlayed;
@@ -301,7 +304,26 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
     public bool IsShowingPlayHistory => SelectedTab == MainTab.PlayHistory;
 
     [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(ResultsSummary))]
+    [NotifyPropertyChangedFor(nameof(HasNoResults))]
+    [NotifyPropertyChangedFor(nameof(NoResultsText))]
+    [NotifyPropertyChangedFor(nameof(CanSearchAllCountries))]
     public partial IReadOnlyList<StationResultViewModel> Results { get; set; } = [];
+
+    /// <summary>How many stations the search shows, or nothing until the list is there to search.</summary>
+    public string ResultsSummary => _allStations.Count == 0 ? ""
+        : Results.Count == 1 ? Localizer.Get("ResultsOne")
+        : Localizer.Format("ResultsMany", Results.Count);
+
+    /// <summary>Whether the list is loaded but the search hides every station in it.</summary>
+    public bool HasNoResults => _allStations.Count > 0 && Results.Count == 0;
+
+    public string NoResultsText => SelectedCountry == AllCountries
+        ? Localizer.Get("NoResultsText")
+        : Localizer.Format("NoResultsInCountry", SelectedCountry);
+
+    /// <summary>Whether a country hides what the search found, so searching every country could find it.</summary>
+    public bool CanSearchAllCountries => HasNoResults && SelectedCountry != AllCountries;
 
     [ObservableProperty]
     public partial string SearchText { get; set; } = "";
@@ -566,6 +588,9 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
 
             _allStations = stations.all;
             RefreshFavoriteMarks();
+            // The results are new objects, so the mark on the old ones is dropped along with them.
+            _activeResult = null;
+            MarkActiveResult(_engine.Active?.Station);
 
             var country = SelectedCountry;
             if (_isFirstRun && country == AllCountries && WindowsRegion.GetIsoCode() is { } region)
@@ -882,6 +907,27 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
     {
         _searchDebounce.Stop();
         _searchDebounce.Start();
+    }
+
+    [RelayCommand]
+    private void SearchAllCountries() => SelectedCountry = AllCountries;
+
+    /// <summary>
+    /// Plays the best match of the search, so a name and Enter is enough. A search still waiting for the pause in
+    /// the typing is run first, or Enter would play the best match of what was typed before.
+    /// </summary>
+    public async Task PlayBestMatchAsync()
+    {
+        if (_searchDebounce.IsRunning)
+        {
+            _searchDebounce.Stop();
+            await ApplySearchAsync();
+        }
+
+        if (Results.FirstOrDefault() is { } best)
+        {
+            Play(best.Station);
+        }
     }
 
     /// <summary>
@@ -1330,6 +1376,25 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
         _jumpListUpdates = _jumpListUpdates.ContinueWith(_ => TaskbarJumpList.Update(category, favorites, muteTask), TaskScheduler.Default);
     }
 
+    private void MarkActiveResult(Station? active)
+    {
+        if (_activeResult is not null && _activeResult.Station.Url == active?.Url)
+        {
+            return;
+        }
+
+        if (_activeResult is not null)
+        {
+            _activeResult.IsActive = false;
+        }
+
+        _activeResult = active is null ? null : _allStations.FirstOrDefault(r => r.Station.Url == active.Url);
+        if (_activeResult is not null)
+        {
+            _activeResult.IsActive = true;
+        }
+    }
+
     private void RefreshFavoriteMarks()
     {
         var favoriteUrls = Favorites.Select(f => f.Station.Url).ToHashSet(StringComparer.Ordinal);
@@ -1379,6 +1444,8 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
         {
             favorite.IsActive = active is not null && favorite.Station.Url == active.Station.Url;
         }
+
+        MarkActiveResult(active?.Station);
 
         IsPlaying = active is not null;
         UpdateNowPlayingLogo(active?.Station ?? _lastPlayed);

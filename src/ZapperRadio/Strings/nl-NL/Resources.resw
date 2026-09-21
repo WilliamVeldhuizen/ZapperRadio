@@ -104,6 +104,21 @@
   <data name="CountryBox.AutomationProperties.Name" xml:space="preserve">
     <value>Land</value>
   </data>
+  <data name="ResultsOne" xml:space="preserve">
+    <value>1 zender</value>
+  </data>
+  <data name="ResultsMany" xml:space="preserve">
+    <value>{0:N0} zenders</value>
+  </data>
+  <data name="NoResultsText" xml:space="preserve">
+    <value>Geen zender komt overeen met je zoekopdracht.</value>
+  </data>
+  <data name="NoResultsInCountry" xml:space="preserve">
+    <value>Geen zender in {0} komt overeen met je zoekopdracht.</value>
+  </data>
+  <data name="SearchAllCountriesButton.Content" xml:space="preserve">
+    <value>Zoek in alle landen</value>
+  </data>
   <data name="ReloadStationsButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>Zenderlijst opnieuw laden</value>
   </data>

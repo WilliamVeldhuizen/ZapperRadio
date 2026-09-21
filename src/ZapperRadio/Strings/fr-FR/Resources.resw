@@ -104,6 +104,21 @@
   <data name="CountryBox.AutomationProperties.Name" xml:space="preserve">
     <value>Pays</value>
   </data>
+  <data name="ResultsOne" xml:space="preserve">
+    <value>1 station</value>
+  </data>
+  <data name="ResultsMany" xml:space="preserve">
+    <value>{0:N0} stations</value>
+  </data>
+  <data name="NoResultsText" xml:space="preserve">
+    <value>Aucune station ne correspond à votre recherche.</value>
+  </data>
+  <data name="NoResultsInCountry" xml:space="preserve">
+    <value>Aucune station de {0} ne correspond à votre recherche.</value>
+  </data>
+  <data name="SearchAllCountriesButton.Content" xml:space="preserve">
+    <value>Rechercher dans tous les pays</value>
+  </data>
   <data name="ReloadStationsButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>Recharger la liste des stations</value>
   </data>

@@ -104,6 +104,21 @@
   <data name="CountryBox.AutomationProperties.Name" xml:space="preserve">
     <value>Країна</value>
   </data>
+  <data name="ResultsOne" xml:space="preserve">
+    <value>1 станція</value>
+  </data>
+  <data name="ResultsMany" xml:space="preserve">
+    <value>Станцій: {0:N0}</value>
+  </data>
+  <data name="NoResultsText" xml:space="preserve">
+    <value>Жодна станція не відповідає вашому запиту.</value>
+  </data>
+  <data name="NoResultsInCountry" xml:space="preserve">
+    <value>У країні {0} жодна станція не відповідає вашому запиту.</value>
+  </data>
+  <data name="SearchAllCountriesButton.Content" xml:space="preserve">
+    <value>Шукати в усіх країнах</value>
+  </data>
   <data name="ReloadStationsButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>Перезавантажити список станцій</value>
   </data>

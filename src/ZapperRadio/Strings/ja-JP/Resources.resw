@@ -104,6 +104,21 @@
   <data name="CountryBox.AutomationProperties.Name" xml:space="preserve">
     <value>国</value>
   </data>
+  <data name="ResultsOne" xml:space="preserve">
+    <value>1 局</value>
+  </data>
+  <data name="ResultsMany" xml:space="preserve">
+    <value>{0:N0} 局</value>
+  </data>
+  <data name="NoResultsText" xml:space="preserve">
+    <value>検索に一致する局はありません。</value>
+  </data>
+  <data name="NoResultsInCountry" xml:space="preserve">
+    <value>{0} には検索に一致する局はありません。</value>
+  </data>
+  <data name="SearchAllCountriesButton.Content" xml:space="preserve">
+    <value>すべての国で検索</value>
+  </data>
   <data name="ReloadStationsButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>放送局リストを再読み込み</value>
   </data>

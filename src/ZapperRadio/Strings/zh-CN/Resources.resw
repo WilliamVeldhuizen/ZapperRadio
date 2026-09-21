@@ -104,6 +104,21 @@
   <data name="CountryBox.AutomationProperties.Name" xml:space="preserve">
     <value>国家/地区</value>
   </data>
+  <data name="ResultsOne" xml:space="preserve">
+    <value>1 个电台</value>
+  </data>
+  <data name="ResultsMany" xml:space="preserve">
+    <value>{0:N0} 个电台</value>
+  </data>
+  <data name="NoResultsText" xml:space="preserve">
+    <value>没有与你的搜索匹配的电台。</value>
+  </data>
+  <data name="NoResultsInCountry" xml:space="preserve">
+    <value>{0} 没有与你的搜索匹配的电台。</value>
+  </data>
+  <data name="SearchAllCountriesButton.Content" xml:space="preserve">
+    <value>在所有国家/地区中搜索</value>
+  </data>
   <data name="ReloadStationsButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>重新加载电台列表</value>
   </data>

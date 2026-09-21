@@ -104,6 +104,21 @@
   <data name="CountryBox.AutomationProperties.Name" xml:space="preserve">
     <value>Land</value>
   </data>
+  <data name="ResultsOne" xml:space="preserve">
+    <value>1 Sender</value>
+  </data>
+  <data name="ResultsMany" xml:space="preserve">
+    <value>{0:N0} Sender</value>
+  </data>
+  <data name="NoResultsText" xml:space="preserve">
+    <value>Kein Sender passt zu deiner Suche.</value>
+  </data>
+  <data name="NoResultsInCountry" xml:space="preserve">
+    <value>Kein Sender in {0} passt zu deiner Suche.</value>
+  </data>
+  <data name="SearchAllCountriesButton.Content" xml:space="preserve">
+    <value>In allen Ländern suchen</value>
+  </data>
   <data name="ReloadStationsButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>Senderliste neu laden</value>
   </data>
