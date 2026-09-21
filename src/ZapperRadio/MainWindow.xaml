@@ -76,7 +76,7 @@
             </Button>
         </Grid>
 
-        <StackPanel Grid.Row="1">
+        <StackPanel x:Name="Notices" Grid.Row="1">
             <InfoBar
                 Margin="12,0,12,8"
                 Severity="Warning"

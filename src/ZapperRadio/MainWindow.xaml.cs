@@ -41,6 +41,11 @@ public sealed partial class MainWindow : Window
         Root.Loaded += (_, _) => FitCompactWindow();
         ViewModel.Favorites.CollectionChanged += (_, _) => FitCompactWindow();
 
+        // What sits above the list grows after a fit too: a song line or a notice appearing takes its height
+        // from the list, which then scrolls by a few pixels.
+        Notices.SizeChanged += (_, e) => RefitWhenTaller(e);
+        CompactNowPlaying.SizeChanged += (_, e) => RefitWhenTaller(e);
+
         var hwnd = WinRT.Interop.WindowNative.GetWindowHandle(this);
         _hotkeys = new GlobalHotkeys(hwnd, DispatcherQueue);
         ApplyGlobalHotkeys();
@@ -87,6 +92,12 @@ public sealed partial class MainWindow : Window
 
     /// <summary>How tall one favorite is in the compact window, used until there is a row to ask.</summary>
     private const double FavoriteRowHeight = 44;
+
+    /// <summary>
+    /// A little room under the last favorite. Rows are laid out on whole pixels at scales like 125% and 150%,
+    /// so the list can come out a pixel taller than the sum says, and one pixel is all a scrollbar needs.
+    /// </summary>
+    private const double CompactSlack = 3;
 
     /// <summary>
     /// True while a view is being put in place. The steps that takes - restoring a maximized window, moving it,
@@ -217,7 +228,8 @@ public sealed partial class MainWindow : Window
             + CompactView.Padding.Top + CompactView.Padding.Bottom + CompactView.RowSpacing
             + CompactNowPlaying.ActualHeight
             + CompactFavoritesCard.BorderThickness.Top + CompactFavoritesCard.BorderThickness.Bottom
-            + list;
+            + list
+            + CompactSlack;
 
         var work = DisplayArea.GetFromWindowId(AppWindow.Id, DisplayAreaFallback.Nearest).WorkArea;
         var chrome = AppWindow.Size.Height - AppWindow.ClientSize.Height;
@@ -228,6 +240,18 @@ public sealed partial class MainWindow : Window
         }
 
         MoveOnScreen(AppWindow.Position, new SizeInt32(AppWindow.Size.Width, height));
+    }
+
+    /// <summary>
+    /// Fits the compact window again when a part above the list changed height, not just width. The fit lays the
+    /// window out again, which it cannot do from inside a layout pass, so it waits for the next turn.
+    /// </summary>
+    private void RefitWhenTaller(SizeChangedEventArgs e)
+    {
+        if (e.PreviousSize.Height > 0 && Math.Abs(e.NewSize.Height - e.PreviousSize.Height) >= 0.5)
+        {
+            DispatcherQueue.TryEnqueue(FitCompactWindow);
+        }
     }
 
     /// <summary>
