@@ -462,4 +462,10 @@
   <data name="GoLiveButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>この局を再びライブで、今の放送の位置から再生します</value>
   </data>
+  <data name="RestartSongButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>この曲を最初から再生</value>
+  </data>
+  <data name="RestartSongButton.AutomationProperties.Name" xml:space="preserve">
+    <value>この曲を最初から再生</value>
+  </data>
 </root>

@@ -368,6 +368,10 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
     [ObservableProperty]
     public partial bool IsTimeShifted { get; set; }
 
+    /// <summary>Whether the buffer still holds the beginning of the song being heard, so it can be played again from there.</summary>
+    [ObservableProperty]
+    public partial bool CanRestartSong { get; set; }
+
     /// <summary>Whether the Ctrl+Alt shortcuts also work while another app has focus.</summary>
     [ObservableProperty]
     public partial bool GlobalHotkeys { get; set; }
@@ -597,6 +601,28 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
     /// <summary>Plays the station being listened to live again, leaving what the buffer still holds of it.</summary>
     [RelayCommand]
     private void GoLive() => _engine.GoLive();
+
+    /// <summary>
+    /// Plays the song being heard from its beginning, from the buffer; Go live returns to where the broadcast is now.
+    /// It is no pick of a station, so it leaves any zapping as it is.
+    /// </summary>
+    [RelayCommand]
+    private void RestartSong()
+    {
+        if (HeardSongStart() is { } start)
+        {
+            _engine.Replay(start);
+        }
+    }
+
+    /// <summary>
+    /// Where the song heard of the station being listened to began, or null when it plays none or that cannot be told.
+    /// Live, that is where a zap to it would land; behind the broadcast, the timeline tells where the heard song began.
+    /// </summary>
+    private DateTimeOffset? HeardSongStart() =>
+        _engine.Active is not { } active ? null
+        : _engine.IsTimeShifted ? active.SongStartAt(_engine.HeardAt)
+        : SongStartOf(active);
 
     /// <summary>
     /// Where to start a station so it is heard from the beginning of the song it plays, or null to play it live: when
@@ -1308,6 +1334,7 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
 
         IsPlaying = active is not null;
         UpdateNowPlayingLogo(active?.Station ?? _lastPlayed);
+        CanRestartSong = HeardSongStart() is { } songStart && _engine.CanReplay(songStart);
         if (active is null)
         {
             NowPlayingName = _lastPlayed?.Name ?? Localizer.Get("ChooseStation");

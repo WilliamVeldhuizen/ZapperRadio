@@ -579,6 +579,7 @@
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
                             <FontIcon Glyph="&#xE8D6;" FontSize="11" VerticalAlignment="Center" Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}" />
                             <TextBlock
@@ -618,6 +619,16 @@
                                         <MenuFlyoutItem x:Uid="FindOnYouTubeItem" Tag="{x:Bind ViewModel.NowPlayingTrack, Mode=OneWay}" Click="OpenTrackOnYouTube_Click" />
                                     </MenuFlyout>
                                 </Button.Flyout>
+                            </Button>
+                            <Button
+                                Grid.Column="4"
+                                Width="28" Height="28" Padding="0" Margin="0,-6"
+                                VerticalAlignment="Center"
+                                Background="Transparent" BorderThickness="0"
+                                Visibility="{x:Bind ViewModel.CanRestartSong, Mode=OneWay}"
+                                x:Uid="RestartSongButton"
+                                Command="{x:Bind ViewModel.RestartSongCommand}">
+                                <FontIcon Glyph="&#xE892;" FontSize="14" Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}" />
                             </Button>
                         </Grid>
                     </StackPanel>
@@ -813,6 +824,7 @@
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
                             <TextBlock Text="{x:Bind ViewModel.NowPlayingSong, Mode=OneWay}" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" />
                             <Button
@@ -843,6 +855,16 @@
                                         <MenuFlyoutItem x:Uid="FindOnYouTubeItem" Tag="{x:Bind ViewModel.NowPlayingTrack, Mode=OneWay}" Click="OpenTrackOnYouTube_Click" />
                                     </MenuFlyout>
                                 </Button.Flyout>
+                            </Button>
+                            <Button
+                                Grid.Column="3"
+                                Width="32" Height="32" Padding="0" Margin="0,-6"
+                                VerticalAlignment="Center"
+                                Background="Transparent" BorderThickness="0"
+                                Visibility="{x:Bind ViewModel.CanRestartSong, Mode=OneWay}"
+                                x:Uid="RestartSongButton"
+                                Command="{x:Bind ViewModel.RestartSongCommand}">
+                                <FontIcon Glyph="&#xE892;" FontSize="15" />
                             </Button>
                         </Grid>
                     </Grid>

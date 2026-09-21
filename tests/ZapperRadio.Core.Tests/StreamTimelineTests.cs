@@ -42,6 +42,24 @@ public class StreamTimelineTests
     }
 
     [Fact]
+    public void TellsWhereTheSongPlayingAtAMomentBegan()
+    {
+        var timeline = new StreamTimeline();
+        timeline.Record(T0, Ad);
+        timeline.Record(T0.AddMinutes(1), Song);
+        // The sound changing within the song does not start it again.
+        timeline.Record(T0.AddMinutes(2), Song with { Sound = Sound.Unknown });
+        timeline.Record(T0.AddMinutes(4), Next);
+        timeline.Record(T0.AddMinutes(7), Talk);
+
+        Assert.Null(timeline.SongStartAt(T0.AddSeconds(-1)));
+        Assert.Null(timeline.SongStartAt(T0.AddSeconds(30)));
+        Assert.Equal(T0.AddMinutes(1), timeline.SongStartAt(T0.AddMinutes(3)));
+        Assert.Equal(T0.AddMinutes(4), timeline.SongStartAt(T0.AddMinutes(5)));
+        Assert.Null(timeline.SongStartAt(T0.AddMinutes(8)));
+    }
+
+    [Fact]
     public void AMomentDatedBackReplacesWhatCameAfterItsStart()
     {
         var timeline = new StreamTimeline();

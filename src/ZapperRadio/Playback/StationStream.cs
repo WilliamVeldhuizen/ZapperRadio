@@ -132,6 +132,9 @@ public sealed class StationStream : IDisposable
     /// <summary>What the stream was doing at <paramref name="time"/>, for playing it back from the buffer.</summary>
     public StreamMoment MomentAt(DateTimeOffset time) => _timeline.At(time) ?? StreamMoment.Unknown;
 
+    /// <summary>Where the song the stream played at <paramref name="time"/> began, or null when it played none.</summary>
+    public DateTimeOffset? SongStartAt(DateTimeOffset time) => _timeline.SongStartAt(time);
+
     /// <summary>When the stream did something else after <paramref name="time"/>, or null when it has not since.</summary>
     public DateTimeOffset? NextMomentAfter(DateTimeOffset time) => _timeline.NextChangeAfter(time);
 

@@ -462,4 +462,10 @@
   <data name="GoLiveButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>Diesen Sender wieder live spielen, wo die Sendung jetzt ist</value>
   </data>
+  <data name="RestartSongButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Diesen Song von Anfang an abspielen</value>
+  </data>
+  <data name="RestartSongButton.AutomationProperties.Name" xml:space="preserve">
+    <value>Diesen Song von Anfang an abspielen</value>
+  </data>
 </root>
