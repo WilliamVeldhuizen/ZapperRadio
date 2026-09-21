@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" role="img" aria-label="ZapperRadio">
+<title>ZapperRadio</title>
+<rect width="64" height="64" rx="14" fill="#131A26"/>
+<g transform="translate(7.680,7.680) scale(0.76)"><g fill="none" stroke="#F4F2EC" stroke-width="4" stroke-linecap="round" opacity="0.92"><path d="M17 21a20 20 0 0 0 0 22"/><path d="M8 15a32 32 0 0 0 0 34"/><path d="M47 21a20 20 0 0 1 0 22"/><path d="M56 15a32 32 0 0 1 0 34"/></g><path d="M42 8 H24 V15 H32 L23 56 H41 V49 H33 L42 8 Z" fill="#F2A93B"/></g>
+</svg>

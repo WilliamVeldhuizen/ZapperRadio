@@ -1,0 +1,438 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!--
+    Microsoft ResX Schema
+
+    Version 2.0
+
+    The primary goals of this format is to allow a simple XML format
+    that is mostly human readable. The generation and parsing of the
+    various data types are done through the TypeConverter classes
+    associated with the data types.
+  -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="FavoritesHint.Text" xml:space="preserve">
+    <value>Вибрані станції продовжують грати без звуку у фоновому режимі, тому перемикання миттєве: без повторного підключення й без реклами на початку. Перетягуйте вибране вгору чи вниз, щоб змінити порядок.</value>
+  </data>
+  <data name="ZappCheckBox.Content" xml:space="preserve">
+    <value>Перемикатися під час реклами / розмов</value>
+  </data>
+  <data name="ZappCheckBox.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Лише для прослуховування музики: коли станція, яку ви слухаєте, починає рекламний блок або хтось говорить, застосунок перемикається на першу вибрану станцію, де грає пісня, і повертається, щойно знову лунає музика. Ніколи посеред пісні: повернення чекає, поки на станції, куди ви потрапили, не почнеться її власна пауза. Станції, які не позначають рекламу, вважаються такими, що перебувають у рекламному блоці, коли пісня йде помітно довше за свою тривалість і замість музики чути мову.</value>
+  </data>
+  <data name="NoFavoritesText.Text" xml:space="preserve">
+    <value>Вибраного поки немає. Знайдіть станцію праворуч і натисніть зірочку.</value>
+  </data>
+  <data name="RemoveFavoriteButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Видалити з вибраного</value>
+  </data>
+  <data name="StationsTab.Text" xml:space="preserve">
+    <value>Станції</value>
+  </data>
+  <data name="PlayHistoryTab.Text" xml:space="preserve">
+    <value>Історія</value>
+  </data>
+  <data name="SettingsButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Параметри</value>
+  </data>
+  <data name="SettingsButton.AutomationProperties.Name" xml:space="preserve">
+    <value>Параметри</value>
+  </data>
+  <data name="SearchBox.PlaceholderText" xml:space="preserve">
+    <value>Пошук за назвою, жанром або країною (Ctrl+F)</value>
+  </data>
+  <data name="CountryBox.PlaceholderText" xml:space="preserve">
+    <value>Країна</value>
+  </data>
+  <data name="CountryBox.AutomationProperties.Name" xml:space="preserve">
+    <value>Країна</value>
+  </data>
+  <data name="ReloadStationsButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Перезавантажити список станцій</value>
+  </data>
+  <data name="ToggleFavoriteButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Додати до вибраного або прибрати</value>
+  </data>
+  <data name="FavoriteTracksHint.Text" xml:space="preserve">
+    <value>Пісні, які ви зберегли сердечком поруч із піснею, що зараз грає. Знайдіть пісню в Spotify чи на YouTube або скопіюйте її назву.</value>
+  </data>
+  <data name="NoFavoriteTracksText.Text" xml:space="preserve">
+    <value>Вибраних пісень поки немає. Коли станція грає пісню, яка вам подобається, натисніть сердечко поруч із піснею внизу.</value>
+  </data>
+  <data name="FindSongButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Знайти цю пісню</value>
+  </data>
+  <data name="FindSongButton.AutomationProperties.Name" xml:space="preserve">
+    <value>Знайти цю пісню</value>
+  </data>
+  <data name="FindOnSpotifyItem.Text" xml:space="preserve">
+    <value>Знайти в Spotify</value>
+  </data>
+  <data name="FindOnYouTubeItem.Text" xml:space="preserve">
+    <value>Знайти на YouTube</value>
+  </data>
+  <data name="CopyTitleButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Копіювати назву</value>
+  </data>
+  <data name="RemoveFavoriteTrackButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Видалити з вибраних пісень</value>
+  </data>
+  <data name="HistoryHint.Text" xml:space="preserve">
+    <value>Усе, що грали ваші вибрані станції за останні 12 годин, спочатку найновіше, незалежно від того, слухали ви їх чи ні. Натисніть сердечко, щоб зберегти пісню.</value>
+  </data>
+  <data name="ClearHistoryButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Очистити історію</value>
+  </data>
+  <data name="ClearHistoryButton.AutomationProperties.Name" xml:space="preserve">
+    <value>Очистити історію</value>
+  </data>
+  <data name="HistorySearchBox.PlaceholderText" xml:space="preserve">
+    <value>Пошук за піснею, виконавцем або станцією (Ctrl+F)</value>
+  </data>
+  <data name="HistorySearchBox.AutomationProperties.Name" xml:space="preserve">
+    <value>Пошук в історії</value>
+  </data>
+  <data name="NoHistoryText.Text" xml:space="preserve">
+    <value>Поки що нічого не грало. Щойно ваші вибрані станції почнуть мовлення, кожна пісня, яку вони грають, з'явиться тут.</value>
+  </data>
+  <data name="NoHistoryMatchesText.Text" xml:space="preserve">
+    <value>В історії немає пісень, що відповідають вашому запиту.</value>
+  </data>
+  <data name="CompactNoFavorites.Text" xml:space="preserve">
+    <value>Вибраного поки немає. Перейдіть до повного вікна, щоб шукати станції та додавати їх зірочкою.</value>
+  </data>
+  <data name="PlayStopButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Відтворити / зупинити (Ctrl+Пробіл)</value>
+  </data>
+  <data name="VolumeSlider.AutomationProperties.Name" xml:space="preserve">
+    <value>Гучність</value>
+  </data>
+  <data name="SettingsDialog.Title" xml:space="preserve">
+    <value>Параметри</value>
+  </data>
+  <data name="SettingsDialog.CloseButtonText" xml:space="preserve">
+    <value>Закрити</value>
+  </data>
+  <data name="StartupHeading.Text" xml:space="preserve">
+    <value>Запуск</value>
+  </data>
+  <data name="AutoStartCheckBox.Content" xml:space="preserve">
+    <value>Запускати ZapperRadio під час запуску Windows</value>
+  </data>
+  <data name="LanguageHeading.Text" xml:space="preserve">
+    <value>Мова</value>
+  </data>
+  <data name="LanguageText.Text" xml:space="preserve">
+    <value>Мова застосунку. Від неї також залежить, як записуються дати й числа.</value>
+  </data>
+  <data name="LanguageBox.AutomationProperties.Name" xml:space="preserve">
+    <value>Мова</value>
+  </data>
+  <data name="LanguageRestartText.Text" xml:space="preserve">
+    <value>Перезапустіть ZapperRadio, щоб перейти на цю мову.</value>
+  </data>
+  <data name="AboutHeading.Text" xml:space="preserve">
+    <value>Про застосунок</value>
+  </data>
+  <data name="AboutText.Text" xml:space="preserve">
+    <value>Інтернет-радіо, яке тримає потоки ваших вибраних станцій відкритими, тож перемикання миттєве, а рекламу, яку станція вмикає під час підключення, ви не чуєте.</value>
+  </data>
+  <data name="GitHubLink.Content" xml:space="preserve">
+    <value>ZapperRadio на GitHub</value>
+  </data>
+  <data name="StationListHeading.Text" xml:space="preserve">
+    <value>Список станцій</value>
+  </data>
+  <data name="CheckStationListButton.Content" xml:space="preserve">
+    <value>Перевірити наявність нового списку</value>
+  </data>
+  <data name="ShortcutsHeading.Text" xml:space="preserve">
+    <value>Комбінації клавіш</value>
+  </data>
+  <data name="ShortcutsText.Text" xml:space="preserve">
+    <value>У вікні: Ctrl+Пробіл — зупинити або відтворити, Ctrl+M — вимкнути звук, Ctrl+F — пошук. Кнопки відтворення, паузи та «далі» на панелі гучності Windows, на екрані блокування, мультимедійні клавіші й гарнітура теж працюють, а «далі» та «назад» перемикають вибрані станції.</value>
+  </data>
+  <data name="GlobalHotkeysCheckBox.Content" xml:space="preserve">
+    <value>Комбінації клавіш у будь-якому застосунку</value>
+  </data>
+  <data name="GlobalHotkeysCheckBox.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Також поки ви працюєте в іншому застосунку. На Ctrl+Alt, а не на Ctrl, бо якщо закріпити Ctrl+Пробіл за цим застосунком, він зникне в усіх інших. Комбінація, яку вже зайняв інший застосунок, залишається за ним і вказана нижче.</value>
+  </data>
+  <data name="GlobalHotkeysText.Text" xml:space="preserve">
+    <value>Ctrl+Alt+P — зупинити або відтворити, Ctrl+Alt+M — вимкнути звук, Ctrl+Alt+→ і Ctrl+Alt+← — наступна й попередня вибрана станція, з будь-якого застосунку, в якому ви працюєте.</value>
+  </data>
+  <data name="LoudnessHeading.Text" xml:space="preserve">
+    <value>Гучність звучання</value>
+  </data>
+  <data name="LoudnessText.Text" xml:space="preserve">
+    <value>Одну станцію змастерингували на кілька децибел гучніше за іншу, і це найприкріше під час перемикання. Звук кожної вибраної станції все одно декодується, тож за ним вимірюється, наскільки гучна її музика (EBU R128), а гучні станції приглушуються до одного рівня. Враховується лише музика, щоб реклама й ведучі не спотворювали результат, і на кожну станцію потрібно близько хвилини музики. Станції, які не можна прослухати (HLS), зберігають гучність, з якою надходять.</value>
+  </data>
+  <data name="NormalizeLoudnessCheckBox.Content" xml:space="preserve">
+    <value>Вирівнювати гучність станцій</value>
+  </data>
+  <data name="NormalizeLoudnessCheckBox.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Наближає кожну станцію до -14 LUFS — рівня, до якого нормалізують стрімінгові сервіси, не більше ніж на 12 дБ униз або 6 дБ угору. Станція, яку потрібно підсилити, не може перевищити повну гучність, тому за повзунка в крайньому верхньому положенні вона може лишитися трохи тихшою.</value>
+  </data>
+  <data name="NoFavoritesLoudnessText.Text" xml:space="preserve">
+    <value>Вибраного поки немає.</value>
+  </data>
+  <data name="RemeasureLoudnessButton.Content" xml:space="preserve">
+    <value>Виміряти гучність знову</value>
+  </data>
+  <data name="RemeasureLoudnessButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Забуває все, що було почуто від кожної вибраної станції досі, і вимірює знову. Гучність зберігає поточну корекцію, доки не прозвучить близько хвилини музики, а потім переходить до нового результату.</value>
+  </data>
+  <data name="CacheHeading.Text" xml:space="preserve">
+    <value>Кешовані логотипи</value>
+  </data>
+  <data name="CacheText.Text" xml:space="preserve">
+    <value>Логотипи станцій і списки найпопулярніших станцій запитуються один раз, а потім зберігаються. Очищення запитує кожен логотип наново, що допомагає, коли станція показує не той. Сам список станцій зберігається.</value>
+  </data>
+  <data name="ClearCacheButton.Content" xml:space="preserve">
+    <value>Очистити кеш</value>
+  </data>
+  <data name="AllCountries" xml:space="preserve">
+    <value>Усі країни</value>
+  </data>
+  <data name="LanguageWindows" xml:space="preserve">
+    <value>Мова Windows</value>
+  </data>
+  <data name="FavoritesHeader" xml:space="preserve">
+    <value>Вибране ({0}/{1})</value>
+  </data>
+  <data name="FavoriteTracksHeader" xml:space="preserve">
+    <value>Вибрані пісні ({0})</value>
+  </data>
+  <data name="CacheEmpty" xml:space="preserve">
+    <value>У кеші поки нічого немає</value>
+  </data>
+  <data name="CacheSummary" xml:space="preserve">
+    <value>запитів: {0:N0} · {1}</value>
+  </data>
+  <data name="CacheClearFailed" xml:space="preserve">
+    <value>Не вдалося очистити кеш: {0}</value>
+  </data>
+  <data name="CatalogLoading" xml:space="preserve">
+    <value>Завантаження списку станцій…</value>
+  </data>
+  <data name="CatalogStatus" xml:space="preserve">
+    <value>станцій: {0:N0} · список від {1}</value>
+  </data>
+  <data name="CatalogStatusOffline" xml:space="preserve">
+    <value>станцій: {0:N0} · список від {1} (автономна копія)</value>
+  </data>
+  <data name="CatalogUnavailable" xml:space="preserve">
+    <value>Список станцій недоступний</value>
+  </data>
+  <data name="CatalogDownloadFailed" xml:space="preserve">
+    <value>Не вдалося завантажити список станцій із {0}, а локальної копії немає. ({1})</value>
+  </data>
+  <data name="StationListDownloaded" xml:space="preserve">
+    <value>Завантажено {0:d} о {0:t}</value>
+  </data>
+  <data name="FavoritesLimitReached" xml:space="preserve">
+    <value>У вибраному може бути щонайбільше {0} станцій, бо всі вони продовжують мовлення у фоні. Спочатку видаліть одну.</value>
+  </data>
+  <data name="SettingsSaveFailed" xml:space="preserve">
+    <value>Не вдалося зберегти параметри: {0}</value>
+  </data>
+  <data name="ChooseStation" xml:space="preserve">
+    <value>Виберіть станцію</value>
+  </data>
+  <data name="ClickFavoriteToListen" xml:space="preserve">
+    <value>Натисніть вибрану станцію, щоб одразу слухати наживо</value>
+  </data>
+  <data name="Stopped" xml:space="preserve">
+    <value>Зупинено</value>
+  </data>
+  <data name="NowPlayingMuted" xml:space="preserve">
+    <value>звук вимкнено</value>
+  </data>
+  <data name="NowPlayingNotFavorite" xml:space="preserve">
+    <value>не у вибраному, потік зупиниться під час перемикання</value>
+  </data>
+  <data name="JumpListFavorites" xml:space="preserve">
+    <value>Вибране</value>
+  </data>
+  <data name="JumpListListenTo" xml:space="preserve">
+    <value>Слухати {0}</value>
+  </data>
+  <data name="JumpListListenToSong" xml:space="preserve">
+    <value>Слухати {0}
+{1}</value>
+  </data>
+  <data name="JumpListMute" xml:space="preserve">
+    <value>Вимкнути звук</value>
+  </data>
+  <data name="JumpListUnmute" xml:space="preserve">
+    <value>Увімкнути звук</value>
+  </data>
+  <data name="JumpListMuteToolTip" xml:space="preserve">
+    <value>Вимкнути звук станції, не зупиняючи її</value>
+  </data>
+  <data name="JumpListUnmuteToolTip" xml:space="preserve">
+    <value>Знову чути станцію</value>
+  </data>
+  <data name="SongAdvertisement" xml:space="preserve">
+    <value>Реклама</value>
+  </data>
+  <data name="SongProbablyAdBreak" xml:space="preserve">
+    <value>Імовірно, рекламний блок</value>
+  </data>
+  <data name="LoudnessNotMeasured" xml:space="preserve">
+    <value>Ще не виміряно</value>
+  </data>
+  <data name="LoudnessTurnedDown" xml:space="preserve">
+    <value>знижено на {0} дБ</value>
+  </data>
+  <data name="LoudnessTurnedUp" xml:space="preserve">
+    <value>підвищено на {0} дБ</value>
+  </data>
+  <data name="LoudnessMeasuringAgain" xml:space="preserve">
+    <value>триває повторне вимірювання…</value>
+  </data>
+  <data name="StatusConnecting" xml:space="preserve">
+    <value>Підключення…</value>
+  </data>
+  <data name="StatusNowPlaying" xml:space="preserve">
+    <value>Зараз грає</value>
+  </data>
+  <data name="StatusLiveMuted" xml:space="preserve">
+    <value>Наживо · звук вимкнено</value>
+  </data>
+  <data name="StatusBuffering" xml:space="preserve">
+    <value>Буферизація…</value>
+  </data>
+  <data name="StatusReconnecting" xml:space="preserve">
+    <value>Повторне підключення…</value>
+  </data>
+  <data name="StatusFailed" xml:space="preserve">
+    <value>Недоступна, спроби тривають</value>
+  </data>
+  <data name="SoundMusic" xml:space="preserve">
+    <value>музика</value>
+  </data>
+  <data name="SoundSpeech" xml:space="preserve">
+    <value>мова</value>
+  </data>
+  <data name="ViewSwitchToFull" xml:space="preserve">
+    <value>Перейти до повного вікна</value>
+  </data>
+  <data name="ViewSwitchToCompact" xml:space="preserve">
+    <value>Перейти до компактного вікна</value>
+  </data>
+  <data name="SaveTrackRemove" xml:space="preserve">
+    <value>Видалити з вибраних пісень</value>
+  </data>
+  <data name="SaveTrackAdd" xml:space="preserve">
+    <value>Додати до вибраних пісень</value>
+  </data>
+  <data name="MuteToolTipUnmute" xml:space="preserve">
+    <value>Увімкнути звук (Ctrl+M)</value>
+  </data>
+  <data name="MuteToolTipMute" xml:space="preserve">
+    <value>Вимкнути звук (Ctrl+M)</value>
+  </data>
+  <data name="HotkeyInUseOne" xml:space="preserve">
+    <value>{0} уже використовує інший застосунок, тож поза вікном воно не працюватиме.</value>
+  </data>
+  <data name="HotkeyInUseMany" xml:space="preserve">
+    <value>{0} уже використовує інший застосунок, тож поза вікном вони не працюватимуть.</value>
+  </data>
+  <data name="StreamStopped" xml:space="preserve">
+    <value>Потік перестав відповідати.</value>
+  </data>
+  <data name="StreamEnded" xml:space="preserve">
+    <value>Потік завершився.</value>
+  </data>
+  <data name="UpdateNotice.Message" xml:space="preserve">
+    <value>Перезапустіть, щоб встановити її зараз. Інакше її буде встановлено, коли ви закриєте ZapperRadio.</value>
+  </data>
+  <data name="RestartToUpdateButton.Content" xml:space="preserve">
+    <value>Перезапустити для оновлення</value>
+  </data>
+  <data name="UpdatesHeading.Text" xml:space="preserve">
+    <value>Оновлення</value>
+  </data>
+  <data name="UpdatesText.Text" xml:space="preserve">
+    <value>ZapperRadio кілька разів на день перевіряє наявність нової версії й завантажує її у фоновому режимі. Її буде встановлено, коли ви закриєте застосунок. Ваше вибране та налаштування збережуться.</value>
+  </data>
+  <data name="CheckForUpdatesButton.Content" xml:space="preserve">
+    <value>Перевірити наявність оновлень</value>
+  </data>
+  <data name="UpdateChecking" xml:space="preserve">
+    <value>Перевірка оновлень…</value>
+  </data>
+  <data name="UpdateDownloading" xml:space="preserve">
+    <value>Завантаження нової версії… {0}%</value>
+  </data>
+  <data name="UpdateReady" xml:space="preserve">
+    <value>Версія {0} готова й буде встановлена, коли ZapperRadio закриється.</value>
+  </data>
+  <data name="UpdateUpToDate" xml:space="preserve">
+    <value>ZapperRadio оновлено до останньої версії.</value>
+  </data>
+  <data name="UpdateFailed" xml:space="preserve">
+    <value>Не вдалося перевірити оновлення: {0}</value>
+  </data>
+  <data name="UpdateNoticeTitle" xml:space="preserve">
+    <value>Версія {0} ZapperRadio готова</value>
+  </data>
+</root>

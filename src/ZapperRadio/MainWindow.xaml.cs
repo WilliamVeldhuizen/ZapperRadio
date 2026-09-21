@@ -63,6 +63,9 @@ public sealed partial class MainWindow : Window
 
         AddKeyboardShortcuts();
 
+        // Closing saves everything; the view model then has the updater install the update and start the app again.
+        ViewModel.RestartRequested += (_, _) => Close();
+
         Closed += (_, _) =>
         {
             _hotkeys.Dispose();
@@ -316,12 +319,12 @@ public sealed partial class MainWindow : Window
         var taken = new List<string>();
         Claim(VirtualKey.P, "Ctrl+Alt+P", () => ViewModel.TogglePlaybackCommand.Execute(null));
         Claim(VirtualKey.M, "Ctrl+Alt+M", () => ViewModel.ToggleMuteCommand.Execute(null));
-        Claim(VirtualKey.Right, "Ctrl+Alt+Right", () => ViewModel.PlayNextFavoriteCommand.Execute(null));
-        Claim(VirtualKey.Left, "Ctrl+Alt+Left", () => ViewModel.PlayPreviousFavoriteCommand.Execute(null));
+        Claim(VirtualKey.Right, "Ctrl+Alt+→", () => ViewModel.PlayNextFavoriteCommand.Execute(null));
+        Claim(VirtualKey.Left, "Ctrl+Alt+←", () => ViewModel.PlayPreviousFavoriteCommand.Execute(null));
 
         ViewModel.GlobalHotkeyStatus = taken.Count == 0
             ? ""
-            : $"{string.Join(", ", taken)} {(taken.Count == 1 ? "is" : "are")} already in use by another app and will not work from outside the window.";
+            : Localizer.Format(taken.Count == 1 ? "HotkeyInUseOne" : "HotkeyInUseMany", string.Join(", ", taken));
 
         void Claim(VirtualKey key, string name, Action action)
         {

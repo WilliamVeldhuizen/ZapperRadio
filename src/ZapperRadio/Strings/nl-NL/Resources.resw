@@ -1,0 +1,438 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!--
+    Microsoft ResX Schema
+
+    Version 2.0
+
+    The primary goals of this format is to allow a simple XML format
+    that is mostly human readable. The generation and parsing of the
+    various data types are done through the TypeConverter classes
+    associated with the data types.
+  -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="FavoritesHint.Text" xml:space="preserve">
+    <value>Favorieten blijven gedempt op de achtergrond spelen, dus wisselen is direct live: niet opnieuw verbinden en eerst geen reclame. Sleep een favoriet omhoog of omlaag om ze te ordenen.</value>
+  </data>
+  <data name="ZappCheckBox.Content" xml:space="preserve">
+    <value>Zap bij reclameblokken / gepraat</value>
+  </data>
+  <data name="ZappCheckBox.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Alleen voor muziek: als de zender waarnaar je luistert een reclameblok start of iemand gaat praten, zap je naar de hoogste favoriet die een nummer speelt, en zap je terug zodra die weer muziek speelt. Nooit midden in een nummer: de terugkeer wacht tot de zender waar je bent beland zelf een blok heeft. Van zenders die hun reclame niet markeren wordt aangenomen dat ze in een reclameblok zitten als een nummer ruim over zijn lengte heen loopt en er gepraat te horen is in plaats van muziek.</value>
+  </data>
+  <data name="NoFavoritesText.Text" xml:space="preserve">
+    <value>Nog geen favorieten. Zoek rechts een zender en klik op de ster.</value>
+  </data>
+  <data name="RemoveFavoriteButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Verwijderen uit favorieten</value>
+  </data>
+  <data name="StationsTab.Text" xml:space="preserve">
+    <value>Zenders</value>
+  </data>
+  <data name="PlayHistoryTab.Text" xml:space="preserve">
+    <value>Afspeelgeschiedenis</value>
+  </data>
+  <data name="SettingsButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Instellingen</value>
+  </data>
+  <data name="SettingsButton.AutomationProperties.Name" xml:space="preserve">
+    <value>Instellingen</value>
+  </data>
+  <data name="SearchBox.PlaceholderText" xml:space="preserve">
+    <value>Zoek op naam, genre of land (Ctrl+F)</value>
+  </data>
+  <data name="CountryBox.PlaceholderText" xml:space="preserve">
+    <value>Land</value>
+  </data>
+  <data name="CountryBox.AutomationProperties.Name" xml:space="preserve">
+    <value>Land</value>
+  </data>
+  <data name="ReloadStationsButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Zenderlijst opnieuw laden</value>
+  </data>
+  <data name="ToggleFavoriteButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Favoriet aan- of uitzetten</value>
+  </data>
+  <data name="FavoriteTracksHint.Text" xml:space="preserve">
+    <value>Nummers die je hebt bewaard met het hartje naast het nummer dat speelt. Zoek er een op Spotify of YouTube, of kopieer de titel.</value>
+  </data>
+  <data name="NoFavoriteTracksText.Text" xml:space="preserve">
+    <value>Nog geen favoriete nummers. Als een zender een nummer draait dat je mooi vindt, klik je onderaan op het hartje naast het nummer.</value>
+  </data>
+  <data name="FindSongButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Dit nummer zoeken</value>
+  </data>
+  <data name="FindSongButton.AutomationProperties.Name" xml:space="preserve">
+    <value>Dit nummer zoeken</value>
+  </data>
+  <data name="FindOnSpotifyItem.Text" xml:space="preserve">
+    <value>Zoeken op Spotify</value>
+  </data>
+  <data name="FindOnYouTubeItem.Text" xml:space="preserve">
+    <value>Zoeken op YouTube</value>
+  </data>
+  <data name="CopyTitleButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Titel kopiëren</value>
+  </data>
+  <data name="RemoveFavoriteTrackButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Verwijderen uit favoriete nummers</value>
+  </data>
+  <data name="HistoryHint.Text" xml:space="preserve">
+    <value>Alles wat je favorieten de afgelopen 12 uur hebben gedraaid, de nieuwste eerst, of je nu naar ze luisterde of niet. Klik op een hartje om een nummer te bewaren.</value>
+  </data>
+  <data name="ClearHistoryButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Afspeelgeschiedenis wissen</value>
+  </data>
+  <data name="ClearHistoryButton.AutomationProperties.Name" xml:space="preserve">
+    <value>Afspeelgeschiedenis wissen</value>
+  </data>
+  <data name="HistorySearchBox.PlaceholderText" xml:space="preserve">
+    <value>Zoek op nummer, artiest of zender (Ctrl+F)</value>
+  </data>
+  <data name="HistorySearchBox.AutomationProperties.Name" xml:space="preserve">
+    <value>Afspeelgeschiedenis doorzoeken</value>
+  </data>
+  <data name="NoHistoryText.Text" xml:space="preserve">
+    <value>Nog niets afgespeeld. Zodra je favorieten streamen, staat hier elk nummer dat ze draaien.</value>
+  </data>
+  <data name="NoHistoryMatchesText.Text" xml:space="preserve">
+    <value>Geen nummer in de geschiedenis komt overeen met je zoekopdracht.</value>
+  </data>
+  <data name="CompactNoFavorites.Text" xml:space="preserve">
+    <value>Nog geen favorieten. Schakel over naar het volledige venster om zenders te zoeken en ze met de ster toe te voegen.</value>
+  </data>
+  <data name="PlayStopButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Afspelen / stoppen (Ctrl+Spatie)</value>
+  </data>
+  <data name="VolumeSlider.AutomationProperties.Name" xml:space="preserve">
+    <value>Volume</value>
+  </data>
+  <data name="SettingsDialog.Title" xml:space="preserve">
+    <value>Instellingen</value>
+  </data>
+  <data name="SettingsDialog.CloseButtonText" xml:space="preserve">
+    <value>Sluiten</value>
+  </data>
+  <data name="StartupHeading.Text" xml:space="preserve">
+    <value>Opstarten</value>
+  </data>
+  <data name="AutoStartCheckBox.Content" xml:space="preserve">
+    <value>ZapperRadio starten wanneer Windows start</value>
+  </data>
+  <data name="LanguageHeading.Text" xml:space="preserve">
+    <value>Taal</value>
+  </data>
+  <data name="LanguageText.Text" xml:space="preserve">
+    <value>De taal van de app. Die bepaalt ook hoe datums en getallen worden geschreven.</value>
+  </data>
+  <data name="LanguageBox.AutomationProperties.Name" xml:space="preserve">
+    <value>Taal</value>
+  </data>
+  <data name="LanguageRestartText.Text" xml:space="preserve">
+    <value>Start ZapperRadio opnieuw op om over te schakelen naar deze taal.</value>
+  </data>
+  <data name="AboutHeading.Text" xml:space="preserve">
+    <value>Over</value>
+  </data>
+  <data name="AboutText.Text" xml:space="preserve">
+    <value>Internetradio die de streams van je favorieten open houdt, zodat wisselen direct gaat en je de reclame die een zender draait zodra je verbindt niet hoort.</value>
+  </data>
+  <data name="GitHubLink.Content" xml:space="preserve">
+    <value>ZapperRadio op GitHub</value>
+  </data>
+  <data name="StationListHeading.Text" xml:space="preserve">
+    <value>Zenderlijst</value>
+  </data>
+  <data name="CheckStationListButton.Content" xml:space="preserve">
+    <value>Controleren op een nieuwere lijst</value>
+  </data>
+  <data name="ShortcutsHeading.Text" xml:space="preserve">
+    <value>Sneltoetsen</value>
+  </data>
+  <data name="ShortcutsText.Text" xml:space="preserve">
+    <value>In het venster: Ctrl+Spatie om te stoppen of af te spelen, Ctrl+M om te dempen, Ctrl+F om te zoeken. De knoppen voor afspelen, pauzeren en volgende in het Windows-volumemenu, het vergrendelscherm, je mediatoetsen en je headset werken ook, waarbij volgende en vorige door de favorieten bladeren.</value>
+  </data>
+  <data name="GlobalHotkeysCheckBox.Content" xml:space="preserve">
+    <value>Sneltoetsen vanuit elke app</value>
+  </data>
+  <data name="GlobalHotkeysCheckBox.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Ook terwijl je in een andere app werkt. Op Ctrl+Alt in plaats van Ctrl, omdat Ctrl+Spatie opeisen voor deze app die bij elke andere app zou wegnemen. Een combinatie die een andere app al gebruikt, laten we aan die app en noemen we hieronder.</value>
+  </data>
+  <data name="GlobalHotkeysText.Text" xml:space="preserve">
+    <value>Ctrl+Alt+P om te stoppen of af te spelen, Ctrl+Alt+M om te dempen, Ctrl+Alt+→ en Ctrl+Alt+← voor de volgende en vorige favoriet, vanuit elke app waarin je werkt.</value>
+  </data>
+  <data name="LoudnessHeading.Text" xml:space="preserve">
+    <value>Luidheid</value>
+  </data>
+  <data name="LoudnessText.Text" xml:space="preserve">
+    <value>De ene zender is enkele decibellen luider gemasterd dan de andere, en dat is het vervelendste aan zappen. De audio van elke favoriet wordt toch al gedecodeerd, dus hoe luid de muziek echt is, wordt daaruit gemeten (EBU R128), en de luide zenders worden op hetzelfde niveau gezet. Alleen muziek telt mee, zodat reclame en presentatoren het niet vertekenen, en het kost ongeveer een minuut muziek per zender. Zenders waarnaar niet geluisterd kan worden (HLS) houden het volume waarmee ze binnenkomen.</value>
+  </data>
+  <data name="NormalizeLoudnessCheckBox.Content" xml:space="preserve">
+    <value>Luidheid van zenders gelijktrekken</value>
+  </data>
+  <data name="NormalizeLoudnessCheckBox.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Brengt elke zender op ongeveer -14 LUFS, het niveau waarop streamingdiensten normaliseren, met hoogstens 12 dB omlaag of 6 dB omhoog. Een zender die omhoog moet, kan niet boven het maximale volume uit, dus met de schuifregelaar helemaal boven kan hij iets zachter blijven.</value>
+  </data>
+  <data name="NoFavoritesLoudnessText.Text" xml:space="preserve">
+    <value>Nog geen favorieten.</value>
+  </data>
+  <data name="RemeasureLoudnessButton.Content" xml:space="preserve">
+    <value>Luidheid opnieuw meten</value>
+  </data>
+  <data name="RemeasureLoudnessButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Vergeet wat er tot nu toe van elke favoriet is gehoord en meet opnieuw. Het volume houdt de huidige correctie totdat ongeveer een minuut muziek is gehoord, en gaat dan over op het nieuwe resultaat.</value>
+  </data>
+  <data name="CacheHeading.Text" xml:space="preserve">
+    <value>Gecachete logo's</value>
+  </data>
+  <data name="CacheText.Text" xml:space="preserve">
+    <value>Zenderlogo's en de lijsten met meest gespeelde zenders worden één keer opgezocht en daarna bewaard. Door ze te wissen wordt elk logo opnieuw opgezocht, wat helpt als een zender het verkeerde logo toont. De zenderlijst zelf blijft bewaard.</value>
+  </data>
+  <data name="ClearCacheButton.Content" xml:space="preserve">
+    <value>Cache wissen</value>
+  </data>
+  <data name="AllCountries" xml:space="preserve">
+    <value>Alle landen</value>
+  </data>
+  <data name="LanguageWindows" xml:space="preserve">
+    <value>Taal van Windows</value>
+  </data>
+  <data name="FavoritesHeader" xml:space="preserve">
+    <value>Favorieten ({0}/{1})</value>
+  </data>
+  <data name="FavoriteTracksHeader" xml:space="preserve">
+    <value>Favoriete nummers ({0})</value>
+  </data>
+  <data name="CacheEmpty" xml:space="preserve">
+    <value>Nog niets in de cache</value>
+  </data>
+  <data name="CacheSummary" xml:space="preserve">
+    <value>{0:N0} opzoekingen · {1}</value>
+  </data>
+  <data name="CacheClearFailed" xml:space="preserve">
+    <value>De cache kon niet worden gewist: {0}</value>
+  </data>
+  <data name="CatalogLoading" xml:space="preserve">
+    <value>Zenderlijst laden…</value>
+  </data>
+  <data name="CatalogStatus" xml:space="preserve">
+    <value>{0:N0} zenders · lijst van {1}</value>
+  </data>
+  <data name="CatalogStatusOffline" xml:space="preserve">
+    <value>{0:N0} zenders · lijst van {1} (offlinekopie)</value>
+  </data>
+  <data name="CatalogUnavailable" xml:space="preserve">
+    <value>Zenderlijst niet beschikbaar</value>
+  </data>
+  <data name="CatalogDownloadFailed" xml:space="preserve">
+    <value>De zenderlijst kon niet worden gedownload van {0} en er is geen lokale kopie. ({1})</value>
+  </data>
+  <data name="StationListDownloaded" xml:space="preserve">
+    <value>Gedownload op {0:d} om {0:t}</value>
+  </data>
+  <data name="FavoritesLimitReached" xml:space="preserve">
+    <value>Je kunt maximaal {0} favorieten hebben, omdat ze allemaal op de achtergrond blijven streamen. Verwijder eerst een favoriet.</value>
+  </data>
+  <data name="SettingsSaveFailed" xml:space="preserve">
+    <value>De instellingen konden niet worden opgeslagen: {0}</value>
+  </data>
+  <data name="ChooseStation" xml:space="preserve">
+    <value>Kies een zender</value>
+  </data>
+  <data name="ClickFavoriteToListen" xml:space="preserve">
+    <value>Klik op een favoriet om direct live te luisteren</value>
+  </data>
+  <data name="Stopped" xml:space="preserve">
+    <value>Gestopt</value>
+  </data>
+  <data name="NowPlayingMuted" xml:space="preserve">
+    <value>gedempt</value>
+  </data>
+  <data name="NowPlayingNotFavorite" xml:space="preserve">
+    <value>geen favoriet, stream stopt bij het wisselen</value>
+  </data>
+  <data name="JumpListFavorites" xml:space="preserve">
+    <value>Favorieten</value>
+  </data>
+  <data name="JumpListListenTo" xml:space="preserve">
+    <value>Luister naar {0}</value>
+  </data>
+  <data name="JumpListListenToSong" xml:space="preserve">
+    <value>Luister naar {0}
+{1}</value>
+  </data>
+  <data name="JumpListMute" xml:space="preserve">
+    <value>Dempen</value>
+  </data>
+  <data name="JumpListUnmute" xml:space="preserve">
+    <value>Dempen opheffen</value>
+  </data>
+  <data name="JumpListMuteToolTip" xml:space="preserve">
+    <value>Zet de zender op stil zonder te stoppen</value>
+  </data>
+  <data name="JumpListUnmuteToolTip" xml:space="preserve">
+    <value>Hoor de zender weer</value>
+  </data>
+  <data name="SongAdvertisement" xml:space="preserve">
+    <value>Reclame</value>
+  </data>
+  <data name="SongProbablyAdBreak" xml:space="preserve">
+    <value>Waarschijnlijk een reclameblok</value>
+  </data>
+  <data name="LoudnessNotMeasured" xml:space="preserve">
+    <value>Nog niet gemeten</value>
+  </data>
+  <data name="LoudnessTurnedDown" xml:space="preserve">
+    <value>{0} dB zachter gezet</value>
+  </data>
+  <data name="LoudnessTurnedUp" xml:space="preserve">
+    <value>{0} dB luider gezet</value>
+  </data>
+  <data name="LoudnessMeasuringAgain" xml:space="preserve">
+    <value>opnieuw aan het meten…</value>
+  </data>
+  <data name="StatusConnecting" xml:space="preserve">
+    <value>Verbinden…</value>
+  </data>
+  <data name="StatusNowPlaying" xml:space="preserve">
+    <value>Speelt nu</value>
+  </data>
+  <data name="StatusLiveMuted" xml:space="preserve">
+    <value>Live · gedempt</value>
+  </data>
+  <data name="StatusBuffering" xml:space="preserve">
+    <value>Bufferen…</value>
+  </data>
+  <data name="StatusReconnecting" xml:space="preserve">
+    <value>Opnieuw verbinden…</value>
+  </data>
+  <data name="StatusFailed" xml:space="preserve">
+    <value>Onbereikbaar, blijft proberen</value>
+  </data>
+  <data name="SoundMusic" xml:space="preserve">
+    <value>muziek</value>
+  </data>
+  <data name="SoundSpeech" xml:space="preserve">
+    <value>gepraat</value>
+  </data>
+  <data name="ViewSwitchToFull" xml:space="preserve">
+    <value>Overschakelen naar het volledige venster</value>
+  </data>
+  <data name="ViewSwitchToCompact" xml:space="preserve">
+    <value>Overschakelen naar het compacte venster</value>
+  </data>
+  <data name="SaveTrackRemove" xml:space="preserve">
+    <value>Verwijderen uit favoriete nummers</value>
+  </data>
+  <data name="SaveTrackAdd" xml:space="preserve">
+    <value>Toevoegen aan favoriete nummers</value>
+  </data>
+  <data name="MuteToolTipUnmute" xml:space="preserve">
+    <value>Dempen opheffen (Ctrl+M)</value>
+  </data>
+  <data name="MuteToolTipMute" xml:space="preserve">
+    <value>Dempen (Ctrl+M)</value>
+  </data>
+  <data name="HotkeyInUseOne" xml:space="preserve">
+    <value>{0} wordt al gebruikt door een andere app en werkt niet buiten het venster.</value>
+  </data>
+  <data name="HotkeyInUseMany" xml:space="preserve">
+    <value>{0} worden al gebruikt door een andere app en werken niet buiten het venster.</value>
+  </data>
+  <data name="StreamStopped" xml:space="preserve">
+    <value>De stream reageert niet meer.</value>
+  </data>
+  <data name="StreamEnded" xml:space="preserve">
+    <value>De stream is beëindigd.</value>
+  </data>
+  <data name="UpdateNotice.Message" xml:space="preserve">
+    <value>Herstart om het nu te installeren. Anders wordt het geïnstalleerd zodra je ZapperRadio sluit.</value>
+  </data>
+  <data name="RestartToUpdateButton.Content" xml:space="preserve">
+    <value>Herstarten om bij te werken</value>
+  </data>
+  <data name="UpdatesHeading.Text" xml:space="preserve">
+    <value>Updates</value>
+  </data>
+  <data name="UpdatesText.Text" xml:space="preserve">
+    <value>ZapperRadio zoekt om de paar uur naar een nieuwe versie en downloadt die op de achtergrond. De installatie gebeurt zodra je de app sluit. Je favorieten en instellingen blijven behouden.</value>
+  </data>
+  <data name="CheckForUpdatesButton.Content" xml:space="preserve">
+    <value>Controleren op updates</value>
+  </data>
+  <data name="UpdateChecking" xml:space="preserve">
+    <value>Controleren op updates…</value>
+  </data>
+  <data name="UpdateDownloading" xml:space="preserve">
+    <value>De nieuwe versie downloaden… {0}%</value>
+  </data>
+  <data name="UpdateReady" xml:space="preserve">
+    <value>Versie {0} staat klaar en wordt geïnstalleerd zodra ZapperRadio sluit.</value>
+  </data>
+  <data name="UpdateUpToDate" xml:space="preserve">
+    <value>ZapperRadio is bijgewerkt.</value>
+  </data>
+  <data name="UpdateFailed" xml:space="preserve">
+    <value>Kon niet op updates controleren: {0}</value>
+  </data>
+  <data name="UpdateNoticeTitle" xml:space="preserve">
+    <value>ZapperRadio {0} staat klaar</value>
+  </data>
+</root>

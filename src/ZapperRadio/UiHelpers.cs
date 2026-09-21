@@ -42,7 +42,7 @@ public static class UiHelpers
     public static string ViewGlyph(bool isCompact) => Glyph(isCompact ? 0xE740 : 0xE73F); // FullScreen / BackToWindow
 
     public static string ViewToolTip(bool isCompact) =>
-        isCompact ? "Switch to the full window" : "Switch to the compact window";
+        Localizer.Get(isCompact ? "ViewSwitchToFull" : "ViewSwitchToCompact");
 
     public static string StarGlyph(bool isFavorite) => Glyph(isFavorite ? 0xE735 : 0xE734); // FavoriteStarFill / FavoriteStar
 
@@ -52,13 +52,13 @@ public static class UiHelpers
 
     public static Brush HeartBrush(bool isSaved) => isSaved ? HeartOnBrush : StarOffBrush;
 
-    public static string SaveTrackToolTip(bool isSaved) => isSaved ? "Remove from favorite tracks" : "Add to favorite tracks";
+    public static string SaveTrackToolTip(bool isSaved) => Localizer.Get(isSaved ? "SaveTrackRemove" : "SaveTrackAdd");
 
     public static string PlayGlyph(bool isPlaying) => Glyph(isPlaying ? 0xE71A : 0xE768); // Stop / Play
 
     public static string MuteGlyph(bool isMuted) => Glyph(isMuted ? 0xE74F : 0xE767); // Mute / Volume
 
-    public static string MuteToolTip(bool isMuted) => isMuted ? "Unmute (Ctrl+M)" : "Mute (Ctrl+M)";
+    public static string MuteToolTip(bool isMuted) => Localizer.Get(isMuted ? "MuteToolTipUnmute" : "MuteToolTipMute");
 
     /// <summary>The name and version on the about section of the settings, e.g. "ZapperRadio 1.10.0".</summary>
     public static string AboutVersion(string version) => $"ZapperRadio {version}";

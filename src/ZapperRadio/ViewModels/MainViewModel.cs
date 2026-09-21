@@ -19,10 +19,6 @@ namespace ZapperRadio.ViewModels;
 
 public sealed partial class MainViewModel : ObservableObject, IDisposable
 {
-    public const string AllCountries = "All countries";
-
-    private static readonly System.Globalization.CultureInfo EnglishCulture = new("en-US");
-
     private readonly DispatcherQueue _dispatcher;
     private readonly HttpClient _http;
     private readonly SettingsStore _settingsStore;
@@ -43,7 +39,6 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
     private readonly DispatcherQueueTimer _historySaveTimer;
     private readonly DispatcherQueueTimer _historyPruneTimer;
     private readonly DispatcherQueueTimer _historySearchDebounce;
-    private readonly DispatcherQueueTimer _trimSaveTimer;
 
     private List<StationResultViewModel> _allStations = [];
     private CancellationTokenSource? _searchCts;
@@ -56,6 +51,7 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
     private Task _jumpListUpdates = Task.CompletedTask;
     private bool _historyChanged;
     private PlayedTrackFilter _historyFilter = new(null);
+    private readonly string? _startedWithLanguage;
 
     public MainViewModel(DispatcherQueue dispatcher)
     {
@@ -68,12 +64,22 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
         {
             Timeout = TimeSpan.FromMinutes(2),
         };
-        _http.DefaultRequestHeaders.UserAgent.ParseAdd("ZapperRadio/1.0");
+        // radio-browser.info asks its clients for a user agent with the name and the version of the app.
+        var userAgent = $"ZapperRadio/{(AppVersion.Length > 0 ? AppVersion : "0")}";
+        _http.DefaultRequestHeaders.UserAgent.ParseAdd(userAgent);
 
         var settingsPath = Path.Combine(dataFolder, "settings.json");
         _isFirstRun = !File.Exists(settingsPath);
         _settingsStore = new SettingsStore(settingsPath);
         _settings = _settingsStore.Load();
+
+        // Before anything reads a text, and before the window is built from its XAML: this is where the language is chosen.
+        Localizer.Use(_settings.Language);
+        AllCountries = Localizer.Get("AllCountries");
+        Countries = [AllCountries];
+        Languages = [new AppLanguage(null, Localizer.Get("LanguageWindows")), .. Localizer.Languages];
+        _startedWithLanguage = (Languages.FirstOrDefault(l => l.Tag == _settings.Language) ?? Languages[0]).Tag;
+
         _cacheFolder = Path.Combine(dataFolder, "cache");
         _directory = new StationDirectory(_http, _cacheFolder);
         _popularity = new StationPopularity(_http, _cacheFolder);
@@ -81,7 +87,7 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
 
         // Streams run for hours, so the relay gets a client without the overall request timeout.
         _streamHttp = new HttpClient { Timeout = Timeout.InfiniteTimeSpan };
-        _streamHttp.DefaultRequestHeaders.UserAgent.ParseAdd("ZapperRadio/1.0");
+        _streamHttp.DefaultRequestHeaders.UserAgent.ParseAdd(userAgent);
         _proxy = new IcyProxy(_streamHttp);
 
         _classifier = SoundClassifier.TryCreate(Path.Combine(AppContext.BaseDirectory, "Assets", "Models", "yamnet.onnx"));
@@ -93,10 +99,6 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
 
         // Before the first stream is opened, so a station starts at the loudness it was measured at last time.
         _engine.NormalizeLoudness = _settings.NormalizeLoudness;
-        foreach (var (url, trim) in _settings.StationTrims)
-        {
-            _engine.SetTrim(url, trim);
-        }
 
         foreach (var (url, loudness) in _settings.StationLoudness)
         {
@@ -133,11 +135,6 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
         _historySearchDebounce.IsRepeating = false;
         _historySearchDebounce.Tick += (_, _) => ApplyHistorySearch();
 
-        _trimSaveTimer = dispatcher.CreateTimer();
-        _trimSaveTimer.Interval = TimeSpan.FromMilliseconds(500);
-        _trimSaveTimer.IsRepeating = false;
-        _trimSaveTimer.Tick += (_, _) => SaveSettings();
-
         Volume = _engine.Volume * 100;
         SelectedCountry = _settings.Country ?? AllCountries;
 
@@ -168,6 +165,12 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
         NormalizeLoudness = _settings.NormalizeLoudness;
         GlobalHotkeys = _settings.GlobalHotkeys;
         IsCompact = _settings.IsCompact;
+        SelectedLanguage = Languages.FirstOrDefault(l => l.Tag == _settings.Language) ?? Languages[0];
+        // Read from the registry rather than settings.json: it also picks up a change made from
+        // Windows' own Startup Apps settings instead of from here.
+        AutoStart = StartupRegistration.IsEnabled();
+
+        StartUpdateChecks();
     }
 
     /// <summary>
@@ -188,16 +191,38 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
         }
     }
 
+    /// <summary>
+    /// What the country box shows for "no country filter", and what it is compared with. Only stored in the
+    /// settings as null, never as this text, so the language can change between runs without breaking the choice.
+    /// </summary>
+    public string AllCountries { get; }
+
+    /// <summary>The languages to choose from in the settings: the language of Windows first, then each one named in itself.</summary>
+    public IReadOnlyList<AppLanguage> Languages { get; }
+
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(NeedsRestartForLanguage))]
+    public partial AppLanguage SelectedLanguage { get; set; }
+
+    /// <summary>Whether the chosen language is not the one the app is showing, which it only does after it is started again.</summary>
+    public bool NeedsRestartForLanguage => SelectedLanguage.Tag != _startedWithLanguage;
+
+    partial void OnSelectedLanguageChanged(AppLanguage value)
+    {
+        _settings.Language = value.Tag;
+        SaveSettings();
+    }
+
     public ObservableCollection<FavoriteViewModel> Favorites { get; } = [];
 
-    public string FavoritesHeader => $"Favorites ({Favorites.Count}/{AppSettings.MaxFavorites})";
+    public string FavoritesHeader => Localizer.Format("FavoritesHeader", Favorites.Count, AppSettings.MaxFavorites);
 
     public bool HasNoFavorites => Favorites.Count == 0;
 
     /// <summary>Songs saved with the heart while listening, newest first.</summary>
     public ObservableCollection<FavoriteTrack> FavoriteTracks { get; } = [];
 
-    public string FavoriteTracksHeader => $"Favorite tracks ({FavoriteTracks.Count})";
+    public string FavoriteTracksHeader => Localizer.Format("FavoriteTracksHeader", FavoriteTracks.Count);
 
     public bool HasNoFavoriteTracks => FavoriteTracks.Count == 0;
 
@@ -242,10 +267,10 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
     public partial string SearchText { get; set; } = "";
 
     [ObservableProperty]
-    public partial IReadOnlyList<string> Countries { get; set; } = [AllCountries];
+    public partial IReadOnlyList<string> Countries { get; set; } = [];
 
     [ObservableProperty]
-    public partial string SelectedCountry { get; set; } = AllCountries;
+    public partial string SelectedCountry { get; set; } = "";
 
     [ObservableProperty]
     public partial bool IsLoading { get; set; }
@@ -266,10 +291,10 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
     public partial string? NowPlayingLogoUrl { get; set; }
 
     [ObservableProperty]
-    public partial string NowPlayingName { get; set; } = "Choose a station";
+    public partial string NowPlayingName { get; set; } = "";
 
     [ObservableProperty]
-    public partial string NowPlayingStatus { get; set; } = "Click a favorite to listen live instantly";
+    public partial string NowPlayingStatus { get; set; } = "";
 
     /// <summary>The current song of the station being listened to, or empty when unknown.</summary>
     [ObservableProperty]
@@ -308,6 +333,10 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
     /// <summary>Whether the Ctrl+Alt shortcuts also work while another app has focus.</summary>
     [ObservableProperty]
     public partial bool GlobalHotkeys { get; set; }
+
+    /// <summary>Whether ZapperRadio launches when the user signs in to Windows.</summary>
+    [ObservableProperty]
+    public partial bool AutoStart { get; set; }
 
     /// <summary>Which of the global shortcuts another app already holds, or empty when they all work.</summary>
     [ObservableProperty]
@@ -381,8 +410,8 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
             var files = CachedLookups().Select(file => new FileInfo(file).Length).ToList();
             var bytes = files.Sum();
             CacheSummary = files.Count == 0
-                ? "Nothing cached yet"
-                : $"{files.Count:N0} lookups · {(bytes < 1024 * 1024 ? $"{bytes / 1024.0:N0} KB" : $"{bytes / (1024.0 * 1024):N1} MB")}";
+                ? Localizer.Get("CacheEmpty")
+                : Localizer.Format("CacheSummary", files.Count, bytes < 1024 * 1024 ? $"{bytes / 1024.0:N0} KB" : $"{bytes / (1024.0 * 1024):N1} MB");
         }
         catch (Exception ex) when (ex is IOException or UnauthorizedAccessException)
         {
@@ -412,7 +441,7 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
         }
         catch (Exception ex) when (ex is IOException or UnauthorizedAccessException)
         {
-            ShowError($"Could not clear the cache: {ex.Message}");
+            ShowError(Localizer.Format("CacheClearFailed", ex.Message));
         }
 
         _popularityByCountry.Clear();
@@ -439,7 +468,7 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
 
         IsLoading = true;
         _popularityByCountry.Clear();
-        CatalogStatus = "Loading station list…";
+        CatalogStatus = Localizer.Get("CatalogLoading");
         try
         {
             var catalog = await _directory.LoadAsync();
@@ -476,15 +505,18 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
             // Refresh the country box, which may still show text typed while the list was loading.
             OnPropertyChanged(nameof(SelectedCountry));
 
-            var date = catalog.GeneratedAt?.ToString("MMMM d, yyyy", EnglishCulture) ?? catalog.FileName;
-            CatalogStatus = $"{_allStations.Count:N0} stations · list from {date}" + (catalog.FromCache ? " (offline copy)" : "");
+            var date = catalog.GeneratedAt?.ToString("d") ?? catalog.FileName;
+            CatalogStatus = Localizer.Format(catalog.FromCache ? "CatalogStatusOffline" : "CatalogStatus", _allStations.Count, date);
             UpdateStationListInfo(catalog.FileName);
             await ApplySearchAsync();
         }
         catch (Exception ex)
         {
-            CatalogStatus = "Station list unavailable";
-            ShowError(ex.Message);
+            CatalogStatus = Localizer.Get("CatalogUnavailable");
+            // The directory wraps a failed download in its own English sentence; the cause inside it is what to add to the local one.
+            ShowError(ex is StationDirectoryException { InnerException: { } cause }
+                ? Localizer.Format("CatalogDownloadFailed", StationDirectory.DefaultIndexUri, cause.Message)
+                : ex.Message);
         }
         finally
         {
@@ -502,7 +534,7 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
         {
             var path = Path.Combine(_cacheFolder, fileName);
             StationListUpdated = File.Exists(path)
-                ? $"Downloaded on {File.GetLastWriteTime(path).ToString("MMMM d, yyyy 'at' HH:mm", EnglishCulture)}"
+                ? Localizer.Format("StationListDownloaded", File.GetLastWriteTime(path))
                 : "";
         }
         catch (Exception ex) when (ex is IOException or UnauthorizedAccessException)
@@ -568,19 +600,16 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
 
         if (Favorites.Count >= AppSettings.MaxFavorites)
         {
-            ShowError($"You can have at most {AppSettings.MaxFavorites} favorites, because they all keep streaming in the background. Remove one first.");
+            ShowError(Localizer.Format("FavoritesLimitReached", AppSettings.MaxFavorites));
             return;
         }
 
         AddFavorite(station);
     }
 
-    /// <summary>Adds a favorite with the loudness trim it was given earlier, and follows any change to that trim.</summary>
     private void AddFavorite(Station station)
     {
-        // The trim is set before the handler is attached, so restoring it does not count as a change to save.
-        var favorite = new FavoriteViewModel(station) { TrimDb = _settings.StationTrims.GetValueOrDefault(station.Url) };
-        favorite.PropertyChanged += OnFavoritePropertyChanged;
+        var favorite = new FavoriteViewModel(station);
         Favorites.Add(favorite);
         _ = LoadFavoriteLogoAsync(favorite);
     }
@@ -814,6 +843,8 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
         SaveSettings();
     }
 
+    partial void OnAutoStartChanged(bool value) => StartupRegistration.SetEnabled(value);
+
     partial void OnNormalizeLoudnessChanged(bool value)
     {
         _settings.NormalizeLoudness = value;
@@ -822,31 +853,9 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
         SaveSettings();
     }
 
-    /// <summary>Follows the loudness slider of a favorite in the settings: it is heard at once and saved shortly after.</summary>
-    private void OnFavoritePropertyChanged(object? sender, PropertyChangedEventArgs e)
-    {
-        if (e.PropertyName != nameof(FavoriteViewModel.TrimDb) || sender is not FavoriteViewModel favorite)
-        {
-            return;
-        }
-
-        var url = favorite.Station.Url;
-        if (Math.Abs(favorite.TrimDb) < 0.05)
-        {
-            _settings.StationTrims.Remove(url);
-        }
-        else
-        {
-            _settings.StationTrims[url] = favorite.TrimDb;
-        }
-
-        _engine.SetTrim(url, favorite.TrimDb);
-        // Dragging the slider changes it many times a second, which is far too often to write the file for.
-        if (!_trimSaveTimer.IsRunning)
-        {
-            _trimSaveTimer.Start();
-        }
-    }
+    /// <summary>The loudness button of the settings: every favorite measures its music again and corrects itself to the result.</summary>
+    [RelayCommand]
+    private void RemeasureLoudness() => _engine.RemeasureLoudness();
 
     private void OnStreamLoudnessChanged(StationStream stream)
     {
@@ -865,7 +874,7 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
         foreach (var favorite in Favorites)
         {
             favorite.LoudnessText = _engine.Find(favorite.Station.Url) is { } stream
-                ? LoudnessTexts.For(stream.MeasuredLoudness, stream.MeasuredGainDb, NormalizeLoudness)
+                ? LoudnessTexts.For(stream.MeasuredLoudness, stream.MeasuredGainDb, NormalizeLoudness, stream.IsRemeasuring)
                 : LoudnessTexts.NotMeasured;
         }
     }
@@ -1058,13 +1067,13 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
         var favorites = Favorites
             .Select(f => new JumpListItem(
                 JumpListCommand.Title(f.Name, withSongs ? f.Song : ""),
-                withSongs && f.HasSong ? $"Listen to {f.Name}\n{f.Song}" : $"Listen to {f.Name}",
+                withSongs && f.HasSong ? Localizer.Format("JumpListListenToSong", f.Name, f.Song) : Localizer.Format("JumpListListenTo", f.Name),
                 JumpListCommand.Play(f.Station.Url)))
             .ToList();
         var muted = withSongs && IsMuted;
         var muteTask = new JumpListItem(
-            muted ? "Unmute" : "Mute",
-            muted ? "Hear the station again" : "Silence the station without stopping it",
+            Localizer.Get(muted ? "JumpListUnmute" : "JumpListMute"),
+            Localizer.Get(muted ? "JumpListUnmuteToolTip" : "JumpListMuteToolTip"),
             new JumpListCommand(muted ? JumpListAction.Unmute : JumpListAction.Mute),
             // The speaker icons of the Windows volume mixer: 1 is a speaker, 2 a muted speaker.
             Path.Combine(Environment.SystemDirectory, "SndVol.exe"),
@@ -1077,8 +1086,9 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
         }
 
         _jumpListShown = key;
+        var category = Localizer.Get("JumpListFavorites");
         // In the background and in order, so a slow update never blocks the window or overwrites a newer one.
-        _jumpListUpdates = _jumpListUpdates.ContinueWith(_ => TaskbarJumpList.Update(favorites, muteTask), TaskScheduler.Default);
+        _jumpListUpdates = _jumpListUpdates.ContinueWith(_ => TaskbarJumpList.Update(category, favorites, muteTask), TaskScheduler.Default);
     }
 
     private void RefreshFavoriteMarks()
@@ -1141,11 +1151,11 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
         UpdateNowPlayingLogo(active?.Station ?? _lastPlayed);
         if (active is null)
         {
-            NowPlayingName = _lastPlayed?.Name ?? "Choose a station";
+            NowPlayingName = _lastPlayed?.Name ?? Localizer.Get("ChooseStation");
             NowPlayingSong = "";
             NowPlayingTrack = null;
             IsNowPlayingTrackSaved = false;
-            NowPlayingStatus = _lastPlayed is null ? "Click a favorite to listen live instantly" : "Stopped";
+            NowPlayingStatus = Localizer.Get(_lastPlayed is null ? "ClickFavoriteToListen" : "Stopped");
             return;
         }
 
@@ -1155,8 +1165,8 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
         NowPlayingTrack = active is { IsInAdBreak: false, Metadata.Title: { } title } ? TrackTitle.Normalize(title) : null;
         IsNowPlayingTrackSaved = NowPlayingTrack is { } track && FavoriteTracks.Any(t => t.IsSameSong(track));
         NowPlayingStatus = StatusTexts.For(active.Status, isActive: true, active.Sound)
-                           + (IsMuted ? " · muted" : "")
-                           + (isFavorite ? "" : " · not a favorite, stream stops when switching")
+                           + (IsMuted ? " · " + Localizer.Get("NowPlayingMuted") : "")
+                           + (isFavorite ? "" : " · " + Localizer.Get("NowPlayingNotFavorite"))
                            + (active.Status is StreamStatus.Reconnecting or StreamStatus.Failed && active.LastError is { } error ? $" ({error})" : "");
     }
 
@@ -1218,7 +1228,7 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
         }
         catch (Exception ex) when (ex is IOException or UnauthorizedAccessException)
         {
-            ShowError($"Could not save settings: {ex.Message}");
+            ShowError(Localizer.Format("SettingsSaveFailed", ex.Message));
         }
     }
 
@@ -1226,8 +1236,10 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
     {
         SaveSettings();
         _historyPruneTimer.Stop();
-        _trimSaveTimer.Stop();
         SaveHistory();
+        _updateTimer?.Stop();
+        // A downloaded update is installed once this process has exited, whether the user closed the app or asked to restart it.
+        _updater.InstallWhenClosed(_restartToUpdate);
         // Songs and the mute state are outdated once the app is closed.
         _jumpListTimer.Stop();
         UpdateJumpList(withSongs: false);

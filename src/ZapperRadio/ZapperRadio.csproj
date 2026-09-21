@@ -21,8 +21,14 @@
     <DefineConstants>$(DefineConstants);DISABLE_XAML_GENERATED_MAIN</DefineConstants>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <Version>1.16.2</Version>
+    <Version>1.19.0</Version>
+    <DefaultLanguage>en-US</DefaultLanguage>
     <Product>ZapperRadio</Product>
+    <!-- Shown in the file properties of ZapperRadio.exe; the title is what Task Manager and the firewall call the app. -->
+    <AssemblyTitle>ZapperRadio</AssemblyTitle>
+    <Authors>William Veldhuizen</Authors>
+    <Company>William Veldhuizen</Company>
+    <Copyright>Copyright (c) 2026 William Veldhuizen</Copyright>
     <Description>ZapperRadio: instant station switching, no ads when you tune in.</Description>
     <ApplicationIcon>Assets\ZapperRadio.ico</ApplicationIcon>
   </PropertyGroup>
@@ -32,12 +38,20 @@
     <Content Include="Assets\Models\yamnet.onnx;Assets\Models\LICENSE-yamnet.txt" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 
+  <!-- The licenses and notices that go with the app, so they are in the install folder (see THIRD-PARTY-NOTICES.md). -->
+  <ItemGroup>
+    <Content Include="..\..\LICENSE;..\..\PRIVACY.md;..\..\THIRD-PARTY-NOTICES.md" Link="%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="..\..\licenses\*.txt" Link="licenses\%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
   <ItemGroup>
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.2" />
     <!-- Media Foundation decoding of the stream audio for the sound classifier. -->
     <PackageReference Include="NAudio.Wasapi" Version="2.2.1" />
     <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.28000.2705" />
     <PackageReference Include="Microsoft.WindowsAppSDK" Version="2.4.0" />
+    <!-- Installs the app and updates it from the GitHub releases. Keep in step with the vpk version in the release workflow. -->
+    <PackageReference Include="Velopack" Version="1.2.0" />
   </ItemGroup>
 
   <ItemGroup>

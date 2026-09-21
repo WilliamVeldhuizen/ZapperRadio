@@ -12,7 +12,6 @@ namespace ZapperRadio.Playback;
 public sealed class RadioEngine(StreamUrlResolver resolver, IcyProxy? proxy, TrackDurations? durations, SoundClassifier? classifier, DispatcherQueue dispatcher) : IDisposable
 {
     private readonly Dictionary<string, StationStream> _favorites = new(StringComparer.Ordinal);
-    private readonly Dictionary<string, double> _trims = new(StringComparer.Ordinal);
     private readonly Dictionary<string, double> _knownLoudness = new(StringComparer.Ordinal);
     private StationStream? _transient;
     private double _volume = 0.8;
@@ -56,13 +55,12 @@ public sealed class RadioEngine(StreamUrlResolver resolver, IcyProxy? proxy, Tra
         }
     }
 
-    /// <summary>Sets the manual correction of a station in decibels; it is remembered for a stream that does not exist yet.</summary>
-    public void SetTrim(string url, double trimDb)
+    /// <summary>Has every running station measure its loudness again, for when the correction of one sounds off.</summary>
+    public void RemeasureLoudness()
     {
-        _trims[url] = trimDb;
-        if (Find(url) is { } stream)
+        foreach (var stream in AllStreams())
         {
-            stream.TrimDb = trimDb;
+            stream.Remeasure();
         }
     }
 
@@ -180,7 +178,6 @@ public sealed class RadioEngine(StreamUrlResolver resolver, IcyProxy? proxy, Tra
         var stream = new StationStream(station, resolver, proxy, durations, classifier, dispatcher, _volume)
         {
             NormalizeLoudness = _normalizeLoudness,
-            TrimDb = _trims.GetValueOrDefault(station.Url),
         };
         if (_knownLoudness.TryGetValue(station.Url, out var loudness))
         {

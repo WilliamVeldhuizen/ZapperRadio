@@ -49,7 +49,7 @@ public sealed class StationStream : IDisposable
     private readonly TrackDurations? _durations;
     private readonly SoundClassifier? _classifier;
     private readonly SoundHistory _sound = new();
-    private readonly StationLoudness _loudness = new();
+    private StationLoudness _loudness = new();
     private readonly SongClock _songClock = new();
     private readonly UnmarkedAdBreak _unmarkedAdBreak = new();
     private readonly MediaPlayer _player;
@@ -65,9 +65,9 @@ public sealed class StationStream : IDisposable
     private DateTime _lastPlayingUtc;
     private int _songNumber;
     private double _volume;
-    private double _trimDb;
     private bool _normalizeLoudness = true;
     private double? _measuredLoudness;
+    private bool _isRemeasuring;
     private bool _disposed;
 
     /// <param name="proxy">Relays the stream to read its song titles; null plays the station directly.</param>
@@ -175,18 +175,7 @@ public sealed class StationStream : IDisposable
         }
     }
 
-    /// <summary>A manual correction for this station in decibels, on top of the measured loudness.</summary>
-    public double TrimDb
-    {
-        get => _trimDb;
-        set
-        {
-            _trimDb = value;
-            ApplyVolume();
-        }
-    }
-
-    /// <summary>Whether the measured loudness is corrected for; the manual trim is applied either way.</summary>
+    /// <summary>Whether the measured loudness is corrected for.</summary>
     public bool NormalizeLoudness
     {
         get => _normalizeLoudness;
@@ -209,8 +198,11 @@ public sealed class StationStream : IDisposable
             ? Math.Clamp(StationLoudness.Target - loudness, StationLoudness.MinGainDb, StationLoudness.MaxGainDb)
             : 0;
 
-    /// <summary>Everything that is done to the volume of this station: the measured correction plus the trim.</summary>
-    public double GainDb => MeasuredGainDb + _trimDb;
+    /// <summary>Everything that is done to the volume of this station.</summary>
+    public double GainDb => MeasuredGainDb;
+
+    /// <summary>True from <see cref="Remeasure"/> until the new estimate is in; the correction of the old one stays in use meanwhile.</summary>
+    public bool IsRemeasuring => _isRemeasuring;
 
     /// <summary>Raised when <see cref="MeasuredLoudness"/> changes, which is at most once per window of music.</summary>
     public event EventHandler? LoudnessChanged;
@@ -223,6 +215,18 @@ public sealed class StationStream : IDisposable
     {
         _measuredLoudness = loudness;
         ApplyVolume();
+    }
+
+    /// <summary>
+    /// Throws away what was heard of this station so far and measures it again, for when the estimate turned out
+    /// wrong. The volume keeps the old correction until about a minute of music has been heard again, and then takes
+    /// over the new estimate right away, however close it is to the old one.
+    /// </summary>
+    public void Remeasure()
+    {
+        _loudness = new StationLoudness();
+        _isRemeasuring = _measuredLoudness is not null;
+        LoudnessChanged?.Invoke(this, EventArgs.Empty);
     }
 
     public void Start() => _ = ConnectAsync();
@@ -390,11 +394,12 @@ public sealed class StationStream : IDisposable
     private void UpdateLoudness()
     {
         if (_loudness.Value is not { } loudness
-            || (_measuredLoudness is { } current && Math.Abs(current - loudness) < MinLoudnessChange))
+            || (!_isRemeasuring && _measuredLoudness is { } current && Math.Abs(current - loudness) < MinLoudnessChange))
         {
             return;
         }
 
+        _isRemeasuring = false;
         _measuredLoudness = loudness;
         ApplyVolume();
         LoudnessChanged?.Invoke(this, EventArgs.Empty);
@@ -432,7 +437,7 @@ public sealed class StationStream : IDisposable
         }
         else if (DateTime.UtcNow - _lastPlayingUtc > StallTimeout)
         {
-            ScheduleReconnect("The stream stopped responding.");
+            ScheduleReconnect(Localizer.Get("StreamStopped"));
         }
     }
 
@@ -450,7 +455,7 @@ public sealed class StationStream : IDisposable
     }
 
     private void OnMediaEnded(MediaPlayer sender, object args) =>
-        OnUiThread(() => ScheduleReconnect("The stream ended."));
+        OnUiThread(() => ScheduleReconnect(Localizer.Get("StreamEnded")));
 
     private void OnPlaybackStateChanged(MediaPlaybackSession sender, object args)
     {

@@ -76,12 +76,25 @@
             </Button>
         </Grid>
 
-        <InfoBar
-            Grid.Row="1"
-            Margin="12,0,12,8"
-            Severity="Warning"
-            IsOpen="{x:Bind ViewModel.IsErrorOpen, Mode=TwoWay}"
-            Message="{x:Bind ViewModel.ErrorMessage, Mode=OneWay}" />
+        <StackPanel Grid.Row="1">
+            <InfoBar
+                Margin="12,0,12,8"
+                Severity="Warning"
+                IsOpen="{x:Bind ViewModel.IsErrorOpen, Mode=TwoWay}"
+                Message="{x:Bind ViewModel.ErrorMessage, Mode=OneWay}" />
+
+            <!-- A new version is downloaded; it is installed when the app closes, or right away from the button. -->
+            <InfoBar
+                x:Uid="UpdateNotice"
+                Margin="12,0,12,8"
+                Severity="Success"
+                IsOpen="{x:Bind ViewModel.IsUpdateNoticeOpen, Mode=TwoWay}"
+                Title="{x:Bind ViewModel.UpdateNoticeTitle, Mode=OneWay}">
+                <InfoBar.ActionButton>
+                    <Button x:Uid="RestartToUpdateButton" Command="{x:Bind ViewModel.RestartToUpdateCommand}" />
+                </InfoBar.ActionButton>
+            </InfoBar>
+        </StackPanel>
 
         <Grid Grid.Row="3" Padding="12" ColumnSpacing="12" Visibility="{x:Bind ViewModel.IsFullView, Mode=OneWay}">
             <Grid.ColumnDefinitions>
@@ -100,21 +113,20 @@
                     <StackPanel Padding="16,14,16,8" Spacing="2">
                         <TextBlock Text="{x:Bind ViewModel.FavoritesHeader, Mode=OneWay}" Style="{StaticResource SubtitleTextBlockStyle}" />
                         <TextBlock
-                            Text="Favorites keep playing muted in the background, so switching is instantly live: no reconnecting and no ads first. Drag a favorite up or down to reorder them."
+                            x:Uid="FavoritesHint"
                             Style="{StaticResource CaptionTextBlockStyle}"
                             Foreground="{ThemeResource TextFillColorSecondaryBrush}"
                             TextWrapping="Wrap" />
                         <CheckBox
+                            x:Uid="ZappCheckBox"
                             Margin="0,4,0,0"
-                            Content="Zapp on ad breaks / speech"
-                            IsChecked="{x:Bind ViewModel.ZappOnAdBreaks, Mode=TwoWay}"
-                            ToolTipService.ToolTip="For listening to music only: when the station you are listening to starts an ad break or someone talks, zap to the highest favorite that is playing a song, and zap back once it plays music again. Never in the middle of a song, though: the return waits until the station you landed on reaches its own break. Stations that do not mark their ads are assumed to be in an ad break when a song runs well past its length and speech is heard instead of music." />
+                            IsChecked="{x:Bind ViewModel.ZappOnAdBreaks, Mode=TwoWay}" />
                     </StackPanel>
 
                     <TextBlock
+                        x:Uid="NoFavoritesText"
                         Grid.Row="1"
                         Margin="16"
-                        Text="No favorites yet. Find a station on the right and click the star."
                         TextWrapping="Wrap"
                         Foreground="{ThemeResource TextFillColorTertiaryBrush}"
                         Visibility="{x:Bind ViewModel.HasNoFavorites, Mode=OneWay}" />
@@ -186,11 +198,11 @@
                                     </StackPanel>
 
                                     <Button
+                                        x:Uid="RemoveFavoriteButton"
                                         Grid.Column="3"
                                         Style="{StaticResource IconButtonStyle}"
                                         VerticalAlignment="Center"
                                         Visibility="{x:Bind ShowActions, Mode=OneWay}"
-                                        ToolTipService.ToolTip="Remove from favorites"
                                         Click="RemoveFavorite_Click">
                                         <FontIcon Glyph="&#xE711;" FontSize="12" />
                                     </Button>
@@ -215,7 +227,7 @@
                         </Grid.ColumnDefinitions>
 
                         <SelectorBar x:Name="Tabs" SelectionChanged="Tabs_SelectionChanged">
-                            <SelectorBarItem x:Name="StationsTab" Text="Stations" IsSelected="True">
+                            <SelectorBarItem x:Name="StationsTab" x:Uid="StationsTab" IsSelected="True">
                                 <SelectorBarItem.Icon>
                                     <FontIcon Glyph="&#xE93E;" />
                                 </SelectorBarItem.Icon>
@@ -225,7 +237,7 @@
                                     <FontIcon Glyph="&#xE006;" />
                                 </SelectorBarItem.Icon>
                             </SelectorBarItem>
-                            <SelectorBarItem x:Name="PlayHistoryTab" Text="Play history">
+                            <SelectorBarItem x:Name="PlayHistoryTab" x:Uid="PlayHistoryTab">
                                 <SelectorBarItem.Icon>
                                     <FontIcon Glyph="&#xE81C;" />
                                 </SelectorBarItem.Icon>
@@ -233,11 +245,10 @@
                         </SelectorBar>
 
                         <Button
+                            x:Uid="SettingsButton"
                             Grid.Column="1"
                             Style="{StaticResource IconButtonStyle}"
                             VerticalAlignment="Center"
-                            ToolTipService.ToolTip="Settings"
-                            AutomationProperties.Name="Settings"
                             Click="Settings_Click">
                             <FontIcon Glyph="&#xE713;" FontSize="16" />
                         </Button>
@@ -260,13 +271,12 @@
 
                             <TextBox
                                 x:Name="SearchBox"
-                                PlaceholderText="Search by name, genre or country (Ctrl+F)"
+                                x:Uid="SearchBox"
                                 Text="{x:Bind ViewModel.SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                             <AutoSuggestBox
                                 x:Name="CountryBox"
+                                x:Uid="CountryBox"
                                 Grid.Column="1"
-                                PlaceholderText="Country"
-                                AutomationProperties.Name="Country"
                                 QueryIcon="Filter"
                                 Text="{x:Bind ViewModel.SelectedCountry, Mode=OneWay}"
                                 GotFocus="Country_GotFocus"
@@ -274,10 +284,10 @@
                                 TextChanged="Country_TextChanged"
                                 QuerySubmitted="Country_QuerySubmitted" />
                             <Button
+                                x:Uid="ReloadStationsButton"
                                 Grid.Column="2"
                                 Style="{StaticResource IconButtonStyle}"
                                 Width="32" Height="32"
-                                ToolTipService.ToolTip="Reload station list"
                                 Command="{x:Bind ViewModel.ReloadCatalogCommand}">
                                 <FontIcon Glyph="&#xE72C;" FontSize="14" />
                             </Button>
@@ -314,10 +324,10 @@
                                                 TextTrimming="CharacterEllipsis" />
                                         </StackPanel>
                                         <Button
+                                            x:Uid="ToggleFavoriteButton"
                                             Grid.Column="1"
                                             Style="{StaticResource IconButtonStyle}"
                                             VerticalAlignment="Center"
-                                            ToolTipService.ToolTip="Toggle favorite"
                                             Click="ToggleFavorite_Click">
                                             <FontIcon
                                                 FontSize="16"
@@ -339,7 +349,7 @@
 
                         <TextBlock
                             Padding="16,8,16,8"
-                            Text="Songs you saved with the heart next to the song that is playing. Find one on Spotify or YouTube, or copy its title."
+                            x:Uid="FavoriteTracksHint"
                             Style="{StaticResource CaptionTextBlockStyle}"
                             Foreground="{ThemeResource TextFillColorSecondaryBrush}"
                             TextWrapping="Wrap" />
@@ -347,7 +357,7 @@
                         <TextBlock
                             Grid.Row="1"
                             Margin="16"
-                            Text="No favorite tracks yet. When a station plays a song you like, click the heart next to the song at the bottom."
+                            x:Uid="NoFavoriteTracksText"
                             TextWrapping="Wrap"
                             Foreground="{ThemeResource TextFillColorTertiaryBrush}"
                             Visibility="{x:Bind ViewModel.HasNoFavoriteTracks, Mode=OneWay}" />
@@ -378,13 +388,12 @@
                                             Grid.Column="1"
                                             Style="{StaticResource IconButtonStyle}"
                                             VerticalAlignment="Center"
-                                            ToolTipService.ToolTip="Find this song"
-                                            AutomationProperties.Name="Find this song">
+                                            x:Uid="FindSongButton">
                                             <FontIcon Glyph="&#xE8A7;" FontSize="14" />
                                             <Button.Flyout>
                                                 <MenuFlyout>
-                                                    <MenuFlyoutItem Text="Find on Spotify" Tag="{x:Bind Title}" Click="OpenTrackInSpotify_Click" />
-                                                    <MenuFlyoutItem Text="Find on YouTube" Tag="{x:Bind Title}" Click="OpenTrackOnYouTube_Click" />
+                                                    <MenuFlyoutItem x:Uid="FindOnSpotifyItem" Tag="{x:Bind Title}" Click="OpenTrackInSpotify_Click" />
+                                                    <MenuFlyoutItem x:Uid="FindOnYouTubeItem" Tag="{x:Bind Title}" Click="OpenTrackOnYouTube_Click" />
                                                 </MenuFlyout>
                                             </Button.Flyout>
                                         </Button>
@@ -392,7 +401,7 @@
                                             Grid.Column="2"
                                             Style="{StaticResource IconButtonStyle}"
                                             VerticalAlignment="Center"
-                                            ToolTipService.ToolTip="Copy title"
+                                            x:Uid="CopyTitleButton"
                                             Click="CopyFavoriteTrack_Click">
                                             <FontIcon Glyph="&#xE8C8;" FontSize="14" />
                                         </Button>
@@ -400,7 +409,7 @@
                                             Grid.Column="3"
                                             Style="{StaticResource IconButtonStyle}"
                                             VerticalAlignment="Center"
-                                            ToolTipService.ToolTip="Remove from favorite tracks"
+                                            x:Uid="RemoveFavoriteTrackButton"
                                             Click="RemoveFavoriteTrack_Click">
                                             <FontIcon Glyph="&#xE711;" FontSize="12" />
                                         </Button>
@@ -425,7 +434,7 @@
                             </Grid.ColumnDefinitions>
 
                             <TextBlock
-                                Text="Everything your favorites played over the last 12 hours, newest first, whether or not you were listening to them. Click a heart to keep a song."
+                                x:Uid="HistoryHint"
                                 Style="{StaticResource CaptionTextBlockStyle}"
                                 Foreground="{ThemeResource TextFillColorSecondaryBrush}"
                                 TextWrapping="Wrap" />
@@ -434,8 +443,7 @@
                                 Style="{StaticResource IconButtonStyle}"
                                 Width="32" Height="32"
                                 VerticalAlignment="Top"
-                                ToolTipService.ToolTip="Clear the play history"
-                                AutomationProperties.Name="Clear the play history"
+                                x:Uid="ClearHistoryButton"
                                 Command="{x:Bind ViewModel.ClearPlayHistoryCommand}">
                                 <FontIcon Glyph="&#xE74D;" FontSize="14" />
                             </Button>
@@ -445,15 +453,14 @@
                             x:Name="HistorySearchBox"
                             Grid.Row="1"
                             Margin="16,4,16,8"
-                            PlaceholderText="Search by song, artist or station (Ctrl+F)"
-                            AutomationProperties.Name="Search the play history"
+                            x:Uid="HistorySearchBox"
                             Visibility="{x:Bind ViewModel.HasPlayHistory, Mode=OneWay}"
                             Text="{x:Bind ViewModel.HistorySearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
                         <TextBlock
                             Grid.Row="2"
                             Margin="16"
-                            Text="Nothing played yet. As soon as your favorites are streaming, every song they play is listed here."
+                            x:Uid="NoHistoryText"
                             TextWrapping="Wrap"
                             Foreground="{ThemeResource TextFillColorTertiaryBrush}"
                             Visibility="{x:Bind ViewModel.HasNoPlayHistory, Mode=OneWay}" />
@@ -461,7 +468,7 @@
                         <TextBlock
                             Grid.Row="2"
                             Margin="16"
-                            Text="No song in the history matches your search."
+                            x:Uid="NoHistoryMatchesText"
                             TextWrapping="Wrap"
                             Foreground="{ThemeResource TextFillColorTertiaryBrush}"
                             Visibility="{x:Bind ViewModel.HasNoHistoryMatches, Mode=OneWay}" />
@@ -503,13 +510,12 @@
                                             Grid.Column="2"
                                             Style="{StaticResource IconButtonStyle}"
                                             VerticalAlignment="Center"
-                                            ToolTipService.ToolTip="Find this song"
-                                            AutomationProperties.Name="Find this song">
+                                            x:Uid="FindSongButton">
                                             <FontIcon Glyph="&#xE8A7;" FontSize="14" />
                                             <Button.Flyout>
                                                 <MenuFlyout>
-                                                    <MenuFlyoutItem Text="Find on Spotify" Tag="{x:Bind Title}" Click="OpenTrackInSpotify_Click" />
-                                                    <MenuFlyoutItem Text="Find on YouTube" Tag="{x:Bind Title}" Click="OpenTrackOnYouTube_Click" />
+                                                    <MenuFlyoutItem x:Uid="FindOnSpotifyItem" Tag="{x:Bind Title}" Click="OpenTrackInSpotify_Click" />
+                                                    <MenuFlyoutItem x:Uid="FindOnYouTubeItem" Tag="{x:Bind Title}" Click="OpenTrackOnYouTube_Click" />
                                                 </MenuFlyout>
                                             </Button.Flyout>
                                         </Button>
@@ -517,7 +523,7 @@
                                             Grid.Column="3"
                                             Style="{StaticResource IconButtonStyle}"
                                             VerticalAlignment="Center"
-                                            ToolTipService.ToolTip="Copy title"
+                                            x:Uid="CopyTitleButton"
                                             Click="CopyHistoryTrack_Click">
                                             <FontIcon Glyph="&#xE8C8;" FontSize="14" />
                                         </Button>
@@ -604,13 +610,12 @@
                                 VerticalAlignment="Center"
                                 Background="Transparent" BorderThickness="0"
                                 Visibility="{x:Bind ViewModel.CanSaveNowPlayingTrack, Mode=OneWay}"
-                                ToolTipService.ToolTip="Find this song"
-                                AutomationProperties.Name="Find this song">
+                                x:Uid="FindSongButton">
                                 <FontIcon Glyph="&#xE8A7;" FontSize="15" Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}" />
                                 <Button.Flyout>
                                     <MenuFlyout>
-                                        <MenuFlyoutItem Text="Find on Spotify" Tag="{x:Bind ViewModel.NowPlayingTrack, Mode=OneWay}" Click="OpenTrackInSpotify_Click" />
-                                        <MenuFlyoutItem Text="Find on YouTube" Tag="{x:Bind ViewModel.NowPlayingTrack, Mode=OneWay}" Click="OpenTrackOnYouTube_Click" />
+                                        <MenuFlyoutItem x:Uid="FindOnSpotifyItem" Tag="{x:Bind ViewModel.NowPlayingTrack, Mode=OneWay}" Click="OpenTrackInSpotify_Click" />
+                                        <MenuFlyoutItem x:Uid="FindOnYouTubeItem" Tag="{x:Bind ViewModel.NowPlayingTrack, Mode=OneWay}" Click="OpenTrackOnYouTube_Click" />
                                     </MenuFlyout>
                                 </Button.Flyout>
                             </Button>
@@ -622,7 +627,7 @@
                         Style="{StaticResource AccentButtonStyle}"
                         Width="36" Height="36" CornerRadius="18" Padding="0"
                         VerticalAlignment="Center"
-                        ToolTipService.ToolTip="Play / stop (Ctrl+Space)"
+                        x:Uid="PlayStopButton"
                         Command="{x:Bind ViewModel.TogglePlaybackCommand}">
                         <FontIcon Glyph="{x:Bind local:UiHelpers.PlayGlyph(ViewModel.IsPlaying), Mode=OneWay}" FontSize="14" />
                     </Button>
@@ -644,7 +649,7 @@
                         <Slider
                             Grid.Column="1"
                             VerticalAlignment="Center"
-                            AutomationProperties.Name="Volume"
+                            x:Uid="VolumeSlider"
                             Minimum="0" Maximum="100" StepFrequency="1"
                             Value="{x:Bind ViewModel.Volume, Mode=TwoWay}" />
                     </Grid>
@@ -656,7 +661,7 @@
                     <TextBlock
                         x:Name="CompactNoFavorites"
                         Margin="14"
-                        Text="No favorites yet. Switch to the full window to search for stations and add them with the star."
+                        x:Uid="CompactNoFavorites"
                         TextWrapping="Wrap"
                         Style="{StaticResource CaptionTextBlockStyle}"
                         Foreground="{ThemeResource TextFillColorTertiaryBrush}"
@@ -763,7 +768,7 @@
                 <Button
                     Style="{StaticResource AccentButtonStyle}"
                     Width="48" Height="48" CornerRadius="24" Padding="0"
-                    ToolTipService.ToolTip="Play / stop (Ctrl+Space)"
+                    x:Uid="PlayStopButton"
                     Command="{x:Bind ViewModel.TogglePlaybackCommand}">
                     <FontIcon Glyph="{x:Bind local:UiHelpers.PlayGlyph(ViewModel.IsPlaying), Mode=OneWay}" FontSize="18" />
                 </Button>
@@ -820,13 +825,12 @@
                                 VerticalAlignment="Center"
                                 Background="Transparent" BorderThickness="0"
                                 Visibility="{x:Bind ViewModel.CanSaveNowPlayingTrack, Mode=OneWay}"
-                                ToolTipService.ToolTip="Find this song"
-                                AutomationProperties.Name="Find this song">
+                                x:Uid="FindSongButton">
                                 <FontIcon Glyph="&#xE8A7;" FontSize="16" />
                                 <Button.Flyout>
                                     <MenuFlyout>
-                                        <MenuFlyoutItem Text="Find on Spotify" Tag="{x:Bind ViewModel.NowPlayingTrack, Mode=OneWay}" Click="OpenTrackInSpotify_Click" />
-                                        <MenuFlyoutItem Text="Find on YouTube" Tag="{x:Bind ViewModel.NowPlayingTrack, Mode=OneWay}" Click="OpenTrackOnYouTube_Click" />
+                                        <MenuFlyoutItem x:Uid="FindOnSpotifyItem" Tag="{x:Bind ViewModel.NowPlayingTrack, Mode=OneWay}" Click="OpenTrackInSpotify_Click" />
+                                        <MenuFlyoutItem x:Uid="FindOnYouTubeItem" Tag="{x:Bind ViewModel.NowPlayingTrack, Mode=OneWay}" Click="OpenTrackOnYouTube_Click" />
                                     </MenuFlyout>
                                 </Button.Flyout>
                             </Button>
@@ -850,6 +854,7 @@
                     <FontIcon Glyph="{x:Bind local:UiHelpers.MuteGlyph(ViewModel.IsMuted), Mode=OneWay}" FontSize="16" />
                 </Button>
                 <Slider
+                    x:Uid="VolumeSlider"
                     Grid.Column="4"
                     VerticalAlignment="Center"
                     Minimum="0" Maximum="100" StepFrequency="1"
@@ -860,8 +865,7 @@
         <!-- Shown from the button next to the tabs; nothing of it is drawn until then. -->
         <ContentDialog
             x:Name="SettingsDialog"
-            Title="Settings"
-            CloseButtonText="Close"
+            x:Uid="SettingsDialog"
             DefaultButton="Close">
             <ContentDialog.Resources>
                 <!-- The settings are mostly explanation, so their text is set a step smaller than the rest of
@@ -885,23 +889,70 @@
             <ScrollViewer MaxHeight="520" HorizontalScrollMode="Disabled" VerticalScrollBarVisibility="Auto">
                 <StackPanel Width="520" Spacing="18">
                     <StackPanel Spacing="2">
-                        <TextBlock Text="About" Style="{StaticResource SettingsHeadingStyle}" />
-                        <TextBlock
-                            Text="{x:Bind local:UiHelpers.AboutVersion(ViewModel.AppVersion)}"
-                            Style="{StaticResource SettingsTextStyle}" />
-                        <TextBlock
-                            Text="Internet radio that keeps the streams of your favorites open, so switching is instant and you do not hear the ad a station plays when you connect."
-                            Style="{StaticResource SettingsTextStyle}" />
-                        <!-- Aligned with the text above it, past the padding a button draws around its content. -->
-                        <HyperlinkButton
-                            Margin="-12,2,0,0"
+                        <TextBlock x:Uid="StartupHeading" Style="{StaticResource SettingsHeadingStyle}" />
+                        <CheckBox
+                            x:Uid="AutoStartCheckBox"
                             FontSize="12"
-                            Content="ZapperRadio on GitHub"
-                            NavigateUri="https://github.com/WilliamVeldhuizen/ZapperRadio" />
+                            IsChecked="{x:Bind ViewModel.AutoStart, Mode=TwoWay}" />
                     </StackPanel>
 
                     <StackPanel Spacing="2">
-                        <TextBlock Text="Station list" Style="{StaticResource SettingsHeadingStyle}" />
+                        <TextBlock x:Uid="LanguageHeading" Style="{StaticResource SettingsHeadingStyle}" />
+                        <TextBlock x:Uid="LanguageText" Style="{StaticResource SettingsTextStyle}" />
+                        <!-- Every language is named in itself, so it can be found even when the rest of the window is in one that cannot be read. -->
+                        <ComboBox
+                            x:Uid="LanguageBox"
+                            Margin="0,6,0,0"
+                            FontSize="12"
+                            MinWidth="220"
+                            ItemsSource="{x:Bind ViewModel.Languages}"
+                            DisplayMemberPath="Name"
+                            SelectedItem="{x:Bind ViewModel.SelectedLanguage, Mode=TwoWay}" />
+                        <TextBlock
+                            x:Uid="LanguageRestartText"
+                            Margin="0,4,0,0"
+                            Style="{StaticResource SettingsTextStyle}"
+                            Foreground="{ThemeResource SystemFillColorCautionBrush}"
+                            Visibility="{x:Bind ViewModel.NeedsRestartForLanguage, Mode=OneWay}" />
+                    </StackPanel>
+
+                    <StackPanel Spacing="2">
+                        <TextBlock x:Uid="AboutHeading" Style="{StaticResource SettingsHeadingStyle}" />
+                        <TextBlock
+                            Text="{x:Bind local:UiHelpers.AboutVersion(ViewModel.AppVersion)}"
+                            Style="{StaticResource SettingsTextStyle}" />
+                        <TextBlock x:Uid="AboutText" Style="{StaticResource SettingsTextStyle}" />
+                        <!-- Aligned with the text above it, past the padding a button draws around its content. -->
+                        <HyperlinkButton
+                            x:Uid="GitHubLink"
+                            Margin="-12,2,0,0"
+                            FontSize="12"
+                            NavigateUri="https://github.com/WilliamVeldhuizen/ZapperRadio" />
+                    </StackPanel>
+
+                    <!-- Only for an installed app: a development build has no updates to look for. -->
+                    <StackPanel Spacing="2" Visibility="{x:Bind ViewModel.IsUpdateSupported}">
+                        <TextBlock x:Uid="UpdatesHeading" Style="{StaticResource SettingsHeadingStyle}" />
+                        <TextBlock x:Uid="UpdatesText" Style="{StaticResource SettingsTextStyle}" />
+                        <TextBlock
+                            Margin="0,4,0,0"
+                            Text="{x:Bind ViewModel.UpdateStatus, Mode=OneWay}"
+                            Style="{StaticResource SettingsTextStyle}" />
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                            <Button
+                                x:Uid="CheckForUpdatesButton"
+                                Style="{StaticResource SettingsButtonStyle}"
+                                Command="{x:Bind ViewModel.CheckForUpdatesCommand}" />
+                            <Button
+                                x:Uid="RestartToUpdateButton"
+                                Style="{StaticResource SettingsButtonStyle}"
+                                Visibility="{x:Bind ViewModel.IsUpdateReady, Mode=OneWay}"
+                                Command="{x:Bind ViewModel.RestartToUpdateCommand}" />
+                        </StackPanel>
+                    </StackPanel>
+
+                    <StackPanel Spacing="2">
+                        <TextBlock x:Uid="StationListHeading" Style="{StaticResource SettingsHeadingStyle}" />
                         <TextBlock
                             Text="{x:Bind ViewModel.StationListName, Mode=OneWay}"
                             Style="{StaticResource SettingsTextStyle}"
@@ -914,25 +965,22 @@
                             Text="{x:Bind ViewModel.StationListUpdated, Mode=OneWay}"
                             Style="{StaticResource SettingsTextStyle}" />
                         <Button
+                            x:Uid="CheckStationListButton"
                             Style="{StaticResource SettingsButtonStyle}"
-                            Content="Check for a newer list"
                             Command="{x:Bind ViewModel.ReloadCatalogCommand}" />
                     </StackPanel>
 
                     <StackPanel Spacing="2">
-                        <TextBlock Text="Shortcuts" Style="{StaticResource SettingsHeadingStyle}" />
-                        <TextBlock
-                            Text="In the window: Ctrl+Space to stop or play, Ctrl+M to mute, Ctrl+F to search. The play, pause and next buttons of the Windows volume flyout, the lock screen, your media keys and your headset work too, where next and previous move through the favorites."
-                            Style="{StaticResource SettingsTextStyle}" />
+                        <TextBlock x:Uid="ShortcutsHeading" Style="{StaticResource SettingsHeadingStyle}" />
+                        <TextBlock x:Uid="ShortcutsText" Style="{StaticResource SettingsTextStyle}" />
                         <CheckBox
+                            x:Uid="GlobalHotkeysCheckBox"
                             Margin="0,6,0,0"
                             FontSize="12"
-                            Content="Shortcuts from any app"
-                            IsChecked="{x:Bind ViewModel.GlobalHotkeys, Mode=TwoWay}"
-                            ToolTipService.ToolTip="Also while you are working in another app. On Ctrl+Alt rather than Ctrl, because claiming Ctrl+Space for this app would take it away from every other one. A combination another app already holds is left to it and named below." />
+                            IsChecked="{x:Bind ViewModel.GlobalHotkeys, Mode=TwoWay}" />
                         <TextBlock
+                            x:Uid="GlobalHotkeysText"
                             Margin="28,0,0,0"
-                            Text="Ctrl+Alt+P to stop or play, Ctrl+Alt+M to mute, Ctrl+Alt+Right and Ctrl+Alt+Left for the next and previous favorite, from whatever app you are working in."
                             Style="{StaticResource SettingsTextStyle}" />
                         <TextBlock
                             Margin="28,2,0,0"
@@ -943,74 +991,47 @@
                     </StackPanel>
 
                     <StackPanel Spacing="2">
-                        <TextBlock Text="Loudness" Style="{StaticResource SettingsHeadingStyle}" />
-                        <TextBlock
-                            Text="One station is mastered several decibels louder than the next, which is the most annoying part of zapping. The audio of every favorite is decoded anyway, so how loud its music really is is measured from it (EBU R128), and the loud ones are turned down to the same level. Only music counts, so ads and presenters do not skew it, and it takes about a minute of music per station. Stations that cannot be listened to (HLS) keep the volume they come in at."
-                            Style="{StaticResource SettingsTextStyle}" />
+                        <TextBlock x:Uid="LoudnessHeading" Style="{StaticResource SettingsHeadingStyle}" />
+                        <TextBlock x:Uid="LoudnessText" Style="{StaticResource SettingsTextStyle}" />
                         <CheckBox
+                            x:Uid="NormalizeLoudnessCheckBox"
                             Margin="0,6,0,0"
                             FontSize="12"
-                            Content="Match the loudness of stations"
-                            IsChecked="{x:Bind ViewModel.NormalizeLoudness, Mode=TwoWay}"
-                            ToolTipService.ToolTip="Brings every station to about -14 LUFS, the level streaming services normalize to, by at most 12 dB down or 6 dB up. A station that has to go up cannot pass full volume, so with the slider at the top it may stay a little quieter." />
+                            IsChecked="{x:Bind ViewModel.NormalizeLoudness, Mode=TwoWay}" />
                         <TextBlock
-                            Margin="0,6,0,0"
-                            Text="Per station, on top of that: drag to make one quieter or louder yourself."
-                            Style="{StaticResource SettingsTextStyle}" />
-                        <TextBlock
+                            x:Uid="NoFavoritesLoudnessText"
                             Margin="0,2,0,0"
-                            Text="No favorites yet."
                             Style="{StaticResource SettingsTextStyle}"
                             Visibility="{x:Bind ViewModel.HasNoFavorites, Mode=OneWay}" />
                         <ItemsControl Margin="0,4,0,0" ItemsSource="{x:Bind ViewModel.Favorites}">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate x:DataType="vm:FavoriteViewModel">
-                                    <Grid ColumnSpacing="8" Margin="0,1">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*" />
-                                            <ColumnDefinition Width="150" />
-                                            <ColumnDefinition Width="52" />
-                                        </Grid.ColumnDefinitions>
-
-                                        <StackPanel VerticalAlignment="Center">
-                                            <TextBlock Text="{x:Bind Name}" FontSize="12" TextTrimming="CharacterEllipsis" />
-                                            <TextBlock
-                                                Text="{x:Bind LoudnessText, Mode=OneWay}"
-                                                FontSize="11"
-                                                Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
-                                        </StackPanel>
-
-                                        <Slider
-                                            Grid.Column="1"
-                                            VerticalAlignment="Center"
-                                            Minimum="-12" Maximum="12" StepFrequency="0.5"
-                                            AutomationProperties.Name="{x:Bind Name}"
-                                            ToolTipService.ToolTip="Decibels on top of the measured loudness of this station"
-                                            Value="{x:Bind TrimDb, Mode=TwoWay}" />
+                                    <StackPanel Margin="0,1">
+                                        <TextBlock Text="{x:Bind Name}" FontSize="12" TextTrimming="CharacterEllipsis" />
                                         <TextBlock
-                                            Grid.Column="2"
-                                            VerticalAlignment="Center"
-                                            Text="{x:Bind TrimText, Mode=OneWay}"
+                                            Text="{x:Bind LoudnessText, Mode=OneWay}"
                                             FontSize="11"
                                             Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
-                                    </Grid>
+                                    </StackPanel>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
+                        <Button
+                            x:Uid="RemeasureLoudnessButton"
+                            Style="{StaticResource SettingsButtonStyle}"
+                            Command="{x:Bind ViewModel.RemeasureLoudnessCommand}" />
                     </StackPanel>
 
                     <StackPanel Spacing="2">
-                        <TextBlock Text="Cached logos" Style="{StaticResource SettingsHeadingStyle}" />
-                        <TextBlock
-                            Text="Station logos and the most-played lists are looked up once and then kept. Clearing them looks every logo up again, which helps when a station shows the wrong one. The station list itself is kept."
-                            Style="{StaticResource SettingsTextStyle}" />
+                        <TextBlock x:Uid="CacheHeading" Style="{StaticResource SettingsHeadingStyle}" />
+                        <TextBlock x:Uid="CacheText" Style="{StaticResource SettingsTextStyle}" />
                         <TextBlock
                             Margin="0,4,0,0"
                             Text="{x:Bind ViewModel.CacheSummary, Mode=OneWay}"
                             Style="{StaticResource SettingsTextStyle}" />
                         <Button
+                            x:Uid="ClearCacheButton"
                             Style="{StaticResource SettingsButtonStyle}"
-                            Content="Clear cache"
                             Command="{x:Bind ViewModel.ClearCacheCommand}" />
                     </StackPanel>
                 </StackPanel>
