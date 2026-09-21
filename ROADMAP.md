@@ -48,21 +48,38 @@ out: they hang next to the zapper instead of making it better.
 The zapper is the identity of the app, so give it knobs:
 
 - Per favorite: never zap to this one, or only zap to these. A news station should not be a music fallback.
-- A disliked songs list, so it zaps away from a title that was thumbed down.
-- Skip the news at the top of the hour, which is predictable and time based.
 - After a break ends: return to the station you came from, or stay where you landed.
+- A crossfade of a few hundred milliseconds instead of a hard cut, both when zapping away and when
+  zapping back. Every favorite is its own `MediaPlayer` already playing muted, so it is a matter of
+  ramping one volume down while the other comes up, in `RadioEngine` and `StationStream`.
+- A tab of its own for these settings, named **Zapper**, next to Stations, Favorite tracks and Play
+  history, instead of adding them to the settings dialog.
 
-All of this belongs in `AdBreakZapper` and `AppSettings`, the UI-free and fully tested core, so it
-is cheap to build and cheap to test.
+The rules belong in `AdBreakZapper` and `AppSettings`, the UI-free and fully tested core, so they
+are cheap to build and cheap to test.
 
-## 3. Tray icon and minimize to tray
+## 3. Better search
+
+Finding a station among the ~52,000 in the list is where a new user starts, and it is what decides
+which favorites the zapper gets to work with.
+
+- **A better interface.** Still open how: the design is not decided yet.
+- **Cluster the stations of one broadcaster.** Many stations come with a row of variants, such as the
+  non-stop or theme channels of a main station, which now show up as separate, near-identical rows.
+  Group them under the main station, which can be expanded to pick a variant.
+- **Preprocess the top stations per country.** `StationPopularity` now asks the radio-browser API for a
+  country's most clicked stations the moment the country is picked, and caches the answer for a day.
+  Preparing those rankings (the position and whatever else is worth showing) ahead of time would make
+  the first pick instant and let it work offline too.
+
+## 4. Tray icon and minimize to tray
 
 The app is built to keep running, yet it only lives in the taskbar. A tray icon showing the
 current song in its tooltip, left-click to mute and unmute, right-click for the favorites (the
 same content as `TaskbarJumpList` builds) and a "close to tray" option turn it into a background
 app instead of a window. Pairs with the media keys and the global hotkeys of 1.11.0.
 
-## 4. Guided tour on first launch
+## 5. Guided tour on first launch
 
 A first-time window is a grid of stations and an empty favorites list, with nothing that says what
 makes this player different from any other. A short, dismissable tour on the very first launch -
@@ -76,7 +93,7 @@ it never shows again and never blocks a settings-file-less fresh install from be
 one either. A "show the tour again" entry in settings covers the case of an update landing a new
 tour step later.
 
-## 5. Production ready
+## 6. Production ready
 
 No new features: this is the work that makes what exists safe to ship to people who cannot ask the author
 what went wrong. Ranked by payoff per effort. Auto-update and its release pipeline are built (1.19.0).
@@ -129,7 +146,7 @@ what went wrong. Ranked by payoff per effort. Auto-update and its release pipeli
    on x64, including the auto-start entry. `vpk pack` leaves out the PDBs by default; keep them as release
    artifacts, so a stack trace from a crash can be read.
 
-## 6. Bandwidth and power guard
+## 7. Bandwidth and power guard
 
 The permanent 2 to 6 Mbit/s of background streaming is the one real cost of the design. An eco
 mode keeps only the top few favorites open on a metered connection or on battery below a set
@@ -137,7 +154,7 @@ percentage, and re-opens the rest on Wi-Fi or AC power. A live "currently using 
 readout in the settings makes the cost visible instead of implied. Uses `NetworkInformation` and
 the system power status, mostly inside `RadioEngine`.
 
-## 7. Translated country and genre names
+## 8. Translated country and genre names
 
 The app speaks ten languages since 1.18.0, but the country and genre names come from the station
 list in English and stay that way, so the country box is the one part of the window that does not
@@ -146,8 +163,8 @@ read like the rest of the window.
 
 ## Suggested order
 
-3 is next: it pairs with the media keys and is about a day. Then 1, because it is the feature that
+4 is next: it pairs with the media keys and is about a day. Then 1, because it is the feature that
 cannot be copied without also keeping every stream open.
 
-Production ready (5) runs alongside: crash logging (2) can start now, and signing (1) is what to do
+Production ready (6) runs alongside: crash logging (2) can start now, and signing (1) is what to do
 before the app is pointed at people who do not know the author.
