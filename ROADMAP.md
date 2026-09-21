@@ -161,6 +161,15 @@ it runs on without anything leaving it. Together, the labels that users choose t
 training data for the model that ships with the app, so every station someone corrected is recognized
 better for everyone.
 
+The place to give those labels is the **Zapper** tab from item 1: a list of the last automatic zaps
+(station, time, the reason it zapped, and where it landed), each of which can be graded. A zap is
+marked as right, or put in a category of what went wrong: **too early** (the music was still
+playing), **too late** (part of the ad was heard), or **not an ad break** (speech, a jingle or a
+quiet song taken for a break). A category for a break the zapper missed completely needs a way to
+point at a moment that is not in the list, such as a button while listening. The category says more
+than a plain thumbs down: too early and too late are about where the boundary was put, not about
+whether there was a break, and each one trains a different part of the detection.
+
 What needs deciding before it is built: sharing is opt-in and never the default; what is shared
 should be the labels with the classifier's numbers, not the audio itself, which is copyrighted and
 may contain people's voices; where it is collected and who can see it; and a section in `PRIVACY.md`
