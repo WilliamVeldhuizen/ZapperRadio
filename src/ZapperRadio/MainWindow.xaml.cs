@@ -313,7 +313,7 @@ public sealed partial class MainWindow : Window
         AddShortcut(VirtualKey.M, () => ViewModel.ToggleMuteCommand.Execute(null));
         AddShortcut(VirtualKey.F, () =>
         {
-            // The play history searches itself; every other tab searches the stations. A box only accepts
+            // The track history searches itself; every other tab searches the stations. A box only accepts
             // focus once its own tab is shown, so the switch is given a turn to happen first.
             if (ViewModel.SelectedTab == MainTab.PlayHistory)
             {

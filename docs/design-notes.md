@@ -4,7 +4,7 @@ Why the larger features work the way they do. The README says what they do; this
 reasoning behind them, the classes involved and the limits that were accepted, kept for
 whoever changes them later. Ordered by the version they shipped in.
 
-## Play history (1.10.0)
+## Track history (1.10.0, named play history until 1.24)
 
 A rolling 12-hour history of everything every favorite played, as a third tab next to Stations
 and Favorite tracks, with the title tidied up (`TrackTitle`) and a heart per entry.
@@ -87,7 +87,7 @@ no longer mistaken for music.
 ## Links out to Spotify and YouTube (1.15.0)
 
 A favorite track could only be copied as text. A find button now sits next to the song that is
-playing, in both windows, and next to every favorite track and every entry in the play history,
+playing, in both windows, and next to every favorite track and every entry in the track history,
 with Spotify and YouTube behind it. Apple Music was deliberately left out: two services cover where
 the songs actually go, and each extra one is another row in a menu that has to stay a glance.
 

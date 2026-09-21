@@ -87,7 +87,7 @@
     <value>Stazioni</value>
   </data>
   <data name="PlayHistoryTab.Text" xml:space="preserve">
-    <value>Cronologia</value>
+    <value>Cronologia canzoni</value>
   </data>
   <data name="SettingsButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>Impostazioni</value>

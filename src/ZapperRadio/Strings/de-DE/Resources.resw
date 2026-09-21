@@ -87,7 +87,7 @@
     <value>Sender</value>
   </data>
   <data name="PlayHistoryTab.Text" xml:space="preserve">
-    <value>Wiedergabeverlauf</value>
+    <value>Songverlauf</value>
   </data>
   <data name="SettingsButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>Einstellungen</value>
@@ -159,16 +159,16 @@
     <value>Alles, was deine Favoriten in den letzten 12 Stunden gespielt haben, neueste zuerst, egal ob du sie gehört hast oder nicht. Klicke auf ein Herz, um einen Song zu behalten.</value>
   </data>
   <data name="ClearHistoryButton.ToolTipService.ToolTip" xml:space="preserve">
-    <value>Wiedergabeverlauf löschen</value>
+    <value>Songverlauf löschen</value>
   </data>
   <data name="ClearHistoryButton.AutomationProperties.Name" xml:space="preserve">
-    <value>Wiedergabeverlauf löschen</value>
+    <value>Songverlauf löschen</value>
   </data>
   <data name="HistorySearchBox.PlaceholderText" xml:space="preserve">
     <value>Nach Song, Interpret oder Sender suchen (Ctrl+F)</value>
   </data>
   <data name="HistorySearchBox.AutomationProperties.Name" xml:space="preserve">
-    <value>Wiedergabeverlauf durchsuchen</value>
+    <value>Songverlauf durchsuchen</value>
   </data>
   <data name="NoHistoryText.Text" xml:space="preserve">
     <value>Noch nichts gespielt. Sobald deine Favoriten streamen, wird hier jeder Song aufgelistet, den sie spielen.</value>

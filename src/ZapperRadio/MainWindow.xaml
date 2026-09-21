@@ -550,7 +550,7 @@
                         </ListView>
                     </Grid>
 
-                    <!-- Play history -->
+                    <!-- Track history -->
                     <Grid Grid.Row="1" Visibility="{x:Bind ViewModel.IsShowingPlayHistory, Mode=OneWay}">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />

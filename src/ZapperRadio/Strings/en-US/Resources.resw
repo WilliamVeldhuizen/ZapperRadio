@@ -87,7 +87,7 @@
     <value>Stations</value>
   </data>
   <data name="PlayHistoryTab.Text" xml:space="preserve">
-    <value>Play history</value>
+    <value>Track history</value>
   </data>
   <data name="SettingsButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>Settings</value>
@@ -159,16 +159,16 @@
     <value>Everything your favorites played over the last 12 hours, newest first, whether or not you were listening to them. Click a heart to keep a song.</value>
   </data>
   <data name="ClearHistoryButton.ToolTipService.ToolTip" xml:space="preserve">
-    <value>Clear the play history</value>
+    <value>Clear the track history</value>
   </data>
   <data name="ClearHistoryButton.AutomationProperties.Name" xml:space="preserve">
-    <value>Clear the play history</value>
+    <value>Clear the track history</value>
   </data>
   <data name="HistorySearchBox.PlaceholderText" xml:space="preserve">
     <value>Search by song, artist or station (Ctrl+F)</value>
   </data>
   <data name="HistorySearchBox.AutomationProperties.Name" xml:space="preserve">
-    <value>Search the play history</value>
+    <value>Search the track history</value>
   </data>
   <data name="NoHistoryText.Text" xml:space="preserve">
     <value>Nothing played yet. As soon as your favorites are streaming, every song they play is listed here.</value>

@@ -87,7 +87,7 @@
     <value>Rádios</value>
   </data>
   <data name="PlayHistoryTab.Text" xml:space="preserve">
-    <value>Histórico</value>
+    <value>Histórico de músicas</value>
   </data>
   <data name="SettingsButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>Configurações</value>

@@ -87,7 +87,7 @@
     <value>Zenders</value>
   </data>
   <data name="PlayHistoryTab.Text" xml:space="preserve">
-    <value>Afspeelgeschiedenis</value>
+    <value>Gedraaide nummers</value>
   </data>
   <data name="SettingsButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>Instellingen</value>
@@ -159,16 +159,16 @@
     <value>Alles wat je favorieten de afgelopen 12 uur hebben gedraaid, de nieuwste eerst, of je nu naar ze luisterde of niet. Klik op een hartje om een nummer te bewaren.</value>
   </data>
   <data name="ClearHistoryButton.ToolTipService.ToolTip" xml:space="preserve">
-    <value>Afspeelgeschiedenis wissen</value>
+    <value>Gedraaide nummers wissen</value>
   </data>
   <data name="ClearHistoryButton.AutomationProperties.Name" xml:space="preserve">
-    <value>Afspeelgeschiedenis wissen</value>
+    <value>Gedraaide nummers wissen</value>
   </data>
   <data name="HistorySearchBox.PlaceholderText" xml:space="preserve">
     <value>Zoek op nummer, artiest of zender (Ctrl+F)</value>
   </data>
   <data name="HistorySearchBox.AutomationProperties.Name" xml:space="preserve">
-    <value>Afspeelgeschiedenis doorzoeken</value>
+    <value>Gedraaide nummers doorzoeken</value>
   </data>
   <data name="NoHistoryText.Text" xml:space="preserve">
     <value>Nog niets afgespeeld. Zodra je favorieten streamen, staat hier elk nummer dat ze draaien.</value>

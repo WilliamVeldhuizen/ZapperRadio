@@ -87,7 +87,7 @@
     <value>放送局</value>
   </data>
   <data name="PlayHistoryTab.Text" xml:space="preserve">
-    <value>再生履歴</value>
+    <value>曲の履歴</value>
   </data>
   <data name="SettingsButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>設定</value>
@@ -159,16 +159,16 @@
     <value>聴いていたかどうかにかかわらず、お気に入りが過去 12 時間に流したすべての曲を新しい順に表示します。ハートをクリックすると曲を保存できます。</value>
   </data>
   <data name="ClearHistoryButton.ToolTipService.ToolTip" xml:space="preserve">
-    <value>再生履歴を消去</value>
+    <value>曲の履歴を消去</value>
   </data>
   <data name="ClearHistoryButton.AutomationProperties.Name" xml:space="preserve">
-    <value>再生履歴を消去</value>
+    <value>曲の履歴を消去</value>
   </data>
   <data name="HistorySearchBox.PlaceholderText" xml:space="preserve">
     <value>曲名、アーティスト、放送局で検索 (Ctrl+F)</value>
   </data>
   <data name="HistorySearchBox.AutomationProperties.Name" xml:space="preserve">
-    <value>再生履歴を検索</value>
+    <value>曲の履歴を検索</value>
   </data>
   <data name="NoHistoryText.Text" xml:space="preserve">
     <value>まだ何も再生されていません。お気に入りがストリーミングを始めると、流れた曲がすべてここに表示されます。</value>
