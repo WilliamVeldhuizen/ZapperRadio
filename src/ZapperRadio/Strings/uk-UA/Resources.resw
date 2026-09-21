@@ -462,10 +462,4 @@
   <data name="GoLiveButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>Знову грати цю станцію наживо, там, де зараз ефір</value>
   </data>
-  <data name="RestartSongButton.ToolTipService.ToolTip" xml:space="preserve">
-    <value>Відтворити цю пісню з початку</value>
-  </data>
-  <data name="RestartSongButton.AutomationProperties.Name" xml:space="preserve">
-    <value>Відтворити цю пісню з початку</value>
-  </data>
 </root>

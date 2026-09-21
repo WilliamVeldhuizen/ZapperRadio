@@ -293,27 +293,6 @@ public sealed class RadioEngine : IDisposable
         RaiseDelayChanged(force: true);
     }
 
-    /// <summary>Whether the station being listened to can be played back from the moment <paramref name="from"/>.</summary>
-    public bool CanReplay(DateTimeOffset from) => Active is { } active && FindPosition(active, from) is not null;
-
-    /// <summary>
-    /// Plays the station being listened to from the moment <paramref name="from"/> of its broadcast, also when it is
-    /// already played from its buffer. Does nothing when the buffer no longer holds that moment.
-    /// </summary>
-    public void Replay(DateTimeOffset from)
-    {
-        if (Active is not { } active || FindPosition(active, from) is not { } position)
-        {
-            return;
-        }
-
-        StopReplay();
-        active.IsMuted = true;
-        StartReplay(active, position);
-        ActiveChanged?.Invoke(this, EventArgs.Empty);
-        RaiseDelayChanged(force: true);
-    }
-
     public void Stop()
     {
         if (Active is null)

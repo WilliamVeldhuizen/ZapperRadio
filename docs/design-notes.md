@@ -233,15 +233,6 @@ picking a station means wanting what is on right now, and hearing a song you jus
 start over would be the surprise. So `MainViewModel.Play` calls `RadioEngine.Play` without a moment,
 and only `ZapOnAdBreak` passes one.
 
-One exception was added later, as an explicit action rather than a pick: the restart button next to the song in the now-playing
-bar plays the song being heard from its beginning (`RadioEngine.Replay`). It is not a pick of a
-station, so the zapper carries on as it was. Live, it starts where a zap to the station would land;
-behind the broadcast, `StreamTimeline.SongStartAt` walks back from the moment being heard through the
-moments of the same title that are still a song (on a station without titles that can reach back past
-the song before). It only shows while the buffer still holds that start,
-and **Go live** is the way back. It sits in the now-playing bar only, not on the favorites, where a
-click keeps meaning "what is on right now".
-
 The harder half is judging a station that is played behind its broadcast. Each `StationStream` records
 a `Core/Playback/StreamTimeline` of `StreamMoment`s (the title, the ad flags, the sound, the channel
 state) on every change, and `RadioEngine.HeardOf` returns the moment being heard rather than the live
@@ -270,8 +261,8 @@ The delay does not add up. It is at most the length of the song a zap landed in 
 buffer), every zap sets it anew rather than adding to it, and zapping back to the station after its
 break lands on its new song, which began only moments ago. What suffers is truly live content, such as
 the news on the hour, which is what the zapper leaves anyway, and **Go live** covers the times someone
-wants it. Recording a song from the buffer was left out deliberately: it hangs next to the zapper
-instead of making it better.
+wants it. Replaying what you just missed by hand, and recording a song from the buffer, were left out
+deliberately: they hang next to the zapper instead of making it better.
 
 What was accepted: the mark of a position is the time it came in, so the burst of audio a server sends
 on connect is dated a few seconds too late, and a reconnect in the middle of a replay makes the delay a

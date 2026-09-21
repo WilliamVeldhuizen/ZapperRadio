@@ -462,10 +462,4 @@
   <data name="GoLiveButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>从当前的直播位置重新直播此电台</value>
   </data>
-  <data name="RestartSongButton.ToolTipService.ToolTip" xml:space="preserve">
-    <value>从头播放这首歌</value>
-  </data>
-  <data name="RestartSongButton.AutomationProperties.Name" xml:space="preserve">
-    <value>从头播放这首歌</value>
-  </data>
 </root>

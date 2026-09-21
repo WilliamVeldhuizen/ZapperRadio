@@ -99,26 +99,6 @@ public sealed class StreamTimeline
         return found;
     }
 
-    /// <summary>
-    /// Where the song that plays at <paramref name="time"/> began, or null when no song plays then. What the sound does
-    /// within one song, such as a quiet intro, does not end it; another title or anything but a song does.
-    /// </summary>
-    public DateTimeOffset? SongStartAt(DateTimeOffset time)
-    {
-        var index = _entries.FindLastIndex(e => e.At <= time);
-        if (index < 0 || _entries[index].Moment is not { State: ChannelState.Song } song)
-        {
-            return null;
-        }
-
-        while (index > 0 && _entries[index - 1].Moment.State == ChannelState.Song && _entries[index - 1].Moment.Metadata == song.Metadata)
-        {
-            index--;
-        }
-
-        return _entries[index].At;
-    }
-
     /// <summary>When the stream next did something else after <paramref name="time"/>, or null when it has not since.</summary>
     public DateTimeOffset? NextChangeAfter(DateTimeOffset time)
     {
