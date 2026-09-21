@@ -27,6 +27,13 @@ The zapper is the identity of the app, so give it knobs:
 The rules belong in `AdBreakZapper` and `AppSettings`, the UI-free and fully tested core, so they
 are cheap to build and cheap to test.
 
+A note, not yet confirmed: an ad marker in the stream title counts from the moment it comes in, and
+is not dated back like a break heard as speech. Some stations send their titles 10 to 20 seconds
+ahead of the audio (see the song clock in the design notes). If a station sends its ad marker that
+far ahead too, the zap away from it still comes too early. Worth fixing only once a station is
+seen doing it; the fix would be to date the marker back to where the music stops, in
+`StreamTimeline.StartOf`.
+
 ## 2. Better search
 
 Finding a station among the ~52,000 in the list is where a new user starts, and it is what decides
