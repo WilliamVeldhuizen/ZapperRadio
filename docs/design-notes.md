@@ -10,8 +10,8 @@ A rolling 12-hour history of everything every favorite played, as a third tab ne
 and Favorite tracks, with the title tidied up (`TrackTitle`) and a heart per entry.
 
 It is deliberately a list of titles, not of audio. `PlayHistory` stores what the streams
-announced, which costs nothing beyond what the relay already reads, so the rewind and recording
-features on the roadmap still have to bring their own buffer; the two are not the same feature
+announced, which costs nothing beyond what the relay already reads, so the time-shift buffer on
+the roadmap still has to bring its own audio; the two are not the same feature
 at different resolutions.
 
 ## Lock screen, media keys and global hotkeys (1.11.0)
