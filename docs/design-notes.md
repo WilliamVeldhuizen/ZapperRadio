@@ -48,10 +48,11 @@ intro does not drag the level down. After about a minute of music (12 windows) i
 towards -14 LUFS, the level streaming services normalize to, clamped to -12..+6 dB.
 
 `StationStream` owns the estimate, so it survives a reconnect, and applies `volume * gain` to its
-own player; `RadioEngine` keeps the manual trims and the loudness measured in an earlier run,
-which `AppSettings` stores per station so the correction is there from the first second of the
-next run. The settings show the measurement per favorite with a slider for the manual trim, and a
-switch for the whole thing.
+own player; `RadioEngine` keeps the loudness measured in an earlier run, which `AppSettings` stores
+per station so the correction is there from the first second of the next run. The settings show
+the measurement per favorite with a button to measure again (`StationStream.Remeasure` starts a
+fresh histogram and keeps the old correction until it has a new estimate), and a switch for the
+whole thing.
 
 The one real limit is that `MediaPlayer.Volume` stops at 1, so a station that needs a boost cannot
 get one with the volume slider at the top.
@@ -103,3 +104,56 @@ go looking for one in the Store.
 The iTunes Search API that `TrackDurations` already calls could pin the exact track rather than a
 search, and would give an Apple Music link for free, but it costs a lookup per click and misses
 often enough that a search is the better answer for a radio title.
+
+## More languages (1.18.0)
+
+The station list is worldwide and most of its listeners do not read English, so the player speaks
+the language Windows is set to. There are ten: English, Chinese (simplified), Spanish, Portuguese
+(Brazil), French, German, Japanese, Ukrainian, Italian and Dutch: mostly the widest-spoken
+languages of the Windows desktop, with Dutch and Ukrainian chosen by request. Hindi and Bengali are
+spoken by more people but come after these, and Arabic and Urdu would first need the layout checked
+right to left. Adding a language is a folder of texts and a line in a list.
+
+`Strings\<language>\Resources.resw` holds every text. The XAML gets its texts through an `x:Uid` on
+each element, so `MainWindow.xaml` has no English left in it, and the texts built in code
+(`StatusTexts`, `SongTexts`, `LoudnessTexts`, the jump list, the error messages) go through
+`Localizer.Get` and `Localizer.Format`, one place that wraps the `ResourceLoader`. `Localizer.Use`
+runs first thing in the `MainViewModel` constructor, before the window is built from its XAML,
+because that is when the `x:Uid`s are looked up. It takes the language from `AppSettings.Language`
+and otherwise from the first language in the Windows list that the app has, with `nl-BE` and
+`pt-PT` falling under Dutch and Portuguese and traditional Chinese falling through to the next
+language rather than being shown in the wrong script.
+
+The language is chosen once and stays for the run. A window built from XAML and its bindings is not
+redrawn in another language, so the language box in the settings only says "restart to switch".
+That is also what made the two hard parts of the plan cheap: `MainViewModel.AllCountries` is an
+instance property set from the language at the start, and it is stored in the settings as `null`
+and never as text, so a country choice survives switching languages without needing a sentinel of
+its own. The dates and numbers, which were pinned to `en-US`, follow the language: `Localizer.Use`
+sets the current culture, and `FavoriteTrack`, `PlayedTrack` and the catalog line only ask for the
+short date and the clock. `Localizer.Use` also sets the culture of the threads that come later,
+which keeps the number formats of one window consistent.
+
+Two things were left out. The installer stayed English: at the time it was a WiX MSI, which is
+built per culture, and the release workflow publishes one file per architecture under a name the
+README links to, so translating it meant either an installer per language or the language
+transforms an MSI can carry, and neither was worth it for the handful of dialogs before the app is
+running. And the country and genre names come from the station list in English and stay that way;
+translating them is on the roadmap.
+
+## Updates with Velopack (1.19.0)
+
+`release.yml` runs `vpk pack` per architecture through `build-installer.ps1`, on the channels
+`win-x64` and `win-arm64`, after a `vpk download github` so the delta package can be made against
+the previous release. The release gets the two Setup files under fixed names for the README links,
+this version's packages, and the releases feeds, and `Updates/AppUpdater` reads those feeds from
+the GitHub releases, so an update is nothing more than a new release. The WiX MSI is gone.
+
+The app is installed per user in `%LOCALAPPDATA%\ZapperRadioApp`, apart from the settings in
+`%LOCALAPPDATA%\ZapperRadio`, because uninstalling deletes the whole install folder and the
+favorites should survive it.
+
+The price is the people who still have the MSI (up to 1.18): it installs for all users and has no
+update check, so they only learn about the change from the README and the website, and have to
+uninstall it by hand once. There is no migration step, and the app cannot see the old install from
+the new one.

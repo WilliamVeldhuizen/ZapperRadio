@@ -84,6 +84,7 @@ An app that is started from source (`dotnet run`) or copied around is not instal
 - `src/ZapperRadio.Core`: downloading and parsing the station list, search, playlist resolving, the local relay that reads song titles from the streams, the ad break and music/speech rules, the loudness measurement, and settings. No UI, fully tested.
 - `src/ZapperRadio`: WinUI app. `Playback/RadioEngine` manages the muted streams, `Playback/StationStream` is a single `MediaPlayer` with reconnect logic that also keeps the loudness of its station, `Playback/SoundClassifier` decodes the relayed audio (Media Foundation via NAudio), runs YAMNet with the ONNX Runtime that comes with the Windows App SDK and measures the loudness of the same samples, `Updates/AppUpdater` finds, downloads and installs new versions with Velopack (`ViewModels/MainViewModel.Updates.cs` schedules it and shows the result), `Shell` holds the taskbar jump list, the Windows media card and the global shortcuts, and `Localizer` picks the language and looks up the texts in `Strings`.
 - `tests/ZapperRadio.Core.Tests`: xUnit tests.
+- `docs/design-notes.md`: why the larger features work the way they do, per version. [ROADMAP.md](ROADMAP.md) holds what is not built yet.
 
 ## Privacy
 
