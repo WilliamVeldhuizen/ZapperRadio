@@ -190,7 +190,7 @@ instead of whatever sorts first by name. Ranking by the tags of your favorites w
 same empty list and left out: 36% of the stations in the rb2rs list have no tags at all, so it would
 push down many of the stations worth finding.
 
-## Time-shift buffer
+## Time-shift buffer (1.20.0)
 
 The weak spot of zapping was where it lands: on a favorite that plays a song, but on average about 90
 seconds into it. And the classifier heard a break on the live stream, so the first second or two of it
