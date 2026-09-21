@@ -161,10 +161,21 @@ list in English and stay that way, so the country box is the one part of the win
 follow the language. A mapping per language for the few dozen countries that matter would make it
 read like the rest of the window.
 
-## Suggested order
+## 9. Learn from the listeners: train the break detection locally, improve it together
 
-4 is next: it pairs with the media keys and is about a day. Then 1, because it is the feature that
-cannot be copied without also keeping every stream open.
+A large item for the longer term, and only worth starting once the app has users. The music, speech
+and ad break detection is YAMNet, a general sound classifier, with hand-written rules on top. Every
+station mixes its breaks differently, and a wrong call is exactly what makes the zapper annoying:
+zapped away in the middle of a song, or left listening to an ad.
 
-Production ready (6) runs alongside: crash logging (2) can start now, and signing (1) is what to do
-before the app is pointed at people who do not know the author.
+The listener is the one who notices, so let them say so: a zap that should not have happened, or a
+break that was missed, becomes a label on the audio around it. Locally, those labels train a small
+layer on top of YAMNet's output for that user's own stations, so the detection gets better on the PC
+it runs on without anything leaving it. Together, the labels that users choose to share become
+training data for the model that ships with the app, so every station someone corrected is recognized
+better for everyone.
+
+What needs deciding before it is built: sharing is opt-in and never the default; what is shared
+should be the labels with the classifier's numbers, not the audio itself, which is copyrighted and
+may contain people's voices; where it is collected and who can see it; and a section in `PRIVACY.md`
+for a request the app does not make today.
