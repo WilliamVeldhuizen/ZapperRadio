@@ -583,8 +583,9 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
     public void Play(Station station)
     {
         _lastPlayed = station;
-        // A favorite that plays a song starts at its beginning, like a zap does, when its buffer still holds it.
-        _engine.Play(station, _engine.Find(station.Url) is { } stream ? SongStartOf(stream) : null);
+        // A station picked by hand, with a click, a shortcut, a media key or the jump list, plays live: you chose what
+        // is on right now. Only the zapper starts a station at the beginning of its song.
+        _engine.Play(station);
         if (_engine.Active is { } active)
         {
             // Picking a station ends any zapping, and picking it during its ad break means you want to hear it anyway.

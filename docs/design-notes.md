@@ -218,6 +218,12 @@ as before, from its own player, so a zap there is still instant. `RadioEngine.De
 time the replay actually plays, so the seconds it spends opening or buffering show up as delay rather
 than being lost.
 
+Only the zapper starts a station at the beginning of its song. A station picked by hand, with a click,
+a shortcut, a media key or the jump list, plays live, even when its buffer holds the start of the song:
+picking a station means wanting what is on right now, and hearing a song you just clicked away from
+start over would be the surprise. So `MainViewModel.Play` calls `RadioEngine.Play` without a moment,
+and only `ZapOnAdBreak` passes one.
+
 The harder half is judging a station that is played behind its broadcast. Each `StationStream` records
 a `Core/Playback/StreamTimeline` of `StreamMoment`s (the title, the ad flags, the sound, the channel
 state) on every change, and `RadioEngine.HeardOf` returns the moment being heard rather than the live
