@@ -8,36 +8,14 @@ Nothing here is promised or scheduled; it is a working list. Items leave it once
 they do is then in the README, and why they work the way they do in
 [docs/design-notes.md](docs/design-notes.md).
 
-## 1. Ad markers that run ahead of the audio
-
-Not yet confirmed: an ad marker in the stream title counts from the moment it comes in, and
-is not dated back like a break heard as speech. Some stations send their titles 10 to 20 seconds
-ahead of the audio (see the song clock in the design notes). If a station sends its ad marker that
-far ahead too, the zap away from it still comes too early. Worth fixing only once a station is
-seen doing it; the fix would be to date the marker back to where the music stops, in
-`StreamTimeline.StartOf`.
-
-## 2. Better search
-
-Finding a station among the ~52,000 in the list is where a new user starts, and it is what decides
-which favorites the zapper gets to work with.
-
-- **Cluster the stations of one broadcaster.** Many stations come with a row of variants, such as the
-  non-stop or theme channels of a main station, which now show up as separate, near-identical rows.
-  Group them under the main station, which can be expanded to pick a variant.
-- **Preprocess the top stations per country.** `StationPopularity` now asks the radio-browser API for a
-  country's most clicked stations the moment the country is picked, and caches the answer for a day.
-  Preparing those rankings (the position and whatever else is worth showing) ahead of time would make
-  the first pick instant and let it work offline too.
-
-## 3. Tray icon and minimize to tray
+## 1. Tray icon and minimize to tray
 
 The app is built to keep running, yet it only lives in the taskbar. A tray icon showing the
 current song in its tooltip, left-click to mute and unmute, right-click for the favorites (the
 same content as `TaskbarJumpList` builds) and a "close to tray" option turn it into a background
 app instead of a window. Pairs with the media keys and the global hotkeys of 1.11.0.
 
-## 4. Guided tour on first launch
+## 2. Guided tour on first launch
 
 A first-time window is a grid of stations and an empty favorites list, with nothing that says what
 makes this player different from any other. A short, dismissable tour on the very first launch -
@@ -51,7 +29,7 @@ it never shows again and never blocks a settings-file-less fresh install from be
 one either. A "show the tour again" entry in settings covers the case of an update landing a new
 tour step later.
 
-## 5. Production ready
+## 3. Production ready
 
 No new features: this is the work that makes what exists safe to ship to people who cannot ask the author
 what went wrong. Ranked by payoff per effort. Auto-update and its release pipeline are built (1.19.0).
@@ -104,13 +82,35 @@ what went wrong. Ranked by payoff per effort. Auto-update and its release pipeli
    on x64, including the auto-start entry. `vpk pack` leaves out the PDBs by default; keep them as release
    artifacts, so a stack trace from a crash can be read.
 
-## 6. Bandwidth and power guard
+## 4. Bandwidth and power guard
 
 The permanent 2 to 6 Mbit/s of background streaming is the one real cost of the design. An eco
 mode keeps only the top few favorites open on a metered connection or on battery below a set
 percentage, and re-opens the rest on Wi-Fi or AC power. A live "currently using about 3.2 Mbit/s"
 readout in the settings makes the cost visible instead of implied. Uses `NetworkInformation` and
 the system power status, mostly inside `RadioEngine`.
+
+## 5. Ad markers that run ahead of the audio
+
+Not yet confirmed: an ad marker in the stream title counts from the moment it comes in, and
+is not dated back like a break heard as speech. Some stations send their titles 10 to 20 seconds
+ahead of the audio (see the song clock in the design notes). If a station sends its ad marker that
+far ahead too, the zap away from it still comes too early. Worth fixing only once a station is
+seen doing it; the fix would be to date the marker back to where the music stops, in
+`StreamTimeline.StartOf`.
+
+## 6. Better search
+
+Finding a station among the ~52,000 in the list is where a new user starts, and it is what decides
+which favorites the zapper gets to work with.
+
+- **Cluster the stations of one broadcaster.** Many stations come with a row of variants, such as the
+  non-stop or theme channels of a main station, which now show up as separate, near-identical rows.
+  Group them under the main station, which can be expanded to pick a variant.
+- **Preprocess the top stations per country.** `StationPopularity` now asks the radio-browser API for a
+  country's most clicked stations the moment the country is picked, and caches the answer for a day.
+  Preparing those rankings (the position and whatever else is worth showing) ahead of time would make
+  the first pick instant and let it work offline too.
 
 ## 7. Translated country and genre names
 
