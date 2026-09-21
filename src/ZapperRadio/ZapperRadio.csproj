@@ -21,7 +21,7 @@
     <DefineConstants>$(DefineConstants);DISABLE_XAML_GENERATED_MAIN</DefineConstants>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <Version>1.20.0</Version>
+    <Version>1.20.1</Version>
     <DefaultLanguage>en-US</DefaultLanguage>
     <Product>ZapperRadio</Product>
     <!-- Shown in the file properties of ZapperRadio.exe; the title is what Task Manager and the firewall call the app. -->
