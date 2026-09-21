@@ -43,22 +43,7 @@ setting (2, 5 or 10 minutes) with the estimated memory next to it.
 Replaying what you just missed, by hand, and recording a song from the buffer are deliberately left
 out: they hang next to the zapper instead of making it better.
 
-## 2. Tray icon and minimize to tray
-
-The app is built to keep running, yet it only lives in the taskbar. A tray icon showing the
-current song in its tooltip, left-click to mute and unmute, right-click for the favorites (the
-same content as `TaskbarJumpList` builds) and a "close to tray" option turn it into a background
-app instead of a window. Pairs with the media keys and the global hotkeys of 1.11.0.
-
-## 3. Bandwidth and power guard
-
-The permanent 2 to 6 Mbit/s of background streaming is the one real cost of the design. An eco
-mode keeps only the top few favorites open on a metered connection or on battery below a set
-percentage, and re-opens the rest on Wi-Fi or AC power. A live "currently using about 3.2 Mbit/s"
-readout in the settings makes the cost visible instead of implied. Uses `NetworkInformation` and
-the system power status, mostly inside `RadioEngine`.
-
-## 4. Smarter zap rules
+## 2. Smarter zap rules
 
 The zapper is the identity of the app, so give it knobs:
 
@@ -70,14 +55,14 @@ The zapper is the identity of the app, so give it knobs:
 All of this belongs in `AdBreakZapper` and `AppSettings`, the UI-free and fully tested core, so it
 is cheap to build and cheap to test.
 
-## 5. Translated country and genre names
+## 3. Tray icon and minimize to tray
 
-The app speaks ten languages since 1.18.0, but the country and genre names come from the station
-list in English and stay that way, so the country box is the one part of the window that does not
-follow the language. A mapping per language for the few dozen countries that matter would make it
-read like the rest of the window.
+The app is built to keep running, yet it only lives in the taskbar. A tray icon showing the
+current song in its tooltip, left-click to mute and unmute, right-click for the favorites (the
+same content as `TaskbarJumpList` builds) and a "close to tray" option turn it into a background
+app instead of a window. Pairs with the media keys and the global hotkeys of 1.11.0.
 
-## 6. Guided tour on first launch
+## 4. Guided tour on first launch
 
 A first-time window is a grid of stations and an empty favorites list, with nothing that says what
 makes this player different from any other. A short, dismissable tour on the very first launch -
@@ -91,7 +76,7 @@ it never shows again and never blocks a settings-file-less fresh install from be
 one either. A "show the tour again" entry in settings covers the case of an update landing a new
 tour step later.
 
-## 7. Production ready
+## 5. Production ready
 
 No new features: this is the work that makes what exists safe to ship to people who cannot ask the author
 what went wrong. Ranked by payoff per effort. Auto-update and its release pipeline are built (1.19.0).
@@ -144,10 +129,25 @@ what went wrong. Ranked by payoff per effort. Auto-update and its release pipeli
    on x64, including the auto-start entry. `vpk pack` leaves out the PDBs by default; keep them as release
    artifacts, so a stack trace from a crash can be read.
 
+## 6. Bandwidth and power guard
+
+The permanent 2 to 6 Mbit/s of background streaming is the one real cost of the design. An eco
+mode keeps only the top few favorites open on a metered connection or on battery below a set
+percentage, and re-opens the rest on Wi-Fi or AC power. A live "currently using about 3.2 Mbit/s"
+readout in the settings makes the cost visible instead of implied. Uses `NetworkInformation` and
+the system power status, mostly inside `RadioEngine`.
+
+## 7. Translated country and genre names
+
+The app speaks ten languages since 1.18.0, but the country and genre names come from the station
+list in English and stay that way, so the country box is the one part of the window that does not
+follow the language. A mapping per language for the few dozen countries that matter would make it
+read like the rest of the window.
+
 ## Suggested order
 
-2 is next: it pairs with the media keys and is about a day. Then 1, because it is the feature that
+3 is next: it pairs with the media keys and is about a day. Then 1, because it is the feature that
 cannot be copied without also keeping every stream open.
 
-Production ready (7) runs alongside: crash logging (2) can start now, and signing (1) is what to do
+Production ready (5) runs alongside: crash logging (2) can start now, and signing (1) is what to do
 before the app is pointed at people who do not know the author.
