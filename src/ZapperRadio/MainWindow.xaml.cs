@@ -279,7 +279,6 @@ public sealed partial class MainWindow : Window
     private async void Settings_Click(object sender, RoutedEventArgs e)
     {
         ViewModel.RefreshCacheSummary();
-        ViewModel.RefreshTimeShiftMemory();
         SettingsDialog.XamlRoot = Root.XamlRoot;
         await SettingsDialog.ShowAsync();
     }

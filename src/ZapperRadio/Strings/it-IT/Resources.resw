@@ -435,23 +435,11 @@
   <data name="UpdateNoticeTitle" xml:space="preserve">
     <value>La versione {0} di ZapperRadio è pronta</value>
   </data>
-  <data name="TimeShiftHeading.Text" xml:space="preserve">
-    <value>Differita</value>
-  </data>
-  <data name="TimeShiftText.Text" xml:space="preserve">
-    <value>Uno zap finisce su una stazione che trasmette una canzone, ma di solito a metà. Per questo vengono conservati gli ultimi minuti di ogni preferito, e uno zap fa partire la canzone dell&apos;altra stazione dall&apos;inizio. Così anche una pausa viene tagliata proprio dove comincia, perché è nota prima di essere sentita. Il prezzo è che ascolti un po&apos; in ritardo sulla trasmissione: al massimo la durata della canzone su cui è finito uno zap, fissata di nuovo a ogni zap, e In diretta recupera subito. Disattivata riproduce ogni stazione in diretta.</value>
-  </data>
   <data name="TimeShiftBox.AutomationProperties.Name" xml:space="preserve">
     <value>Differita</value>
   </data>
-  <data name="TimeShiftOff" xml:space="preserve">
-    <value>Disattivata</value>
-  </data>
   <data name="TimeShiftMinutes" xml:space="preserve">
     <value>{0} minuti</value>
-  </data>
-  <data name="TimeShiftMemory" xml:space="preserve">
-    <value>Circa {0} MB di memoria per tutti i preferiti insieme.</value>
   </data>
   <data name="NowPlayingBehindLive" xml:space="preserve">
     <value>{0} dietro la diretta</value>
@@ -497,5 +485,23 @@
   </data>
   <data name="NoZapTargetsText.Text" xml:space="preserve">
     <value>Ancora nessun preferito. Aggiungi stazioni ai preferiti per scegliere dove può andare lo zapper.</value>
+  </data>
+  <data name="ZapToSongStartHeading.Text" xml:space="preserve">
+    <value>Zapping all’inizio del brano</value>
+  </data>
+  <data name="ZapToSongStartText.Text" xml:space="preserve">
+    <value>Uno zapping arriva su una stazione che sta suonando un brano, di solito a metà. Per far partire quel brano dall’inizio, gli ultimi minuti di ogni preferito vengono tenuti in memoria (un buffer di time-shift). Così anche una pausa viene tagliata esattamente dove inizia, perché è nota prima di essere ascoltata. Ascolti quindi un po’ in ritardo rispetto alla trasmissione, al massimo la durata del brano su cui è arrivato uno zapping, e In diretta recupera subito. Disattivato, non viene tenuto alcun buffer e la sua memoria viene liberata: ogni stazione suona in diretta e uno zapping arriva dove si trova il brano.</value>
+  </data>
+  <data name="ZapToSongStartCheckBox.Content" xml:space="preserve">
+    <value>Fai partire il brano dall’inizio durante lo zapping</value>
+  </data>
+  <data name="TimeShiftMemory" xml:space="preserve">
+    <value>Usa circa {0} MB di memoria per i tuoi {1} preferiti. Tenere meno minuti, o disattivare l’opzione, fa risparmiare memoria.</value>
+  </data>
+  <data name="TimeShiftMemoryOff" xml:space="preserve">
+    <value>Disattivato, quindi non usa memoria. Attivato, occuperebbe circa {0} MB per i tuoi {1} preferiti.</value>
+  </data>
+  <data name="TimeShiftMemoryPerFavorite" xml:space="preserve">
+    <value>Occupa circa {0} MB di memoria per preferito, per una stazione a 128 kbit/s.</value>
   </data>
 </root>

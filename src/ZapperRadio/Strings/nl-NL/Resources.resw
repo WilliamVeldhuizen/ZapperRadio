@@ -435,23 +435,11 @@
   <data name="UpdateNoticeTitle" xml:space="preserve">
     <value>ZapperRadio {0} staat klaar</value>
   </data>
-  <data name="TimeShiftHeading.Text" xml:space="preserve">
-    <value>Uitgesteld luisteren</value>
-  </data>
-  <data name="TimeShiftText.Text" xml:space="preserve">
-    <value>Een zap komt uit op een zender die een nummer speelt, maar meestal halverwege. Daarom worden de laatste minuten van elke favoriet bewaard, en begint een zap het nummer op de andere zender bij het begin. Zo wordt een blok ook precies op zijn begin weggeknipt, want het blok is al bekend voordat het te horen is. De prijs is dat je iets achter de uitzending luistert: hoogstens de lengte van het nummer waarop een zap uitkwam, bij elke zap opnieuw bepaald, en Live haalt het meteen in. Uit speelt elke zender live.</value>
-  </data>
   <data name="TimeShiftBox.AutomationProperties.Name" xml:space="preserve">
     <value>Uitgesteld luisteren</value>
   </data>
-  <data name="TimeShiftOff" xml:space="preserve">
-    <value>Uit</value>
-  </data>
   <data name="TimeShiftMinutes" xml:space="preserve">
     <value>{0} minuten</value>
-  </data>
-  <data name="TimeShiftMemory" xml:space="preserve">
-    <value>Ongeveer {0} MB geheugen voor de favorieten samen.</value>
   </data>
   <data name="NowPlayingBehindLive" xml:space="preserve">
     <value>{0} achter live</value>
@@ -497,5 +485,23 @@
   </data>
   <data name="NoZapTargetsText.Text" xml:space="preserve">
     <value>Nog geen favorieten. Voeg zenders toe aan je favorieten om te kiezen waar de zapper heen mag.</value>
+  </data>
+  <data name="ZapToSongStartHeading.Text" xml:space="preserve">
+    <value>Zappen naar het begin van het nummer</value>
+  </data>
+  <data name="ZapToSongStartText.Text" xml:space="preserve">
+    <value>Een zap landt op een zender die een nummer speelt, meestal halverwege. Om dat nummer in plaats daarvan vanaf het begin te laten horen, worden de laatste minuten van elke favoriet in het geheugen bewaard (een time-shift-buffer). Daardoor wordt een blok ook precies afgekapt waar het begint, omdat het bekend is voordat je het hoort. Je luistert dan iets achter de uitzending, hooguit de lengte van het nummer waarin een zap landde, en Live haalt dat meteen in. Uitgeschakeld worden er geen buffers bewaard en komt hun geheugen vrij: elke zender speelt live en een zap landt waar het nummer op dat moment is.</value>
+  </data>
+  <data name="ZapToSongStartCheckBox.Content" xml:space="preserve">
+    <value>Het nummer bij het zappen vanaf het begin laten horen</value>
+  </data>
+  <data name="TimeShiftMemory" xml:space="preserve">
+    <value>Gebruikt ongeveer {0} MB geheugen voor je {1} favorieten. Minder minuten bewaren, of dit uitschakelen, bespaart geheugen.</value>
+  </data>
+  <data name="TimeShiftMemoryOff" xml:space="preserve">
+    <value>Uit, dus het gebruikt geen geheugen. Ingeschakeld zou het ongeveer {0} MB kosten voor je {1} favorieten.</value>
+  </data>
+  <data name="TimeShiftMemoryPerFavorite" xml:space="preserve">
+    <value>Kost ongeveer {0} MB geheugen per favoriet, voor een zender van 128 kbit/s.</value>
   </data>
 </root>

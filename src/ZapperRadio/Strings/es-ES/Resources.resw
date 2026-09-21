@@ -435,23 +435,11 @@
   <data name="UpdateNoticeTitle" xml:space="preserve">
     <value>La versión {0} de ZapperRadio está lista</value>
   </data>
-  <data name="TimeShiftHeading.Text" xml:space="preserve">
-    <value>Diferido</value>
-  </data>
-  <data name="TimeShiftText.Text" xml:space="preserve">
-    <value>Un zapeo cae en una emisora que está poniendo una canción, pero normalmente a mitad. Por eso se guardan los últimos minutos de cada favorito, y un zapeo empieza la canción de la otra emisora desde el principio. Así también se corta una pausa justo donde empieza, porque se conoce antes de oírse. El precio es que escuchas un poco por detrás de la emisión: como mucho la duración de la canción en la que cayó un zapeo, fijada de nuevo con cada zapeo, y En directo se pone al día al instante. Desactivado pone cada emisora en directo.</value>
-  </data>
   <data name="TimeShiftBox.AutomationProperties.Name" xml:space="preserve">
     <value>Diferido</value>
   </data>
-  <data name="TimeShiftOff" xml:space="preserve">
-    <value>Desactivado</value>
-  </data>
   <data name="TimeShiftMinutes" xml:space="preserve">
     <value>{0} minutos</value>
-  </data>
-  <data name="TimeShiftMemory" xml:space="preserve">
-    <value>Unos {0} MB de memoria para todos los favoritos juntos.</value>
   </data>
   <data name="NowPlayingBehindLive" xml:space="preserve">
     <value>{0} por detrás del directo</value>
@@ -497,5 +485,23 @@
   </data>
   <data name="NoZapTargetsText.Text" xml:space="preserve">
     <value>Aún no hay favoritos. Añade emisoras a tus favoritos para elegir adónde puede ir el zapeador.</value>
+  </data>
+  <data name="ZapToSongStartHeading.Text" xml:space="preserve">
+    <value>Zapear al inicio de la canción</value>
+  </data>
+  <data name="ZapToSongStartText.Text" xml:space="preserve">
+    <value>Un zapeo llega a una emisora que está sonando una canción, normalmente a mitad. Para que esa canción empiece desde el principio, se guardan en memoria los últimos minutos de cada favorito (un búfer de diferido). Así una pausa también se corta justo donde empieza, porque se conoce antes de oírse. Escuchas entonces un poco por detrás de la emisión, como mucho la duración de la canción a la que llegó un zapeo, y En directo se pone al día al instante. Desactivado, no se guarda ningún búfer y se libera su memoria: cada emisora suena en directo y un zapeo llega donde vaya la canción.</value>
+  </data>
+  <data name="ZapToSongStartCheckBox.Content" xml:space="preserve">
+    <value>Empezar la canción desde el principio al zapear</value>
+  </data>
+  <data name="TimeShiftMemory" xml:space="preserve">
+    <value>Usa unos {0} MB de memoria para tus {1} favoritos. Guardar menos minutos, o desactivar esta opción, ahorra memoria.</value>
+  </data>
+  <data name="TimeShiftMemoryOff" xml:space="preserve">
+    <value>Desactivado, así que no usa memoria. Activado, ocuparía unos {0} MB para tus {1} favoritos.</value>
+  </data>
+  <data name="TimeShiftMemoryPerFavorite" xml:space="preserve">
+    <value>Ocupa unos {0} MB de memoria por favorito, para una emisora de 128 kbit/s.</value>
   </data>
 </root>

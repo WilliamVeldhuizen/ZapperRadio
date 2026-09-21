@@ -92,7 +92,7 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
         Languages = [new AppLanguage(null, Localizer.Get("LanguageWindows")), .. Localizer.Languages];
         _startedWithLanguage = (Languages.FirstOrDefault(l => l.Tag == _settings.Language) ?? Languages[0]).Tag;
         TimeShiftOptions = AppSettings.TimeShiftChoices
-            .Select(m => new TimeShiftOption(m, m == 0 ? Localizer.Get("TimeShiftOff") : Localizer.Format("TimeShiftMinutes", m)))
+            .Select(m => new TimeShiftOption(m, Localizer.Format("TimeShiftMinutes", m)))
             .ToList();
 
         _cacheFolder = Path.Combine(dataFolder, "cache");
@@ -116,7 +116,7 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
         // Before the first stream is opened, so a station starts at the loudness it was measured at last time,
         // and its buffer is made the length it will keep.
         _engine.NormalizeLoudness = _settings.NormalizeLoudness;
-        _engine.TimeShift = TimeSpan.FromMinutes(AppSettings.TimeShiftChoices.Contains(_settings.TimeShiftMinutes) ? _settings.TimeShiftMinutes : 5);
+        _engine.TimeShift = TimeSpan.FromMinutes(_settings.ZapToSongStart ? _settings.TimeShiftMinutes : 0);
 
         // Fires when what is heard of a station played from its buffer changes, which is not when its live stream changes.
         _heardTimer = dispatcher.CreateTimer();
@@ -189,7 +189,9 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
         CrossfadeZaps = _settings.CrossfadeZaps;
         UpdateNeverZapTo();
         NormalizeLoudness = _settings.NormalizeLoudness;
-        SelectedTimeShift = TimeShiftOptions.FirstOrDefault(o => o.Minutes == (int)_engine.TimeShift.TotalMinutes) ?? TimeShiftOptions[0];
+        // The switch first: the length only applies to the engine once it is chosen, so it is applied once, as set.
+        ZapToSongStart = _settings.ZapToSongStart;
+        SelectedTimeShift = TimeShiftOptions.FirstOrDefault(o => o.Minutes == _settings.TimeShiftMinutes) ?? TimeShiftOptions[1];
         GlobalHotkeys = _settings.GlobalHotkeys;
         IsCompact = _settings.IsCompact;
         SelectedLanguage = Languages.FirstOrDefault(l => l.Tag == _settings.Language) ?? Languages[0];
@@ -286,6 +288,14 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
 
     public bool IsShowingZapper => SelectedTab == MainTab.Zapper;
 
+    partial void OnSelectedTabChanged(MainTab value)
+    {
+        if (value == MainTab.Zapper)
+        {
+            RefreshTimeShiftMemory();
+        }
+    }
+
     public bool IsShowingFavoriteTracks => SelectedTab == MainTab.FavoriteTracks;
 
     public bool IsShowingPlayHistory => SelectedTab == MainTab.PlayHistory;
@@ -379,11 +389,15 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
     /// <summary>The lengths the time-shift buffer can be set to, as the settings name them.</summary>
     public IReadOnlyList<TimeShiftOption> TimeShiftOptions { get; }
 
+    /// <summary>Whether a zap starts the song on the other station from its beginning, which keeps a buffer of every favorite.</summary>
+    [ObservableProperty]
+    public partial bool ZapToSongStart { get; set; } = true;
+
     /// <summary>How much of every favorite is kept, so a zap can start the song on the other station from its beginning.</summary>
     [ObservableProperty]
     public partial TimeShiftOption? SelectedTimeShift { get; set; }
 
-    /// <summary>What the chosen buffer length costs in memory for the favorites, as the settings show it.</summary>
+    /// <summary>What the buffers take in memory for the favorites, or would take when switched on, as the Zapper tab shows it.</summary>
     [ObservableProperty]
     public partial string TimeShiftMemory { get; set; } = "";
 
@@ -958,30 +972,42 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
         SaveSettings();
     }
 
-    partial void OnSelectedTimeShiftChanged(TimeShiftOption? value)
+    partial void OnZapToSongStartChanged(bool value) => ApplyTimeShift();
+
+    partial void OnSelectedTimeShiftChanged(TimeShiftOption? value) => ApplyTimeShift();
+
+    /// <summary>Keeps the buffers the switch and the length ask for; switched off, the memory they took is freed.</summary>
+    private void ApplyTimeShift()
     {
-        if (value is null)
+        if (SelectedTimeShift is not { } length)
         {
             return;
         }
 
-        _settings.TimeShiftMinutes = value.Minutes;
-        _engine.TimeShift = TimeSpan.FromMinutes(value.Minutes);
+        _settings.ZapToSongStart = ZapToSongStart;
+        _settings.TimeShiftMinutes = length.Minutes;
+        _engine.TimeShift = TimeSpan.FromMinutes(ZapToSongStart ? length.Minutes : 0);
         RefreshTimeShiftMemory();
         SaveSettings();
     }
 
     /// <summary>
-    /// Works out what the chosen buffer length costs for the favorites; called each time the settings are opened,
-    /// because the bitrates are only known once the stations have answered.
+    /// Works out what the buffers take for the favorites, or would take when switched on. Called whenever the Zapper
+    /// tab is shown and the favorites change, because the bitrates are only known once the stations have answered.
     /// </summary>
     public void RefreshTimeShiftMemory()
     {
-        var minutes = SelectedTimeShift?.Minutes ?? 0;
-        var megabytes = _engine.BufferBytes(TimeSpan.FromMinutes(minutes)) / (1024.0 * 1024);
-        TimeShiftMemory = minutes == 0 || Favorites.Count == 0
-            ? ""
-            : Localizer.Format("TimeShiftMemory", Math.Max(1, Math.Round(megabytes)));
+        var length = TimeSpan.FromMinutes(SelectedTimeShift?.Minutes ?? 5);
+        if (Favorites.Count == 0)
+        {
+            // Nothing to add up yet, so what one favorite takes at the most common bitrate.
+            var perFavorite = TimeShiftBuffer.CapacityFor(length, 128) / (1024.0 * 1024);
+            TimeShiftMemory = Localizer.Format("TimeShiftMemoryPerFavorite", Math.Round(perFavorite, 1));
+            return;
+        }
+
+        var megabytes = Math.Max(1, Math.Round(_engine.BufferBytes(length) / (1024.0 * 1024)));
+        TimeShiftMemory = Localizer.Format(ZapToSongStart ? "TimeShiftMemory" : "TimeShiftMemoryOff", megabytes, Favorites.Count);
     }
 
     /// <summary>The loudness button of the settings: every favorite measures its music again and corrects itself to the result.</summary>
@@ -1243,6 +1269,7 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
 
         RefreshFavoriteMarks();
         UpdateLoudnessTexts();
+        RefreshTimeShiftMemory();
         UpdateNowPlaying();
         ScheduleJumpListUpdate();
         SaveSettings();

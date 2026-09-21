@@ -36,14 +36,34 @@ public sealed class AppSettings
     /// <summary>Whether every station is brought to the same loudness, so zapping does not change the volume.</summary>
     public bool NormalizeLoudness { get; set; } = true;
 
-    /// <summary>The lengths the time-shift buffer can be set to, in minutes; 0 plays every station live.</summary>
-    public static readonly IReadOnlyList<int> TimeShiftChoices = [0, 2, 5, 10];
+    /// <summary>The lengths the time-shift buffer can be set to, in minutes.</summary>
+    public static readonly IReadOnlyList<int> TimeShiftChoices = [2, 5, 10];
 
     /// <summary>
-    /// How many minutes of every favorite are kept, so a zap can start the song on the other station from its
-    /// beginning. Five covers nearly every song a zap lands in.
+    /// Whether a zap starts the song on the other station from its beginning, which takes a time-shift buffer of
+    /// <see cref="TimeShiftMinutes"/> for every favorite. Off keeps no buffers at all and plays every station live.
+    /// </summary>
+    public bool ZapToSongStart { get; set; } = true;
+
+    /// <summary>
+    /// How many minutes of every favorite are kept while <see cref="ZapToSongStart"/> is on. Five covers nearly every
+    /// song a zap lands in. Older versions stored 0 here for off, which <see cref="Upgrade"/> turns into the switch.
     /// </summary>
     public int TimeShiftMinutes { get; set; } = 5;
+
+    /// <summary>Brings a settings file written by an older version in line with this one.</summary>
+    public void Upgrade()
+    {
+        if (TimeShiftMinutes == 0)
+        {
+            ZapToSongStart = false;
+        }
+
+        if (!TimeShiftChoices.Contains(TimeShiftMinutes))
+        {
+            TimeShiftMinutes = 5;
+        }
+    }
 
     /// <summary>
     /// The loudness in LUFS measured per station, by stream URL, so the correction applies from the first second
@@ -106,7 +126,9 @@ public sealed class SettingsStore(string path)
             if (File.Exists(path))
             {
                 using var stream = File.OpenRead(path);
-                return JsonSerializer.Deserialize(stream, SettingsJsonContext.Default.AppSettings) ?? new AppSettings();
+                var settings = JsonSerializer.Deserialize(stream, SettingsJsonContext.Default.AppSettings) ?? new AppSettings();
+                settings.Upgrade();
+                return settings;
             }
         }
         catch (Exception ex) when (ex is IOException or JsonException or UnauthorizedAccessException)

@@ -305,3 +305,13 @@ not eat the fade. The station's own player fades through `StationStream.Fade`, w
 the volume the loudness correction sets. Anything else that changes what is heard (a pick by hand,
 stopping, the favorites or the buffer length changing) finishes a fade that is still going on at once.
 Picks by hand never fade: they are meant to be instant.
+
+**Zap to the start of the song.** The time-shift buffer used to be a length in the settings dialog, with
+"off" as one of the lengths. It is now a switch on the Zapper tab (`AppSettings.ZapToSongStart`) with the
+length beside it, because it is really a choice about how a zap lands, and because its cost should be
+seen where the choice is made. The tab always says what the buffers take for the favorites, from the
+bitrate each station announced, and when the switch is off, what they would take if it were on. Off sets
+`RadioEngine.TimeShift` to zero, which replaces every ring with an empty one, so the memory is freed at
+once rather than at the next start. Settings files from before stored 0 minutes for off;
+`AppSettings.Upgrade` turns that into the switch and gives it the default length of 5 minutes for when it
+is switched on again.

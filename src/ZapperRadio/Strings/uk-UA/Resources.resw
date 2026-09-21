@@ -435,23 +435,11 @@
   <data name="UpdateNoticeTitle" xml:space="preserve">
     <value>Версія {0} ZapperRadio готова</value>
   </data>
-  <data name="TimeShiftHeading.Text" xml:space="preserve">
-    <value>Зсув у часі</value>
-  </data>
-  <data name="TimeShiftText.Text" xml:space="preserve">
-    <value>Перемикання потрапляє на станцію, де грає пісня, але зазвичай на її середину. Тому останні хвилини кожної вибраної станції зберігаються, і перемикання запускає пісню на іншій станції з початку. Так само перерва відрізається саме там, де починається, бо про неї відомо ще до того, як її чути. Ціна в тому, що ви слухаєте трохи позаду ефіру: щонайбільше тривалість пісні, на яку потрапило перемикання, щоразу заново, а кнопка «Наживо» одразу наздоганяє. «Вимкнено» грає кожну станцію наживо.</value>
-  </data>
   <data name="TimeShiftBox.AutomationProperties.Name" xml:space="preserve">
     <value>Зсув у часі</value>
   </data>
-  <data name="TimeShiftOff" xml:space="preserve">
-    <value>Вимкнено</value>
-  </data>
   <data name="TimeShiftMinutes" xml:space="preserve">
     <value>{0} хв</value>
-  </data>
-  <data name="TimeShiftMemory" xml:space="preserve">
-    <value>Близько {0} МБ пам&apos;яті для всіх вибраних станцій разом.</value>
   </data>
   <data name="NowPlayingBehindLive" xml:space="preserve">
     <value>{0} позаду ефіру</value>
@@ -497,5 +485,23 @@
   </data>
   <data name="NoZapTargetsText.Text" xml:space="preserve">
     <value>Обраних станцій ще немає. Додайте станції до обраних, щоб вибрати, куди може перемикати запер.</value>
+  </data>
+  <data name="ZapToSongStartHeading.Text" xml:space="preserve">
+    <value>Перемикати на початок пісні</value>
+  </data>
+  <data name="ZapToSongStartText.Text" xml:space="preserve">
+    <value>Перемикання потрапляє на станцію, що грає пісню, зазвичай посередині. Щоб ця пісня звучала з початку, останні хвилини кожної обраної станції зберігаються в пам’яті (буфер зсуву в часі). Так і пауза обривається саме там, де починається, бо про неї відомо ще до того, як її чути. Тоді ви слухаєте трохи із запізненням, щонайбільше на довжину пісні, на яку потрапило перемикання, а Наживо одразу наздоганяє. Якщо вимкнути, буфери не зберігаються і їхня пам’ять звільняється: кожна станція грає наживо, а перемикання потрапляє туди, де зараз пісня.</value>
+  </data>
+  <data name="ZapToSongStartCheckBox.Content" xml:space="preserve">
+    <value>Під час перемикання починати пісню з початку</value>
+  </data>
+  <data name="TimeShiftMemory" xml:space="preserve">
+    <value>Використовує близько {0} МБ пам’яті для ваших обраних станцій ({1}). Менше хвилин або вимкнення цієї функції заощаджує пам’ять.</value>
+  </data>
+  <data name="TimeShiftMemoryOff" xml:space="preserve">
+    <value>Вимкнено, тож пам’ять не використовується. Якщо ввімкнути, це займе близько {0} МБ для ваших обраних станцій ({1}).</value>
+  </data>
+  <data name="TimeShiftMemoryPerFavorite" xml:space="preserve">
+    <value>Займає близько {0} МБ пам’яті на одну обрану станцію з бітрейтом 128 кбіт/с.</value>
   </data>
 </root>

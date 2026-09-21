@@ -363,6 +363,30 @@
                             </StackPanel>
 
                             <StackPanel Spacing="2">
+                                <TextBlock x:Uid="ZapToSongStartHeading" Style="{StaticResource BodyStrongTextBlockStyle}" />
+                                <TextBlock
+                                    x:Uid="ZapToSongStartText"
+                                    Style="{StaticResource CaptionTextBlockStyle}"
+                                    Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                                    TextWrapping="Wrap" />
+                                <CheckBox x:Uid="ZapToSongStartCheckBox" Margin="0,4,0,0" IsChecked="{x:Bind ViewModel.ZapToSongStart, Mode=TwoWay}" />
+                                <!-- The length matters only while it is on, but stays visible so the cost of switching it on can be read. -->
+                                <StackPanel Margin="28,0,0,0" Spacing="4">
+                                    <ComboBox
+                                        x:Uid="TimeShiftBox"
+                                        MinWidth="180"
+                                        IsEnabled="{x:Bind ViewModel.ZapToSongStart, Mode=OneWay}"
+                                        ItemsSource="{x:Bind ViewModel.TimeShiftOptions}"
+                                        DisplayMemberPath="Name"
+                                        SelectedItem="{x:Bind ViewModel.SelectedTimeShift, Mode=TwoWay}" />
+                                    <TextBlock
+                                        Text="{x:Bind ViewModel.TimeShiftMemory, Mode=OneWay}"
+                                        Style="{StaticResource CaptionTextBlockStyle}"
+                                        TextWrapping="Wrap" />
+                                </StackPanel>
+                            </StackPanel>
+
+                            <StackPanel Spacing="2">
                                 <TextBlock x:Uid="ZapBackHeading" Style="{StaticResource BodyStrongTextBlockStyle}" />
                                 <RadioButton x:Uid="ZapBackRadio" GroupName="ZapBack" IsChecked="{x:Bind ViewModel.ZapBackAfterBreak, Mode=TwoWay}" />
                                 <RadioButton x:Uid="ZapStayRadio" GroupName="ZapBack" IsChecked="{x:Bind ViewModel.StayAfterBreak, Mode=TwoWay}" />
@@ -1078,23 +1102,6 @@
                             Visibility="{x:Bind ViewModel.HasGlobalHotkeyProblem, Mode=OneWay}"
                             Style="{StaticResource SettingsTextStyle}"
                             Foreground="{ThemeResource SystemFillColorCautionBrush}" />
-                    </StackPanel>
-
-                    <StackPanel Spacing="2">
-                        <TextBlock x:Uid="TimeShiftHeading" Style="{StaticResource SettingsHeadingStyle}" />
-                        <TextBlock x:Uid="TimeShiftText" Style="{StaticResource SettingsTextStyle}" />
-                        <ComboBox
-                            x:Uid="TimeShiftBox"
-                            Margin="0,6,0,0"
-                            FontSize="12"
-                            MinWidth="220"
-                            ItemsSource="{x:Bind ViewModel.TimeShiftOptions}"
-                            DisplayMemberPath="Name"
-                            SelectedItem="{x:Bind ViewModel.SelectedTimeShift, Mode=TwoWay}" />
-                        <TextBlock
-                            Margin="0,4,0,0"
-                            Text="{x:Bind ViewModel.TimeShiftMemory, Mode=OneWay}"
-                            Style="{StaticResource SettingsTextStyle}" />
                     </StackPanel>
 
                     <StackPanel Spacing="2">

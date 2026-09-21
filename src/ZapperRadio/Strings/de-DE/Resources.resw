@@ -435,23 +435,11 @@
   <data name="UpdateNoticeTitle" xml:space="preserve">
     <value>ZapperRadio {0} steht bereit</value>
   </data>
-  <data name="TimeShiftHeading.Text" xml:space="preserve">
-    <value>Zeitversatz</value>
-  </data>
-  <data name="TimeShiftText.Text" xml:space="preserve">
-    <value>Ein Zap landet auf einem Sender, der einen Song spielt, aber meist mitten darin. Deshalb werden die letzten Minuten jedes Favoriten aufbewahrt, und ein Zap startet den Song auf dem anderen Sender von vorn. So wird auch ein Werbeblock genau an seinem Anfang weggeschnitten, denn er ist bekannt, bevor er zu hören ist. Der Preis ist, dass du etwas hinter der Sendung hörst: höchstens die Länge des Songs, auf dem ein Zap gelandet ist, bei jedem Zap neu bestimmt, und Live holt sofort auf. Aus spielt jeden Sender live.</value>
-  </data>
   <data name="TimeShiftBox.AutomationProperties.Name" xml:space="preserve">
     <value>Zeitversatz</value>
   </data>
-  <data name="TimeShiftOff" xml:space="preserve">
-    <value>Aus</value>
-  </data>
   <data name="TimeShiftMinutes" xml:space="preserve">
     <value>{0} Minuten</value>
-  </data>
-  <data name="TimeShiftMemory" xml:space="preserve">
-    <value>Etwa {0} MB Arbeitsspeicher für alle Favoriten zusammen.</value>
   </data>
   <data name="NowPlayingBehindLive" xml:space="preserve">
     <value>{0} hinter live</value>
@@ -497,5 +485,23 @@
   </data>
   <data name="NoZapTargetsText.Text" xml:space="preserve">
     <value>Noch keine Favoriten. Füge Sender zu deinen Favoriten hinzu, um zu wählen, wohin der Zapper darf.</value>
+  </data>
+  <data name="ZapToSongStartHeading.Text" xml:space="preserve">
+    <value>Zum Anfang des Lieds zappen</value>
+  </data>
+  <data name="ZapToSongStartText.Text" xml:space="preserve">
+    <value>Ein Zap landet auf einem Sender, der gerade ein Lied spielt, meist mitten darin. Damit dieses Lied stattdessen von Anfang an läuft, werden die letzten Minuten jedes Favoriten im Arbeitsspeicher behalten (ein Time-Shift-Puffer). So wird auch eine Pause genau dort abgeschnitten, wo sie beginnt, weil sie bekannt ist, bevor sie zu hören ist. Du hörst dann etwas hinter der Sendung, höchstens die Länge des Lieds, in dem ein Zap gelandet ist, und Live holt sofort auf. Ausgeschaltet werden keine Puffer behalten und ihr Speicher wird freigegeben: Jeder Sender läuft live, und ein Zap landet dort, wo das Lied gerade ist.</value>
+  </data>
+  <data name="ZapToSongStartCheckBox.Content" xml:space="preserve">
+    <value>Beim Zappen das Lied von Anfang an spielen</value>
+  </data>
+  <data name="TimeShiftMemory" xml:space="preserve">
+    <value>Belegt etwa {0} MB Arbeitsspeicher für deine {1} Favoriten. Weniger Minuten zu behalten oder dies auszuschalten spart Speicher.</value>
+  </data>
+  <data name="TimeShiftMemoryOff" xml:space="preserve">
+    <value>Aus, belegt also keinen Speicher. Eingeschaltet wären es etwa {0} MB für deine {1} Favoriten.</value>
+  </data>
+  <data name="TimeShiftMemoryPerFavorite" xml:space="preserve">
+    <value>Belegt etwa {0} MB Arbeitsspeicher pro Favorit, bei einem Sender mit 128 kbit/s.</value>
   </data>
 </root>

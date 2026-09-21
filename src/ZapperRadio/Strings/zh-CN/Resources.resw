@@ -435,23 +435,11 @@
   <data name="UpdateNoticeTitle" xml:space="preserve">
     <value>ZapperRadio {0} 已就绪</value>
   </data>
-  <data name="TimeShiftHeading.Text" xml:space="preserve">
-    <value>时移</value>
-  </data>
-  <data name="TimeShiftText.Text" xml:space="preserve">
-    <value>切台时落到的电台虽然在放歌，但通常已经放到一半。因此会保留每个收藏电台最近几分钟的内容，切台时从头播放另一个电台的这首歌。广告等间歇在听到之前就已知道，所以也能在它开始的地方准确切走。代价是你会比直播稍晚一些收听：最多是切台落到的那首歌的长度，每次切台都会重新确定，按“直播”可立即追上。选择“关闭”则所有电台都直播。</value>
-  </data>
   <data name="TimeShiftBox.AutomationProperties.Name" xml:space="preserve">
     <value>时移</value>
   </data>
-  <data name="TimeShiftOff" xml:space="preserve">
-    <value>关闭</value>
-  </data>
   <data name="TimeShiftMinutes" xml:space="preserve">
     <value>{0} 分钟</value>
-  </data>
-  <data name="TimeShiftMemory" xml:space="preserve">
-    <value>所有收藏电台合计约占用 {0} MB 内存。</value>
   </data>
   <data name="NowPlayingBehindLive" xml:space="preserve">
     <value>比直播晚 {0}</value>
@@ -497,5 +485,23 @@
   </data>
   <data name="NoZapTargetsText.Text" xml:space="preserve">
     <value>还没有收藏。将电台加入收藏后，即可选择切台器可以去哪里。</value>
+  </data>
+  <data name="ZapToSongStartHeading.Text" xml:space="preserve">
+    <value>切到歌曲开头</value>
+  </data>
+  <data name="ZapToSongStartText.Text" xml:space="preserve">
+    <value>切台时落到的电台通常正播到歌曲中间。为了让这首歌从头播放，每个收藏电台最近几分钟的内容会保存在内存中（时移缓冲区）。这样插播也能在开始的位置被准确切掉，因为在听到之前就已知道。你会比直播稍晚一些收听，最多晚一首切到的歌的长度，点“直播”可立即追上。关闭后不保留缓冲区并释放其内存：每个电台都直播，切台时落在歌曲当时播放的位置。</value>
+  </data>
+  <data name="ZapToSongStartCheckBox.Content" xml:space="preserve">
+    <value>切台时从头播放歌曲</value>
+  </data>
+  <data name="TimeShiftMemory" xml:space="preserve">
+    <value>你的 {1} 个收藏电台约占用 {0} MB 内存。减少保留的分钟数或关闭此项可节省内存。</value>
+  </data>
+  <data name="TimeShiftMemoryOff" xml:space="preserve">
+    <value>已关闭，因此不占用内存。开启后，你的 {1} 个收藏电台约需 {0} MB。</value>
+  </data>
+  <data name="TimeShiftMemoryPerFavorite" xml:space="preserve">
+    <value>码率 128 kbit/s 的电台，每个收藏约占用 {0} MB 内存。</value>
   </data>
 </root>

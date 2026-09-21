@@ -435,23 +435,11 @@
   <data name="UpdateNoticeTitle" xml:space="preserve">
     <value>ZapperRadio {0} の準備ができました</value>
   </data>
-  <data name="TimeShiftHeading.Text" xml:space="preserve">
-    <value>タイムシフト</value>
-  </data>
-  <data name="TimeShiftText.Text" xml:space="preserve">
-    <value>ザッピング先の局は曲を流していても、たいてい途中からになります。そこで各お気に入りの直近数分を保持し、ザッピングすると相手の局の曲を最初から再生します。CM などの区切りも聞こえる前にわかるので、ちょうど始まる所で切り替えられます。その代わり、放送より少し遅れて聴くことになります。遅れは最大でもザッピング先の曲 1 曲分で、ザッピングのたびに決め直され、「ライブ」ですぐに追いつけます。「オフ」ではすべての局をライブで再生します。</value>
-  </data>
   <data name="TimeShiftBox.AutomationProperties.Name" xml:space="preserve">
     <value>タイムシフト</value>
   </data>
-  <data name="TimeShiftOff" xml:space="preserve">
-    <value>オフ</value>
-  </data>
   <data name="TimeShiftMinutes" xml:space="preserve">
     <value>{0} 分</value>
-  </data>
-  <data name="TimeShiftMemory" xml:space="preserve">
-    <value>お気に入り全体で約 {0} MB のメモリを使います。</value>
   </data>
   <data name="NowPlayingBehindLive" xml:space="preserve">
     <value>ライブから {0} 遅れ</value>
@@ -497,5 +485,23 @@
   </data>
   <data name="NoZapTargetsText.Text" xml:space="preserve">
     <value>お気に入りはまだありません。局をお気に入りに追加すると、ザッパーの行き先を選べます。</value>
+  </data>
+  <data name="ZapToSongStartHeading.Text" xml:space="preserve">
+    <value>曲の頭にザップする</value>
+  </data>
+  <data name="ZapToSongStartText.Text" xml:space="preserve">
+    <value>ザップ先の局はたいてい曲の途中です。その曲を頭から再生するために、各お気に入りの直近数分をメモリーに保持します (タイムシフト バッファー)。区切りも聞こえる前にわかるので、ちょうど始まる位置で切り替えられます。そのぶん放送より少し遅れて聴くことになりますが、遅れはザップ先の曲の長さまでで、[ライブ] ですぐに追いつけます。オフにするとバッファーは保持されず、そのメモリーは解放されます。どの局もライブで再生され、ザップは曲のその時点の位置に切り替わります。</value>
+  </data>
+  <data name="ZapToSongStartCheckBox.Content" xml:space="preserve">
+    <value>ザップ時に曲を頭から再生する</value>
+  </data>
+  <data name="TimeShiftMemory" xml:space="preserve">
+    <value>{1} 件のお気に入りで約 {0} MB のメモリーを使います。保持する分数を減らすか、オフにするとメモリーを節約できます。</value>
+  </data>
+  <data name="TimeShiftMemoryOff" xml:space="preserve">
+    <value>オフなのでメモリーは使いません。オンにすると、{1} 件のお気に入りで約 {0} MB を使います。</value>
+  </data>
+  <data name="TimeShiftMemoryPerFavorite" xml:space="preserve">
+    <value>128 kbit/s の局で、お気に入り 1 件あたり約 {0} MB のメモリーを使います。</value>
   </data>
 </root>

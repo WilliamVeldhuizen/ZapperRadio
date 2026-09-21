@@ -435,23 +435,11 @@
   <data name="UpdateNoticeTitle" xml:space="preserve">
     <value>A versão {0} do ZapperRadio está pronta</value>
   </data>
-  <data name="TimeShiftHeading.Text" xml:space="preserve">
-    <value>Atraso</value>
-  </data>
-  <data name="TimeShiftText.Text" xml:space="preserve">
-    <value>Um zap cai numa rádio que está tocando uma música, mas geralmente no meio dela. Por isso os últimos minutos de cada favorito são guardados, e um zap começa a música da outra rádio do início. Assim um intervalo também é cortado bem onde começa, porque ele é conhecido antes de ser ouvido. O preço é ouvir um pouco atrás da transmissão: no máximo a duração da música em que um zap caiu, definida de novo a cada zap, e Ao vivo alcança na hora. Desligado toca cada rádio ao vivo.</value>
-  </data>
   <data name="TimeShiftBox.AutomationProperties.Name" xml:space="preserve">
     <value>Atraso</value>
   </data>
-  <data name="TimeShiftOff" xml:space="preserve">
-    <value>Desligado</value>
-  </data>
   <data name="TimeShiftMinutes" xml:space="preserve">
     <value>{0} minutos</value>
-  </data>
-  <data name="TimeShiftMemory" xml:space="preserve">
-    <value>Cerca de {0} MB de memória para todos os favoritos juntos.</value>
   </data>
   <data name="NowPlayingBehindLive" xml:space="preserve">
     <value>{0} atrás do ao vivo</value>
@@ -497,5 +485,23 @@
   </data>
   <data name="NoZapTargetsText.Text" xml:space="preserve">
     <value>Ainda não há favoritos. Adicione estações aos favoritos para escolher para onde o zapper pode ir.</value>
+  </data>
+  <data name="ZapToSongStartHeading.Text" xml:space="preserve">
+    <value>Zapear para o início da música</value>
+  </data>
+  <data name="ZapToSongStartText.Text" xml:space="preserve">
+    <value>Um zap cai numa estação que está tocando uma música, geralmente no meio dela. Para que essa música comece do início, os últimos minutos de cada favorito ficam guardados na memória (um buffer de time-shift). Assim um intervalo também é cortado exatamente onde começa, porque ele é conhecido antes de ser ouvido. Você passa a ouvir um pouco atrás da transmissão, no máximo a duração da música em que um zap caiu, e Ao vivo alcança na hora. Desligado, nenhum buffer é guardado e a memória dele é liberada: toda estação toca ao vivo, e um zap cai onde a música estiver.</value>
+  </data>
+  <data name="ZapToSongStartCheckBox.Content" xml:space="preserve">
+    <value>Começar a música do início ao zapear</value>
+  </data>
+  <data name="TimeShiftMemory" xml:space="preserve">
+    <value>Usa cerca de {0} MB de memória para os seus {1} favoritos. Guardar menos minutos, ou desligar esta opção, economiza memória.</value>
+  </data>
+  <data name="TimeShiftMemoryOff" xml:space="preserve">
+    <value>Desligado, então não usa memória. Ligado, ocuparia cerca de {0} MB para os seus {1} favoritos.</value>
+  </data>
+  <data name="TimeShiftMemoryPerFavorite" xml:space="preserve">
+    <value>Ocupa cerca de {0} MB de memória por favorito, para uma estação de 128 kbit/s.</value>
   </data>
 </root>
