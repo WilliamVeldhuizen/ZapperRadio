@@ -525,43 +525,4 @@
   <data name="TimeShiftMemoryPerFavorite" xml:space="preserve">
     <value>Ocupa unos {0} MB de memoria por favorito, para una emisora de 128 kbit/s.</value>
   </data>
-  <data name="TourSearch.Title" xml:space="preserve">
-    <value>Encuentra tus emisoras</value>
-  </data>
-  <data name="TourSearch.Subtitle" xml:space="preserve">
-    <value>Busca por nombre, género o país. Intro reproduce el mejor resultado.</value>
-  </data>
-  <data name="TourStations.Title" xml:space="preserve">
-    <value>Escucha y quédate con las buenas</value>
-  </data>
-  <data name="TourStations.Subtitle" xml:space="preserve">
-    <value>Haz clic en una emisora para escucharla. Haz clic en su estrella para hacerla favorita.</value>
-  </data>
-  <data name="TourFavorites.Title" xml:space="preserve">
-    <value>Tus favoritas</value>
-  </data>
-  <data name="TourFavorites.Subtitle" xml:space="preserve">
-    <value>El zapper cambia entre estas. Todas siguen emitiendo, así que el cambio es instantáneo. Arrástralas para ordenarlas: cuanto más arriba, antes se elige.</value>
-  </data>
-  <data name="TourZapper.Title" xml:space="preserve">
-    <value>Huye de anuncios y charlas</value>
-  </data>
-  <data name="TourZapper.Subtitle" xml:space="preserve">
-    <value>Márcalo y, cuando tu emisora empiece anuncios, noticias o un locutor, el reproductor cambia a una favorita que esté poniendo una canción. La pestaña Zapper decide adónde puede ir y si vuelve.</value>
-  </data>
-  <data name="TourCompact.Title" xml:space="preserve">
-    <value>La ventana compacta</value>
-  </data>
-  <data name="TourCompact.Subtitle" xml:space="preserve">
-    <value>Solo tus favoritas y lo que suena en ellas, lo bastante pequeña para una esquina de la pantalla.</value>
-  </data>
-  <data name="TourNext" xml:space="preserve">
-    <value>Siguiente ({0}/{1})</value>
-  </data>
-  <data name="TourSkip" xml:space="preserve">
-    <value>Saltar la guía</value>
-  </data>
-  <data name="TourDone" xml:space="preserve">
-    <value>Empezar a escuchar</value>
-  </data>
 </root>

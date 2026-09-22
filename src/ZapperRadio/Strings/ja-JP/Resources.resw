@@ -525,43 +525,4 @@
   <data name="TimeShiftMemoryPerFavorite" xml:space="preserve">
     <value>128 kbit/s の局で、お気に入り 1 件あたり約 {0} MB のメモリーを使います。</value>
   </data>
-  <data name="TourSearch.Title" xml:space="preserve">
-    <value>放送局を探す</value>
-  </data>
-  <data name="TourSearch.Subtitle" xml:space="preserve">
-    <value>名前、ジャンル、国で検索します。Enter で一番近い局を再生します。</value>
-  </data>
-  <data name="TourStations.Title" xml:space="preserve">
-    <value>聴いて、気に入ったら残す</value>
-  </data>
-  <data name="TourStations.Subtitle" xml:space="preserve">
-    <value>放送局をクリックすると再生します。星をクリックするとお気に入りになります。</value>
-  </data>
-  <data name="TourFavorites.Title" xml:space="preserve">
-    <value>お気に入り</value>
-  </data>
-  <data name="TourFavorites.Subtitle" xml:space="preserve">
-    <value>ザッパーはこの中で切り替えます。すべてストリーミングを続けているので、切り替えは一瞬です。ドラッグで並べ替えてください。上にあるほど先に選ばれます。</value>
-  </data>
-  <data name="TourZapper.Title" xml:space="preserve">
-    <value>広告とトークから逃げる</value>
-  </data>
-  <data name="TourZapper.Subtitle" xml:space="preserve">
-    <value>これをオンにすると、放送局が広告、ニュース、トークを始めたときに、曲を流しているお気に入りに切り替えます。行き先と戻るかどうかは [ザッパー] タブで決められます。</value>
-  </data>
-  <data name="TourCompact.Title" xml:space="preserve">
-    <value>コンパクト ウィンドウ</value>
-  </data>
-  <data name="TourCompact.Subtitle" xml:space="preserve">
-    <value>お気に入りとその曲だけを表示する、画面の隅に置ける小さなウィンドウです。</value>
-  </data>
-  <data name="TourNext" xml:space="preserve">
-    <value>次へ ({0}/{1})</value>
-  </data>
-  <data name="TourSkip" xml:space="preserve">
-    <value>ツアーをスキップ</value>
-  </data>
-  <data name="TourDone" xml:space="preserve">
-    <value>聴き始める</value>
-  </data>
 </root>

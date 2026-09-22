@@ -525,43 +525,4 @@
   <data name="TimeShiftMemoryPerFavorite" xml:space="preserve">
     <value>Kost ongeveer {0} MB geheugen per favoriet, voor een zender van 128 kbit/s.</value>
   </data>
-  <data name="TourSearch.Title" xml:space="preserve">
-    <value>Vind je zenders</value>
-  </data>
-  <data name="TourSearch.Subtitle" xml:space="preserve">
-    <value>Zoek op naam, genre of land. Enter speelt de beste treffer.</value>
-  </data>
-  <data name="TourStations.Title" xml:space="preserve">
-    <value>Luister, en bewaar de goede</value>
-  </data>
-  <data name="TourStations.Subtitle" xml:space="preserve">
-    <value>Klik op een zender om te luisteren. Klik op de ster om er een favoriet van te maken.</value>
-  </data>
-  <data name="TourFavorites.Title" xml:space="preserve">
-    <value>Je favorieten</value>
-  </data>
-  <data name="TourFavorites.Subtitle" xml:space="preserve">
-    <value>Hiertussen zapt de zapper. Ze blijven allemaal streamen, dus een wissel is meteen. Sleep ze op volgorde: hoe hoger een favoriet, hoe eerder die gekozen wordt.</value>
-  </data>
-  <data name="TourZapper.Title" xml:space="preserve">
-    <value>Zap weg van reclame en praat</value>
-  </data>
-  <data name="TourZapper.Subtitle" xml:space="preserve">
-    <value>Vink dit aan, en als je zender reclame, het nieuws of een presentator begint, schakelt de speler naar een favoriet die een nummer draait. Op het tabblad Zapper bepaal je waarheen hij mag en of hij terugkomt.</value>
-  </data>
-  <data name="TourCompact.Title" xml:space="preserve">
-    <value>Het compacte venster</value>
-  </data>
-  <data name="TourCompact.Subtitle" xml:space="preserve">
-    <value>Alleen je favorieten en wat ze draaien, klein genoeg voor een hoek van het scherm.</value>
-  </data>
-  <data name="TourNext" xml:space="preserve">
-    <value>Volgende ({0}/{1})</value>
-  </data>
-  <data name="TourSkip" xml:space="preserve">
-    <value>Rondleiding overslaan</value>
-  </data>
-  <data name="TourDone" xml:space="preserve">
-    <value>Beginnen met luisteren</value>
-  </data>
 </root>

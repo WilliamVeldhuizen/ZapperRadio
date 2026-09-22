@@ -525,43 +525,4 @@
   <data name="TimeShiftMemoryPerFavorite" xml:space="preserve">
     <value>码率 128 kbit/s 的电台，每个收藏约占用 {0} MB 内存。</value>
   </data>
-  <data name="TourSearch.Title" xml:space="preserve">
-    <value>找到你的电台</value>
-  </data>
-  <data name="TourSearch.Subtitle" xml:space="preserve">
-    <value>按名称、流派或国家/地区搜索。按 Enter 播放最佳匹配。</value>
-  </data>
-  <data name="TourStations.Title" xml:space="preserve">
-    <value>收听，并留下好的</value>
-  </data>
-  <data name="TourStations.Subtitle" xml:space="preserve">
-    <value>单击电台即可收听。单击星标即可收藏。</value>
-  </data>
-  <data name="TourFavorites.Title" xml:space="preserve">
-    <value>你的收藏</value>
-  </data>
-  <data name="TourFavorites.Subtitle" xml:space="preserve">
-    <value>切台器会在这些电台之间切换。它们都在持续播放，所以切换是即时的。拖动排序：越靠上，越先被选中。</value>
-  </data>
-  <data name="TourZapper.Title" xml:space="preserve">
-    <value>避开广告和闲聊</value>
-  </data>
-  <data name="TourZapper.Subtitle" xml:space="preserve">
-    <value>勾选后，当你的电台开始播广告、新闻或主持人讲话时，播放器会切换到正在播放歌曲的收藏电台。在“切台”选项卡中可以决定能切到哪里以及是否切回。</value>
-  </data>
-  <data name="TourCompact.Title" xml:space="preserve">
-    <value>紧凑窗口</value>
-  </data>
-  <data name="TourCompact.Subtitle" xml:space="preserve">
-    <value>只显示你的收藏和它们正在播放的内容，小到可以放在屏幕一角。</value>
-  </data>
-  <data name="TourNext" xml:space="preserve">
-    <value>下一步 ({0}/{1})</value>
-  </data>
-  <data name="TourSkip" xml:space="preserve">
-    <value>跳过导览</value>
-  </data>
-  <data name="TourDone" xml:space="preserve">
-    <value>开始收听</value>
-  </data>
 </root>

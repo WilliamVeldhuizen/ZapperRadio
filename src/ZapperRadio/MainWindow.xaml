@@ -103,7 +103,7 @@
             </Grid.ColumnDefinitions>
 
             <!-- Favorites -->
-            <Border x:Name="FavoritesCard" Style="{StaticResource CardStyle}">
+            <Border Style="{StaticResource CardStyle}">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
@@ -118,7 +118,6 @@
                             Foreground="{ThemeResource TextFillColorSecondaryBrush}"
                             TextWrapping="Wrap" />
                         <CheckBox
-                            x:Name="ZappCheckBox"
                             x:Uid="ZappCheckBox"
                             Margin="0,4,0,0"
                             IsChecked="{x:Bind ViewModel.ZappOnAdBreaks, Mode=TwoWay}" />
@@ -1021,19 +1020,6 @@
         </Border>
 
         <!-- Shown from the button next to the tabs; nothing of it is drawn until then. -->
-        <!-- The tour on the very first start: one tip after the other, each pointing at what it is about. Its buttons
-             are set in code, because they count the steps. Double-clicking the version in the settings shows it again. -->
-        <TeachingTip x:Name="TourSearch" x:Uid="TourSearch" Target="{x:Bind SearchBox}" PreferredPlacement="Bottom"
-                     ActionButtonClick="TourStep_ActionButtonClick" Closed="TourStep_Closed" />
-        <TeachingTip x:Name="TourStations" x:Uid="TourStations" Target="{x:Bind StationResults}" PreferredPlacement="Left"
-                     ActionButtonClick="TourStep_ActionButtonClick" Closed="TourStep_Closed" />
-        <TeachingTip x:Name="TourFavorites" x:Uid="TourFavorites" Target="{x:Bind FavoritesCard}" PreferredPlacement="Right"
-                     ActionButtonClick="TourStep_ActionButtonClick" Closed="TourStep_Closed" />
-        <TeachingTip x:Name="TourZapper" x:Uid="TourZapper" Target="{x:Bind ZappCheckBox}" PreferredPlacement="Right"
-                     ActionButtonClick="TourStep_ActionButtonClick" Closed="TourStep_Closed" />
-        <TeachingTip x:Name="TourCompact" x:Uid="TourCompact" Target="{x:Bind ViewButton}" PreferredPlacement="Bottom"
-                     ActionButtonClick="TourStep_ActionButtonClick" Closed="TourStep_Closed" />
-
         <ContentDialog
             x:Name="SettingsDialog"
             x:Uid="SettingsDialog"
@@ -1091,8 +1077,7 @@
                         <TextBlock x:Uid="AboutHeading" Style="{StaticResource SettingsHeadingStyle}" />
                         <TextBlock
                             Text="{x:Bind local:UiHelpers.AboutVersion(ViewModel.AppVersion)}"
-                            Style="{StaticResource SettingsTextStyle}"
-                            DoubleTapped="Version_DoubleTapped" />
+                            Style="{StaticResource SettingsTextStyle}" />
                         <TextBlock x:Uid="AboutText" Style="{StaticResource SettingsTextStyle}" />
                         <!-- Aligned with the text above it, past the padding a button draws around its content. -->
                         <HyperlinkButton

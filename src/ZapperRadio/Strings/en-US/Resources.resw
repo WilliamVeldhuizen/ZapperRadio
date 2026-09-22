@@ -525,43 +525,4 @@
   <data name="TimeShiftMemoryPerFavorite" xml:space="preserve">
     <value>Takes about {0} MB of memory per favorite, for a station at 128 kbit/s.</value>
   </data>
-  <data name="TourSearch.Title" xml:space="preserve">
-    <value>Find your stations</value>
-  </data>
-  <data name="TourSearch.Subtitle" xml:space="preserve">
-    <value>Search by name, genre or country. Enter plays the best match.</value>
-  </data>
-  <data name="TourStations.Title" xml:space="preserve">
-    <value>Listen, and keep the good ones</value>
-  </data>
-  <data name="TourStations.Subtitle" xml:space="preserve">
-    <value>Click a station to listen to it. Click its star to make it a favorite.</value>
-  </data>
-  <data name="TourFavorites.Title" xml:space="preserve">
-    <value>Your favorites</value>
-  </data>
-  <data name="TourFavorites.Subtitle" xml:space="preserve">
-    <value>The zapper switches between these. They all keep streaming, so a switch is instant. Drag them into order: the higher a favorite, the sooner it is chosen.</value>
-  </data>
-  <data name="TourZapper.Title" xml:space="preserve">
-    <value>Zap away from ads and talk</value>
-  </data>
-  <data name="TourZapper.Subtitle" xml:space="preserve">
-    <value>Tick this, and when your station starts an ad break, the news or a presenter, the player switches to a favorite that is playing a song. The Zapper tab decides where it may go and whether it comes back.</value>
-  </data>
-  <data name="TourCompact.Title" xml:space="preserve">
-    <value>The compact window</value>
-  </data>
-  <data name="TourCompact.Subtitle" xml:space="preserve">
-    <value>Just your favorites and what they play, small enough for a corner of the screen.</value>
-  </data>
-  <data name="TourNext" xml:space="preserve">
-    <value>Next ({0}/{1})</value>
-  </data>
-  <data name="TourSkip" xml:space="preserve">
-    <value>Skip the tour</value>
-  </data>
-  <data name="TourDone" xml:space="preserve">
-    <value>Start listening</value>
-  </data>
 </root>

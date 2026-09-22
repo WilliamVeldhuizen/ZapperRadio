@@ -525,43 +525,4 @@
   <data name="TimeShiftMemoryPerFavorite" xml:space="preserve">
     <value>Occupa circa {0} MB di memoria per preferito, per una stazione a 128 kbit/s.</value>
   </data>
-  <data name="TourSearch.Title" xml:space="preserve">
-    <value>Trova le tue stazioni</value>
-  </data>
-  <data name="TourSearch.Subtitle" xml:space="preserve">
-    <value>Cerca per nome, genere o paese. Invio riproduce il risultato migliore.</value>
-  </data>
-  <data name="TourStations.Title" xml:space="preserve">
-    <value>Ascolta e tieni le migliori</value>
-  </data>
-  <data name="TourStations.Subtitle" xml:space="preserve">
-    <value>Fai clic su una stazione per ascoltarla. Fai clic sulla stella per renderla preferita.</value>
-  </data>
-  <data name="TourFavorites.Title" xml:space="preserve">
-    <value>I tuoi preferiti</value>
-  </data>
-  <data name="TourFavorites.Subtitle" xml:space="preserve">
-    <value>Lo zapper passa da uno all'altro. Restano tutti in streaming, quindi il cambio è immediato. Trascinali in ordine: più in alto è un preferito, prima viene scelto.</value>
-  </data>
-  <data name="TourZapper.Title" xml:space="preserve">
-    <value>Scappa da pubblicità e chiacchiere</value>
-  </data>
-  <data name="TourZapper.Subtitle" xml:space="preserve">
-    <value>Spunta questa casella e, quando la tua stazione inizia la pubblicità, il notiziario o un conduttore, il lettore passa a un preferito che sta trasmettendo una canzone. La scheda Zapper decide dove può andare e se torna.</value>
-  </data>
-  <data name="TourCompact.Title" xml:space="preserve">
-    <value>La finestra compatta</value>
-  </data>
-  <data name="TourCompact.Subtitle" xml:space="preserve">
-    <value>Solo i tuoi preferiti e cosa trasmettono, abbastanza piccola per un angolo dello schermo.</value>
-  </data>
-  <data name="TourNext" xml:space="preserve">
-    <value>Avanti ({0}/{1})</value>
-  </data>
-  <data name="TourSkip" xml:space="preserve">
-    <value>Salta il tour</value>
-  </data>
-  <data name="TourDone" xml:space="preserve">
-    <value>Inizia ad ascoltare</value>
-  </data>
 </root>
