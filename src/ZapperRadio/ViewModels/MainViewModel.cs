@@ -118,6 +118,7 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
         _engine.ActiveChanged += (_, _) => UpdateNowPlaying();
         _engine.StreamStatusChanged += (_, stream) => OnStreamStatusChanged(stream);
         _engine.StreamMetadataChanged += (_, stream) => OnStreamMetadataChanged(stream);
+        _engine.StreamHeardChanged += (_, stream) => OnStreamHeardChanged(stream);
         _engine.StreamLoudnessChanged += (_, stream) => OnStreamLoudnessChanged(stream);
         _engine.DelayChanged += (_, _) => OnHeardChanged();
 
@@ -1121,13 +1122,12 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
             return;
         }
 
-        // The other favorites are judged live, because a zap to one of them starts at the beginning of the song it
-        // plays now. The station being listened to is judged by what is heard of it, which is behind the broadcast
-        // when it is played from its buffer.
+        // The other favorites are judged by what a zap to them lands on. The station being listened to is judged by
+        // what is heard of it, which is behind the broadcast: seconds behind from its own player, more from its buffer.
         var favorites = Favorites
             .Select(f => _engine.Find(f.Station.Url))
             .OfType<StationStream>()
-            .Select(s => new Channel(s.Station.Url, ChannelOf(s)))
+            .Select(s => new Channel(s.Station.Url, LandingChannelOf(s)))
             .ToList();
         if (_zapper.Next(new Channel(active.Station.Url, HeardChannelOf(active)), favorites, DateTimeOffset.UtcNow) is { } url
             && _engine.Find(url) is { } next)
@@ -1158,15 +1158,28 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
         Channel.StateOf(stream.IsInAdBreak, stream.Status == StreamStatus.Live, stream.Metadata?.IsSong == true, stream.Sound);
 
     /// <summary>
-    /// What the zapper makes of the station being listened to: what is about to be heard of it, played from the buffer,
-    /// or its live state otherwise.
+    /// What the zapper makes of the station being listened to: what is about to be heard of it, played from the buffer
+    /// or by its own player, which plays a few seconds behind the audio coming in. A connection that is down is heard
+    /// as nothing, whatever the timeline says.
     /// </summary>
     private ChannelState HeardChannelOf(StationStream stream) =>
-        _engine.IsTimeShifted && stream == _engine.Active ? stream.MomentAt(_engine.HeardAt + ZapLead).State : ChannelOf(stream);
+        _engine.IsTimeShifted || stream.Status == StreamStatus.Live ? stream.MomentAt(_engine.HeardAt + ZapLead).State : ChannelOf(stream);
 
     /// <summary>
-    /// What is heard of the station being listened to moved on: the replay reached another moment of its timeline, or
-    /// the delay changed. Updates what the window shows, lets the zapper act on it, and waits for the next moment.
+    /// What a zap to another favorite lands on: its live state, because a zap starts at the beginning of the song it
+    /// plays now, but not while its own player still plays the break before that song. A zap that lands live, without
+    /// a buffer to start the song from, would hear the end of that break first and zap straight on.
+    /// </summary>
+    private static ChannelState LandingChannelOf(StationStream stream)
+    {
+        var live = ChannelOf(stream);
+        var heard = stream.Status == StreamStatus.Live ? stream.HeardMoment.State : live;
+        return heard is ChannelState.Ad or ChannelState.Speech ? heard : live;
+    }
+
+    /// <summary>
+    /// What is heard of the station being listened to moved on: it reached another moment of its timeline, or the
+    /// delay changed. Updates what the window shows, lets the zapper act on it, and waits for the next moment.
     /// </summary>
     private void OnHeardChanged()
     {
@@ -1192,7 +1205,7 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
     private void ScheduleHeardChange()
     {
         _heardTimer.Stop();
-        if (!_engine.IsTimeShifted || _engine.Active is not { } active)
+        if (_engine.Active is not { } active)
         {
             return;
         }
@@ -1480,6 +1493,22 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
             UpdateNowPlaying();
             // A break found at the live edge may lie just ahead of what is heard.
             ScheduleHeardChange();
+        }
+
+        ZapOnAdBreak();
+    }
+
+    /// <summary>The own player of a station got to another moment, seconds after the audio of it came in.</summary>
+    private void OnStreamHeardChanged(StationStream stream)
+    {
+        foreach (var favorite in Favorites.Where(f => f.Station.Url == stream.Station.Url))
+        {
+            ShowOnFavorite(favorite, stream);
+        }
+
+        if (stream == _engine.Active)
+        {
+            UpdateNowPlaying();
         }
 
         ZapOnAdBreak();

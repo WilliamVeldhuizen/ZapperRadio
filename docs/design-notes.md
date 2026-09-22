@@ -298,12 +298,11 @@ away from like any other, which may well be back to the first one. Turning the r
 of a break forgets the way back at once, so there is no return later that nobody asked for.
 
 **Crossfade.** A zap fades over 400 ms (`RadioEngine.CrossfadeLength`) on an equal-power curve instead
-of cutting. The fade out has to end at the break, not start there, or the ad leaks back in. That is only
-known ahead of time for a station played from its buffer, where the zapper looks 500 ms ahead
-(`MainViewModel.ZapLead`, which is kept longer than the fade for that reason). A station heard live has
-its break detected once it is already audible, so it is still cut off, and only the station zapped to
-fades in. In practice most zaps fade both ways, because a zap usually lands at the start of a song, from
-the buffer, and the zap back leaves from there.
+of cutting. The fade out has to end at the break, not start there, or the ad leaks back in, so the zapper
+looks 500 ms ahead (`MainViewModel.ZapLead`, which is kept longer than the fade for that reason). Only a
+station played from its buffer fades out; a station heard live, from its own player, is cut off at the
+break, and only the station zapped to fades in. In practice most zaps fade both ways, because a zap
+usually lands at the start of a song, from the buffer, and the zap back leaves from there.
 
 Both sides of a fade can be replays: the zap back from a station played from its buffer usually lands on
 the other station's buffer too. `RadioEngine` therefore keeps a second replay player. `FadeOutReplay`
@@ -325,3 +324,35 @@ bitrate each station announced, and when the switch is off, what they would take
 once rather than at the next start. Settings files from before stored 0 minutes for off;
 `AppSettings.Upgrade` turns that into the switch and gives it the default length of 5 minutes for when it
 is switched on again.
+
+## What a station's own player is behind
+
+The timeline of a station is dated by when its audio came in at the relay, but the station's own
+`MediaPlayer` plays that audio well after that. Most servers send a burst of the last seconds on connect,
+and the player keeps it queued ahead of what it plays, for as long as the connection lasts; whatever piles
+up while it buffers is added to it. Measured on Dutch stations, that was about 10 seconds for the Qmusic
+and Joe AAC streams, 22 for 3FM and 30 for 100% NL, and it stays the same for the whole connection. The
+icons, the now-playing bar and the zapper went by the live timeline, so on a station heard live they ran
+that far ahead of the audio, and the zapper left songs early: it zapped on a break the listener was still
+seconds away from.
+
+`StationStream.HeardAt` is the moment the own player plays now: the time the relay last passed audio on,
+less what the player has queued. What is queued is the playing time of the audio passed on in this
+connection less `MediaPlaybackSession.Position`, which starts at zero with every connection just like the
+count. The playing time comes from `Core/Streaming/AudioDuration`, which reads the frame headers of MP3
+and ADTS AAC as the bytes pass. A bitrate would not do: the count runs for hours, a stream rarely comes to
+exactly the rate it announces, and ADTS headers alone add 2% to it. Until two frames in a row are found,
+as in a connection that starts halfway into a frame, the bytes are kept and searched, so a sync word in
+the audio data cannot make it skip real frames. A stream that is not relayed (HLS), or in a format whose
+frames are not counted, is taken to play at the moment the audio comes in, as before.
+
+`RadioEngine.HeardOf` and `HeardAt` use it for every station that is not played from its buffer, so a
+favorite's row, the now-playing bar and the zapper follow what its player plays. The station stream
+raises `HeardChanged` when its player reaches the next moment of the timeline, and the zapper's own timer
+looks 500 ms ahead of the station being listened to, live or not, so a break is now known before it is
+heard on a live station too, and the zap is cut where it begins. Two other rules follow from it.
+`RadioEngine.FindPosition` plays a zap live only when the own player is less than 3 seconds past the
+song start, and from the buffer when it has not reached the song start yet: live, the end of the break
+before it would be heard first. And the zapper does not land on a favorite whose own player still plays
+its break (`MainViewModel.LandingChannelOf`), because without a buffer to start the song from, the zap
+would land in that break and zap straight on.

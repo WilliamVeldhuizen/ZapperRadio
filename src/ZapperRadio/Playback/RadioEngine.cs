@@ -15,8 +15,7 @@ namespace ZapperRadio.Playback;
 /// beginning of the song it plays rather than halfway into it. One more player does that for whichever station is
 /// being listened to; the stream's own player stays muted meanwhile and keeps the station's titles and sound coming.
 /// A zap can fade from one station into the next. The station faded out is always one played from its buffer,
-/// because only there is the break known before it is heard; a spare replay player plays it out meanwhile, so the
-/// replay of the next station can start alongside it.
+/// which a spare replay player plays out meanwhile, so the replay of the next station can start alongside it.
 /// </summary>
 public sealed class RadioEngine : IDisposable
 {
@@ -105,6 +104,9 @@ public sealed class RadioEngine : IDisposable
 
     public event EventHandler<StationStream>? StreamMetadataChanged;
 
+    /// <summary>Raised when what the own player of a station plays gets to another moment.</summary>
+    public event EventHandler<StationStream>? StreamHeardChanged;
+
     public event EventHandler<StationStream>? StreamLoudnessChanged;
 
     /// <summary>Raised when <see cref="Delay"/> moves by a second or more, and when it starts or ends.</summary>
@@ -188,14 +190,17 @@ public sealed class RadioEngine : IDisposable
         }
     }
 
-    /// <summary>The moment of the broadcast that is being heard.</summary>
-    public DateTimeOffset HeardAt => DateTimeOffset.UtcNow - Delay;
+    /// <summary>
+    /// The moment of the broadcast that is being heard: where the replay is, or where the station's own player is,
+    /// which plays a few seconds behind the audio coming in.
+    /// </summary>
+    public DateTimeOffset HeardAt => IsTimeShifted ? DateTimeOffset.UtcNow - Delay : Active?.HeardAt ?? DateTimeOffset.UtcNow;
 
     /// <summary>
     /// What <paramref name="stream"/> does in what is heard of it: the moment being played back for the station being
-    /// listened to, and the live one for every other station.
+    /// listened to, and what its own player plays for every other station.
     /// </summary>
-    public StreamMoment HeardOf(StationStream stream) => stream == Active && IsTimeShifted ? stream.MomentAt(HeardAt) : stream.Moment;
+    public StreamMoment HeardOf(StationStream stream) => stream == Active && IsTimeShifted ? stream.MomentAt(HeardAt) : stream.HeardMoment;
 
     /// <summary>Has every running station measure its loudness again, for when the correction of one sounds off.</summary>
     public void RemeasureLoudness()
@@ -282,7 +287,7 @@ public sealed class RadioEngine : IDisposable
     /// Listens to a station. With <paramref name="from"/> it is played from that moment of its broadcast, when its
     /// buffer still holds it, and live otherwise. Picking the station that is already on changes nothing.
     /// With <paramref name="crossfade"/> it fades in over <see cref="CrossfadeLength"/>, and a station played from its
-    /// buffer before it fades out meanwhile; one played live is cut off, because its break is already being heard.
+    /// buffer before it fades out meanwhile; one played live, by its own player, is cut off.
     /// </summary>
     public void Play(Station station, DateTimeOffset? from = null, bool crossfade = false)
     {
@@ -381,11 +386,21 @@ public sealed class RadioEngine : IDisposable
         RaiseDelayChanged(force: true);
     }
 
-    /// <summary>Where in its buffer <paramref name="stream"/> has the moment <paramref name="from"/>, or null to play it live.</summary>
-    private long? FindPosition(StationStream stream, DateTimeOffset? from) =>
-        _proxy is not null && from is { } moment && DateTimeOffset.UtcNow - moment >= MinTimeShift
-            ? stream.Buffer.PositionAt(moment)
-            : null;
+    /// <summary>
+    /// Where in its buffer <paramref name="stream"/> has the moment <paramref name="from"/>, or null to play it live.
+    /// Live is where the station's own player is, a few seconds behind the audio coming in, so a moment it has not
+    /// reached yet is played from the buffer too: live, the end of what came before it would be heard first.
+    /// </summary>
+    private long? FindPosition(StationStream stream, DateTimeOffset? from)
+    {
+        if (_proxy is null || from is not { } moment)
+        {
+            return null;
+        }
+
+        var live = stream.HeardAt;
+        return moment <= live && live - moment < MinTimeShift ? null : stream.Buffer.PositionAt(moment);
+    }
 
     /// <param name="fadeIn">Whether it fades in, from the moment it starts to play.</param>
     private void StartReplay(StationStream stream, long position, bool fadeIn = false)
@@ -643,6 +658,7 @@ public sealed class RadioEngine : IDisposable
 
         stream.StatusChanged += OnStreamStatusChanged;
         stream.MetadataChanged += OnStreamMetadataChanged;
+        stream.HeardChanged += OnStreamHeardChanged;
         stream.LoudnessChanged += OnStreamLoudnessChanged;
         stream.OutputVolumeChanged += OnStreamOutputVolumeChanged;
         stream.Start();
@@ -653,6 +669,7 @@ public sealed class RadioEngine : IDisposable
     {
         stream.StatusChanged -= OnStreamStatusChanged;
         stream.MetadataChanged -= OnStreamMetadataChanged;
+        stream.HeardChanged -= OnStreamHeardChanged;
         stream.LoudnessChanged -= OnStreamLoudnessChanged;
         stream.OutputVolumeChanged -= OnStreamOutputVolumeChanged;
         stream.Dispose();
@@ -663,6 +680,9 @@ public sealed class RadioEngine : IDisposable
 
     private void OnStreamMetadataChanged(object? sender, EventArgs e) =>
         StreamMetadataChanged?.Invoke(this, (StationStream)sender!);
+
+    private void OnStreamHeardChanged(object? sender, EventArgs e) =>
+        StreamHeardChanged?.Invoke(this, (StationStream)sender!);
 
     private void OnStreamLoudnessChanged(object? sender, EventArgs e)
     {

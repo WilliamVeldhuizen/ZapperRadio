@@ -74,9 +74,10 @@ the system power status, mostly inside `RadioEngine`.
 Not yet confirmed: an ad marker in the stream title counts from the moment it comes in, and
 is not dated back like a break heard as speech. Some stations send their titles 10 to 20 seconds
 ahead of the audio (see the song clock in the design notes). If a station sends its ad marker that
-far ahead too, the zap away from it still comes too early. Worth fixing only once a station is
-seen doing it; the fix would be to date the marker back to where the music stops, in
-`StreamTimeline.StartOf`.
+far ahead too, the zap away from it still comes too early. The seconds the station's own player is
+behind the audio coming in are already accounted for (see the design notes), so an early zap on a
+marker is now down to the station. Worth fixing only once a station is seen doing it; the fix would
+be to date the marker forward to where the music stops, in `StreamTimeline.StartOf`.
 
 ## 4. Better search
 

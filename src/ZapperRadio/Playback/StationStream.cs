@@ -37,6 +37,9 @@ public sealed class StationStream : IDisposable
     /// <summary>How long after the last classified window the stream still counts as listened to.</summary>
     private static readonly TimeSpan ListeningTimeout = TimeSpan.FromSeconds(20);
 
+    /// <summary>The most the player is taken to be behind the audio passed on to it; more means the count is off.</summary>
+    private static readonly TimeSpan MaxQueued = TimeSpan.FromMinutes(1);
+
     /// <summary>
     /// How far a new loudness estimate has to be from the one in use before the volume is moved, in decibels.
     /// Every window of music refines the estimate a little, and following it exactly would keep nudging the
@@ -58,6 +61,19 @@ public sealed class StationStream : IDisposable
     private readonly DispatcherQueueTimer _watchdog;
     private readonly DispatcherQueueTimer _retryTimer;
     private readonly DispatcherQueueTimer _songEndTimer;
+    private readonly DispatcherQueueTimer _heardTimer;
+
+    /// <summary>Guards <see cref="_passedOn"/> and <see cref="_passedOnAt"/>, which the relay updates on its own thread.</summary>
+    private readonly Lock _passedOnGate = new();
+
+    /// <summary>How much audio the relay of the current connection passed on to the player, or null without a relay.</summary>
+    private AudioDuration? _passedOn;
+
+    /// <summary>When the relay last passed audio on to the player.</summary>
+    private DateTimeOffset _passedOnAt;
+
+    /// <summary>The moment <see cref="HeardChanged"/> was last raised for.</summary>
+    private StreamMoment? _heard;
     private CancellationTokenSource? _connectCts;
     private MediaSource? _source;
     private Uri? _relayUrl;
@@ -111,6 +127,8 @@ public sealed class StationStream : IDisposable
             UpdateSongClock();
             // Nothing older than the buffer can be played back, so nothing older is worth remembering.
             _timeline.Prune(DateTimeOffset.UtcNow - Buffer.Length - TimeSpan.FromMinutes(1));
+            // The player falls further behind when it has to buffer, which moves what it plays without a new moment.
+            UpdateHeard();
         };
 
         _retryTimer = dispatcher.CreateTimer();
@@ -120,6 +138,10 @@ public sealed class StationStream : IDisposable
         _songEndTimer = dispatcher.CreateTimer();
         _songEndTimer.IsRepeating = false;
         _songEndTimer.Tick += (_, _) => MarkSongOverdue();
+
+        _heardTimer = dispatcher.CreateTimer();
+        _heardTimer.IsRepeating = false;
+        _heardTimer.Tick += (_, _) => UpdateHeard();
     }
 
     public Station Station { get; }
@@ -132,6 +154,44 @@ public sealed class StationStream : IDisposable
 
     /// <summary>What the stream was doing at <paramref name="time"/>, for playing it back from the buffer.</summary>
     public StreamMoment MomentAt(DateTimeOffset time) => _timeline.At(time) ?? StreamMoment.Unknown;
+
+    /// <summary>
+    /// The moment of the broadcast that the station's own player plays now. The timeline is dated by when the audio
+    /// came in, but the player plays it seconds later: it keeps what the station sends on connect, and whatever piles
+    /// up while it buffers, queued ahead of what it plays. That is measured as the playing time of the audio passed
+    /// on to it (<see cref="AudioDuration"/>) less the position it played up to. Now, when it cannot be told: a stream
+    /// that is not relayed, or in a format whose frames are not counted.
+    /// </summary>
+    public DateTimeOffset HeardAt
+    {
+        get
+        {
+            var now = DateTimeOffset.UtcNow;
+            TimeSpan passedOn;
+            DateTimeOffset passedOnAt;
+            lock (_passedOnGate)
+            {
+                if (_passedOn is null)
+                {
+                    return now;
+                }
+
+                passedOn = _passedOn.Duration;
+                passedOnAt = _passedOnAt;
+            }
+
+            var queued = passedOn - _player.PlaybackSession.Position;
+            return passedOn > TimeSpan.Zero && queued > TimeSpan.Zero
+                ? passedOnAt - (queued < MaxQueued ? queued : MaxQueued)
+                : now;
+        }
+    }
+
+    /// <summary>What the station's own player plays now, which is a few seconds behind <see cref="Moment"/>.</summary>
+    public StreamMoment HeardMoment => MomentAt(HeardAt);
+
+    /// <summary>Raised when <see cref="HeardMoment"/> changes.</summary>
+    public event EventHandler? HeardChanged;
 
     /// <summary>When the stream did something else after <paramref name="time"/>, or null when it has not since.</summary>
     public DateTimeOffset? NextMomentAfter(DateTimeOffset time) => _timeline.NextChangeAfter(time);
@@ -314,6 +374,27 @@ public sealed class StationStream : IDisposable
                 AddSound(window);
             }
         }));
+        // The player's position starts at zero with every connection, so the count does too.
+        var passedOn = new AudioDuration();
+        lock (_passedOnGate)
+        {
+            _passedOn = passedOn;
+        }
+
+        void OnAudio(ReadOnlyMemory<byte> audio)
+        {
+            lock (_passedOnGate)
+            {
+                if (_passedOn == passedOn)
+                {
+                    passedOn.Add(audio.Span);
+                    _passedOnAt = DateTimeOffset.UtcNow;
+                }
+            }
+
+            listener?.Write(audio);
+        }
+
         relayUrl = _relayUrl = _proxy.Register(uri, metadata => OnUiThread(() =>
         {
             // Ignore a relay that is being replaced by a new connection.
@@ -326,7 +407,7 @@ public sealed class StationStream : IDisposable
                     metadata is { Title: null, IsAd: false } ? null : metadata,
                     keepSongEnd: metadata is { IsAd: false, IsSong: false });
             }
-        }), listener is null ? null : listener.Write, Buffer);
+        }), OnAudio, Buffer);
         return relayUrl;
     }
 
@@ -480,6 +561,27 @@ public sealed class StationStream : IDisposable
         var now = DateTimeOffset.UtcNow;
         _timeline.Record(_timeline.StartOf(moment, _sound, SongStartedAt, now), moment);
         MetadataChanged?.Invoke(this, EventArgs.Empty);
+        UpdateHeard();
+    }
+
+    /// <summary>Tells the listeners when the player got to another moment, and waits for it to reach the next one.</summary>
+    private void UpdateHeard()
+    {
+        _heardTimer.Stop();
+        var at = HeardAt;
+        var moment = MomentAt(at);
+        if (moment != _heard)
+        {
+            _heard = moment;
+            HeardChanged?.Invoke(this, EventArgs.Empty);
+        }
+
+        if (_timeline.NextChangeAfter(at) is { } next)
+        {
+            var wait = next - at;
+            _heardTimer.Interval = wait > TimeSpan.FromMilliseconds(50) ? wait : TimeSpan.FromMilliseconds(50);
+            _heardTimer.Start();
+        }
     }
 
     private bool UpdateAssumedAdBreak() => _unmarkedAdBreak.Update(IsSongOverdue, IsListening, _sound);
@@ -585,6 +687,11 @@ public sealed class StationStream : IDisposable
 
         _listener?.Dispose();
         _listener = null;
+        lock (_passedOnGate)
+        {
+            _passedOn = null;
+        }
+
         // The next connection has not been heard yet, rather than heard a long time ago.
         _lastSoundUtc = default;
 
@@ -603,6 +710,7 @@ public sealed class StationStream : IDisposable
         _watchdog.Stop();
         _retryTimer.Stop();
         _songEndTimer.Stop();
+        _heardTimer.Stop();
 
         _player.MediaOpened -= OnMediaOpened;
         _player.MediaFailed -= OnMediaFailed;
