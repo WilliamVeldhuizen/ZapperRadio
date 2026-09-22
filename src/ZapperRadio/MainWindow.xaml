@@ -112,11 +112,6 @@
 
                     <StackPanel Padding="16,14,16,8" Spacing="2">
                         <TextBlock Text="{x:Bind ViewModel.FavoritesHeader, Mode=OneWay}" Style="{StaticResource SubtitleTextBlockStyle}" />
-                        <TextBlock
-                            x:Uid="FavoritesHint"
-                            Style="{StaticResource CaptionTextBlockStyle}"
-                            Foreground="{ThemeResource TextFillColorSecondaryBrush}"
-                            TextWrapping="Wrap" />
                         <CheckBox
                             x:Uid="ZappCheckBox"
                             Margin="0,4,0,0"
@@ -167,6 +162,9 @@
                                         Visibility="{x:Bind IsActive, Mode=OneWay}" />
 
                                     <Grid Grid.Column="1" Width="32" Height="32" VerticalAlignment="Center">
+                                        <ToolTipService.ToolTip>
+                                            <ToolTip x:Uid="FavoriteLogoToolTip" />
+                                        </ToolTipService.ToolTip>
                                         <Ellipse Fill="{ThemeResource AccentFillColorDefaultBrush}" Visibility="{x:Bind Logo.ShowFallback, Mode=OneWay}" />
                                         <TextBlock
                                             Text="{x:Bind Logo.Initials, Mode=OneWay}"

@@ -68,8 +68,8 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="FavoritesHint.Text" xml:space="preserve">
-    <value>I preferiti continuano a suonare in muto in background, quindi il cambio è immediato: nessuna riconnessione e nessuna pubblicità all'inizio. Trascina un preferito in su o in giù per riordinarli.</value>
+  <data name="FavoriteLogoToolTip.Content" xml:space="preserve">
+    <value>Trascina in su o in giù per cambiare la posizione</value>
   </data>
   <data name="ZappCheckBox.Content" xml:space="preserve">
     <value>Zapping durante pubblicità / parlato</value>

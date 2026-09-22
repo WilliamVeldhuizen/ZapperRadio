@@ -68,8 +68,8 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="FavoritesHint.Text" xml:space="preserve">
-    <value>Os favoritos continuam tocando no mudo em segundo plano, então trocar de rádio é instantâneo: sem reconectar e sem anúncios no início. Arraste um favorito para cima ou para baixo para reordená-los.</value>
+  <data name="FavoriteLogoToolTip.Content" xml:space="preserve">
+    <value>Arraste para cima ou para baixo para mudar a posição</value>
   </data>
   <data name="ZappCheckBox.Content" xml:space="preserve">
     <value>Zapear em intervalos comerciais / falas</value>

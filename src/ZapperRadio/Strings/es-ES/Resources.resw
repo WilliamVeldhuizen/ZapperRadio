@@ -68,8 +68,8 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="FavoritesHint.Text" xml:space="preserve">
-    <value>Los favoritos siguen sonando en silencio en segundo plano, así que cambiar de emisora es instantáneo: sin reconectar y sin anuncios al principio. Arrastra un favorito hacia arriba o hacia abajo para reordenarlos.</value>
+  <data name="FavoriteLogoToolTip.Content" xml:space="preserve">
+    <value>Arrastra hacia arriba o hacia abajo para cambiar la posición</value>
   </data>
   <data name="ZappCheckBox.Content" xml:space="preserve">
     <value>Zapear en pausas de anuncios / voz</value>

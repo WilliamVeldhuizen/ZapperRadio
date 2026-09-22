@@ -68,8 +68,8 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="FavoritesHint.Text" xml:space="preserve">
-    <value>Favoriten spielen stumm im Hintergrund weiter, sodass der Wechsel sofort live ist: kein erneutes Verbinden und zuerst keine Werbung. Ziehe einen Favoriten nach oben oder unten, um die Reihenfolge zu ändern.</value>
+  <data name="FavoriteLogoToolTip.Content" xml:space="preserve">
+    <value>Nach oben oder unten ziehen, um die Position zu ändern</value>
   </data>
   <data name="ZappCheckBox.Content" xml:space="preserve">
     <value>Bei Werbung / Sprache wegzappen</value>

@@ -68,8 +68,8 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="FavoritesHint.Text" xml:space="preserve">
-    <value>Favorites keep playing muted in the background, so switching is instantly live: no reconnecting and no ads first. Drag a favorite up or down to reorder them.</value>
+  <data name="FavoriteLogoToolTip.Content" xml:space="preserve">
+    <value>Drag up or down to change the position</value>
   </data>
   <data name="ZappCheckBox.Content" xml:space="preserve">
     <value>Zapp on ad breaks / speech</value>

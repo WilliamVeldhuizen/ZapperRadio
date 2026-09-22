@@ -68,8 +68,8 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="FavoritesHint.Text" xml:space="preserve">
-    <value>Вибрані станції продовжують грати без звуку у фоновому режимі, тому перемикання миттєве: без повторного підключення й без реклами на початку. Перетягуйте вибране вгору чи вниз, щоб змінити порядок.</value>
+  <data name="FavoriteLogoToolTip.Content" xml:space="preserve">
+    <value>Перетягніть угору чи вниз, щоб змінити позицію</value>
   </data>
   <data name="ZappCheckBox.Content" xml:space="preserve">
     <value>Перемикатися під час реклами / розмов</value>

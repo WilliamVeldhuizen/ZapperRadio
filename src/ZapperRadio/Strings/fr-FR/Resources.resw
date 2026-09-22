@@ -68,8 +68,8 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="FavoritesHint.Text" xml:space="preserve">
-    <value>Les favoris continuent de jouer en sourdine en arrière-plan, donc le changement de station est immédiat : pas de reconnexion et pas de publicité au départ. Faites glisser un favori vers le haut ou le bas pour les réorganiser.</value>
+  <data name="FavoriteLogoToolTip.Content" xml:space="preserve">
+    <value>Faites glisser vers le haut ou le bas pour changer la position</value>
   </data>
   <data name="ZappCheckBox.Content" xml:space="preserve">
     <value>Zapper pendant les pubs / la parole</value>

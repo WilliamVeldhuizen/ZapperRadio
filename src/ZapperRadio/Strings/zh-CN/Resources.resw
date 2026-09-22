@@ -68,8 +68,8 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="FavoritesHint.Text" xml:space="preserve">
-    <value>收藏的电台会在后台静音持续播放，因此切换即刻生效：无需重新连接，也不会先听到广告。上下拖动收藏项可调整顺序。</value>
+  <data name="FavoriteLogoToolTip.Content" xml:space="preserve">
+    <value>上下拖动以更改位置</value>
   </data>
   <data name="ZappCheckBox.Content" xml:space="preserve">
     <value>广告 / 人声时自动切台</value>
