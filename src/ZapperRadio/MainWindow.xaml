@@ -156,6 +156,7 @@
                                         <ColumnDefinition Width="3" />
                                         <ColumnDefinition Width="Auto" />
                                         <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="16" />
                                         <!-- The remove button only shows while the row is hovered, but always keeps its place so the row does not jump. -->
                                         <ColumnDefinition Width="36" />
                                     </Grid.ColumnDefinitions>
@@ -165,7 +166,7 @@
                                         Fill="{ThemeResource AccentFillColorDefaultBrush}"
                                         Visibility="{x:Bind IsActive, Mode=OneWay}" />
 
-                                    <Grid Grid.Column="1" Width="32" Height="32" Margin="0,2,0,0" VerticalAlignment="Top">
+                                    <Grid Grid.Column="1" Width="32" Height="32" VerticalAlignment="Center">
                                         <Ellipse Fill="{ThemeResource AccentFillColorDefaultBrush}" Visibility="{x:Bind Logo.ShowFallback, Mode=OneWay}" />
                                         <TextBlock
                                             Text="{x:Bind Logo.Initials, Mode=OneWay}"
@@ -181,25 +182,43 @@
                                             ImageFailed="FavoriteLogo_ImageFailed" />
                                     </Grid>
 
-                                    <StackPanel Grid.Column="2" Spacing="2">
-                                        <TextBlock Text="{x:Bind Name}" Style="{StaticResource BodyStrongTextBlockStyle}" TextTrimming="CharacterEllipsis" />
-                                        <StackPanel Orientation="Horizontal" Spacing="6" Visibility="{x:Bind HasSong, Mode=OneWay}">
-                                            <FontIcon Glyph="&#xE8D6;" FontSize="11" VerticalAlignment="Center" Foreground="{x:Bind local:UiHelpers.SongBrush(IsAd, IsAssumedAdBreak), Mode=OneWay}" />
-                                            <TextBlock
-                                                Text="{x:Bind Song, Mode=OneWay}"
-                                                Style="{StaticResource CaptionTextBlockStyle}"
-                                                Foreground="{x:Bind local:UiHelpers.SongBrush(IsAd, IsAssumedAdBreak), Mode=OneWay}"
-                                                TextTrimming="CharacterEllipsis"
-                                                ToolTipService.ToolTip="{x:Bind Song, Mode=OneWay}" />
-                                        </StackPanel>
-                                        <StackPanel Orientation="Horizontal" Spacing="6">
-                                            <Ellipse Width="8" Height="8" VerticalAlignment="Center" Fill="{x:Bind local:UiHelpers.StatusBrush(Status), Mode=OneWay}" />
-                                            <TextBlock Text="{x:Bind StatusText, Mode=OneWay}" Style="{StaticResource CaptionTextBlockStyle}" />                                        </StackPanel>
+                                    <StackPanel Grid.Column="2" VerticalAlignment="Center">
+                                        <TextBlock Text="{x:Bind Name}" Style="{StaticResource BodyStrongTextBlockStyle}" TextWrapping="NoWrap" TextTrimming="CharacterEllipsis" ToolTipService.ToolTip="{x:Bind Name}" />
+                                        <TextBlock
+                                            Text="{x:Bind Song, Mode=OneWay}"
+                                            Style="{StaticResource CaptionTextBlockStyle}"
+                                            Foreground="{x:Bind local:UiHelpers.SongBrush(IsAd, IsAssumedAdBreak), Mode=OneWay}"
+                                            TextWrapping="NoWrap"
+                                            TextTrimming="CharacterEllipsis"
+                                            ToolTipService.ToolTip="{x:Bind Song, Mode=OneWay}"
+                                            Visibility="{x:Bind HasSong, Mode=OneWay}" />
+                                        <TextBlock
+                                            Text="{x:Bind StatusText, Mode=OneWay}"
+                                            Style="{StaticResource CaptionTextBlockStyle}"
+                                            Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                                            TextWrapping="NoWrap"
+                                            TextTrimming="CharacterEllipsis"
+                                            Visibility="{x:Bind HasNoSong, Mode=OneWay}" />
                                     </StackPanel>
+
+                                    <!-- The same indicator as in the compact view. -->
+                                    <Grid Grid.Column="3" VerticalAlignment="Center" Background="Transparent" ToolTipService.ToolTip="{x:Bind StatusText, Mode=OneWay}">
+                                        <Ellipse
+                                            Width="8" Height="8"
+                                            HorizontalAlignment="Center" VerticalAlignment="Center"
+                                            Fill="{x:Bind local:UiHelpers.IndicatorBrush(Status, IsAd, IsAssumedAdBreak), Mode=OneWay}"
+                                            Visibility="{x:Bind ShowDotIndicator, Mode=OneWay}" />
+                                        <FontIcon
+                                            FontSize="13"
+                                            HorizontalAlignment="Center" VerticalAlignment="Center"
+                                            Glyph="{x:Bind local:UiHelpers.IndicatorGlyph(Status, Sound), Mode=OneWay}"
+                                            Foreground="{x:Bind local:UiHelpers.IndicatorBrush(Status, IsAd, IsAssumedAdBreak), Mode=OneWay}"
+                                            Visibility="{x:Bind ShowIconIndicator, Mode=OneWay}" />
+                                    </Grid>
 
                                     <Button
                                         x:Uid="RemoveFavoriteButton"
-                                        Grid.Column="3"
+                                        Grid.Column="4"
                                         Style="{StaticResource IconButtonStyle}"
                                         VerticalAlignment="Center"
                                         Visibility="{x:Bind ShowActions, Mode=OneWay}"
@@ -874,8 +893,8 @@
                                             Visibility="{x:Bind HasNoSong, Mode=OneWay}" />
                                     </StackPanel>
 
-                                    <!-- Green while it is live: a note for music, a speech bubble while someone talks. -->
-                                    <Grid Grid.Column="3" VerticalAlignment="Center">
+                                    <!-- Green while it is live: a note for music, a speech bubble while someone talks; a yellow network icon while it connects. -->
+                                    <Grid Grid.Column="3" VerticalAlignment="Center" Background="Transparent" ToolTipService.ToolTip="{x:Bind StatusText, Mode=OneWay}">
                                         <Ellipse
                                             Width="8" Height="8"
                                             HorizontalAlignment="Center" VerticalAlignment="Center"
@@ -884,9 +903,9 @@
                                         <FontIcon
                                             FontSize="13"
                                             HorizontalAlignment="Center" VerticalAlignment="Center"
-                                            Glyph="{x:Bind local:UiHelpers.IndicatorGlyph(Sound), Mode=OneWay}"
+                                            Glyph="{x:Bind local:UiHelpers.IndicatorGlyph(Status, Sound), Mode=OneWay}"
                                             Foreground="{x:Bind local:UiHelpers.IndicatorBrush(Status, IsAd, IsAssumedAdBreak), Mode=OneWay}"
-                                            Visibility="{x:Bind ShowSoundIndicator, Mode=OneWay}" />
+                                            Visibility="{x:Bind ShowIconIndicator, Mode=OneWay}" />
                                     </Grid>
                                 </Grid>
                             </DataTemplate>

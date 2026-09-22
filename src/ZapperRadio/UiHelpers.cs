@@ -16,28 +16,26 @@ public static class UiHelpers
     private static readonly SolidColorBrush HeartOnBrush = new(ColorHelper.FromArgb(255, 232, 64, 87));
     private static readonly SolidColorBrush StarOffBrush = new(ColorHelper.FromArgb(255, 138, 138, 138));
 
-    public static Brush StatusBrush(StreamStatus status) => status switch
-    {
-        StreamStatus.Live => LiveBrush,
-        StreamStatus.Failed => FailedBrush,
-        _ => BusyBrush,
-    };
-
     /// <summary>The accent color for a song, red during an ad break, or yellow when an ad break is only assumed.</summary>
     public static Brush SongBrush(bool isAd, bool isAssumedAdBreak) =>
         isAd ? FailedBrush
         : isAssumedAdBreak ? StarOnBrush
         : (Brush)Application.Current.Resources["AccentTextFillColorPrimaryBrush"];
 
-    /// <summary>The small indicator of a favorite in the compact view: green while it is live, yellow while it is
+    /// <summary>The small indicator of a favorite: green while it is live, yellow while it is
     /// connecting or an ad break is only assumed, and red during an ad break or when the stream will not play.</summary>
     public static Brush IndicatorBrush(StreamStatus status, bool isAd, bool isAssumedAdBreak) =>
         isAd || status == StreamStatus.Failed ? FailedBrush
         : isAssumedAdBreak || status != StreamStatus.Live ? BusyBrush
         : LiveBrush;
 
-    /// <summary>Splits the green indicator: a note while the station plays music, a speech bubble while someone talks.</summary>
-    public static string IndicatorGlyph(Sound sound) => Glyph(sound == Sound.Speech ? 0xE90A : 0xE8D6); // Comment / MusicNote
+    /// <summary>
+    /// The icon of the indicator: a note while the station plays music, a speech bubble while someone talks, and a
+    /// network icon while the stream is connecting, buffering or reconnecting.
+    /// </summary>
+    public static string IndicatorGlyph(StreamStatus status, Sound sound) =>
+        status != StreamStatus.Live ? Glyph(0xE968) // Network
+        : Glyph(sound == Sound.Speech ? 0xE90A : 0xE8D6); // Comment / MusicNote
 
     public static string ViewGlyph(bool isCompact) => Glyph(isCompact ? 0xE740 : 0xE73F); // FullScreen / BackToWindow
 
