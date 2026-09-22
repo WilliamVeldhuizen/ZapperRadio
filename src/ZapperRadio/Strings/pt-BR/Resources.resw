@@ -224,6 +224,9 @@
   <data name="AboutText.Text" xml:space="preserve">
     <value>Rádio pela internet que mantém abertas as transmissões dos seus favoritos, para que a troca seja instantânea e você não ouça o anúncio que uma rádio toca quando você se conecta.</value>
   </data>
+  <data name="WebsiteLink.Content" xml:space="preserve">
+    <value>Site do ZapperRadio</value>
+  </data>
   <data name="GitHubLink.Content" xml:space="preserve">
     <value>ZapperRadio no GitHub</value>
   </data>

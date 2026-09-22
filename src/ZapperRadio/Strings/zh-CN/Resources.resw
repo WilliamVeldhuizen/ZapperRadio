@@ -224,6 +224,9 @@
   <data name="AboutText.Text" xml:space="preserve">
     <value>网络电台，让你收藏电台的流保持连接，因此切换是即时的，也听不到电台在你连接时播放的广告。</value>
   </data>
+  <data name="WebsiteLink.Content" xml:space="preserve">
+    <value>ZapperRadio 网站</value>
+  </data>
   <data name="GitHubLink.Content" xml:space="preserve">
     <value>GitHub 上的 ZapperRadio</value>
   </data>

@@ -224,6 +224,9 @@
   <data name="AboutText.Text" xml:space="preserve">
     <value>Інтернет-радіо, яке тримає потоки ваших вибраних станцій відкритими, тож перемикання миттєве, а рекламу, яку станція вмикає під час підключення, ви не чуєте.</value>
   </data>
+  <data name="WebsiteLink.Content" xml:space="preserve">
+    <value>Вебсайт ZapperRadio</value>
+  </data>
   <data name="GitHubLink.Content" xml:space="preserve">
     <value>ZapperRadio на GitHub</value>
   </data>

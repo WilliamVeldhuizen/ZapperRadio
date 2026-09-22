@@ -1107,8 +1107,13 @@
                         <TextBlock x:Uid="AboutText" Style="{StaticResource SettingsTextStyle}" />
                         <!-- Aligned with the text above it, past the padding a button draws around its content. -->
                         <HyperlinkButton
-                            x:Uid="GitHubLink"
+                            x:Uid="WebsiteLink"
                             Margin="-12,2,0,0"
+                            FontSize="12"
+                            NavigateUri="https://zapperradio.com/" />
+                        <HyperlinkButton
+                            x:Uid="GitHubLink"
+                            Margin="-12,0,0,0"
                             FontSize="12"
                             NavigateUri="https://github.com/WilliamVeldhuizen/ZapperRadio" />
                     </StackPanel>
