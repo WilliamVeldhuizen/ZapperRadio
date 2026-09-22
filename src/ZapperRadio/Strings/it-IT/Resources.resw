@@ -78,7 +78,7 @@
     <value>Solo per ascoltare musica: quando la stazione che stai ascoltando inizia una pausa pubblicitaria o qualcuno parla, passa al primo preferito che sta suonando una canzone e torna indietro appena riparte la musica. Mai nel mezzo di una canzone: il ritorno aspetta che la stazione su cui sei finito arrivi alla propria pausa. Le stazioni che non segnalano la pubblicità sono considerate in pausa pubblicitaria quando una canzone supera di molto la sua durata e si sente parlato invece di musica.</value>
   </data>
   <data name="NoFavoritesText.Text" xml:space="preserve">
-    <value>Ancora nessun preferito. Trova una stazione a destra e fai clic sulla stella.</value>
+    <value>Ancora nessun preferito. Trova una stazione a destra e fai clic sul +.</value>
   </data>
   <data name="RemoveFavoriteButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>Rimuovi dai preferiti</value>
@@ -128,8 +128,14 @@
   <data name="ReloadStationsButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>Ricarica l'elenco delle stazioni</value>
   </data>
-  <data name="ToggleFavoriteButton.ToolTipService.ToolTip" xml:space="preserve">
-    <value>Aggiungi o rimuovi dai preferiti</value>
+  <data name="PlayStationButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Riproduci</value>
+  </data>
+  <data name="FavoriteAdd" xml:space="preserve">
+    <value>Aggiungi ai preferiti</value>
+  </data>
+  <data name="FavoriteRemove" xml:space="preserve">
+    <value>Rimuovi dai preferiti</value>
   </data>
   <data name="FavoriteTracksHint.Text" xml:space="preserve">
     <value>Le canzoni che hai salvato con il cuore accanto alla canzone in riproduzione. Cercane una su Spotify o YouTube, oppure copiane il titolo.</value>
@@ -177,7 +183,7 @@
     <value>Nessuna canzone della cronologia corrisponde alla ricerca.</value>
   </data>
   <data name="CompactNoFavorites.Text" xml:space="preserve">
-    <value>Ancora nessun preferito. Passa alla finestra completa per cercare stazioni e aggiungerle con la stella.</value>
+    <value>Ancora nessun preferito. Passa alla finestra completa per cercare stazioni e aggiungerle con il +.</value>
   </data>
   <data name="PlayStopButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>Riproduci / ferma (Ctrl+Spazio)</value>

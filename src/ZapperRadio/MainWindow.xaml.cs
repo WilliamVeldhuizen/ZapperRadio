@@ -503,6 +503,9 @@ public sealed partial class MainWindow : Window
     private void RemoveFavorite_Click(object sender, RoutedEventArgs e) =>
         ViewModel.RemoveFavorite((FavoriteViewModel)((FrameworkElement)sender).DataContext);
 
+    private void PlayStation_Click(object sender, RoutedEventArgs e) =>
+        ViewModel.Play(((StationResultViewModel)((FrameworkElement)sender).DataContext).Station);
+
     private void ToggleFavorite_Click(object sender, RoutedEventArgs e) =>
         ViewModel.ToggleFavorite(((StationResultViewModel)((FrameworkElement)sender).DataContext).Station);
 

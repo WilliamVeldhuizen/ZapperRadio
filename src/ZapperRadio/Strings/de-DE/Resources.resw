@@ -78,7 +78,7 @@
     <value>Nur zum Musikhören: Wenn der Sender, den du hörst, eine Werbepause beginnt oder jemand spricht, wird zum obersten Favoriten gezappt, der gerade einen Song spielt, und zurück, sobald wieder Musik läuft. Nie mitten im Song: Die Rückkehr wartet, bis der Sender, auf dem du gelandet bist, selbst eine Pause hat. Bei Sendern, die ihre Werbung nicht kennzeichnen, wird eine Werbepause angenommen, wenn ein Song deutlich länger läuft als seine Länge und statt Musik Sprache zu hören ist.</value>
   </data>
   <data name="NoFavoritesText.Text" xml:space="preserve">
-    <value>Noch keine Favoriten. Suche rechts einen Sender und klicke auf den Stern.</value>
+    <value>Noch keine Favoriten. Suche rechts einen Sender und klicke auf das +.</value>
   </data>
   <data name="RemoveFavoriteButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>Aus Favoriten entfernen</value>
@@ -128,8 +128,14 @@
   <data name="ReloadStationsButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>Senderliste neu laden</value>
   </data>
-  <data name="ToggleFavoriteButton.ToolTipService.ToolTip" xml:space="preserve">
-    <value>Favorit umschalten</value>
+  <data name="PlayStationButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Abspielen</value>
+  </data>
+  <data name="FavoriteAdd" xml:space="preserve">
+    <value>Zu Favoriten hinzufügen</value>
+  </data>
+  <data name="FavoriteRemove" xml:space="preserve">
+    <value>Aus Favoriten entfernen</value>
   </data>
   <data name="FavoriteTracksHint.Text" xml:space="preserve">
     <value>Songs, die du mit dem Herz neben dem laufenden Song gespeichert hast. Suche einen bei Spotify oder YouTube oder kopiere den Titel.</value>
@@ -177,7 +183,7 @@
     <value>Kein Song im Verlauf passt zu deiner Suche.</value>
   </data>
   <data name="CompactNoFavorites.Text" xml:space="preserve">
-    <value>Noch keine Favoriten. Wechsle zum vollständigen Fenster, um Sender zu suchen und sie mit dem Stern hinzuzufügen.</value>
+    <value>Noch keine Favoriten. Wechsle zum vollständigen Fenster, um Sender zu suchen und sie mit dem + hinzuzufügen.</value>
   </data>
   <data name="PlayStopButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>Wiedergabe / Stopp (Ctrl+Leertaste)</value>

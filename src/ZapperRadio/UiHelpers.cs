@@ -44,9 +44,13 @@ public static class UiHelpers
     public static string ViewToolTip(bool isCompact) =>
         Localizer.Get(isCompact ? "ViewSwitchToFull" : "ViewSwitchToCompact");
 
-    public static string StarGlyph(bool isFavorite) => Glyph(isFavorite ? 0xE735 : 0xE734); // FavoriteStarFill / FavoriteStar
+    /// <summary>A plus on a search result that can be added to the favorites, and a check on one that already is.</summary>
+    public static string FavoriteGlyph(bool isFavorite) => Glyph(isFavorite ? 0xE73E : 0xE710); // CheckMark / Add
 
-    public static Brush StarBrush(bool isFavorite) => isFavorite ? StarOnBrush : StarOffBrush;
+    public static Brush FavoriteBrush(bool isFavorite) =>
+        isFavorite ? (Brush)Application.Current.Resources["AccentTextFillColorPrimaryBrush"] : StarOffBrush;
+
+    public static string FavoriteToolTip(bool isFavorite) => Localizer.Get(isFavorite ? "FavoriteRemove" : "FavoriteAdd");
 
     public static string HeartGlyph(bool isSaved) => Glyph(isSaved ? 0xE00B : 0xE006); // HeartFill / Heart
 

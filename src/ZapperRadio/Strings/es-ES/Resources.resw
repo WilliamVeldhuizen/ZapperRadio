@@ -78,7 +78,7 @@
     <value>Solo para escuchar música: cuando la emisora que escuchas empieza una pausa de anuncios o alguien habla, se zapea al favorito más alto que esté poniendo una canción, y se vuelve en cuanto vuelve a sonar música. Nunca en mitad de una canción: la vuelta espera a que la emisora a la que has llegado llegue a su propia pausa. Se supone que las emisoras que no marcan sus anuncios están en una pausa de anuncios cuando una canción se alarga mucho más de lo que dura y se oye voz en lugar de música.</value>
   </data>
   <data name="NoFavoritesText.Text" xml:space="preserve">
-    <value>Aún no hay favoritos. Busca una emisora a la derecha y haz clic en la estrella.</value>
+    <value>Aún no hay favoritos. Busca una emisora a la derecha y haz clic en el +.</value>
   </data>
   <data name="RemoveFavoriteButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>Quitar de favoritos</value>
@@ -128,8 +128,14 @@
   <data name="ReloadStationsButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>Volver a cargar la lista de emisoras</value>
   </data>
-  <data name="ToggleFavoriteButton.ToolTipService.ToolTip" xml:space="preserve">
-    <value>Añadir o quitar de favoritos</value>
+  <data name="PlayStationButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Reproducir</value>
+  </data>
+  <data name="FavoriteAdd" xml:space="preserve">
+    <value>Añadir a favoritos</value>
+  </data>
+  <data name="FavoriteRemove" xml:space="preserve">
+    <value>Quitar de favoritos</value>
   </data>
   <data name="FavoriteTracksHint.Text" xml:space="preserve">
     <value>Canciones que guardaste con el corazón junto a la canción que suena. Búscala en Spotify o YouTube, o copia su título.</value>
@@ -177,7 +183,7 @@
     <value>Ninguna canción del historial coincide con tu búsqueda.</value>
   </data>
   <data name="CompactNoFavorites.Text" xml:space="preserve">
-    <value>Aún no hay favoritos. Cambia a la ventana completa para buscar emisoras y añadirlas con la estrella.</value>
+    <value>Aún no hay favoritos. Cambia a la ventana completa para buscar emisoras y añadirlas con el +.</value>
   </data>
   <data name="PlayStopButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>Reproducir / detener (Ctrl+Espacio)</value>

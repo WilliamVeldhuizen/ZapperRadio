@@ -78,7 +78,7 @@
     <value>仅用于听音乐：当你正在收听的电台开始插播广告或有人说话时，切换到排在最前、正在播放歌曲的收藏电台，等它重新播放音乐后再切换回来。绝不会在歌曲中途切换：切回的时机要等到你所在的电台自己进入间隙。对于不标记广告的电台，当一首歌播放时间远超其时长且听到的是人声而非音乐时，会被视为处于广告时段。</value>
   </data>
   <data name="NoFavoritesText.Text" xml:space="preserve">
-    <value>还没有收藏。请在右侧找到电台并点击星标。</value>
+    <value>还没有收藏。请在右侧找到电台并点击 +。</value>
   </data>
   <data name="RemoveFavoriteButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>从收藏中移除</value>
@@ -128,8 +128,14 @@
   <data name="ReloadStationsButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>重新加载电台列表</value>
   </data>
-  <data name="ToggleFavoriteButton.ToolTipService.ToolTip" xml:space="preserve">
-    <value>添加或移除收藏</value>
+  <data name="PlayStationButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>播放</value>
+  </data>
+  <data name="FavoriteAdd" xml:space="preserve">
+    <value>添加到收藏</value>
+  </data>
+  <data name="FavoriteRemove" xml:space="preserve">
+    <value>从收藏中移除</value>
   </data>
   <data name="FavoriteTracksHint.Text" xml:space="preserve">
     <value>你用正在播放的歌曲旁边的心形保存的歌曲。可在 Spotify 或 YouTube 上查找，或复制标题。</value>
@@ -177,7 +183,7 @@
     <value>历史记录中没有与你的搜索匹配的歌曲。</value>
   </data>
   <data name="CompactNoFavorites.Text" xml:space="preserve">
-    <value>还没有收藏。请切换到完整窗口来搜索电台，并用星标添加。</value>
+    <value>还没有收藏。请切换到完整窗口来搜索电台，并用 + 添加。</value>
   </data>
   <data name="PlayStopButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>播放 / 停止 (Ctrl+空格)</value>

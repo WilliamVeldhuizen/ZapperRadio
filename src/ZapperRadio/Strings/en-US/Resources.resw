@@ -78,7 +78,7 @@
     <value>For listening to music only: when the station you are listening to starts an ad break or someone talks, zap to the highest favorite that is playing a song, and zap back once it plays music again. Never in the middle of a song, though: the return waits until the station you landed on reaches its own break. Stations that do not mark their ads are assumed to be in an ad break when a song runs well past its length and speech is heard instead of music.</value>
   </data>
   <data name="NoFavoritesText.Text" xml:space="preserve">
-    <value>No favorites yet. Find a station on the right and click the star.</value>
+    <value>No favorites yet. Find a station on the right and click its +.</value>
   </data>
   <data name="RemoveFavoriteButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>Remove from favorites</value>
@@ -128,8 +128,14 @@
   <data name="ReloadStationsButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>Reload station list</value>
   </data>
-  <data name="ToggleFavoriteButton.ToolTipService.ToolTip" xml:space="preserve">
-    <value>Toggle favorite</value>
+  <data name="PlayStationButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Play</value>
+  </data>
+  <data name="FavoriteAdd" xml:space="preserve">
+    <value>Add to favorites</value>
+  </data>
+  <data name="FavoriteRemove" xml:space="preserve">
+    <value>Remove from favorites</value>
   </data>
   <data name="FavoriteTracksHint.Text" xml:space="preserve">
     <value>Songs you saved with the heart next to the song that is playing. Find one on Spotify or YouTube, or copy its title.</value>
@@ -177,7 +183,7 @@
     <value>No song in the history matches your search.</value>
   </data>
   <data name="CompactNoFavorites.Text" xml:space="preserve">
-    <value>No favorites yet. Switch to the full window to search for stations and add them with the star.</value>
+    <value>No favorites yet. Switch to the full window to search for stations and add them with the +.</value>
   </data>
   <data name="PlayStopButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>Play / stop (Ctrl+Space)</value>

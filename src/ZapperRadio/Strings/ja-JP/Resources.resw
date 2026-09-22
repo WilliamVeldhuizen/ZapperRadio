@@ -78,7 +78,7 @@
     <value>音楽だけを聴きたい方向け: 聴いている局が広告に入ったり誰かが話し始めたりしたら、曲を流している一番上のお気に入りにザッピングし、音楽が戻ったら元に戻ります。曲の途中では絶対に切り替えません。戻るのは、移動先の局が自分の区切りに来るまで待ちます。広告を示さない局は、曲が本来の長さを大きく超えて音楽の代わりに話し声が聞こえるとき、広告中とみなされます。</value>
   </data>
   <data name="NoFavoritesText.Text" xml:space="preserve">
-    <value>お気に入りはまだありません。右側で局を探して、星をクリックしてください。</value>
+    <value>お気に入りはまだありません。右側で局を探して、+ をクリックしてください。</value>
   </data>
   <data name="RemoveFavoriteButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>お気に入りから削除</value>
@@ -128,8 +128,14 @@
   <data name="ReloadStationsButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>放送局リストを再読み込み</value>
   </data>
-  <data name="ToggleFavoriteButton.ToolTipService.ToolTip" xml:space="preserve">
-    <value>お気に入りの追加 / 削除</value>
+  <data name="PlayStationButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>再生</value>
+  </data>
+  <data name="FavoriteAdd" xml:space="preserve">
+    <value>お気に入りに追加</value>
+  </data>
+  <data name="FavoriteRemove" xml:space="preserve">
+    <value>お気に入りから削除</value>
   </data>
   <data name="FavoriteTracksHint.Text" xml:space="preserve">
     <value>再生中の曲の横にあるハートで保存した曲です。Spotify や YouTube で探すか、タイトルをコピーできます。</value>
@@ -177,7 +183,7 @@
     <value>検索に一致する曲は履歴にありません。</value>
   </data>
   <data name="CompactNoFavorites.Text" xml:space="preserve">
-    <value>お気に入りはまだありません。フルウィンドウに切り替えて局を検索し、星で追加してください。</value>
+    <value>お気に入りはまだありません。フルウィンドウに切り替えて局を検索し、+ で追加してください。</value>
   </data>
   <data name="PlayStopButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>再生 / 停止 (Ctrl+Space)</value>

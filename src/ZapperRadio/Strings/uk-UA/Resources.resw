@@ -78,7 +78,7 @@
     <value>Лише для прослуховування музики: коли станція, яку ви слухаєте, починає рекламний блок або хтось говорить, застосунок перемикається на першу вибрану станцію, де грає пісня, і повертається, щойно знову лунає музика. Ніколи посеред пісні: повернення чекає, поки на станції, куди ви потрапили, не почнеться її власна пауза. Станції, які не позначають рекламу, вважаються такими, що перебувають у рекламному блоці, коли пісня йде помітно довше за свою тривалість і замість музики чути мову.</value>
   </data>
   <data name="NoFavoritesText.Text" xml:space="preserve">
-    <value>Вибраного поки немає. Знайдіть станцію праворуч і натисніть зірочку.</value>
+    <value>Вибраного поки немає. Знайдіть станцію праворуч і натисніть +.</value>
   </data>
   <data name="RemoveFavoriteButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>Видалити з вибраного</value>
@@ -128,8 +128,14 @@
   <data name="ReloadStationsButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>Перезавантажити список станцій</value>
   </data>
-  <data name="ToggleFavoriteButton.ToolTipService.ToolTip" xml:space="preserve">
-    <value>Додати до вибраного або прибрати</value>
+  <data name="PlayStationButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Слухати</value>
+  </data>
+  <data name="FavoriteAdd" xml:space="preserve">
+    <value>Додати до вибраного</value>
+  </data>
+  <data name="FavoriteRemove" xml:space="preserve">
+    <value>Прибрати з вибраного</value>
   </data>
   <data name="FavoriteTracksHint.Text" xml:space="preserve">
     <value>Пісні, які ви зберегли сердечком поруч із піснею, що зараз грає. Знайдіть пісню в Spotify чи на YouTube або скопіюйте її назву.</value>
@@ -177,7 +183,7 @@
     <value>В історії немає пісень, що відповідають вашому запиту.</value>
   </data>
   <data name="CompactNoFavorites.Text" xml:space="preserve">
-    <value>Вибраного поки немає. Перейдіть до повного вікна, щоб шукати станції та додавати їх зірочкою.</value>
+    <value>Вибраного поки немає. Перейдіть до повного вікна, щоб шукати станції та додавати їх кнопкою +.</value>
   </data>
   <data name="PlayStopButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>Відтворити / зупинити (Ctrl+Пробіл)</value>

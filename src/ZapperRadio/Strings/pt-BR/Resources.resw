@@ -78,7 +78,7 @@
     <value>Só para ouvir música: quando a rádio que você está ouvindo começa um intervalo comercial ou alguém fala, o app zapeia para o primeiro favorito que estiver tocando uma música e volta assim que ela tocar música de novo. Nunca no meio de uma música: a volta espera até que a rádio em que você caiu chegue ao seu próprio intervalo. Rádios que não marcam seus anúncios são consideradas em intervalo comercial quando uma música passa bastante da sua duração e se ouve fala em vez de música.</value>
   </data>
   <data name="NoFavoritesText.Text" xml:space="preserve">
-    <value>Nenhum favorito ainda. Encontre uma rádio à direita e clique na estrela.</value>
+    <value>Nenhum favorito ainda. Encontre uma rádio à direita e clique no +.</value>
   </data>
   <data name="RemoveFavoriteButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>Remover dos favoritos</value>
@@ -128,8 +128,14 @@
   <data name="ReloadStationsButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>Recarregar a lista de rádios</value>
   </data>
-  <data name="ToggleFavoriteButton.ToolTipService.ToolTip" xml:space="preserve">
-    <value>Adicionar ou remover dos favoritos</value>
+  <data name="PlayStationButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Tocar</value>
+  </data>
+  <data name="FavoriteAdd" xml:space="preserve">
+    <value>Adicionar aos favoritos</value>
+  </data>
+  <data name="FavoriteRemove" xml:space="preserve">
+    <value>Remover dos favoritos</value>
   </data>
   <data name="FavoriteTracksHint.Text" xml:space="preserve">
     <value>Músicas que você salvou com o coração ao lado da música que está tocando. Procure uma no Spotify ou no YouTube, ou copie o título.</value>
@@ -177,7 +183,7 @@
     <value>Nenhuma música do histórico corresponde à sua busca.</value>
   </data>
   <data name="CompactNoFavorites.Text" xml:space="preserve">
-    <value>Nenhum favorito ainda. Mude para a janela completa para buscar rádios e adicioná-las com a estrela.</value>
+    <value>Nenhum favorito ainda. Mude para a janela completa para buscar rádios e adicioná-las com o +.</value>
   </data>
   <data name="PlayStopButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>Reproduzir / parar (Ctrl+Espaço)</value>

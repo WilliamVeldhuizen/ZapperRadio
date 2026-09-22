@@ -78,7 +78,7 @@
     <value>Pour n'écouter que de la musique : quand la station écoutée lance une page de publicité ou que quelqu'un parle, on zappe vers le premier favori qui joue un morceau, puis on revient dès qu'elle rejoue de la musique. Jamais en plein milieu d'un morceau : le retour attend que la station sur laquelle vous êtes arrivé atteigne sa propre coupure. Les stations qui ne signalent pas leurs publicités sont supposées être en page de publicité quand un morceau dépasse largement sa durée et qu'on entend de la parole à la place de la musique.</value>
   </data>
   <data name="NoFavoritesText.Text" xml:space="preserve">
-    <value>Aucun favori pour l'instant. Trouvez une station à droite et cliquez sur l'étoile.</value>
+    <value>Aucun favori pour l'instant. Trouvez une station à droite et cliquez sur le +.</value>
   </data>
   <data name="RemoveFavoriteButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>Retirer des favoris</value>
@@ -128,8 +128,14 @@
   <data name="ReloadStationsButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>Recharger la liste des stations</value>
   </data>
-  <data name="ToggleFavoriteButton.ToolTipService.ToolTip" xml:space="preserve">
-    <value>Ajouter ou retirer des favoris</value>
+  <data name="PlayStationButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Écouter</value>
+  </data>
+  <data name="FavoriteAdd" xml:space="preserve">
+    <value>Ajouter aux favoris</value>
+  </data>
+  <data name="FavoriteRemove" xml:space="preserve">
+    <value>Retirer des favoris</value>
   </data>
   <data name="FavoriteTracksHint.Text" xml:space="preserve">
     <value>Les morceaux que vous avez enregistrés avec le cœur à côté du morceau en cours. Cherchez-en un sur Spotify ou YouTube, ou copiez son titre.</value>
@@ -177,7 +183,7 @@
     <value>Aucun morceau de l'historique ne correspond à votre recherche.</value>
   </data>
   <data name="CompactNoFavorites.Text" xml:space="preserve">
-    <value>Aucun favori pour l'instant. Passez à la fenêtre complète pour chercher des stations et les ajouter avec l'étoile.</value>
+    <value>Aucun favori pour l'instant. Passez à la fenêtre complète pour chercher des stations et les ajouter avec le +.</value>
   </data>
   <data name="PlayStopButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>Lecture / arrêt (Ctrl+Espace)</value>

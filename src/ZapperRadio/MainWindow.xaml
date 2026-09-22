@@ -344,15 +344,33 @@
                                     <Grid Padding="0,6" ColumnSpacing="8">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="3" />
-                                            <ColumnDefinition Width="*" />
                                             <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
                                         </Grid.ColumnDefinitions>
                                         <!-- The station being listened to, marked as in the favorites. -->
                                         <Rectangle
                                             RadiusX="1.5" RadiusY="1.5"
                                             Fill="{ThemeResource AccentFillColorDefaultBrush}"
                                             Visibility="{x:Bind IsActive, Mode=OneWay}" />
-                                        <StackPanel Grid.Column="1" Spacing="2">
+                                        <!-- Play and add come first, so it is plain what a result is for; clicking the rest of the row plays too. -->
+                                        <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+                                            <Button
+                                                x:Uid="PlayStationButton"
+                                                Style="{StaticResource IconButtonStyle}"
+                                                Click="PlayStation_Click">
+                                                <FontIcon FontSize="16" Glyph="&#xE768;" />
+                                            </Button>
+                                            <Button
+                                                Style="{StaticResource IconButtonStyle}"
+                                                ToolTipService.ToolTip="{x:Bind local:UiHelpers.FavoriteToolTip(IsFavorite), Mode=OneWay}"
+                                                Click="ToggleFavorite_Click">
+                                                <FontIcon
+                                                    FontSize="16"
+                                                    Glyph="{x:Bind local:UiHelpers.FavoriteGlyph(IsFavorite), Mode=OneWay}"
+                                                    Foreground="{x:Bind local:UiHelpers.FavoriteBrush(IsFavorite), Mode=OneWay}" />
+                                            </Button>
+                                        </StackPanel>
+                                        <StackPanel Grid.Column="2" Spacing="2">
                                             <TextBlock Text="{x:Bind Name}" TextTrimming="CharacterEllipsis" />
                                             <!-- A station that failed its last check says so first, so it is not mistaken for a quiet one. -->
                                             <Grid>
@@ -372,17 +390,6 @@
                                                     TextTrimming="CharacterEllipsis" />
                                             </Grid>
                                         </StackPanel>
-                                        <Button
-                                            x:Uid="ToggleFavoriteButton"
-                                            Grid.Column="2"
-                                            Style="{StaticResource IconButtonStyle}"
-                                            VerticalAlignment="Center"
-                                            Click="ToggleFavorite_Click">
-                                            <FontIcon
-                                                FontSize="16"
-                                                Glyph="{x:Bind local:UiHelpers.StarGlyph(IsFavorite), Mode=OneWay}"
-                                                Foreground="{x:Bind local:UiHelpers.StarBrush(IsFavorite), Mode=OneWay}" />
-                                        </Button>
                                     </Grid>
                                 </DataTemplate>
                             </ListView.ItemTemplate>
