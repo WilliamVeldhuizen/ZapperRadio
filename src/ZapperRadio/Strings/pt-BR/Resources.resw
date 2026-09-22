@@ -128,8 +128,11 @@
   <data name="ReloadStationsButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>Recarregar a lista de rádios</value>
   </data>
-  <data name="PlayStationButton.ToolTipService.ToolTip" xml:space="preserve">
+  <data name="PlayStation" xml:space="preserve">
     <value>Tocar</value>
+  </data>
+  <data name="StopStation" xml:space="preserve">
+    <value>Parar</value>
   </data>
   <data name="FavoriteAdd" xml:space="preserve">
     <value>Adicionar aos favoritos</value>

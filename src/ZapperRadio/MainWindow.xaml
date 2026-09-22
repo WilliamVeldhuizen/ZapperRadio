@@ -355,10 +355,10 @@
                                         <!-- Play and add come first, so it is plain what a result is for; clicking the rest of the row plays too. -->
                                         <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
                                             <Button
-                                                x:Uid="PlayStationButton"
                                                 Style="{StaticResource IconButtonStyle}"
+                                                ToolTipService.ToolTip="{x:Bind local:UiHelpers.PlayStationToolTip(IsActive), Mode=OneWay}"
                                                 Click="PlayStation_Click">
-                                                <FontIcon FontSize="16" Glyph="&#xE768;" />
+                                                <FontIcon FontSize="16" Glyph="{x:Bind local:UiHelpers.PlayGlyph(IsActive), Mode=OneWay}" />
                                             </Button>
                                             <Button
                                                 Style="{StaticResource IconButtonStyle}"

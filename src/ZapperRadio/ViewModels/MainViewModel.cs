@@ -705,13 +705,18 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
     private bool IsInBreak(string url) =>
         ZappOnAdBreaks && _engine.Find(url) is { } stream && ChannelOf(stream) is ChannelState.Ad or ChannelState.Speech;
 
+    public void Stop()
+    {
+        _engine.Stop();
+        _zapper.OnStopped();
+    }
+
     [RelayCommand]
     private void TogglePlayback()
     {
         if (_engine.Active is not null)
         {
-            _engine.Stop();
-            _zapper.OnStopped();
+            Stop();
         }
         else if ((_lastPlayed ?? Favorites.FirstOrDefault()?.Station) is { } station)
         {

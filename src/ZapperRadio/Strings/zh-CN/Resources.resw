@@ -128,8 +128,11 @@
   <data name="ReloadStationsButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>重新加载电台列表</value>
   </data>
-  <data name="PlayStationButton.ToolTipService.ToolTip" xml:space="preserve">
+  <data name="PlayStation" xml:space="preserve">
     <value>播放</value>
+  </data>
+  <data name="StopStation" xml:space="preserve">
+    <value>停止</value>
   </data>
   <data name="FavoriteAdd" xml:space="preserve">
     <value>添加到收藏</value>

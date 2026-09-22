@@ -128,8 +128,11 @@
   <data name="ReloadStationsButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>放送局リストを再読み込み</value>
   </data>
-  <data name="PlayStationButton.ToolTipService.ToolTip" xml:space="preserve">
+  <data name="PlayStation" xml:space="preserve">
     <value>再生</value>
+  </data>
+  <data name="StopStation" xml:space="preserve">
+    <value>停止</value>
   </data>
   <data name="FavoriteAdd" xml:space="preserve">
     <value>お気に入りに追加</value>

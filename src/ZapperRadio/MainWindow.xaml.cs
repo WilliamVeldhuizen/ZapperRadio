@@ -503,8 +503,19 @@ public sealed partial class MainWindow : Window
     private void RemoveFavorite_Click(object sender, RoutedEventArgs e) =>
         ViewModel.RemoveFavorite((FavoriteViewModel)((FrameworkElement)sender).DataContext);
 
-    private void PlayStation_Click(object sender, RoutedEventArgs e) =>
-        ViewModel.Play(((StationResultViewModel)((FrameworkElement)sender).DataContext).Station);
+    /// <summary>Plays a search result, or stops it when it is the station being listened to.</summary>
+    private void PlayStation_Click(object sender, RoutedEventArgs e)
+    {
+        var result = (StationResultViewModel)((FrameworkElement)sender).DataContext;
+        if (result.IsActive)
+        {
+            ViewModel.Stop();
+        }
+        else
+        {
+            ViewModel.Play(result.Station);
+        }
+    }
 
     private void ToggleFavorite_Click(object sender, RoutedEventArgs e) =>
         ViewModel.ToggleFavorite(((StationResultViewModel)((FrameworkElement)sender).DataContext).Station);
