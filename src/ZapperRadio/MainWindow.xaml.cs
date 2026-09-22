@@ -128,6 +128,25 @@ public sealed partial class MainWindow : Window
     }
 
     /// <summary>
+    /// Puts the window on top of the others, restoring it when minimized, so a zap from a global shortcut shows
+    /// which station it landed on. Focus stays in the app the shortcut was pressed in: whoever zaps from there
+    /// is busy in it, and taking the keyboard away would send their next keystrokes to the radio.
+    /// </summary>
+    private void ShowWithoutFocus()
+    {
+        if (AppWindow.Presenter is OverlappedPresenter { State: OverlappedPresenterState.Minimized } presenter)
+        {
+            presenter.Restore(activateWindow: false);
+        }
+
+        // Raising a window above another app's needs it to be made topmost for a moment; asking for the top of
+        // the ordinary windows is ignored while a window of another process has the foreground.
+        var hwnd = WinRT.Interop.WindowNative.GetWindowHandle(this);
+        SetWindowPos(hwnd, HwndTopmost, 0, 0, 0, 0, SwpNoMove | SwpNoSize | SwpNoActivate);
+        SetWindowPos(hwnd, HwndNoTopmost, 0, 0, 0, 0, SwpNoMove | SwpNoSize | SwpNoActivate);
+    }
+
+    /// <summary>
     /// Puts the window back where the view being shown was last left, maximized if that is how the full window
     /// was left. The first time a view is used it gets its default size, where the window already is.
     /// </summary>
@@ -343,8 +362,16 @@ public sealed partial class MainWindow : Window
         var taken = new List<string>();
         Claim(VirtualKey.P, "Ctrl+Alt+P", () => ViewModel.TogglePlaybackCommand.Execute(null));
         Claim(VirtualKey.M, "Ctrl+Alt+M", () => ViewModel.ToggleMuteCommand.Execute(null));
-        Claim(VirtualKey.Right, "Ctrl+Alt+→", () => ViewModel.PlayNextFavoriteCommand.Execute(null));
-        Claim(VirtualKey.Left, "Ctrl+Alt+←", () => ViewModel.PlayPreviousFavoriteCommand.Execute(null));
+        Claim(VirtualKey.Right, "Ctrl+Alt+→", () =>
+        {
+            ShowWithoutFocus();
+            ViewModel.PlayNextFavoriteCommand.Execute(null);
+        });
+        Claim(VirtualKey.Left, "Ctrl+Alt+←", () =>
+        {
+            ShowWithoutFocus();
+            ViewModel.PlayPreviousFavoriteCommand.Execute(null);
+        });
 
         ViewModel.GlobalHotkeyStatus = taken.Count == 0
             ? ""
@@ -579,4 +606,13 @@ public sealed partial class MainWindow : Window
 
     [DllImport("user32.dll")]
     private static extern bool SetForegroundWindow(nint hwnd);
+
+    private const nint HwndTopmost = -1;
+    private const nint HwndNoTopmost = -2;
+    private const uint SwpNoSize = 0x0001;
+    private const uint SwpNoMove = 0x0002;
+    private const uint SwpNoActivate = 0x0010;
+
+    [DllImport("user32.dll")]
+    private static extern bool SetWindowPos(nint hwnd, nint insertAfter, int x, int y, int width, int height, uint flags);
 }

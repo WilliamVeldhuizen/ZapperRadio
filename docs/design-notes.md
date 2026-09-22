@@ -30,7 +30,10 @@ so its one method is called through the vtable.
 with `RegisterHotKey` and watches for WM_HOTKEY by chaining the window procedure. They are on
 `Ctrl+Alt` rather than on the `Ctrl+Space` and `Ctrl+M` of the window, because claiming those
 system wide would take them away from every other app. A combination another app already holds is
-named in the settings instead of failing, and the whole set can be switched off there.
+named in the settings instead of failing, and the whole set can be switched off there. The two
+zap shortcuts also bring the window up, restoring it when minimized, so you see where the zap
+landed; they do this without activating it (a moment of topmost via `SetWindowPos`), so the keyboard
+stays in the app you pressed them in.
 
 ## Loudness normalization across stations (1.12.0)
 
