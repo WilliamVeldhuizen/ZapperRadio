@@ -291,6 +291,7 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
     [NotifyPropertyChangedFor(nameof(IsShowingZapper))]
     [NotifyPropertyChangedFor(nameof(IsShowingFavoriteTracks))]
     [NotifyPropertyChangedFor(nameof(IsShowingPlayHistory))]
+    [NotifyPropertyChangedFor(nameof(IsShowingSettings))]
     public partial MainTab SelectedTab { get; set; }
 
     public bool IsShowingStations => SelectedTab == MainTab.Stations;
@@ -303,11 +304,17 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
         {
             RefreshTimeShiftMemory();
         }
+        else if (value == MainTab.Settings)
+        {
+            RefreshCacheSummary();
+        }
     }
 
     public bool IsShowingFavoriteTracks => SelectedTab == MainTab.FavoriteTracks;
 
     public bool IsShowingPlayHistory => SelectedTab == MainTab.PlayHistory;
+
+    public bool IsShowingSettings => SelectedTab == MainTab.Settings;
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(ResultsSummary))]
@@ -1647,6 +1654,7 @@ public enum MainTab
     Zapper,
     FavoriteTracks,
     PlayHistory,
+    Settings,
 }
 
 /// <summary>A length the time-shift buffer can be set to, in minutes (0 is off), and how the settings name it.</summary>

@@ -89,12 +89,6 @@
   <data name="PlayHistoryTab.Text" xml:space="preserve">
     <value>歌曲历史</value>
   </data>
-  <data name="SettingsButton.ToolTipService.ToolTip" xml:space="preserve">
-    <value>设置</value>
-  </data>
-  <data name="SettingsButton.AutomationProperties.Name" xml:space="preserve">
-    <value>设置</value>
-  </data>
   <data name="SearchBox.PlaceholderText" xml:space="preserve">
     <value>按名称、流派或国家/地区搜索 (Ctrl+F)</value>
   </data>
@@ -194,11 +188,8 @@
   <data name="VolumeSlider.AutomationProperties.Name" xml:space="preserve">
     <value>音量</value>
   </data>
-  <data name="SettingsDialog.Title" xml:space="preserve">
+  <data name="SettingsTab.Text" xml:space="preserve">
     <value>设置</value>
-  </data>
-  <data name="SettingsDialog.CloseButtonText" xml:space="preserve">
-    <value>关闭</value>
   </data>
   <data name="StartupHeading.Text" xml:space="preserve">
     <value>启动</value>

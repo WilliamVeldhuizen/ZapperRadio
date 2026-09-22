@@ -319,13 +319,6 @@ public sealed partial class MainWindow : Window
 
     private double Scale => GetDpiForWindow(WinRT.Interop.WindowNative.GetWindowHandle(this)) / 96.0;
 
-    private async void Settings_Click(object sender, RoutedEventArgs e)
-    {
-        ViewModel.RefreshCacheSummary();
-        SettingsDialog.XamlRoot = Root.XamlRoot;
-        await SettingsDialog.ShowAsync();
-    }
-
     private void AddKeyboardShortcuts()
     {
         AddShortcut(VirtualKey.Space, () => ViewModel.TogglePlaybackCommand.Execute(null));
@@ -348,7 +341,7 @@ public sealed partial class MainWindow : Window
     /// <summary>
     /// Claims the same actions system wide, on Ctrl+Alt instead of Ctrl: the in-window shortcuts are left where
     /// they are, because taking Ctrl+Space away from every other app would break typing and code completion.
-    /// Whatever another app already holds is named in the settings, since only the rest is registered.
+    /// Whatever another app already holds is named under the shortcuts on the Zapper tab, since only the rest is registered.
     /// </summary>
     private void ApplyGlobalHotkeys()
     {
@@ -391,6 +384,7 @@ public sealed partial class MainWindow : Window
             sender.SelectedItem == ZapperTab ? MainTab.Zapper
             : sender.SelectedItem == FavoriteTracksTab ? MainTab.FavoriteTracks
             : sender.SelectedItem == PlayHistoryTab ? MainTab.PlayHistory
+            : sender.SelectedItem == SettingsTab ? MainTab.Settings
             : MainTab.Stations;
 
     private void AddShortcut(VirtualKey key, Action action)

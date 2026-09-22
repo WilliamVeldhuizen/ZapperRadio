@@ -89,12 +89,6 @@
   <data name="PlayHistoryTab.Text" xml:space="preserve">
     <value>曲の履歴</value>
   </data>
-  <data name="SettingsButton.ToolTipService.ToolTip" xml:space="preserve">
-    <value>設定</value>
-  </data>
-  <data name="SettingsButton.AutomationProperties.Name" xml:space="preserve">
-    <value>設定</value>
-  </data>
   <data name="SearchBox.PlaceholderText" xml:space="preserve">
     <value>名前、ジャンル、国で検索 (Ctrl+F)</value>
   </data>
@@ -194,11 +188,8 @@
   <data name="VolumeSlider.AutomationProperties.Name" xml:space="preserve">
     <value>音量</value>
   </data>
-  <data name="SettingsDialog.Title" xml:space="preserve">
+  <data name="SettingsTab.Text" xml:space="preserve">
     <value>設定</value>
-  </data>
-  <data name="SettingsDialog.CloseButtonText" xml:space="preserve">
-    <value>閉じる</value>
   </data>
   <data name="StartupHeading.Text" xml:space="preserve">
     <value>スタートアップ</value>

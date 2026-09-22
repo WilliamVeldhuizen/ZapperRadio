@@ -237,45 +237,34 @@
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
 
-                    <Grid Margin="8,4,8,0">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="Auto" />
-                        </Grid.ColumnDefinitions>
-
-                        <SelectorBar x:Name="Tabs" SelectionChanged="Tabs_SelectionChanged">
-                            <SelectorBarItem x:Name="StationsTab" x:Uid="StationsTab" IsSelected="True">
-                                <SelectorBarItem.Icon>
-                                    <FontIcon Glyph="&#xE93E;" />
-                                </SelectorBarItem.Icon>
-                            </SelectorBarItem>
-                            <!-- The Z-bolt of the app icon, as in the title bar, scaled from its 64-unit frame to the 16 of an icon. -->
-                            <SelectorBarItem x:Name="ZapperTab" x:Uid="ZapperTab">
-                                <SelectorBarItem.Icon>
-                                    <PathIcon Data="M10.5,2 L6,2 L6,3.75 L8,3.75 L5.75,14 L10.25,14 L10.25,12.25 L8.25,12.25 Z" />
-                                </SelectorBarItem.Icon>
-                            </SelectorBarItem>
-                            <SelectorBarItem x:Name="FavoriteTracksTab" Text="{x:Bind ViewModel.FavoriteTracksHeader, Mode=OneWay}">
-                                <SelectorBarItem.Icon>
-                                    <FontIcon Glyph="&#xE006;" />
-                                </SelectorBarItem.Icon>
-                            </SelectorBarItem>
-                            <SelectorBarItem x:Name="PlayHistoryTab" x:Uid="PlayHistoryTab">
-                                <SelectorBarItem.Icon>
-                                    <FontIcon Glyph="&#xE81C;" />
-                                </SelectorBarItem.Icon>
-                            </SelectorBarItem>
-                        </SelectorBar>
-
-                        <Button
-                            x:Uid="SettingsButton"
-                            Grid.Column="1"
-                            Style="{StaticResource IconButtonStyle}"
-                            VerticalAlignment="Center"
-                            Click="Settings_Click">
-                            <FontIcon Glyph="&#xE713;" FontSize="16" />
-                        </Button>
-                    </Grid>
+                    <SelectorBar x:Name="Tabs" Margin="8,4,8,0" SelectionChanged="Tabs_SelectionChanged">
+                        <SelectorBarItem x:Name="StationsTab" x:Uid="StationsTab" IsSelected="True">
+                            <SelectorBarItem.Icon>
+                                <FontIcon Glyph="&#xE93E;" />
+                            </SelectorBarItem.Icon>
+                        </SelectorBarItem>
+                        <!-- The Z-bolt of the app icon, as in the title bar, scaled from its 64-unit frame to the 16 of an icon. -->
+                        <SelectorBarItem x:Name="ZapperTab" x:Uid="ZapperTab">
+                            <SelectorBarItem.Icon>
+                                <PathIcon Data="M10.5,2 L6,2 L6,3.75 L8,3.75 L5.75,14 L10.25,14 L10.25,12.25 L8.25,12.25 Z" />
+                            </SelectorBarItem.Icon>
+                        </SelectorBarItem>
+                        <SelectorBarItem x:Name="FavoriteTracksTab" Text="{x:Bind ViewModel.FavoriteTracksHeader, Mode=OneWay}">
+                            <SelectorBarItem.Icon>
+                                <FontIcon Glyph="&#xE006;" />
+                            </SelectorBarItem.Icon>
+                        </SelectorBarItem>
+                        <SelectorBarItem x:Name="PlayHistoryTab" x:Uid="PlayHistoryTab">
+                            <SelectorBarItem.Icon>
+                                <FontIcon Glyph="&#xE81C;" />
+                            </SelectorBarItem.Icon>
+                        </SelectorBarItem>
+                        <SelectorBarItem x:Name="SettingsTab" x:Uid="SettingsTab">
+                            <SelectorBarItem.Icon>
+                                <FontIcon Glyph="&#xE713;" />
+                            </SelectorBarItem.Icon>
+                        </SelectorBarItem>
+                    </SelectorBar>
 
                     <!-- Station search -->
                     <Grid Grid.Row="1" Visibility="{x:Bind ViewModel.IsShowingStations, Mode=OneWay}">
@@ -428,6 +417,44 @@
                                     TextWrapping="Wrap" />
                                 <ToggleSwitch x:Uid="ZapperSwitch" IsOn="{x:Bind ViewModel.ZappOnAdBreaks, Mode=TwoWay}" />
                             </StackPanel>
+
+                            <!-- Zapping is done from the keys as much as from the list, so the shortcuts stand out right under the switch. -->
+                            <Border
+                                Padding="14,12"
+                                CornerRadius="6"
+                                Background="{ThemeResource CardBackgroundFillColorSecondaryBrush}"
+                                BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+                                BorderThickness="1">
+                                <StackPanel Spacing="2">
+                                    <StackPanel Orientation="Horizontal" Spacing="8">
+                                        <FontIcon Glyph="&#xE765;" FontSize="16" Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}" />
+                                        <TextBlock x:Uid="ShortcutsHeading" Style="{StaticResource BodyStrongTextBlockStyle}" />
+                                    </StackPanel>
+                                    <TextBlock
+                                        x:Uid="ShortcutsText"
+                                        Margin="0,4,0,0"
+                                        Style="{StaticResource CaptionTextBlockStyle}"
+                                        Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                                        TextWrapping="Wrap" />
+                                    <CheckBox
+                                        x:Uid="GlobalHotkeysCheckBox"
+                                        Margin="0,6,0,0"
+                                        IsChecked="{x:Bind ViewModel.GlobalHotkeys, Mode=TwoWay}" />
+                                    <TextBlock
+                                        x:Uid="GlobalHotkeysText"
+                                        Margin="28,0,0,0"
+                                        Style="{StaticResource CaptionTextBlockStyle}"
+                                        Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                                        TextWrapping="Wrap" />
+                                    <TextBlock
+                                        Margin="28,2,0,0"
+                                        Text="{x:Bind ViewModel.GlobalHotkeyStatus, Mode=OneWay}"
+                                        Visibility="{x:Bind ViewModel.HasGlobalHotkeyProblem, Mode=OneWay}"
+                                        Style="{StaticResource CaptionTextBlockStyle}"
+                                        Foreground="{ThemeResource SystemFillColorCautionBrush}"
+                                        TextWrapping="Wrap" />
+                                </StackPanel>
+                            </Border>
 
                             <StackPanel Spacing="2">
                                 <TextBlock x:Uid="ZapToSongStartHeading" Style="{StaticResource BodyStrongTextBlockStyle}" />
@@ -687,6 +714,150 @@
                             </ListView.ItemTemplate>
                         </ListView>
                     </Grid>
+
+                    <!-- Settings -->
+                    <ScrollViewer
+                        Grid.Row="1"
+                        HorizontalScrollMode="Disabled"
+                        VerticalScrollBarVisibility="Auto"
+                        Visibility="{x:Bind ViewModel.IsShowingSettings, Mode=OneWay}">
+                        <ScrollViewer.Resources>
+                            <Style x:Key="SettingsTextStyle" TargetType="TextBlock" BasedOn="{StaticResource CaptionTextBlockStyle}">
+                                <Setter Property="Foreground" Value="{ThemeResource TextFillColorSecondaryBrush}" />
+                                <Setter Property="TextWrapping" Value="Wrap" />
+                            </Style>
+                            <Style x:Key="SettingsButtonStyle" TargetType="Button" BasedOn="{StaticResource DefaultButtonStyle}">
+                                <Setter Property="Margin" Value="0,8,0,0" />
+                            </Style>
+                        </ScrollViewer.Resources>
+
+                        <StackPanel Padding="16,8,16,16" Spacing="20">
+                            <StackPanel Spacing="2">
+                                <TextBlock x:Uid="StartupHeading" Style="{StaticResource BodyStrongTextBlockStyle}" />
+                                <CheckBox x:Uid="AutoStartCheckBox" IsChecked="{x:Bind ViewModel.AutoStart, Mode=TwoWay}" />
+                            </StackPanel>
+
+                            <StackPanel Spacing="2">
+                                <TextBlock x:Uid="LanguageHeading" Style="{StaticResource BodyStrongTextBlockStyle}" />
+                                <TextBlock x:Uid="LanguageText" Style="{StaticResource SettingsTextStyle}" />
+                                <!-- Every language is named in itself, so it can be found even when the rest of the window is in one that cannot be read. -->
+                                <ComboBox
+                                    x:Uid="LanguageBox"
+                                    Margin="0,6,0,0"
+                                    MinWidth="220"
+                                    ItemsSource="{x:Bind ViewModel.Languages}"
+                                    DisplayMemberPath="Name"
+                                    SelectedItem="{x:Bind ViewModel.SelectedLanguage, Mode=TwoWay}" />
+                                <TextBlock
+                                    x:Uid="LanguageRestartText"
+                                    Margin="0,4,0,0"
+                                    Style="{StaticResource SettingsTextStyle}"
+                                    Foreground="{ThemeResource SystemFillColorCautionBrush}"
+                                    Visibility="{x:Bind ViewModel.NeedsRestartForLanguage, Mode=OneWay}" />
+                            </StackPanel>
+
+                            <StackPanel Spacing="2">
+                                <TextBlock x:Uid="LoudnessHeading" Style="{StaticResource BodyStrongTextBlockStyle}" />
+                                <TextBlock x:Uid="LoudnessText" Style="{StaticResource SettingsTextStyle}" />
+                                <CheckBox
+                                    x:Uid="NormalizeLoudnessCheckBox"
+                                    Margin="0,6,0,0"
+                                    IsChecked="{x:Bind ViewModel.NormalizeLoudness, Mode=TwoWay}" />
+                                <TextBlock
+                                    x:Uid="NoFavoritesLoudnessText"
+                                    Margin="0,2,0,0"
+                                    Style="{StaticResource SettingsTextStyle}"
+                                    Visibility="{x:Bind ViewModel.HasNoFavorites, Mode=OneWay}" />
+                                <ItemsControl Margin="0,4,0,0" ItemsSource="{x:Bind ViewModel.Favorites}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate x:DataType="vm:FavoriteViewModel">
+                                            <StackPanel Margin="0,2">
+                                                <TextBlock Text="{x:Bind Name}" TextTrimming="CharacterEllipsis" />
+                                                <TextBlock
+                                                    Text="{x:Bind LoudnessText, Mode=OneWay}"
+                                                    Style="{StaticResource CaptionTextBlockStyle}"
+                                                    Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                                <Button
+                                    x:Uid="RemeasureLoudnessButton"
+                                    Style="{StaticResource SettingsButtonStyle}"
+                                    Command="{x:Bind ViewModel.RemeasureLoudnessCommand}" />
+                            </StackPanel>
+
+                            <StackPanel Spacing="2">
+                                <TextBlock x:Uid="StationListHeading" Style="{StaticResource BodyStrongTextBlockStyle}" />
+                                <TextBlock
+                                    Text="{x:Bind ViewModel.StationListName, Mode=OneWay}"
+                                    Style="{StaticResource SettingsTextStyle}"
+                                    TextWrapping="NoWrap"
+                                    TextTrimming="CharacterEllipsis" />
+                                <TextBlock
+                                    Text="{x:Bind ViewModel.CatalogStatus, Mode=OneWay}"
+                                    Style="{StaticResource SettingsTextStyle}" />
+                                <TextBlock
+                                    Text="{x:Bind ViewModel.StationListUpdated, Mode=OneWay}"
+                                    Style="{StaticResource SettingsTextStyle}" />
+                                <Button
+                                    x:Uid="CheckStationListButton"
+                                    Style="{StaticResource SettingsButtonStyle}"
+                                    Command="{x:Bind ViewModel.ReloadCatalogCommand}" />
+                            </StackPanel>
+
+                            <StackPanel Spacing="2">
+                                <TextBlock x:Uid="CacheHeading" Style="{StaticResource BodyStrongTextBlockStyle}" />
+                                <TextBlock x:Uid="CacheText" Style="{StaticResource SettingsTextStyle}" />
+                                <TextBlock
+                                    Margin="0,4,0,0"
+                                    Text="{x:Bind ViewModel.CacheSummary, Mode=OneWay}"
+                                    Style="{StaticResource SettingsTextStyle}" />
+                                <Button
+                                    x:Uid="ClearCacheButton"
+                                    Style="{StaticResource SettingsButtonStyle}"
+                                    Command="{x:Bind ViewModel.ClearCacheCommand}" />
+                            </StackPanel>
+
+                            <!-- Only for an installed app: a development build has no updates to look for. -->
+                            <StackPanel Spacing="2" Visibility="{x:Bind ViewModel.IsUpdateSupported}">
+                                <TextBlock x:Uid="UpdatesHeading" Style="{StaticResource BodyStrongTextBlockStyle}" />
+                                <TextBlock x:Uid="UpdatesText" Style="{StaticResource SettingsTextStyle}" />
+                                <TextBlock
+                                    Margin="0,4,0,0"
+                                    Text="{x:Bind ViewModel.UpdateStatus, Mode=OneWay}"
+                                    Style="{StaticResource SettingsTextStyle}" />
+                                <StackPanel Orientation="Horizontal" Spacing="8">
+                                    <Button
+                                        x:Uid="CheckForUpdatesButton"
+                                        Style="{StaticResource SettingsButtonStyle}"
+                                        Command="{x:Bind ViewModel.CheckForUpdatesCommand}" />
+                                    <Button
+                                        x:Uid="RestartToUpdateButton"
+                                        Style="{StaticResource SettingsButtonStyle}"
+                                        Visibility="{x:Bind ViewModel.IsUpdateReady, Mode=OneWay}"
+                                        Command="{x:Bind ViewModel.RestartToUpdateCommand}" />
+                                </StackPanel>
+                            </StackPanel>
+
+                            <StackPanel Spacing="2">
+                                <TextBlock x:Uid="AboutHeading" Style="{StaticResource BodyStrongTextBlockStyle}" />
+                                <TextBlock
+                                    Text="{x:Bind local:UiHelpers.AboutVersion(ViewModel.AppVersion)}"
+                                    Style="{StaticResource SettingsTextStyle}" />
+                                <TextBlock x:Uid="AboutText" Style="{StaticResource SettingsTextStyle}" />
+                                <!-- Aligned with the text above it, past the padding a button draws around its content. -->
+                                <HyperlinkButton
+                                    x:Uid="WebsiteLink"
+                                    Margin="-12,2,0,0"
+                                    NavigateUri="https://zapperradio.com/" />
+                                <HyperlinkButton
+                                    x:Uid="GitHubLink"
+                                    Margin="-12,0,0,0"
+                                    NavigateUri="https://github.com/WilliamVeldhuizen/ZapperRadio" />
+                            </StackPanel>
+                        </StackPanel>
+                    </ScrollViewer>
                 </Grid>
             </Border>
         </Grid>
@@ -1041,187 +1212,5 @@
                     Minimum="0" Maximum="100" StepFrequency="1"
                     Value="{x:Bind ViewModel.Volume, Mode=TwoWay}" />
             </Grid>
-        </Border>
-
-        <!-- Shown from the button next to the tabs; nothing of it is drawn until then. -->
-        <ContentDialog
-            x:Name="SettingsDialog"
-            x:Uid="SettingsDialog"
-            DefaultButton="Close">
-            <ContentDialog.Resources>
-                <!-- The settings are mostly explanation, so their text is set a step smaller than the rest of
-                     the app. With the wider dialog that keeps every section readable and on screen at once. -->
-                <Style x:Key="SettingsHeadingStyle" TargetType="TextBlock" BasedOn="{StaticResource BodyStrongTextBlockStyle}">
-                    <Setter Property="FontSize" Value="13" />
-                </Style>
-                <Style x:Key="SettingsTextStyle" TargetType="TextBlock" BasedOn="{StaticResource CaptionTextBlockStyle}">
-                    <Setter Property="FontSize" Value="11" />
-                    <Setter Property="Foreground" Value="{ThemeResource TextFillColorSecondaryBrush}" />
-                    <Setter Property="TextWrapping" Value="Wrap" />
-                </Style>
-                <Style x:Key="SettingsButtonStyle" TargetType="Button" BasedOn="{StaticResource DefaultButtonStyle}">
-                    <Setter Property="FontSize" Value="12" />
-                    <Setter Property="Padding" Value="11,4" />
-                    <Setter Property="Margin" Value="0,8,0,0" />
-                </Style>
-            </ContentDialog.Resources>
-
-            <!-- Scrolls rather than clips, for a short window or a large text size. -->
-            <ScrollViewer MaxHeight="520" HorizontalScrollMode="Disabled" VerticalScrollBarVisibility="Auto">
-                <StackPanel Width="520" Spacing="18">
-                    <StackPanel Spacing="2">
-                        <TextBlock x:Uid="StartupHeading" Style="{StaticResource SettingsHeadingStyle}" />
-                        <CheckBox
-                            x:Uid="AutoStartCheckBox"
-                            FontSize="12"
-                            IsChecked="{x:Bind ViewModel.AutoStart, Mode=TwoWay}" />
-                    </StackPanel>
-
-                    <StackPanel Spacing="2">
-                        <TextBlock x:Uid="LanguageHeading" Style="{StaticResource SettingsHeadingStyle}" />
-                        <TextBlock x:Uid="LanguageText" Style="{StaticResource SettingsTextStyle}" />
-                        <!-- Every language is named in itself, so it can be found even when the rest of the window is in one that cannot be read. -->
-                        <ComboBox
-                            x:Uid="LanguageBox"
-                            Margin="0,6,0,0"
-                            FontSize="12"
-                            MinWidth="220"
-                            ItemsSource="{x:Bind ViewModel.Languages}"
-                            DisplayMemberPath="Name"
-                            SelectedItem="{x:Bind ViewModel.SelectedLanguage, Mode=TwoWay}" />
-                        <TextBlock
-                            x:Uid="LanguageRestartText"
-                            Margin="0,4,0,0"
-                            Style="{StaticResource SettingsTextStyle}"
-                            Foreground="{ThemeResource SystemFillColorCautionBrush}"
-                            Visibility="{x:Bind ViewModel.NeedsRestartForLanguage, Mode=OneWay}" />
-                    </StackPanel>
-
-                    <StackPanel Spacing="2">
-                        <TextBlock x:Uid="AboutHeading" Style="{StaticResource SettingsHeadingStyle}" />
-                        <TextBlock
-                            Text="{x:Bind local:UiHelpers.AboutVersion(ViewModel.AppVersion)}"
-                            Style="{StaticResource SettingsTextStyle}" />
-                        <TextBlock x:Uid="AboutText" Style="{StaticResource SettingsTextStyle}" />
-                        <!-- Aligned with the text above it, past the padding a button draws around its content. -->
-                        <HyperlinkButton
-                            x:Uid="WebsiteLink"
-                            Margin="-12,2,0,0"
-                            FontSize="12"
-                            NavigateUri="https://zapperradio.com/" />
-                        <HyperlinkButton
-                            x:Uid="GitHubLink"
-                            Margin="-12,0,0,0"
-                            FontSize="12"
-                            NavigateUri="https://github.com/WilliamVeldhuizen/ZapperRadio" />
-                    </StackPanel>
-
-                    <!-- Only for an installed app: a development build has no updates to look for. -->
-                    <StackPanel Spacing="2" Visibility="{x:Bind ViewModel.IsUpdateSupported}">
-                        <TextBlock x:Uid="UpdatesHeading" Style="{StaticResource SettingsHeadingStyle}" />
-                        <TextBlock x:Uid="UpdatesText" Style="{StaticResource SettingsTextStyle}" />
-                        <TextBlock
-                            Margin="0,4,0,0"
-                            Text="{x:Bind ViewModel.UpdateStatus, Mode=OneWay}"
-                            Style="{StaticResource SettingsTextStyle}" />
-                        <StackPanel Orientation="Horizontal" Spacing="8">
-                            <Button
-                                x:Uid="CheckForUpdatesButton"
-                                Style="{StaticResource SettingsButtonStyle}"
-                                Command="{x:Bind ViewModel.CheckForUpdatesCommand}" />
-                            <Button
-                                x:Uid="RestartToUpdateButton"
-                                Style="{StaticResource SettingsButtonStyle}"
-                                Visibility="{x:Bind ViewModel.IsUpdateReady, Mode=OneWay}"
-                                Command="{x:Bind ViewModel.RestartToUpdateCommand}" />
-                        </StackPanel>
-                    </StackPanel>
-
-                    <StackPanel Spacing="2">
-                        <TextBlock x:Uid="StationListHeading" Style="{StaticResource SettingsHeadingStyle}" />
-                        <TextBlock
-                            Text="{x:Bind ViewModel.StationListName, Mode=OneWay}"
-                            Style="{StaticResource SettingsTextStyle}"
-                            TextWrapping="NoWrap"
-                            TextTrimming="CharacterEllipsis" />
-                        <TextBlock
-                            Text="{x:Bind ViewModel.CatalogStatus, Mode=OneWay}"
-                            Style="{StaticResource SettingsTextStyle}" />
-                        <TextBlock
-                            Text="{x:Bind ViewModel.StationListUpdated, Mode=OneWay}"
-                            Style="{StaticResource SettingsTextStyle}" />
-                        <Button
-                            x:Uid="CheckStationListButton"
-                            Style="{StaticResource SettingsButtonStyle}"
-                            Command="{x:Bind ViewModel.ReloadCatalogCommand}" />
-                    </StackPanel>
-
-                    <StackPanel Spacing="2">
-                        <TextBlock x:Uid="ShortcutsHeading" Style="{StaticResource SettingsHeadingStyle}" />
-                        <TextBlock x:Uid="ShortcutsText" Style="{StaticResource SettingsTextStyle}" />
-                        <CheckBox
-                            x:Uid="GlobalHotkeysCheckBox"
-                            Margin="0,6,0,0"
-                            FontSize="12"
-                            IsChecked="{x:Bind ViewModel.GlobalHotkeys, Mode=TwoWay}" />
-                        <TextBlock
-                            x:Uid="GlobalHotkeysText"
-                            Margin="28,0,0,0"
-                            Style="{StaticResource SettingsTextStyle}" />
-                        <TextBlock
-                            Margin="28,2,0,0"
-                            Text="{x:Bind ViewModel.GlobalHotkeyStatus, Mode=OneWay}"
-                            Visibility="{x:Bind ViewModel.HasGlobalHotkeyProblem, Mode=OneWay}"
-                            Style="{StaticResource SettingsTextStyle}"
-                            Foreground="{ThemeResource SystemFillColorCautionBrush}" />
-                    </StackPanel>
-
-                    <StackPanel Spacing="2">
-                        <TextBlock x:Uid="LoudnessHeading" Style="{StaticResource SettingsHeadingStyle}" />
-                        <TextBlock x:Uid="LoudnessText" Style="{StaticResource SettingsTextStyle}" />
-                        <CheckBox
-                            x:Uid="NormalizeLoudnessCheckBox"
-                            Margin="0,6,0,0"
-                            FontSize="12"
-                            IsChecked="{x:Bind ViewModel.NormalizeLoudness, Mode=TwoWay}" />
-                        <TextBlock
-                            x:Uid="NoFavoritesLoudnessText"
-                            Margin="0,2,0,0"
-                            Style="{StaticResource SettingsTextStyle}"
-                            Visibility="{x:Bind ViewModel.HasNoFavorites, Mode=OneWay}" />
-                        <ItemsControl Margin="0,4,0,0" ItemsSource="{x:Bind ViewModel.Favorites}">
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate x:DataType="vm:FavoriteViewModel">
-                                    <StackPanel Margin="0,1">
-                                        <TextBlock Text="{x:Bind Name}" FontSize="12" TextTrimming="CharacterEllipsis" />
-                                        <TextBlock
-                                            Text="{x:Bind LoudnessText, Mode=OneWay}"
-                                            FontSize="11"
-                                            Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
-                                    </StackPanel>
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
-                        <Button
-                            x:Uid="RemeasureLoudnessButton"
-                            Style="{StaticResource SettingsButtonStyle}"
-                            Command="{x:Bind ViewModel.RemeasureLoudnessCommand}" />
-                    </StackPanel>
-
-                    <StackPanel Spacing="2">
-                        <TextBlock x:Uid="CacheHeading" Style="{StaticResource SettingsHeadingStyle}" />
-                        <TextBlock x:Uid="CacheText" Style="{StaticResource SettingsTextStyle}" />
-                        <TextBlock
-                            Margin="0,4,0,0"
-                            Text="{x:Bind ViewModel.CacheSummary, Mode=OneWay}"
-                            Style="{StaticResource SettingsTextStyle}" />
-                        <Button
-                            x:Uid="ClearCacheButton"
-                            Style="{StaticResource SettingsButtonStyle}"
-                            Command="{x:Bind ViewModel.ClearCacheCommand}" />
-                    </StackPanel>
-                </StackPanel>
-            </ScrollViewer>
-        </ContentDialog>
-    </Grid>
+        </Border>    </Grid>
 </Window>

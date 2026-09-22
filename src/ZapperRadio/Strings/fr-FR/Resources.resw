@@ -89,12 +89,6 @@
   <data name="PlayHistoryTab.Text" xml:space="preserve">
     <value>Historique des morceaux</value>
   </data>
-  <data name="SettingsButton.ToolTipService.ToolTip" xml:space="preserve">
-    <value>Paramètres</value>
-  </data>
-  <data name="SettingsButton.AutomationProperties.Name" xml:space="preserve">
-    <value>Paramètres</value>
-  </data>
   <data name="SearchBox.PlaceholderText" xml:space="preserve">
     <value>Rechercher par nom, genre ou pays (Ctrl+F)</value>
   </data>
@@ -194,11 +188,8 @@
   <data name="VolumeSlider.AutomationProperties.Name" xml:space="preserve">
     <value>Volume</value>
   </data>
-  <data name="SettingsDialog.Title" xml:space="preserve">
+  <data name="SettingsTab.Text" xml:space="preserve">
     <value>Paramètres</value>
-  </data>
-  <data name="SettingsDialog.CloseButtonText" xml:space="preserve">
-    <value>Fermer</value>
   </data>
   <data name="StartupHeading.Text" xml:space="preserve">
     <value>Démarrage</value>
