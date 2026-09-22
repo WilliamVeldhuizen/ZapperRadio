@@ -39,7 +39,7 @@ public sealed class StreamTimeline
     /// <summary>
     /// Where a moment that comes in <paramref name="now"/> starts. A break that only the sound tells about began where
     /// the talking did. A new song began where <paramref name="songStartedAt"/> says, less the pre-roll, but never
-    /// during an ad break the station marked, which really did come before it. Everything else, including a marked
+    /// during an ad break, marked or assumed, which really did come before it. Everything else, including a marked
     /// ad break, begins when it came in.
     /// </summary>
     public DateTimeOffset StartOf(StreamMoment moment, SoundHistory sound, DateTimeOffset? songStartedAt, DateTimeOffset now)
@@ -53,7 +53,7 @@ public sealed class StreamTimeline
         if (moment.State == ChannelState.Song && (before?.State != ChannelState.Song || before.Metadata != moment.Metadata)
             && songStartedAt - SongPreRoll is { } start && start < now)
         {
-            var lastAd = _entries.FindLast(e => e.Moment.Metadata?.IsAd == true);
+            var lastAd = _entries.FindLast(e => e.Moment.IsInAdBreak);
             return lastAd.Moment is not null && start <= lastAd.At ? lastAd.At + TimeSpan.FromTicks(1) : start;
         }
 

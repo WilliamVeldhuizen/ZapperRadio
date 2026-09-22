@@ -131,6 +131,24 @@ public class StreamTimelineTests
     }
 
     [Fact]
+    public void ASongNeverStartsDuringAnAssumedAdBreak()
+    {
+        // The overdue song's title stays, and the music after the break would otherwise be dated back to its start.
+        var now = T0.AddMinutes(6);
+        var timeline = new StreamTimeline();
+        timeline.Record(T0, Song);
+        var assumed = new StreamMoment(Song.Metadata, true, Sound.Speech, ChannelState.Ad);
+        timeline.Record(T0.AddMinutes(4), assumed);
+
+        var start = timeline.StartOf(Song, Heard("MMMM"), T0, now);
+        timeline.Record(start, Song);
+
+        Assert.True(start > T0.AddMinutes(4));
+        Assert.Equal(assumed, timeline.At(T0.AddMinutes(4)));
+        Assert.Equal(Song, timeline.At(now));
+    }
+
+    [Fact]
     public void EverythingElseStartsWhenItCameIn()
     {
         var now = T0.AddMinutes(3);

@@ -199,11 +199,13 @@ public sealed class StationStream : IDisposable
     /// <summary>
     /// When the song the station plays now began, or null when it plays none, or it cannot be told. The song clock
     /// knows best; a station without titles is timed from the start of the music heard, counted back from the last
-    /// window rather than from now, so it does not drift in the seconds between two windows.
+    /// window rather than from now, so it does not drift in the seconds between two windows. Once the song is overdue
+    /// the clock no longer says anything: what plays after an assumed ad break without a new title is another song,
+    /// and dating it back to the one before the break would land a zap in that break.
     /// </summary>
     public DateTimeOffset? SongStartedAt =>
         IsInAdBreak ? null
-        : _songClock.BeganAt is { } began ? began
+        : !IsSongOverdue && _songClock.BeganAt is { } began ? began
         : Sound == Sound.Music ? new DateTimeOffset(_lastSoundUtc, TimeSpan.Zero) - _sound.ConsecutiveMusic * SongClock.Window
         : null;
 
