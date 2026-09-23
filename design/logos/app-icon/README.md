@@ -33,3 +33,15 @@ magick zapperradio-icon-full.svg -background none -resize 256x256 icon-256.png
 ```
 
 Then pack the PNGs into an `.ico` with all eight frames.
+
+## Microsoft Store logos
+
+The MSIX package of the Store version takes its tiles, app list icons, Store logo and splash screen from
+`src/ZapperRadio/Assets/Store`. They are rendered from the same three masters with headless Edge:
+
+```powershell
+.\design\logos\app-icon\render-store-logos.ps1
+```
+
+The app list icon (`Square44x44Logo`) uses the size-specific masters like the `.ico`; the tiles and the
+splash screen put the full icon in the middle of a transparent canvas.

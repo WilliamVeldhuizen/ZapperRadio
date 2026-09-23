@@ -531,4 +531,10 @@
   <data name="TimeShiftMemoryPerFavorite" xml:space="preserve">
     <value>Займає близько {0} МБ пам’яті на одну обрану станцію з бітрейтом 128 кбіт/с.</value>
   </data>
+  <data name="AutoStartTurnedOffNotice.Message" xml:space="preserve">
+    <value>Windows вимкнув запуск ZapperRadio під час входу. Увімкніть його знову в розділі Параметри &gt; Програми &gt; Автозавантаження.</value>
+  </data>
+  <data name="StartupSettingsLink.Content" xml:space="preserve">
+    <value>Відкрити параметри автозавантаження</value>
+  </data>
 </root>

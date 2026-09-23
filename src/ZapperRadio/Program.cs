@@ -13,13 +13,17 @@ public static class Program
     private static int Main()
     {
         // First of all: when Velopack runs the app to install, update or uninstall it, this does that work and exits.
-        VelopackApp.Build()
-            // The Run key points into the install folder, which is deleted along with the app.
-            .OnBeforeUninstallFastCallback(_ => StartupRegistration.DisableForThisInstall())
-            // So that a taskbar pin survives the next update; see StableShortcuts.
-            .OnAfterInstallFastCallback(_ => StableShortcuts.PointAtLauncher())
-            .OnAfterUpdateFastCallback(_ => StableShortcuts.PointAtLauncher())
-            .Run();
+        // The Store version is installed and updated by the Store, and has no Velopack install to look after.
+        if (!AppPackage.IsPackaged)
+        {
+            VelopackApp.Build()
+                // The Run key points into the install folder, which is deleted along with the app.
+                .OnBeforeUninstallFastCallback(_ => StartupRegistration.DisableForThisInstall())
+                // So that a taskbar pin survives the next update; see StableShortcuts.
+                .OnAfterInstallFastCallback(_ => StableShortcuts.PointAtLauncher())
+                .OnAfterUpdateFastCallback(_ => StableShortcuts.PointAtLauncher())
+                .Run();
+        }
 
         WinRT.ComWrappersSupport.InitializeComWrappers();
 
@@ -37,7 +41,10 @@ public static class Program
 
         // Also here, for installs from before it was done on install and update, and because an update
         // points the shortcut's icon back at the app.
-        _ = Task.Run(StableShortcuts.PointAtLauncher);
+        if (!AppPackage.IsPackaged)
+        {
+            _ = Task.Run(StableShortcuts.PointAtLauncher);
+        }
 
         Application.Start(callback =>
         {

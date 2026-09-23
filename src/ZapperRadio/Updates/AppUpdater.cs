@@ -1,5 +1,6 @@
 using Velopack;
 using Velopack.Sources;
+using ZapperRadio.Shell;
 
 namespace ZapperRadio.Updates;
 
@@ -31,6 +32,12 @@ public sealed class AppUpdater
 
     public AppUpdater()
     {
+        // The Store version is updated by the Store, and never looks at the GitHub releases.
+        if (AppPackage.IsPackaged)
+        {
+            return;
+        }
+
         try
         {
             var manager = new UpdateManager(new GithubSource(RepositoryUrl, accessToken: null, prerelease: false));
@@ -42,7 +49,7 @@ public sealed class AppUpdater
         }
     }
 
-    /// <summary>False when the app was not installed by Velopack, in which case there is nothing to update.</summary>
+    /// <summary>False for the Store version, and when the app was not installed by Velopack: there is nothing to update then.</summary>
     public bool IsSupported => _manager is not null;
 
     /// <summary>The version that is downloaded and waiting for the app to close, if any.</summary>

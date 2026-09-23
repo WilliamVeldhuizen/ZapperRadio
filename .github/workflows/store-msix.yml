@@ -1,0 +1,104 @@
+# Builds the unsigned Microsoft Store packages (.msixupload, x64 and ARM64) of a release, to upload to Partner Center
+# by hand. They are kept as workflow artifacts, not attached to the GitHub release: the release is what the installed
+# app updates from, and the Store signs and distributes its own packages.
+#
+# Runs after the Release workflow when that run published a new release, and can be started by hand for any
+# release tag. The package version is the tag's version with a fourth part of 0, as the Store requires.
+name: Store MSIX
+
+on:
+  workflow_run:
+    workflows: [Release]
+    types: [completed]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Release tag to build, for example v1.29.0'
+        required: true
+
+permissions:
+  contents: read
+
+jobs:
+  resolve:
+    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    outputs:
+      tag: ${{ steps.tag.outputs.tag }}
+      version: ${{ steps.tag.outputs.version }}
+      build: ${{ steps.tag.outputs.build }}
+    steps:
+      - name: Determine the release tag
+        id: tag
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          INPUT_TAG: ${{ github.event.inputs.tag }}
+          HEAD_SHA: ${{ github.event.workflow_run.head_sha }}
+        run: |
+          if ('${{ github.event_name }}' -eq 'workflow_dispatch') {
+              $tag = $env:INPUT_TAG.Trim()
+          }
+          else {
+              # The Release workflow tags the release with the version in the csproj of the commit it ran for.
+              $csproj = gh api "repos/$env:REPO/contents/src/ZapperRadio/ZapperRadio.csproj?ref=$env:HEAD_SHA" --jq .content
+              $xml = [xml][Text.Encoding]::UTF8.GetString([Convert]::FromBase64String($csproj))
+              $tag = 'v' + ($xml.Project.PropertyGroup.Version | Where-Object { $_ } | Select-Object -First 1)
+          }
+          if ($tag -notmatch '^v(\d+\.\d+\.\d+)$') { throw "'$tag' is not a release tag of the form v1.2.3." }
+          $version = $Matches[1]
+
+          gh release view $tag --repo $env:REPO 2>$null | Out-Null
+          if ($LASTEXITCODE -ne 0) { throw "There is no release $tag." }
+          $global:LASTEXITCODE = 0
+
+          # After a push that did not make a new release the tag is older than this run's commit: nothing to build.
+          $build = $true
+          if ('${{ github.event_name }}' -eq 'workflow_run') {
+              $tagCommit = gh api "repos/$env:REPO/commits/$tag" --jq .sha
+              $build = $tagCommit -eq $env:HEAD_SHA
+              if (-not $build) { Write-Host "$tag was released from another commit; no new release to package." }
+          }
+
+          "tag=$tag" >> $env:GITHUB_OUTPUT
+          "version=$version" >> $env:GITHUB_OUTPUT
+          "build=$("$build".ToLower())" >> $env:GITHUB_OUTPUT
+
+  msix:
+    needs: resolve
+    if: needs.resolve.outputs.build == 'true'
+    runs-on: windows-latest
+    strategy:
+      matrix:
+        platform: [x64, ARM64]
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ needs.resolve.outputs.tag }}
+
+      - uses: actions/setup-dotnet@v6
+        with:
+          dotnet-version: '10.0.x'
+
+      # Visual Studio's MSBuild: the dotnet CLI cannot make the .msixupload.
+      - uses: microsoft/setup-msbuild@v2
+
+      - name: Build the Store package
+        shell: pwsh
+        run: |
+          msbuild src/ZapperRadio/ZapperRadio.csproj -restore -nologo -verbosity:minimal `
+              -p:Configuration=Release `
+              -p:Platform=${{ matrix.platform }} `
+              -p:StoreMsix=true `
+              -p:Version=${{ needs.resolve.outputs.version }} `
+              -p:UapAppxPackageBuildMode=StoreUpload `
+              "-p:AppxPackageDir=$PWD\artifacts\msix\"
+          if ($LASTEXITCODE -ne 0) { throw 'The MSIX build failed.' }
+          Get-ChildItem artifacts/msix -Filter *.msixupload | Format-Table Name, Length
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ZapperRadio-${{ needs.resolve.outputs.version }}-${{ matrix.platform }}-msixupload
+          path: artifacts/msix/*.msixupload
+          if-no-files-found: error

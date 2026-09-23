@@ -58,4 +58,47 @@
     <ProjectReference Include="..\ZapperRadio.Core\ZapperRadio.Core.csproj" />
   </ItemGroup>
 
+  <!--
+    The Microsoft Store build: the same app as an MSIX package, made with -p:StoreMsix=true (see scripts\test-msix.ps1
+    and the Store MSIX workflow). Without that property nothing below applies and the app stays the unpackaged one above.
+    The package is built with Visual Studio's MSBuild: the dotnet CLI cannot make the .msixupload for the Store.
+  -->
+  <PropertyGroup Condition="'$(StoreMsix)' == 'true'">
+    <WindowsPackageType>MSIX</WindowsPackageType>
+    <!-- There is no .NET framework package in the Store, so the package carries .NET like the installer does. -->
+    <SelfContained>true</SelfContained>
+    <GenerateAppxPackageOnBuild>true</GenerateAppxPackageOnBuild>
+    <!-- The Store signs the package; scripts\test-msix.ps1 signs a local test build itself. -->
+    <AppxPackageSigningEnabled>false</AppxPackageSigningEnabled>
+    <AppxBundle>Never</AppxBundle>
+    <!-- A symbols package needs mspdbcmf.exe from the C++ tools, and C# portable PDBs gain nothing from it. -->
+    <AppxSymbolPackageEnabled>false</AppxSymbolPackageEnabled>
+    <MsPdbCmfExeFullpath>none</MsPdbCmfExeFullpath>
+    <!-- Its own bin and obj, so switching between the two builds never picks up the other's leftovers. -->
+    <OutputPath>bin\msix\$(Platform)\$(Configuration)\</OutputPath>
+    <IntermediateOutputPath>obj\msix\$(Platform)\$(Configuration)\</IntermediateOutputPath>
+  </PropertyGroup>
+
+  <!-- Rendered from the app icon by design\logos\app-icon\render-store-logos.ps1. -->
+  <ItemGroup Condition="'$(StoreMsix)' == 'true'">
+    <Content Include="Assets\Store\*.png" />
+  </ItemGroup>
+
+  <!-- The package version is the app version with a fourth part of 0, which the Store requires. -->
+  <Target Name="StampMsixVersion" Condition="'$(StoreMsix)' == 'true'" BeforeTargets="_ValidatePresenceOfAppxManifestItems">
+    <PropertyGroup>
+      <_StampedAppxManifest>$(MSBuildProjectDirectory)\$(IntermediateOutputPath)Package.appxmanifest</_StampedAppxManifest>
+    </PropertyGroup>
+    <Copy SourceFiles="Package.appxmanifest" DestinationFiles="$(_StampedAppxManifest)" />
+    <XmlPoke
+      XmlInputPath="$(_StampedAppxManifest)"
+      Query="/x:Package/x:Identity/@Version"
+      Value="$(Version).0"
+      Namespaces="&lt;Namespace Prefix='x' Uri='http://schemas.microsoft.com/appx/manifest/foundation/windows10' /&gt;" />
+    <ItemGroup>
+      <AppxManifest Remove="@(AppxManifest)" />
+      <AppxManifest Include="$(_StampedAppxManifest)" />
+    </ItemGroup>
+  </Target>
+
 </Project>

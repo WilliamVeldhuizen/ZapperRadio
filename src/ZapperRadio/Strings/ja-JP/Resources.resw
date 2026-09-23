@@ -531,4 +531,10 @@
   <data name="TimeShiftMemoryPerFavorite" xml:space="preserve">
     <value>128 kbit/s の局で、お気に入り 1 件あたり約 {0} MB のメモリーを使います。</value>
   </data>
+  <data name="AutoStartTurnedOffNotice.Message" xml:space="preserve">
+    <value>Windows によって、サインイン時の ZapperRadio の起動がオフになっています。[設定] &gt; [アプリ] &gt; [スタートアップ] でオンに戻してください。</value>
+  </data>
+  <data name="StartupSettingsLink.Content" xml:space="preserve">
+    <value>スタートアップの設定を開く</value>
+  </data>
 </root>

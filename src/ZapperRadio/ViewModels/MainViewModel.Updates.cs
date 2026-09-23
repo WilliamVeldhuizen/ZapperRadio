@@ -18,7 +18,7 @@ public sealed partial class MainViewModel
     /// <summary>Raised when the user wants the update installed now; the window closes, and the updater starts the app again.</summary>
     public event EventHandler? RestartRequested;
 
-    /// <summary>False for a build that was not installed by Velopack, which has no updates to look for.</summary>
+    /// <summary>False for the Store version, which the Store updates, and for a build that was not installed by Velopack.</summary>
     public bool IsUpdateSupported => _updater.IsSupported;
 
     /// <summary>What the last check found, as shown in the settings.</summary>

@@ -531,4 +531,10 @@
   <data name="TimeShiftMemoryPerFavorite" xml:space="preserve">
     <value>Ocupa unos {0} MB de memoria por favorito, para una emisora de 128 kbit/s.</value>
   </data>
+  <data name="AutoStartTurnedOffNotice.Message" xml:space="preserve">
+    <value>Windows ha desactivado el inicio de ZapperRadio al iniciar sesión. Vuelve a activarlo en Configuración &gt; Aplicaciones &gt; Inicio.</value>
+  </data>
+  <data name="StartupSettingsLink.Content" xml:space="preserve">
+    <value>Abrir la configuración de inicio</value>
+  </data>
 </root>

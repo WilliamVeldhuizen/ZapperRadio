@@ -531,4 +531,10 @@
   <data name="TimeShiftMemoryPerFavorite" xml:space="preserve">
     <value>Kost ongeveer {0} MB geheugen per favoriet, voor een zender van 128 kbit/s.</value>
   </data>
+  <data name="AutoStartTurnedOffNotice.Message" xml:space="preserve">
+    <value>Windows heeft het starten van ZapperRadio bij het aanmelden uitgezet. Zet het weer aan in Instellingen &gt; Apps &gt; Opstarten.</value>
+  </data>
+  <data name="StartupSettingsLink.Content" xml:space="preserve">
+    <value>Opstartinstellingen openen</value>
+  </data>
 </root>

@@ -531,4 +531,10 @@
   <data name="TimeShiftMemoryPerFavorite" xml:space="preserve">
     <value>码率 128 kbit/s 的电台，每个收藏约占用 {0} MB 内存。</value>
   </data>
+  <data name="AutoStartTurnedOffNotice.Message" xml:space="preserve">
+    <value>Windows 已关闭登录时启动 ZapperRadio。请在“设置 &gt; 应用 &gt; 启动”中重新打开。</value>
+  </data>
+  <data name="StartupSettingsLink.Content" xml:space="preserve">
+    <value>打开启动设置</value>
+  </data>
 </root>

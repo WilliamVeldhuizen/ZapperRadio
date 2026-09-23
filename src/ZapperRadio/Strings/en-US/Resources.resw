@@ -531,4 +531,10 @@
   <data name="TimeShiftMemoryPerFavorite" xml:space="preserve">
     <value>Takes about {0} MB of memory per favorite, for a station at 128 kbit/s.</value>
   </data>
+  <data name="AutoStartTurnedOffNotice.Message" xml:space="preserve">
+    <value>Windows has turned off starting ZapperRadio when you sign in. Turn it back on in Settings &gt; Apps &gt; Startup.</value>
+  </data>
+  <data name="StartupSettingsLink.Content" xml:space="preserve">
+    <value>Open Startup settings</value>
+  </data>
 </root>

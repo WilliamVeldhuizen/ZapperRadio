@@ -71,6 +71,7 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
     private bool _historyChanged;
     private PlayedTrackFilter _historyFilter = new(null);
     private readonly string? _startedWithLanguage;
+    private bool _showingAutoStart;
 
     public MainViewModel(DispatcherQueue dispatcher)
     {
@@ -204,9 +205,9 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
         GlobalHotkeys = _settings.GlobalHotkeys;
         IsCompact = _settings.IsCompact;
         SelectedLanguage = Languages.FirstOrDefault(l => l.Tag == _settings.Language) ?? Languages[0];
-        // Read from the registry rather than settings.json: it also picks up a change made from
+        // Read from Windows rather than settings.json: it also picks up a change made from
         // Windows' own Startup Apps settings instead of from here.
-        AutoStart = StartupRegistration.IsEnabled();
+        _ = ShowAutoStartAsync(StartupRegistration.GetStateAsync());
 
         StartUpdateChecks();
     }
@@ -447,6 +448,10 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
     /// <summary>Whether ZapperRadio launches when the user signs in to Windows.</summary>
     [ObservableProperty]
     public partial bool AutoStart { get; set; }
+
+    /// <summary>The Store version only: Windows' Startup Apps settings turned the startup task off, and only there can it be turned back on.</summary>
+    [ObservableProperty]
+    public partial bool IsAutoStartTurnedOffInWindows { get; set; }
 
     /// <summary>Which of the global shortcuts another app already holds, or empty when they all work.</summary>
     [ObservableProperty]
@@ -1008,7 +1013,23 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
         SaveSettings();
     }
 
-    partial void OnAutoStartChanged(bool value) => StartupRegistration.SetEnabled(value);
+    partial void OnAutoStartChanged(bool value)
+    {
+        if (!_showingAutoStart)
+        {
+            _ = ShowAutoStartAsync(StartupRegistration.SetEnabledAsync(value));
+        }
+    }
+
+    /// <summary>Shows what Windows made of starting with Windows, which for the Store version need not be what the user just picked.</summary>
+    private async Task ShowAutoStartAsync(Task<StartupState> state)
+    {
+        var result = await state;
+        _showingAutoStart = true;
+        AutoStart = result == StartupState.On;
+        _showingAutoStart = false;
+        IsAutoStartTurnedOffInWindows = result == StartupState.TurnedOffInWindows;
+    }
 
     partial void OnZapBackAfterBreakChanged(bool value)
     {

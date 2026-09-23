@@ -746,6 +746,17 @@
                             <StackPanel Spacing="2">
                                 <TextBlock x:Uid="StartupHeading" Style="{StaticResource BodyStrongTextBlockStyle}" />
                                 <CheckBox x:Uid="AutoStartCheckBox" IsChecked="{x:Bind ViewModel.AutoStart, Mode=TwoWay}" />
+                                <!-- The Store version only: once the user turns the startup task off in Windows, only Windows can turn it back on. -->
+                                <InfoBar
+                                    x:Uid="AutoStartTurnedOffNotice"
+                                    Margin="0,6,0,0"
+                                    Severity="Informational"
+                                    IsClosable="False"
+                                    IsOpen="{x:Bind ViewModel.IsAutoStartTurnedOffInWindows, Mode=OneWay}">
+                                    <InfoBar.ActionButton>
+                                        <HyperlinkButton x:Uid="StartupSettingsLink" NavigateUri="ms-settings:startupapps" />
+                                    </InfoBar.ActionButton>
+                                </InfoBar>
                             </StackPanel>
 
                             <StackPanel Spacing="2">

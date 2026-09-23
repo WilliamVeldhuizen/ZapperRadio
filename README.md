@@ -81,6 +81,17 @@ To publish a release, bump `<Version>` in `src/ZapperRadio/ZapperRadio.csproj` a
 
 An app that is started from source (`dotnet run`) or copied around is not installed by Velopack and does not look for updates.
 
+## Building the Microsoft Store package
+
+The same code also builds as an MSIX package for the Microsoft Store, with `-p:StoreMsix=true`; without it the build is the unpackaged app above. `src/ZapperRadio/Package.appxmanifest` holds the Store identity, and its logos in `Assets/Store` are rendered from the app icon by `design/logos/app-icon/render-store-logos.ps1`. The package is built with Visual Studio's MSBuild, because the `dotnet` CLI cannot make the `.msixupload` the Store takes. At run time `Shell/AppPackage.IsPackaged` tells the two apart: the Store version starts with Windows through the startup task in its manifest instead of the `Run` key, and does not look for updates, since the Store updates it.
+
+After every new release, the [Store MSIX workflow](.github/workflows/store-msix.yml) builds unsigned x64 and ARM64 `.msixupload` files for that release, with version `<version>.0`, and keeps them as workflow artifacts to upload to Partner Center. It can also be started by hand for a release tag. To try the Store version on your own PC:
+
+```powershell
+.\scripts\test-msix.ps1           # builds, signs with a local test certificate, and installs the x64 package
+.\scripts\test-msix.ps1 -Remove   # uninstalls it and removes the test certificate
+```
+
 ## Structure
 
 - `src/ZapperRadio.Core`: downloading and parsing the station list, search, playlist resolving, the local relay that reads song titles from the streams and plays the time-shift buffers back, the ad break and music/speech rules, the loudness measurement, and settings. No UI, fully tested.

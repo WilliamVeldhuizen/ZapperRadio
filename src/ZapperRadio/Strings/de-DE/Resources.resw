@@ -531,4 +531,10 @@
   <data name="TimeShiftMemoryPerFavorite" xml:space="preserve">
     <value>Belegt etwa {0} MB Arbeitsspeicher pro Favorit, bei einem Sender mit 128 kbit/s.</value>
   </data>
+  <data name="AutoStartTurnedOffNotice.Message" xml:space="preserve">
+    <value>Windows hat den Start von ZapperRadio bei der Anmeldung ausgeschaltet. Schalte ihn unter Einstellungen &gt; Apps &gt; Autostart wieder ein.</value>
+  </data>
+  <data name="StartupSettingsLink.Content" xml:space="preserve">
+    <value>Autostart-Einstellungen öffnen</value>
+  </data>
 </root>
