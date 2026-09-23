@@ -188,7 +188,10 @@
   <data name="VolumeSlider.AutomationProperties.Name" xml:space="preserve">
     <value>Volumen</value>
   </data>
-  <data name="SettingsTab.Text" xml:space="preserve">
+  <data name="SettingsTab.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Configuración</value>
+  </data>
+  <data name="SettingsTab.AutomationProperties.Name" xml:space="preserve">
     <value>Configuración</value>
   </data>
   <data name="StartupHeading.Text" xml:space="preserve">

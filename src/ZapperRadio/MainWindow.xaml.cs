@@ -379,13 +379,29 @@ public sealed partial class MainWindow : Window
         }
     }
 
-    private void Tabs_SelectionChanged(SelectorBar sender, SelectorBarSelectionChangedEventArgs args) =>
+    /// <summary>
+    /// Serves both the tabs and the settings bar at the right: picking in one clears the other, and the clearing
+    /// itself, which leaves nothing selected there, is passed over.
+    /// </summary>
+    private void Tabs_SelectionChanged(SelectorBar sender, SelectorBarSelectionChangedEventArgs args)
+    {
+        if (sender.SelectedItem is null)
+        {
+            return;
+        }
+
+        foreach (var item in (sender == Tabs ? SettingsBar : Tabs).Items)
+        {
+            item.IsSelected = false;
+        }
+
         ViewModel.SelectedTab =
             sender.SelectedItem == ZapperTab ? MainTab.Zapper
             : sender.SelectedItem == FavoriteTracksTab ? MainTab.FavoriteTracks
             : sender.SelectedItem == PlayHistoryTab ? MainTab.PlayHistory
             : sender.SelectedItem == SettingsTab ? MainTab.Settings
             : MainTab.Stations;
+    }
 
     private void AddShortcut(VirtualKey key, Action action)
     {
