@@ -8,7 +8,34 @@ Nothing here is promised or scheduled; it is a working list. Items leave it once
 they do is then in the README, and why they work the way they do in
 [docs/design-notes.md](docs/design-notes.md).
 
-## 1. Production ready
+## 1. Microsoft Store
+
+The first submission (the MSIX packages built by `.github/workflows/store-msix.yml`) is in certification.
+These two follow once it has passed.
+
+1. **Submit to the Store from CI.** The Store MSIX workflow builds the `.msixupload` packages as workflow
+   artifacts, and they are uploaded to Partner Center by hand. Once certification succeeds, change the pipeline so
+   a release goes to the Microsoft Store by itself: create a submission with the new packages through the Partner
+   Center submission API (or the `msstore` CLI), with the credentials of an Azure AD app linked to Partner Center as
+   repository secrets, and commit it. Decide whether a release is published in the Store right away or waits for a
+   manual go in Partner Center.
+
+2. **Store screenshots without other people's brands.** The current screenshots show real station logos. Those
+   are trademarks of the broadcasters, and in the screenshots they promote the app, which is not the same as the
+   app showing a station the user picked. The Store rules forbid content that infringes the rights of third
+   parties. The risk is small (many radio apps in the Store show station logos), but a broadcaster could object
+   later, and Microsoft could then ask for the screenshots to be replaced or take the listing offline for a while.
+   It is easy to prevent:
+
+   - Build a hidden demo mode (for example a command-line switch) that fills the real UI with made-up stations,
+     logos and songs, like Nightwave Radio and Sunrise FM on the website. The screenshots then still show the
+     real app, as the Store requires, only without anyone else's brand.
+   - Replace the current screenshots with ones taken in that mode at the first update, not before: the running
+     certification goes on as it is.
+   - Add a line such as "Station names and logos belong to their owners." at the end of the Store description,
+     as on the website.
+
+## 2. Production ready
 
 No new features: this is the work that makes what exists safe to ship to people who cannot ask the author
 what went wrong. Ranked by payoff per effort. Auto-update and its release pipeline are built (1.19.0).
@@ -61,7 +88,7 @@ what went wrong. Ranked by payoff per effort. Auto-update and its release pipeli
    on x64, including the auto-start entry. `vpk pack` leaves out the PDBs by default; keep them as release
    artifacts, so a stack trace from a crash can be read.
 
-## 2. Bandwidth and power guard
+## 3. Bandwidth and power guard
 
 The permanent 2 to 6 Mbit/s of background streaming is the one real cost of the design. An eco
 mode keeps only the top few favorites open on a metered connection or on battery below a set
@@ -69,7 +96,7 @@ percentage, and re-opens the rest on Wi-Fi or AC power. A live "currently using 
 readout in the settings makes the cost visible instead of implied. Uses `NetworkInformation` and
 the system power status, mostly inside `RadioEngine`.
 
-## 3. Ad markers that run ahead of the audio
+## 4. Ad markers that run ahead of the audio
 
 Not yet confirmed: an ad marker in the stream title counts from the moment it comes in, and
 is not dated back like a break heard as speech. Some stations send their titles 10 to 20 seconds
@@ -79,7 +106,7 @@ behind the audio coming in are already accounted for (see the design notes), so 
 marker is now down to the station. Worth fixing only once a station is seen doing it; the fix would
 be to date the marker forward to where the music stops, in `StreamTimeline.StartOf`.
 
-## 4. Better search
+## 5. Better search
 
 Finding a station among the ~52,000 in the list is where a new user starts, and it is what decides
 which favorites the zapper gets to work with.
@@ -92,14 +119,14 @@ which favorites the zapper gets to work with.
   Preparing those rankings (the position and whatever else is worth showing) ahead of time would make
   the first pick instant and let it work offline too.
 
-## 5. Translated country and genre names
+## 6. Translated country and genre names
 
 The app speaks ten languages since 1.18.0, but the country and genre names come from the station
 list in English and stay that way, so the country box is the one part of the window that does not
 follow the language. A mapping per language for the few dozen countries that matter would make it
 read like the rest of the window.
 
-## 6. Learn from the listeners: train the break detection locally, improve it together
+## 7. Learn from the listeners: train the break detection locally, improve it together
 
 A large item for the longer term, and only worth starting once the app has users. The music, speech
 and ad break detection is YAMNet, a general sound classifier, with hand-written rules on top. Every
