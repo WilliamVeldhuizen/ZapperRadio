@@ -237,34 +237,45 @@
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
 
-                    <SelectorBar x:Name="Tabs" Margin="8,4,8,0" SelectionChanged="Tabs_SelectionChanged">
-                        <SelectorBarItem x:Name="StationsTab" x:Uid="StationsTab" IsSelected="True">
-                            <SelectorBarItem.Icon>
-                                <FontIcon Glyph="&#xE93E;" />
-                            </SelectorBarItem.Icon>
-                        </SelectorBarItem>
-                        <!-- The Z-bolt of the app icon, as in the title bar, scaled from its 64-unit frame to the 16 of an icon. -->
-                        <SelectorBarItem x:Name="ZapperTab" x:Uid="ZapperTab">
-                            <SelectorBarItem.Icon>
-                                <PathIcon Data="M10.5,2 L6,2 L6,3.75 L8,3.75 L5.75,14 L10.25,14 L10.25,12.25 L8.25,12.25 Z" />
-                            </SelectorBarItem.Icon>
-                        </SelectorBarItem>
-                        <SelectorBarItem x:Name="FavoriteTracksTab" Text="{x:Bind ViewModel.FavoriteTracksHeader, Mode=OneWay}">
-                            <SelectorBarItem.Icon>
-                                <FontIcon Glyph="&#xE006;" />
-                            </SelectorBarItem.Icon>
-                        </SelectorBarItem>
-                        <SelectorBarItem x:Name="PlayHistoryTab" x:Uid="PlayHistoryTab">
-                            <SelectorBarItem.Icon>
-                                <FontIcon Glyph="&#xE81C;" />
-                            </SelectorBarItem.Icon>
-                        </SelectorBarItem>
-                        <SelectorBarItem x:Name="SettingsTab" x:Uid="SettingsTab">
-                            <SelectorBarItem.Icon>
-                                <FontIcon Glyph="&#xE713;" />
-                            </SelectorBarItem.Icon>
-                        </SelectorBarItem>
-                    </SelectorBar>
+                    <!-- Settings stands apart at the right, as an icon alone, in a bar of its own that takes turns with the tabs. -->
+                    <Grid Margin="8,4,8,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <SelectorBar x:Name="Tabs" SelectionChanged="Tabs_SelectionChanged">
+                            <SelectorBarItem x:Name="StationsTab" x:Uid="StationsTab" IsSelected="True">
+                                <SelectorBarItem.Icon>
+                                    <FontIcon Glyph="&#xE93E;" />
+                                </SelectorBarItem.Icon>
+                            </SelectorBarItem>
+                            <!-- The Z-bolt of the app icon, as in the title bar, scaled from its 64-unit frame to the 16 of an icon. -->
+                            <SelectorBarItem x:Name="ZapperTab" x:Uid="ZapperTab">
+                                <SelectorBarItem.Icon>
+                                    <PathIcon Data="M10.5,2 L6,2 L6,3.75 L8,3.75 L5.75,14 L10.25,14 L10.25,12.25 L8.25,12.25 Z" />
+                                </SelectorBarItem.Icon>
+                            </SelectorBarItem>
+                            <SelectorBarItem x:Name="FavoriteTracksTab" Text="{x:Bind ViewModel.FavoriteTracksHeader, Mode=OneWay}">
+                                <SelectorBarItem.Icon>
+                                    <FontIcon Glyph="&#xE006;" />
+                                </SelectorBarItem.Icon>
+                            </SelectorBarItem>
+                            <SelectorBarItem x:Name="PlayHistoryTab" x:Uid="PlayHistoryTab">
+                                <SelectorBarItem.Icon>
+                                    <FontIcon Glyph="&#xE81C;" />
+                                </SelectorBarItem.Icon>
+                            </SelectorBarItem>
+                        </SelectorBar>
+
+                        <SelectorBar x:Name="SettingsBar" Grid.Column="1" SelectionChanged="Tabs_SelectionChanged">
+                            <SelectorBarItem x:Name="SettingsTab" x:Uid="SettingsTab">
+                                <SelectorBarItem.Icon>
+                                    <FontIcon Glyph="&#xE713;" />
+                                </SelectorBarItem.Icon>
+                            </SelectorBarItem>
+                        </SelectorBar>
+                    </Grid>
 
                     <!-- Station search -->
                     <Grid Grid.Row="1" Visibility="{x:Bind ViewModel.IsShowingStations, Mode=OneWay}">
