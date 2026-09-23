@@ -22,9 +22,16 @@ Everything the app remembers is stored in `%LOCALAPPDATA%\ZapperRadio` and never
 
 Deleting that folder removes all of it. Uninstalling the app does not, on purpose, so that your favorites survive a
 reinstall. When you switch on **Start with Windows**, the app adds one entry to your user's `Run` registry key, and it
-removes that entry again when the app is uninstalled. The taskbar jump list, which lists your favorites and the song
-each is playing, is kept by Windows itself, under `%APPDATA%\Microsoft\Windows\Recent\CustomDestinations`; it holds
-nothing beyond the station names and song titles the window already shows.
+removes that entry again when the app is uninstalled; the Store version asks Windows to start it instead, through the
+startup task in its package, and writes nothing to the registry. The taskbar jump list, which lists your favorites and
+the song each is playing, is kept by Windows itself, under `%APPDATA%\Microsoft\Windows\Recent\CustomDestinations`; it
+holds nothing beyond the station names and song titles the window already shows.
+
+The version from the Microsoft Store works the same way, with one difference: Windows keeps what it stores in
+`%LOCALAPPDATA%\ZapperRadio` in a private folder of the app's package instead, under
+`%LOCALAPPDATA%\Packages\60526williamve.ZapperRadio_<id>`, and deletes that folder when you uninstall the Store
+version. Only files that the version from GitHub had already made on the same PC stay where they are, and are not
+deleted.
 
 The music/speech recognition and the loudness measurement run on your PC, on audio that is streamed anyway. No audio is
 recorded or sent anywhere. To be able to start a song from its beginning after a zap, the app keeps the last few
@@ -45,7 +52,7 @@ app, `ZapperRadio/<version>`. Nothing else identifies you or your PC.
 | Stations that are down | radio-browser.info | A request for the list of stations that failed their last check. Nothing about you. | When the app starts; kept for a day |
 | Station logos | radio-browser.info, then the server the station gave for its logo | The name and country of the station, then a request for the logo image | The first time a station is shown as a favorite or as the one playing; kept until you clear it in the settings |
 | Song lengths | Apple's [iTunes Search API](https://performance-partners.apple.com/search-api) | The title of the song a favorite is playing, as the station sent it, for example `Queen - Bohemian Rhapsody`, to tell when an ad break must have started. This is done for the songs of all favorites, muted ones too, at most one lookup every 4 seconds. | Whenever a favorite starts a new song |
-| Updates | GitHub, from the [releases](https://github.com/WilliamVeldhuizen/ZapperRadio/releases) of this project | A request for the list of releases, and then the update itself | Half a minute after the start and every 6 hours, for an installed app only |
+| Updates | GitHub, from the [releases](https://github.com/WilliamVeldhuizen/ZapperRadio/releases) of this project | A request for the list of releases, and then the update itself | Half a minute after the start and every 6 hours, for the version installed from GitHub only. The Store version is updated by the Microsoft Store and never checks GitHub. |
 
 The app does not use Spotify or YouTube by itself. Only when you click the find button next to a song, your browser or
 the Spotify app opens with a search for that artist and title, and from then on you are dealing with them.

@@ -169,7 +169,8 @@ a:focus-visible { outline: 3px solid var(--amber); outline-offset: 3px; border-r
         <li><code>play-history.json</code>: the songs your favorites played in the last 12 hours;</li>
         <li><code>cache\</code>: the station list and the logos, the popularity lookups and the list of stations that are down (see below).</li>
       </ul>
-      <p>Deleting that folder removes all of it. Uninstalling the app does not, on purpose, so that your favorites survive a reinstall. When you switch on <strong>Start with Windows</strong>, the app adds one entry to your user's <code>Run</code> registry key, and it removes that entry again when the app is uninstalled. The taskbar jump list, which lists your favorites and the song each is playing, is kept by Windows itself, under <code>%APPDATA%\Microsoft\Windows\Recent\CustomDestinations</code>; it holds nothing beyond the station names and song titles the window already shows.</p>
+      <p>Deleting that folder removes all of it. Uninstalling the app does not, on purpose, so that your favorites survive a reinstall. When you switch on <strong>Start with Windows</strong>, the app adds one entry to your user's <code>Run</code> registry key, and it removes that entry again when the app is uninstalled; the Store version asks Windows to start it instead, through the startup task in its package, and writes nothing to the registry. The taskbar jump list, which lists your favorites and the song each is playing, is kept by Windows itself, under <code>%APPDATA%\Microsoft\Windows\Recent\CustomDestinations</code>; it holds nothing beyond the station names and song titles the window already shows.</p>
+      <p>The version from the Microsoft Store works the same way, with one difference: Windows keeps what it stores in <code>%LOCALAPPDATA%\ZapperRadio</code> in a private folder of the app's package instead, under <code>%LOCALAPPDATA%\Packages\60526williamve.ZapperRadio_&lt;id&gt;</code>, and deletes that folder when you uninstall the Store version. Only files that the version from GitHub had already made on the same PC stay where they are, and are not deleted.</p>
       <p>The music/speech recognition and the loudness measurement run on your PC, on audio that is streamed anyway. No audio is recorded or sent anywhere. To be able to start a song from its beginning after a zap, the app keeps the last few minutes of every favorite in its own memory while it runs; that buffer is never written to disk, it is gone when the app closes, and it can be switched off entirely with <strong>Zap to the start of the song</strong> in the settings. The app plays every favorite through a small relay that listens on <code>127.0.0.1</code> only, so no other device on your network can reach it.</p>
 
       <h2 id="over-the-internet">What the app sends over the internet</h2>
@@ -220,7 +221,7 @@ a:focus-visible { outline: 3px solid var(--amber); outline-offset: 3px; border-r
               <th scope="row">Updates</th>
               <td>GitHub, from the <a href="https://github.com/WilliamVeldhuizen/ZapperRadio/releases">releases</a> of this project</td>
               <td>A request for the list of releases, and then the update itself</td>
-              <td>Half a minute after the start and every 6 hours, for an installed app only</td>
+              <td>Half a minute after the start and every 6 hours, for the version installed from GitHub only. The Store version is updated by the Microsoft Store and never checks GitHub.</td>
             </tr>
           </tbody>
         </table>
