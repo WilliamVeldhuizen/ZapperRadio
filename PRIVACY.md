@@ -5,6 +5,13 @@ no server of its own that it reports to. What it does do is talk to a handful of
 list, the audio, and a few small extras. This page lists every one of them, so you can judge for yourself. The
 [website](#the-website) is separate from the app and counts its visitors, which is described at the end.
 
+The person responsible for the app and the website is the maintainer of this project, William Veldhuizen. Questions
+can go in an [issue](https://github.com/WilliamVeldhuizen/ZapperRadio/issues). This page is published at
+[zapperradio.com/privacy](https://zapperradio.com/privacy/), which is the version to link to; the text here is the
+same, and its history is the history of this file.
+
+Last updated: 23 September 2026.
+
 ## What stays on your PC
 
 Everything the app remembers is stored in `%LOCALAPPDATA%\ZapperRadio` and never leaves your PC:
@@ -15,11 +22,15 @@ Everything the app remembers is stored in `%LOCALAPPDATA%\ZapperRadio` and never
 
 Deleting that folder removes all of it. Uninstalling the app does not, on purpose, so that your favorites survive a
 reinstall. When you switch on **Start with Windows**, the app adds one entry to your user's `Run` registry key, and it
-removes that entry again when the app is uninstalled.
+removes that entry again when the app is uninstalled. The taskbar jump list, which lists your favorites and the song
+each is playing, is kept by Windows itself, under `%APPDATA%\Microsoft\Windows\Recent\CustomDestinations`; it holds
+nothing beyond the station names and song titles the window already shows.
 
 The music/speech recognition and the loudness measurement run on your PC, on audio that is streamed anyway. No audio is
-recorded or sent anywhere. The app plays every favorite through a small relay that listens on `127.0.0.1` only, so no
-other device on your network can reach it.
+recorded or sent anywhere. To be able to start a song from its beginning after a zap, the app keeps the last few
+minutes of every favorite in its own memory while it runs; that buffer is never written to disk, it is gone when the
+app closes, and it can be switched off entirely with **Zap to the start of the song** in the settings. The app plays
+every favorite through a small relay that listens on `127.0.0.1` only, so no other device on your network can reach it.
 
 ## What the app sends over the internet
 
@@ -45,9 +56,7 @@ the other requests can be blocked in a firewall without stopping the app from pl
 
 ## The website
 
-This section is about [zapperradio.com](https://zapperradio.com/) only, not about the app. The person responsible for
-the website is the maintainer of this project, William Veldhuizen; questions can go in an
-[issue](https://github.com/WilliamVeldhuizen/ZapperRadio/issues).
+This section is about [zapperradio.com](https://zapperradio.com/) only, not about the app.
 
 - **Visitor statistics.** The website counts its visitors with [GoatCounter](https://www.goatcounter.com/), to see how
   many people come by, from where they were sent, and with which kind of browser and screen. GoatCounter is run by
@@ -66,6 +75,8 @@ the website is the maintainer of this project, William Veldhuizen; questions can
 - **Latest version.** The page asks GitHub's API (`api.github.com`) for the version number of the newest release, to
   show it next to the download buttons. That request comes from your browser and carries your IP address.
 - **Downloads.** The download buttons and the links to the releases go to GitHub, which then handles your request.
+- **Your language.** The language you pick in the corner of the page is remembered in your browser's own storage, on
+  your device only. It is not a cookie, it is not sent anywhere, and clearing your browser data removes it.
 
 ## Changes
 

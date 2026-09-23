@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy – ZapperRadio</title>
+<meta name="description" content="What ZapperRadio stores on your PC, every request it makes over the internet and to whom, and how the website counts its visitors. No account, no analytics, no telemetry.">
+<meta name="theme-color" content="#131A26">
+<link rel="canonical" href="https://zapperradio.com/privacy/">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../icon-256.png">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Privacy – ZapperRadio">
+<meta property="og:description" content="What ZapperRadio stores on your PC, every request it makes over the internet and to whom, and how the website counts its visitors.">
+<meta property="og:url" content="https://zapperradio.com/privacy/">
+<meta property="og:image" content="https://zapperradio.com/icon-256.png">
+<meta name="twitter:card" content="summary">
+<style>
+:root {
+  --ink: #131A26;
+  --ink-2: #1B2434;
+  --ink-3: #263248;
+  --paper: #F4F2EC;
+  --paper-2: #EAE7DE;
+  --amber: #F2A93B;
+  --amber-deep: #9A5F0B;
+  --text: #1A2233;
+  --muted: #566076;
+  --on-ink: #F4F2EC;
+  --on-ink-muted: #A7B0C2;
+  --radius: 16px;
+  --max: 1080px;
+  --prose: 760px;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--text);
+  font: 17px/1.65 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; }
+img, svg { display: block; max-width: 100%; }
+.wrap { width: min(var(--max), 100% - 32px); margin-inline: auto; }
+h1, h2 { line-height: 1.15; margin: 0; letter-spacing: -0.02em; }
+p { margin: 0; }
+
+/* Top bar: the dark nav of the home page, cut down to one line. */
+.top { background: var(--ink); color: var(--on-ink); padding: 18px 0; }
+.top .bar { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.brand { display: flex; align-items: center; gap: 10px; font-weight: 700; text-decoration: none; letter-spacing: -0.02em; }
+.top .brand { font-size: 19px; }
+.back { color: var(--on-ink-muted); text-decoration: none; font-size: 15px; display: flex; align-items: center; gap: 8px; }
+.back:hover { color: var(--on-ink); }
+.back svg { width: 16px; height: 16px; flex: none; }
+
+/* Title block */
+.head { background: var(--ink); color: var(--on-ink); padding: 8px 0 56px; }
+.head .inner { max-width: var(--prose); }
+.eyebrow {
+  display: inline-block; font-size: 13px; font-weight: 650; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--amber); margin-bottom: 14px;
+}
+.head h1 { font-size: clamp(34px, 5vw, 50px); font-weight: 800; }
+.head .lede { margin-top: 18px; color: var(--on-ink-muted); font-size: 19px; }
+.updated { margin-top: 18px; font-size: 14px; color: var(--on-ink-muted); }
+
+/* Prose */
+main { padding: 56px 0 72px; }
+article { max-width: var(--prose); }
+article h2 {
+  font-size: 26px; font-weight: 800; margin-top: 48px; padding-top: 28px; border-top: 1px solid var(--paper-2);
+  scroll-margin-top: 20px;
+}
+article p { margin-top: 16px; }
+article p a, article li a, .toc a { color: var(--amber-deep); }
+article ul { margin: 16px 0 0; padding-left: 22px; }
+article li { margin-top: 10px; }
+article li strong { color: var(--text); }
+code {
+  font: 600 14px/1.4 ui-monospace, "Cascadia Mono", Consolas, monospace;
+  background: var(--paper-2); border-radius: 6px; padding: 2px 6px; overflow-wrap: anywhere;
+}
+
+/* Contents and the one boxed aside */
+.toc, .callout {
+  margin-top: 26px; padding: 20px 24px; background: #fff;
+  border: 1px solid var(--paper-2); border-radius: var(--radius);
+}
+.toc h2 {
+  font-size: 15px; font-weight: 650; color: var(--muted); letter-spacing: .04em; text-transform: uppercase;
+  margin: 0; padding: 0; border: 0;
+}
+.toc ol { margin: 12px 0 0; padding-left: 20px; color: var(--muted); }
+.toc li { margin-top: 6px; }
+.callout p:first-child { margin-top: 0; }
+
+/* The table of requests has to stay a table to be read, so it scrolls sideways on a narrow screen. */
+.table-wrap { margin-top: 22px; overflow-x: auto; border: 1px solid var(--paper-2); border-radius: var(--radius); background: #fff; }
+table { border-collapse: collapse; width: 100%; min-width: 640px; font-size: 15px; }
+th, td { text-align: left; vertical-align: top; padding: 14px 18px; border-top: 1px solid var(--paper-2); }
+thead th { background: var(--paper-2); border-top: 0; font-size: 13px; letter-spacing: .04em; text-transform: uppercase; color: var(--muted); }
+tbody th { font-weight: 700; }
+td { color: var(--muted); }
+.scroll-hint { margin-top: 10px; font-size: 14px; color: var(--muted); }
+@media (min-width: 761px) { .scroll-hint { display: none; } }
+
+footer { background: var(--ink); color: var(--on-ink-muted); padding: 40px 0; font-size: 14px; }
+.foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 20px; align-items: flex-start; }
+.foot .brand { color: var(--on-ink); font-size: 16px; }
+.foot p { max-width: 42em; margin-top: 12px; }
+.foot a { color: var(--on-ink); }
+.links { display: flex; gap: 20px; flex-wrap: wrap; }
+.links a[aria-current="page"] { color: var(--amber); }
+
+a:focus-visible { outline: 3px solid var(--amber); outline-offset: 3px; border-radius: 4px; }
+@media (max-width: 880px) {
+  .head { padding-bottom: 44px; }
+  main { padding: 44px 0 56px; }
+  article h2 { margin-top: 36px; padding-top: 24px; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+
+<div class="top">
+  <div class="wrap bar">
+    <a class="brand" href="../"><img src="../logo.svg" alt="" width="32" height="32">ZapperRadio</a>
+    <a class="back" href="../">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+      Back to the site
+    </a>
+  </div>
+</div>
+
+<header class="head">
+  <div class="wrap">
+    <div class="inner">
+      <span class="eyebrow">ZapperRadio</span>
+      <h1>Privacy</h1>
+      <p class="lede">No account, no analytics, no telemetry. The app collects nothing about you and has no server of its own to report to. What it does do is talk to a handful of other services for the station list, the audio and a few small extras — every one of them is on this page, so you can judge for yourself.</p>
+      <p class="updated">Last updated: 23 September 2026</p>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <article>
+      <p>The <a href="#the-website">website</a> is separate from the app and counts its visitors, which is described at the end. The person responsible for the app and the website is the maintainer of this project, William Veldhuizen; questions can go in an <a href="https://github.com/WilliamVeldhuizen/ZapperRadio/issues">issue</a>. The same text lives in <a href="https://github.com/WilliamVeldhuizen/ZapperRadio/blob/main/PRIVACY.md">PRIVACY.md</a> in the repository, where every change to it can be read back.</p>
+
+      <nav class="toc" aria-label="On this page">
+        <h2>On this page</h2>
+        <ol>
+          <li><a href="#on-your-pc">What stays on your PC</a></li>
+          <li><a href="#over-the-internet">What the app sends over the internet</a></li>
+          <li><a href="#the-website">The website</a></li>
+          <li><a href="#changes">Changes</a></li>
+        </ol>
+      </nav>
+
+      <h2 id="on-your-pc">What stays on your PC</h2>
+      <p>Everything the app remembers is stored in <code>%LOCALAPPDATA%\ZapperRadio</code> and never leaves your PC:</p>
+      <ul>
+        <li><code>settings.json</code>: your settings, favorite stations, favorite songs, window positions and the loudness measured per station;</li>
+        <li><code>play-history.json</code>: the songs your favorites played in the last 12 hours;</li>
+        <li><code>cache\</code>: the station list and the logos, the popularity lookups and the list of stations that are down (see below).</li>
+      </ul>
+      <p>Deleting that folder removes all of it. Uninstalling the app does not, on purpose, so that your favorites survive a reinstall. When you switch on <strong>Start with Windows</strong>, the app adds one entry to your user's <code>Run</code> registry key, and it removes that entry again when the app is uninstalled. The taskbar jump list, which lists your favorites and the song each is playing, is kept by Windows itself, under <code>%APPDATA%\Microsoft\Windows\Recent\CustomDestinations</code>; it holds nothing beyond the station names and song titles the window already shows.</p>
+      <p>The music/speech recognition and the loudness measurement run on your PC, on audio that is streamed anyway. No audio is recorded or sent anywhere. To be able to start a song from its beginning after a zap, the app keeps the last few minutes of every favorite in its own memory while it runs; that buffer is never written to disk, it is gone when the app closes, and it can be switched off entirely with <strong>Zap to the start of the song</strong> in the settings. The app plays every favorite through a small relay that listens on <code>127.0.0.1</code> only, so no other device on your network can reach it.</p>
+
+      <h2 id="over-the-internet">What the app sends over the internet</h2>
+      <p>Every request carries your IP address, as any request on the internet does, and most also a user agent that names the app, <code>ZapperRadio/&lt;version&gt;</code>. Nothing else identifies you or your PC.</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th scope="col">What</th><th scope="col">Who receives it</th><th scope="col">What is sent</th><th scope="col">When</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Radio streams</th>
+              <td>The station's own streaming server</td>
+              <td>Just a request for the stream. All your favorites (up to 20) stay connected while the app runs, muted ones too, so each of those stations sees you as a listener.</td>
+              <td>While the app runs</td>
+            </tr>
+            <tr>
+              <th scope="row">Station list</th>
+              <td><a href="http://rb2rs.freemyip.com/">rb2rs.freemyip.com</a></td>
+              <td>A request for the list of files, and then for the newest list. Nothing about you. This server only offers plain <code>http</code>.</td>
+              <td>When the app starts</td>
+            </tr>
+            <tr>
+              <th scope="row">Popularity of stations</th>
+              <td><a href="https://www.radio-browser.info/">radio-browser.info</a></td>
+              <td>The country you are looking at, or nothing for all countries</td>
+              <td>When you look at the stations of a country, or of all countries; kept for a day</td>
+            </tr>
+            <tr>
+              <th scope="row">Stations that are down</th>
+              <td>radio-browser.info</td>
+              <td>A request for the list of stations that failed their last check. Nothing about you.</td>
+              <td>When the app starts; kept for a day</td>
+            </tr>
+            <tr>
+              <th scope="row">Station logos</th>
+              <td>radio-browser.info, then the server the station gave for its logo</td>
+              <td>The name and country of the station, then a request for the logo image</td>
+              <td>The first time a station is shown as a favorite or as the one playing; kept until you clear it in the settings</td>
+            </tr>
+            <tr>
+              <th scope="row">Song lengths</th>
+              <td>Apple's <a href="https://performance-partners.apple.com/search-api">iTunes Search API</a></td>
+              <td>The title of the song a favorite is playing, as the station sent it, for example <code>Queen - Bohemian Rhapsody</code>, to tell when an ad break must have started. This is done for the songs of all favorites, muted ones too, at most one lookup every 4 seconds.</td>
+              <td>Whenever a favorite starts a new song</td>
+            </tr>
+            <tr>
+              <th scope="row">Updates</th>
+              <td>GitHub, from the <a href="https://github.com/WilliamVeldhuizen/ZapperRadio/releases">releases</a> of this project</td>
+              <td>A request for the list of releases, and then the update itself</td>
+              <td>Half a minute after the start and every 6 hours, for an installed app only</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="scroll-hint">The table scrolls sideways.</p>
+      <p>The app does not use Spotify or YouTube by itself. Only when you click the find button next to a song, your browser or the Spotify app opens with a search for that artist and title, and from then on you are dealing with them.</p>
+      <div class="callout">
+        <p>Each of these services has its own privacy policy, and the stations decide for themselves what they do with the requests they get. Only the streams are needed to play the radio: the station list is kept on your PC, so the other requests can be blocked in a firewall without stopping the app from playing.</p>
+      </div>
+
+      <h2 id="the-website">The website</h2>
+      <p>This section is about <a href="https://zapperradio.com/">zapperradio.com</a> only, not about the app.</p>
+      <ul>
+        <li><strong>Visitor statistics.</strong> The website counts its visitors with <a href="https://www.goatcounter.com/">GoatCounter</a>, to see how many people come by, from where they were sent, and with which kind of browser and screen. GoatCounter is run by Martin Tournoij in Ireland. It sets no cookies and stores nothing in your browser. According to its <a href="https://www.goatcounter.com/privacy">privacy policy</a> it does not store your IP address, your full user agent or any tracker ID: it keeps only totals per hour, such as the page, the referring site, the browser, the operating system, the language, the screen width and the country, and shares nothing with third parties. To tell repeat views from new visitors it makes a random ID from your IP address and user agent, which lives in memory for at most 8 hours and is not stored. Your request does reach GoatCounter's server, so your IP address is briefly there like with every request. Because of this, and because the statistics cannot be traced back to a person, the website has no cookie banner. The counting is done by a script from <code>gc.zgo.at</code> that the page loads, and you can block it in your browser or with an ad blocker without anything else on the page changing.</li>
+        <li><strong>Hosting.</strong> The website is served by <a href="https://docs.github.com/en/pages">GitHub Pages</a>, so GitHub receives your request, with your IP address and user agent, as with any page it hosts. See GitHub's <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">privacy statement</a>.</li>
+        <li><strong>Latest version.</strong> The home page asks GitHub's API (<code>api.github.com</code>) for the version number of the newest release, to show it next to the download buttons. That request comes from your browser and carries your IP address.</li>
+        <li><strong>Downloads.</strong> The download buttons and the links to the releases go to GitHub, which then handles your request.</li>
+        <li><strong>Your language.</strong> The language you pick in the corner of the home page is remembered in your browser's own storage, on your device only. It is not a cookie, it is not sent anywhere, and clearing your browser data removes it.</li>
+      </ul>
+
+      <h2 id="changes">Changes</h2>
+      <p>If this page changes, the change is in the <a href="https://github.com/WilliamVeldhuizen/ZapperRadio/commits/main/PRIVACY.md">history of PRIVACY.md</a> on GitHub. Questions can go in an <a href="https://github.com/WilliamVeldhuizen/ZapperRadio/issues">issue</a>.</p>
+    </article>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <div>
+      <a class="brand" href="../"><img src="../logo.svg" alt="" width="28" height="28">ZapperRadio</a>
+      <p>Station data from rb2rs and <a href="https://www.radio-browser.info/">radio-browser.info</a>. Sound classification by YAMNet (Google, Apache License 2.0). Station names and logos belong to their owners.</p>
+    </div>
+    <div class="links">
+      <a href="https://github.com/WilliamVeldhuizen/ZapperRadio">GitHub</a>
+      <a href="https://github.com/WilliamVeldhuizen/ZapperRadio/releases">Releases</a>
+      <a href="https://github.com/WilliamVeldhuizen/ZapperRadio/blob/main/LICENSE">MIT license</a>
+      <a href="/privacy/" aria-current="page">Privacy</a>
+    </div>
+  </div>
+</footer>
+
+<script data-goatcounter="https://zapperradio.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
