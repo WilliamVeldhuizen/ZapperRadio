@@ -14,7 +14,27 @@
     { code: 'pt-BR', name: 'Português (Brasil)', html: 'pt-BR' },
     { code: 'uk', name: 'Українська', html: 'uk' },
     { code: 'zh-CN', name: '中文 (简体)', html: 'zh-Hans' },
-    { code: 'ja', name: '日本語', html: 'ja' }
+    { code: 'ja', name: '日本語', html: 'ja' },
+    { code: 'pl', name: 'Polski', html: 'pl' },
+    { code: 'tr', name: 'Türkçe', html: 'tr' },
+    { code: 'ko', name: '한국어', html: 'ko' },
+    { code: 'zh-TW', name: '中文 (繁體)', html: 'zh-Hant' },
+    { code: 'ru', name: 'Русский', html: 'ru' },
+    { code: 'cs', name: 'Čeština', html: 'cs' },
+    { code: 'sv', name: 'Svenska', html: 'sv' },
+    { code: 'id', name: 'Bahasa Indonesia', html: 'id' },
+    { code: 'hu', name: 'Magyar', html: 'hu' },
+    { code: 'ro', name: 'Română', html: 'ro' },
+    { code: 'da', name: 'Dansk', html: 'da' },
+    { code: 'nb', name: 'Norsk (bokmål)', html: 'nb' },
+    { code: 'fi', name: 'Suomi', html: 'fi' },
+    { code: 'el', name: 'Ελληνικά', html: 'el' },
+    { code: 'sk', name: 'Slovenčina', html: 'sk' },
+    { code: 'vi', name: 'Tiếng Việt', html: 'vi' },
+    { code: 'th', name: 'ไทย', html: 'th' },
+    { code: 'hi', name: 'हिन्दी', html: 'hi' },
+    { code: 'ar', name: 'العربية', html: 'ar', rtl: true },
+    { code: 'he', name: 'עברית', html: 'he', rtl: true }
   ];
 
   var root = document.documentElement;
@@ -28,16 +48,18 @@
   }
 
   // The language a browser language falls under: "nl-BE" is Dutch and "pt-PT" is Portuguese. Chinese is the one
-  // where the script matters: only simplified characters are translated, so zh-TW and zh-Hant fall through.
+  // where the script matters: simplified (zh-Hans, zh-CN, zh-SG) and traditional (zh-Hant, zh-TW, zh-HK, zh-MO)
+  // characters each have their own translation. Norwegian arrives as "nb", "nn" or plain "no" and reads bokmål.
   function match(tag) {
     var parts = String(tag).split('-').map(function (p) { return p.toLowerCase(); });
     if (parts[0] === 'zh') {
       var has = function (p) { return parts.indexOf(p) >= 0; };
-      var simplified = parts.length === 1 || has('hans') || (!has('hant') && (has('cn') || has('sg')));
-      return simplified ? 'zh-CN' : null;
+      var simplified = parts.length === 1 || has('hans') || (!has('hant') && !has('tw') && !has('hk') && !has('mo'));
+      return simplified ? 'zh-CN' : 'zh-TW';
     }
+    var language = parts[0] === 'nn' || parts[0] === 'no' ? 'nb' : parts[0];
     for (var i = 0; i < LANGS.length; i++) {
-      if (LANGS[i].code.split('-')[0].toLowerCase() === parts[0]) return LANGS[i].code;
+      if (LANGS[i].code.split('-')[0].toLowerCase() === language) return LANGS[i].code;
     }
     return null;
   }
@@ -55,16 +77,9 @@
     var saved = stored();
     if (known(saved)) return saved;
     var prefs = navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language];
-    var traditional = false;
     for (var i = 0; i < prefs.length; i++) {
-      var tag = prefs[i];
-      if (!tag) continue;
-      var m = match(tag);
-      // Browsers append the bare language to a regional one ("zh-TW" arrives as "zh-TW", "zh"). That "zh" is not
-      // a request for simplified Chinese from someone who asked for traditional.
-      if (m === 'zh-CN' && traditional && tag.indexOf('-') < 0) continue;
+      var m = prefs[i] && match(prefs[i]);
       if (m) return m;
-      if (/^zh(-|$)/i.test(tag)) traditional = true;
     }
     return 'en';
   }
@@ -96,7 +111,9 @@
   function apply(code, texts) {
     current = code;
     dict = texts;
-    root.lang = LANGS.filter(function (l) { return l.code === code; })[0].html;
+    var lang = LANGS.filter(function (l) { return l.code === code; })[0];
+    root.lang = lang.html;
+    root.dir = lang.rtl ? 'rtl' : 'ltr';
 
     document.querySelectorAll('[data-i18n]').forEach(function (el) {
       var en = original(el, 'html', function () { return el.innerHTML; });

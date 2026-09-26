@@ -5,7 +5,7 @@
 <script src="i18n.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ZapperRadio – Internet radio without the ads</title>
-<meta name="description" content="Internet radio for Windows with instant station switching, in ten languages. Your favorites stay open and muted, so there is no pre-roll ad when you tune in. On-device AI hears when a station switches to ads or talk, and zaps to music.">
+<meta name="description" content="Internet radio for Windows with instant station switching, in 30 languages. Your favorites stay open and muted, so there is no pre-roll ad when you tune in. On-device AI hears when a station switches to ads or talk, and zaps to music.">
 <meta name="theme-color" content="#131A26">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="icon-256.png">
@@ -137,7 +137,7 @@ p { margin: 0; }
 .win-foot { display: flex; align-items: center; gap: 12px; padding: 12px 16px 14px; border-top: 1px solid rgba(244,242,236,.08); color: var(--on-ink-muted); }
 .win-foot svg { width: 18px; height: 18px; flex: none; }
 .slider { flex: 1; height: 5px; border-radius: 3px; background: var(--ink-3); position: relative; }
-.slider::after { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 68%; border-radius: 3px; background: var(--amber); }
+.slider::after { content: ""; position: absolute; inset-inline-start: 0; top: 0; bottom: 0; width: 68%; border-radius: 3px; background: var(--amber); }
 .heart { color: var(--amber); }
 .caption { min-height: 24px; font-size: 14px; color: var(--on-ink-muted); text-align: center; }
 .caption b { color: var(--amber); font-weight: 650; }
@@ -191,7 +191,8 @@ kbd {
 .langs { background: var(--ink); color: var(--on-ink); border-radius: var(--radius); padding: 28px; }
 .langs h3 { font-size: 18px; color: var(--on-ink-muted); font-weight: 600; margin-bottom: 18px; }
 .chips { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
-.chips li { padding: 9px 16px; border-radius: 99px; background: var(--ink-3); border: 1px solid rgba(244,242,236,.12); font-size: 17px; font-weight: 600; line-height: 1.2; }
+.chips { gap: 8px; }
+.chips li { padding: 7px 13px; border-radius: 99px; background: var(--ink-3); border: 1px solid rgba(244,242,236,.12); font-size: 15px; font-weight: 600; line-height: 1.2; }
 .chips li.current { background: rgba(242,169,59,.14); border-color: rgba(242,169,59,.5); color: var(--amber); }
 @media (min-width: 881px) { .split.flip .langs { order: -1; } }
 
@@ -208,11 +209,16 @@ kbd {
 
 /* Hide the page for a moment while a translation loads, so it does not flash in English first. */
 html.i18n-pending body { visibility: hidden; }
-/* Tight tracking suits Latin headlines, not Chinese and Japanese characters. */
-:is(:lang(ja), :lang(zh-Hans)) :is(h1, h2, h3, .eyebrow) { letter-spacing: 0; }
+/* Tight tracking suits Latin headlines, not Chinese, Japanese or Korean characters, and it pulls apart the
+   joined letters of Arabic and the stacked marks of Thai and Devanagari. */
+:is(:lang(ja), :lang(zh-Hans), :lang(zh-Hant), :lang(ko), :lang(ar), :lang(he), :lang(th), :lang(hi)) :is(h1, h2, h3, .eyebrow) { letter-spacing: 0; }
+:is(:lang(ar), :lang(he), :lang(th), :lang(hi)) .eyebrow { text-transform: none; letter-spacing: 0; }
 /* Break lines between phrases rather than in the middle of a word where the browser can tell. */
-:is(:lang(ja), :lang(zh-Hans)) :is(h1, h2, h3) { text-wrap: balance; }
+:is(:lang(ja), :lang(zh-Hans), :lang(zh-Hant)) :is(h1, h2, h3) { text-wrap: balance; }
 html:lang(ja) { word-break: auto-phrase; }
+/* Keyboard shortcuts read left to right in every language: Ctrl Alt → stays in that order on a mirrored page.
+   The window's title bar does too, like in the app, where the caption buttons stay on the right. */
+.key-combo, .win-bar { direction: ltr; }
 
 /* Download */
 .download { background: var(--ink); color: var(--on-ink); text-align: center; }
@@ -410,7 +416,7 @@ footer { background: var(--ink); color: var(--on-ink-muted); padding: 40px 0; fo
     <div class="wrap split flip">
       <div>
         <h2 data-i18n="langs.title">Speaks your language</h2>
-        <p data-i18n="langs.lede">ZapperRadio is translated into ten languages, and starts in the one your Windows is set to.</p>
+        <p data-i18n="langs.lede">ZapperRadio is translated into 30 languages, and starts in the one your Windows is set to.</p>
         <ul class="checks">
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg><span data-i18n="langs.c1">Follows your Windows language list, and falls back to English when it is not one of these</span></li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg><span data-i18n="langs.c2">Every button, tooltip, status line and error message, plus the settings, the taskbar list and the dates and numbers</span></li>
@@ -431,6 +437,26 @@ footer { background: var(--ink); color: var(--on-ink-muted); padding: 40px 0; fo
           <li lang="uk" data-code="uk">Українська</li>
           <li lang="zh-Hans" data-code="zh-CN">中文 (简体)</li>
           <li lang="ja" data-code="ja">日本語</li>
+          <li lang="pl" data-code="pl">Polski</li>
+          <li lang="tr" data-code="tr">Türkçe</li>
+          <li lang="ko" data-code="ko">한국어</li>
+          <li lang="zh-Hant" data-code="zh-TW">中文 (繁體)</li>
+          <li lang="ru" data-code="ru">Русский</li>
+          <li lang="cs" data-code="cs">Čeština</li>
+          <li lang="sv" data-code="sv">Svenska</li>
+          <li lang="id" data-code="id">Bahasa Indonesia</li>
+          <li lang="hu" data-code="hu">Magyar</li>
+          <li lang="ro" data-code="ro">Română</li>
+          <li lang="da" data-code="da">Dansk</li>
+          <li lang="nb" data-code="nb">Norsk (bokmål)</li>
+          <li lang="fi" data-code="fi">Suomi</li>
+          <li lang="el" data-code="el">Ελληνικά</li>
+          <li lang="sk" data-code="sk">Slovenčina</li>
+          <li lang="vi" data-code="vi">Tiếng Việt</li>
+          <li lang="th" data-code="th">ไทย</li>
+          <li lang="hi" data-code="hi">हिन्दी</li>
+          <li lang="ar" dir="rtl" data-code="ar">العربية</li>
+          <li lang="he" dir="rtl" data-code="he">עברית</li>
         </ul>
       </div>
     </div>
@@ -471,7 +497,7 @@ footer { background: var(--ink); color: var(--on-ink-muted); padding: 40px 0; fo
         </details>
         <details>
           <summary data-i18n="faq.q4">Which languages does it speak?</summary>
-          <p data-i18n="faq.a4">English, Dutch, German, French, Spanish, Italian, Portuguese (Brazil), Ukrainian, Chinese (simplified) and Japanese. ZapperRadio starts in the first language of your Windows language list that it speaks, and in English when none of them is. You can pick another one in the settings. The installer itself is still English.</p>
+          <p data-i18n="faq.a4">30 of them, all listed in the section above, from English and Chinese to Arabic and Hindi. ZapperRadio starts in the first language of your Windows language list that it speaks, and in English when none of them is. You can pick another one in the settings. The installer itself is still English.</p>
         </details>
         <details>
           <summary data-i18n="faq.q5">Where do the stations come from?</summary>
