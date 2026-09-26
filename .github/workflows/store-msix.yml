@@ -23,6 +23,10 @@ on:
         description: 'Submit the packages to the Microsoft Store'
         type: boolean
         default: false
+      replace_pending:
+        description: 'Delete a draft submission that is in the way first'
+        type: boolean
+        default: false
 
 permissions:
   contents: read
@@ -133,9 +137,11 @@ jobs:
           PARTNER_CENTER_TENANT_ID: ${{ secrets.PARTNER_CENTER_TENANT_ID }}
           PARTNER_CENTER_CLIENT_ID: ${{ secrets.PARTNER_CENTER_CLIENT_ID }}
           PARTNER_CENTER_CLIENT_SECRET: ${{ secrets.PARTNER_CENTER_CLIENT_SECRET }}
+          REPLACE_PENDING: ${{ github.event.inputs.replace_pending }}
         run: |
           if (-not $env:PARTNER_CENTER_CLIENT_SECRET) {
               Write-Host '::warning::No Partner Center secrets; the packages are built but not submitted to the Store.'
               exit 0
           }
-          ./scripts/submit-store.ps1 -Packages (Get-ChildItem artifacts/store -Filter *.msixupload).FullName
+          ./scripts/submit-store.ps1 -Packages (Get-ChildItem artifacts/store -Filter *.msixupload).FullName `
+              -ReplacePending:($env:REPLACE_PENDING -eq 'true')

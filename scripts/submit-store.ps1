@@ -86,6 +86,15 @@ try {
         }
     })
     $submission.targetPublishMode = $PublishMode
+
+    # The copy can come back with this map empty or partial, and the API then refuses its own copy: it wants a
+    # value for every platform. Missing ones get false, which is what Partner Center shows for them.
+    $future = $submission.allowTargetFutureDeviceFamilies
+    if ($null -eq $future) { $future = [pscustomobject]@{} }
+    foreach ($family in 'Desktop', 'Mobile', 'Xbox', 'Holographic') {
+        if ($null -eq $future.$family) { $future | Add-Member -NotePropertyName $family -NotePropertyValue $false }
+    }
+    $submission | Add-Member -NotePropertyName allowTargetFutureDeviceFamilies -NotePropertyValue $future -Force
     Invoke-Api Put "applications/$AppId/submissions/$id" $submission | Out-Null
 
     # The packages go up as one zip, with the file names above at its root, to the blob the submission points at.
