@@ -10,17 +10,9 @@ they do is then in the README, and why they work the way they do in
 
 ## 1. Microsoft Store
 
-The first submission (the MSIX packages built by `.github/workflows/store-msix.yml`) is in certification.
-These two follow once it has passed.
+ZapperRadio is in the Microsoft Store, and every release is submitted to it by the Store MSIX workflow.
 
-1. **Submit to the Store from CI.** The Store MSIX workflow builds the `.msixupload` packages as workflow
-   artifacts, and they are uploaded to Partner Center by hand. Once certification succeeds, change the pipeline so
-   a release goes to the Microsoft Store by itself: create a submission with the new packages through the Partner
-   Center submission API (or the `msstore` CLI), with the credentials of an Azure AD app linked to Partner Center as
-   repository secrets, and commit it. Decide whether a release is published in the Store right away or waits for a
-   manual go in Partner Center.
-
-2. **Store screenshots without other people's brands.** The current screenshots show real station logos. Those
+1. **Store screenshots without other people's brands.** The current screenshots show real station logos. Those
    are trademarks of the broadcasters, and in the screenshots they promote the app, which is not the same as the
    app showing a station the user picked. The Store rules forbid content that infringes the rights of third
    parties. The risk is small (many radio apps in the Store show station logos), but a broadcaster could object

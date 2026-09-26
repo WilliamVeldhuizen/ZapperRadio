@@ -1,9 +1,13 @@
-# Builds the unsigned Microsoft Store packages (.msixupload, x64 and ARM64) of a release, to upload to Partner Center
-# by hand. They are kept as workflow artifacts, not attached to the GitHub release: the release is what the installed
-# app updates from, and the Store signs and distributes its own packages.
+# Builds the unsigned Microsoft Store packages (.msixupload, x64 and ARM64) of a release and submits them to the
+# Microsoft Store with scripts/submit-store.ps1. They are also kept as workflow artifacts, not attached to the GitHub
+# release: the release is what the installed app updates from, and the Store signs and distributes its own packages.
 #
 # Runs after the Release workflow when that run published a new release, and can be started by hand for any
 # release tag. The package version is the tag's version with a fourth part of 0, as the Store requires.
+#
+# Submitting needs the repository secrets PARTNER_CENTER_TENANT_ID, PARTNER_CENTER_CLIENT_ID and
+# PARTNER_CENTER_CLIENT_SECRET of a Microsoft Entra app with the Manager role in Partner Center. Without them the
+# packages are only built. The update is published as soon as it passes certification.
 name: Store MSIX
 
 on:
@@ -15,6 +19,10 @@ on:
       tag:
         description: 'Release tag to build, for example v1.29.0'
         required: true
+      submit:
+        description: 'Submit the packages to the Microsoft Store'
+        type: boolean
+        default: false
 
 permissions:
   contents: read
@@ -102,3 +110,32 @@ jobs:
           name: ZapperRadio-${{ needs.resolve.outputs.version }}-${{ matrix.platform }}-msixupload
           path: artifacts/msix/*.msixupload
           if-no-files-found: error
+
+  submit:
+    needs: [resolve, msix]
+    if: github.event_name == 'workflow_run' || github.event.inputs.submit == 'true'
+    runs-on: windows-latest
+    concurrency:
+      group: store-submission
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: ZapperRadio-${{ needs.resolve.outputs.version }}-*-msixupload
+          path: artifacts/store
+          merge-multiple: true
+
+      - name: Submit to the Microsoft Store
+        shell: pwsh
+        env:
+          PARTNER_CENTER_TENANT_ID: ${{ secrets.PARTNER_CENTER_TENANT_ID }}
+          PARTNER_CENTER_CLIENT_ID: ${{ secrets.PARTNER_CENTER_CLIENT_ID }}
+          PARTNER_CENTER_CLIENT_SECRET: ${{ secrets.PARTNER_CENTER_CLIENT_SECRET }}
+        run: |
+          if (-not $env:PARTNER_CENTER_CLIENT_SECRET) {
+              Write-Host '::warning::No Partner Center secrets; the packages are built but not submitted to the Store.'
+              exit 0
+          }
+          ./scripts/submit-store.ps1 -Packages (Get-ChildItem artifacts/store -Filter *.msixupload).FullName
