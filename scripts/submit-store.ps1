@@ -49,13 +49,11 @@ $token = (Invoke-RestMethod -Method Post "https://login.microsoftonline.com/$Ten
 $headers = @{ Authorization = "Bearer $token" }
 
 function Invoke-Api([string] $Method, [string] $Path, $Body) {
-    # The API wants a JSON content type on every call, also a POST without a body.
+    # The API wants a JSON content type on every call, also on a POST without a body. It must stay without one: a
+    # body, even {}, on the POST that creates a submission is read as the submission itself and refused.
     $call = @{ Method = $Method; Uri = "$api/$Path"; Headers = $headers; ContentType = 'application/json' }
     if ($null -ne $Body) {
         $call.Body = [Text.Encoding]::UTF8.GetBytes(($Body | ConvertTo-Json -Depth 50))
-    }
-    elseif ($Method -eq 'Post') {
-        $call.Body = '{}'
     }
     Invoke-RestMethod @call
 }
