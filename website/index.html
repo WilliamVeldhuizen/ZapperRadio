@@ -97,6 +97,7 @@ p { margin: 0; }
 .cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
 .fine { margin-top: 16px; font-size: 14px; color: var(--on-ink-muted); }
 .fine a { color: var(--on-ink); }
+.fine .alt { white-space: nowrap; }
 
 /* App mock */
 .mock-wrap { display: flex; flex-direction: column; align-items: center; gap: 16px; }
@@ -280,13 +281,13 @@ footer { background: var(--ink); color: var(--on-ink-muted); padding: 40px 0; fo
         <h1 data-i18n="hero.title">Switch stations instantly. <em>No ads</em> when you tune in.</h1>
         <p class="lede" data-i18n="hero.lede">Most stations play an ad the moment you connect. ZapperRadio keeps your favorites streaming, muted, in the background, so tuning in is just turning the volume up.</p>
         <div class="cta">
-          <a class="btn btn-primary" href="https://github.com/WilliamVeldhuizen/ZapperRadio/releases/latest/download/ZapperRadio-x64-Setup.exe">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0l-5-5m5 5l5-5M4 20h16"/></svg>
-            <span data-i18n="hero.download">Download for Windows</span>
+          <a class="btn btn-primary" href="https://apps.microsoft.com/detail/9NLNJGRFGPGH">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h16l-1 12H5L4 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+            <span data-i18n="hero.store">Get it from the Microsoft Store</span>
           </a>
           <a class="btn btn-ghost" href="#how" data-i18n="hero.how">See how it works</a>
         </div>
-        <p class="fine"><span data-i18n="hero.fine">Free and open source · Windows 10 or later</span> · <span id="ver">v1.18.0</span></p>
+        <p class="fine"><span data-i18n="hero.fine">Free and open source · Windows 10 or later</span> · <span id="ver">v1.18.0</span> · <a class="alt" href="https://github.com/WilliamVeldhuizen/ZapperRadio/releases/latest/download/ZapperRadio-x64-Setup.exe" data-i18n="hero.exe">or download the installer</a></p>
       </div>
 
       <div class="mock-wrap">
@@ -440,14 +441,15 @@ footer { background: var(--ink); color: var(--on-ink-muted); padding: 40px 0; fo
       <h2 data-i18n="download.title">Get ZapperRadio</h2>
       <p class="lede" data-i18n="download.lede">Free, open source and ready in a minute. .NET and everything else it needs is included.</p>
       <div class="cta">
-        <a class="btn btn-primary" href="https://github.com/WilliamVeldhuizen/ZapperRadio/releases/latest/download/ZapperRadio-x64-Setup.exe">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0l-5-5m5 5l5-5M4 20h16"/></svg>
-          Windows (x64)
+        <a class="btn btn-primary" href="https://apps.microsoft.com/detail/9NLNJGRFGPGH">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h16l-1 12H5L4 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+          <span data-i18n="download.store">Get it from the Microsoft Store</span>
         </a>
-        <a class="btn btn-ghost" href="https://github.com/WilliamVeldhuizen/ZapperRadio/releases/latest/download/ZapperRadio-arm64-Setup.exe">Windows on ARM</a>
+        <a class="btn btn-ghost" href="https://github.com/WilliamVeldhuizen/ZapperRadio/releases/latest/download/ZapperRadio-x64-Setup.exe" data-i18n="download.x64">Installer (x64)</a>
+        <a class="btn btn-ghost" href="https://github.com/WilliamVeldhuizen/ZapperRadio/releases/latest/download/ZapperRadio-arm64-Setup.exe" data-i18n="download.arm">Installer (ARM)</a>
       </div>
       <span class="badge"><span data-i18n="download.badge">Windows 10 (2004) or later</span> · <span id="ver2">v1.18.0</span></span>
-      <p class="fine" data-i18n="download.fine">The installer is not digitally signed yet, so Windows SmartScreen may warn you. Choose <strong>More info</strong>, then <strong>Run anyway</strong>. All versions are on the <a href="https://github.com/WilliamVeldhuizen/ZapperRadio/releases">releases page</a>.</p>
+      <p class="fine" data-i18n="download.fine">The installers are not digitally signed, so Windows may ask for confirmation the first time. All versions are on the <a href="https://github.com/WilliamVeldhuizen/ZapperRadio/releases">releases page</a>.</p>
     </div>
   </section>
 
@@ -477,7 +479,7 @@ footer { background: var(--ink); color: var(--on-ink-muted); padding: 40px 0; fo
         </details>
         <details>
           <summary data-i18n="faq.q6">Why does Windows warn me about the installer?</summary>
-          <p data-i18n="faq.a6">The installer is not digitally signed, which makes SmartScreen cautious about any new app. Choose <em>More info</em> and then <em>Run anyway</em>. The complete source code is on GitHub if you want to check what you are installing.</p>
+          <p data-i18n="faq.a6">The installer from GitHub is not digitally signed, which makes SmartScreen cautious about any new app. Get ZapperRadio from the Microsoft Store to skip the warning, or choose <em>More info</em> and then <em>Run anyway</em>. The complete source code is on GitHub if you want to check what you are installing.</p>
         </details>
         <details>
           <summary data-i18n="faq.q7">Is it free?</summary>
