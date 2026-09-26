@@ -94,7 +94,7 @@ jobs:
           dotnet-version: '10.0.x'
 
       # Visual Studio's MSBuild: the dotnet CLI cannot make the .msixupload.
-      - uses: microsoft/setup-msbuild@v2
+      - uses: microsoft/setup-msbuild@v3
 
       - name: Build the Store package
         shell: pwsh
@@ -109,7 +109,7 @@ jobs:
           if ($LASTEXITCODE -ne 0) { throw 'The MSIX build failed.' }
           Get-ChildItem artifacts/msix -Filter *.msixupload | Format-Table Name, Length
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: ZapperRadio-${{ needs.resolve.outputs.version }}-${{ matrix.platform }}-msixupload
           path: artifacts/msix/*.msixupload
@@ -125,7 +125,7 @@ jobs:
     steps:
       - uses: actions/checkout@v7
 
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v8
         with:
           pattern: ZapperRadio-${{ needs.resolve.outputs.version }}-*-msixupload
           path: artifacts/store
