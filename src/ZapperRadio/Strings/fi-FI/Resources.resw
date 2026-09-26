@@ -1,0 +1,540 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!--
+    Microsoft ResX Schema
+
+    Version 2.0
+
+    The primary goals of this format is to allow a simple XML format
+    that is mostly human readable. The generation and parsing of the
+    various data types are done through the TypeConverter classes
+    associated with the data types.
+  -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="FavoriteLogoToolTip.Content" xml:space="preserve">
+    <value>Muuta järjestystä vetämällä ylös tai alas</value>
+  </data>
+  <data name="ZappCheckBox.Content" xml:space="preserve">
+    <value>Vaihda kanavaa mainosten / puheen aikana</value>
+  </data>
+  <data name="ZappCheckBox.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Pelkän musiikin kuunteluun: kun kuuntelemasi asema aloittaa mainoskatkon tai joku puhuu, vaihdetaan ylimpään suosikkiin, jolla soi kappale, ja palataan, kun asema soittaa taas musiikkia. Ei kuitenkaan koskaan kesken kappaleen: paluu odottaa, kunnes asema, jolle vaihdettiin, pääsee omaan katkoonsa. Asemilla, jotka eivät merkitse mainoksiaan, oletetaan mainoskatko, kun kappale kestää selvästi pituuttaan kauemmin ja musiikin sijaan kuuluu puhetta.</value>
+  </data>
+  <data name="NoFavoritesText.Text" xml:space="preserve">
+    <value>Ei vielä suosikkeja. Etsi asema oikealta ja napsauta sen +-painiketta.</value>
+  </data>
+  <data name="RemoveFavoriteButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Poista suosikeista</value>
+  </data>
+  <data name="StationsTab.Text" xml:space="preserve">
+    <value>Asemat</value>
+  </data>
+  <data name="PlayHistoryTab.Text" xml:space="preserve">
+    <value>Kappalehistoria</value>
+  </data>
+  <data name="SearchBox.PlaceholderText" xml:space="preserve">
+    <value>Hae nimellä, tyylilajilla tai maalla (Ctrl+F)</value>
+  </data>
+  <data name="CountryBox.PlaceholderText" xml:space="preserve">
+    <value>Maa</value>
+  </data>
+  <data name="CountryBox.AutomationProperties.Name" xml:space="preserve">
+    <value>Maa</value>
+  </data>
+  <data name="ResultsOne" xml:space="preserve">
+    <value>1 asema</value>
+  </data>
+  <data name="ResultsMany" xml:space="preserve">
+    <value>{0:N0} asemaa</value>
+  </data>
+  <data name="NoResultsText" xml:space="preserve">
+    <value>Mikään asema ei vastaa hakua.</value>
+  </data>
+  <data name="NoResultsInCountry" xml:space="preserve">
+    <value>Mikään asema maassa {0} ei vastaa hakua.</value>
+  </data>
+  <data name="SearchAllCountriesButton.Content" xml:space="preserve">
+    <value>Hae kaikista maista</value>
+  </data>
+  <data name="OfflineSince" xml:space="preserve">
+    <value>Offline {0:d} alkaen</value>
+  </data>
+  <data name="OfflineAtLastCheck" xml:space="preserve">
+    <value>Offline viimeisimmässä tarkistuksessa</value>
+  </data>
+  <data name="ReloadStationsButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Lataa asemaluettelo uudelleen</value>
+  </data>
+  <data name="PlayStation" xml:space="preserve">
+    <value>Toista</value>
+  </data>
+  <data name="StopStation" xml:space="preserve">
+    <value>Pysäytä</value>
+  </data>
+  <data name="FavoriteAdd" xml:space="preserve">
+    <value>Lisää suosikkeihin</value>
+  </data>
+  <data name="FavoriteRemove" xml:space="preserve">
+    <value>Poista suosikeista</value>
+  </data>
+  <data name="FavoriteTracksHint.Text" xml:space="preserve">
+    <value>Kappaleet, jotka tallensit soivan kappaleen vieressä olevalla sydämellä. Etsi niitä Spotifysta tai YouTubesta tai kopioi nimi.</value>
+  </data>
+  <data name="NoFavoriteTracksText.Text" xml:space="preserve">
+    <value>Ei vielä suosikkikappaleita. Kun asema soittaa kappaleen, josta pidät, napsauta alhaalla kappaleen vieressä olevaa sydäntä.</value>
+  </data>
+  <data name="FindSongButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Etsi tämä kappale</value>
+  </data>
+  <data name="FindSongButton.AutomationProperties.Name" xml:space="preserve">
+    <value>Etsi tämä kappale</value>
+  </data>
+  <data name="FindOnSpotifyItem.Text" xml:space="preserve">
+    <value>Etsi Spotifysta</value>
+  </data>
+  <data name="FindOnYouTubeItem.Text" xml:space="preserve">
+    <value>Etsi YouTubesta</value>
+  </data>
+  <data name="CopyTitleButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Kopioi nimi</value>
+  </data>
+  <data name="RemoveFavoriteTrackButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Poista suosikkikappaleista</value>
+  </data>
+  <data name="HistoryHint.Text" xml:space="preserve">
+    <value>Kaikki, mitä suosikkisi ovat soittaneet viimeisen 12 tunnin aikana, uusin ensin, kuuntelitpa niitä tai et. Säilytä kappale napsauttamalla sydäntä.</value>
+  </data>
+  <data name="ClearHistoryButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Tyhjennä kappalehistoria</value>
+  </data>
+  <data name="ClearHistoryButton.AutomationProperties.Name" xml:space="preserve">
+    <value>Tyhjennä kappalehistoria</value>
+  </data>
+  <data name="HistorySearchBox.PlaceholderText" xml:space="preserve">
+    <value>Hae kappaleella, esittäjällä tai asemalla (Ctrl+F)</value>
+  </data>
+  <data name="HistorySearchBox.AutomationProperties.Name" xml:space="preserve">
+    <value>Hae kappalehistoriasta</value>
+  </data>
+  <data name="NoHistoryText.Text" xml:space="preserve">
+    <value>Mitään ei ole vielä soinut. Heti kun suosikkisi striimaavat, jokainen niiden soittama kappale näkyy tässä.</value>
+  </data>
+  <data name="NoHistoryMatchesText.Text" xml:space="preserve">
+    <value>Mikään historian kappale ei vastaa hakua.</value>
+  </data>
+  <data name="CompactNoFavorites.Text" xml:space="preserve">
+    <value>Ei vielä suosikkeja. Vaihda koko ikkunaan hakeaksesi asemia ja lisätäksesi niitä +-painikkeella.</value>
+  </data>
+  <data name="PlayStopButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Toista / pysäytä (Ctrl+välilyönti)</value>
+  </data>
+  <data name="VolumeSlider.AutomationProperties.Name" xml:space="preserve">
+    <value>Äänenvoimakkuus</value>
+  </data>
+  <data name="SettingsTab.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Asetukset</value>
+  </data>
+  <data name="SettingsTab.AutomationProperties.Name" xml:space="preserve">
+    <value>Asetukset</value>
+  </data>
+  <data name="StartupHeading.Text" xml:space="preserve">
+    <value>Käynnistys</value>
+  </data>
+  <data name="AutoStartCheckBox.Content" xml:space="preserve">
+    <value>Käynnistä ZapperRadio Windowsin käynnistyessä</value>
+  </data>
+  <data name="LanguageHeading.Text" xml:space="preserve">
+    <value>Kieli</value>
+  </data>
+  <data name="LanguageText.Text" xml:space="preserve">
+    <value>Sovelluksen kieli. Se määrää myös, miten päivämäärät ja numerot kirjoitetaan.</value>
+  </data>
+  <data name="LanguageBox.AutomationProperties.Name" xml:space="preserve">
+    <value>Kieli</value>
+  </data>
+  <data name="LanguageRestartText.Text" xml:space="preserve">
+    <value>Käynnistä ZapperRadio uudelleen vaihtaaksesi tähän kieleen.</value>
+  </data>
+  <data name="AboutHeading.Text" xml:space="preserve">
+    <value>Tietoja</value>
+  </data>
+  <data name="AboutText.Text" xml:space="preserve">
+    <value>Nettiradio, joka pitää suosikkiesi striimit auki, joten vaihto on välitön etkä kuule mainosta, jonka asema soittaa yhdistäessäsi.</value>
+  </data>
+  <data name="WebsiteLink.Content" xml:space="preserve">
+    <value>ZapperRadion verkkosivusto</value>
+  </data>
+  <data name="GitHubLink.Content" xml:space="preserve">
+    <value>ZapperRadio GitHubissa</value>
+  </data>
+  <data name="StationListHeading.Text" xml:space="preserve">
+    <value>Asemaluettelo</value>
+  </data>
+  <data name="CheckStationListButton.Content" xml:space="preserve">
+    <value>Tarkista uudempi luettelo</value>
+  </data>
+  <data name="ShortcutsHeading.Text" xml:space="preserve">
+    <value>Pikanäppäimet</value>
+  </data>
+  <data name="ShortcutsText.Text" xml:space="preserve">
+    <value>Ikkunassa: Ctrl+välilyönti pysäyttää tai toistaa, Ctrl+M mykistää, Ctrl+F hakee. Myös Windowsin äänenvoimakkuuspaneelin ja lukitusnäytön toisto-, tauko- ja seuraava-painikkeet, medianäppäimet ja kuulokemikrofoni toimivat; seuraava ja edellinen siirtyvät suosikkien välillä.</value>
+  </data>
+  <data name="GlobalHotkeysCheckBox.Content" xml:space="preserve">
+    <value>Pikanäppäimet mistä tahansa sovelluksesta</value>
+  </data>
+  <data name="GlobalHotkeysCheckBox.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Myös silloin, kun työskentelet toisessa sovelluksessa. Ctrl+Alt eikä Ctrl, koska Ctrl+välilyönnin varaaminen tälle sovellukselle veisi sen kaikilta muilta. Yhdistelmä, jota toinen sovellus jo käyttää, jätetään sille ja mainitaan alla.</value>
+  </data>
+  <data name="GlobalHotkeysText.Text" xml:space="preserve">
+    <value>Ctrl+Alt+P pysäyttää tai toistaa, Ctrl+Alt+M mykistää, Ctrl+Alt+→ ja Ctrl+Alt+← siirtyvät seuraavaan ja edelliseen suosikkiin, missä tahansa sovelluksessa työskenteletkin.</value>
+  </data>
+  <data name="LoudnessHeading.Text" xml:space="preserve">
+    <value>Äänekkyys</value>
+  </data>
+  <data name="LoudnessText.Text" xml:space="preserve">
+    <value>Yksi asema on masteroitu useita desibelejä kovempaa kuin seuraava, ja se on kanavien vaihtamisen ärsyttävin puoli. Jokaisen suosikin ääni puretaan joka tapauksessa, joten siitä mitataan, kuinka kovaa sen musiikki todella on (EBU R128), ja kovat asemat hiljennetään samalle tasolle. Vain musiikki lasketaan, joten mainokset ja juontajat eivät vääristä tulosta; siihen tarvitaan noin minuutti musiikkia asemaa kohden. Asemat, joita ei voi analysoida (HLS), pitävät oman äänenvoimakkuutensa.</value>
+  </data>
+  <data name="NormalizeLoudnessCheckBox.Content" xml:space="preserve">
+    <value>Tasaa asemien äänekkyys</value>
+  </data>
+  <data name="NormalizeLoudnessCheckBox.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Tuo jokaisen aseman noin tasolle -14 LUFS, jolle suoratoistopalvelut normalisoivat, enintään 12 dB alas tai 6 dB ylös. Asema, jota pitää voimistaa, ei voi ylittää täyttä äänenvoimakkuutta, joten liukusäädin ylhäällä se voi jäädä hieman hiljaisemmaksi.</value>
+  </data>
+  <data name="NoFavoritesLoudnessText.Text" xml:space="preserve">
+    <value>Ei vielä suosikkeja.</value>
+  </data>
+  <data name="RemeasureLoudnessButton.Content" xml:space="preserve">
+    <value>Mittaa äänekkyys uudelleen</value>
+  </data>
+  <data name="RemeasureLoudnessButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Unohtaa, mitä kustakin suosikista on tähän mennessä kuultu, ja mittaa uudelleen. Äänenvoimakkuus säilyttää nykyisen korjauksen, kunnes noin minuutti musiikkia on kuultu, ja siirtyy sitten uuteen tulokseen.</value>
+  </data>
+  <data name="CacheHeading.Text" xml:space="preserve">
+    <value>Välimuistin logot</value>
+  </data>
+  <data name="CacheText.Text" xml:space="preserve">
+    <value>Asemien logot ja eniten soitettujen luettelot haetaan kerran ja säilytetään sitten. Niiden tyhjentäminen hakee jokaisen logon uudelleen, mikä auttaa, kun asema näyttää väärää logoa. Itse asemaluettelo säilyy.</value>
+  </data>
+  <data name="ClearCacheButton.Content" xml:space="preserve">
+    <value>Tyhjennä välimuisti</value>
+  </data>
+  <data name="AllCountries" xml:space="preserve">
+    <value>Kaikki maat</value>
+  </data>
+  <data name="LanguageWindows" xml:space="preserve">
+    <value>Windowsin kieli</value>
+  </data>
+  <data name="FavoritesHeader" xml:space="preserve">
+    <value>Suosikit ({0}/{1})</value>
+  </data>
+  <data name="FavoriteTracksHeader" xml:space="preserve">
+    <value>Suosikkikappaleet ({0})</value>
+  </data>
+  <data name="CacheEmpty" xml:space="preserve">
+    <value>Välimuistissa ei ole vielä mitään</value>
+  </data>
+  <data name="CacheSummary" xml:space="preserve">
+    <value>{0:N0} hakua · {1}</value>
+  </data>
+  <data name="CacheClearFailed" xml:space="preserve">
+    <value>Välimuistia ei voitu tyhjentää: {0}</value>
+  </data>
+  <data name="CatalogLoading" xml:space="preserve">
+    <value>Ladataan asemaluetteloa…</value>
+  </data>
+  <data name="CatalogStatus" xml:space="preserve">
+    <value>{0:N0} asemaa · luettelo {1}</value>
+  </data>
+  <data name="CatalogStatusOffline" xml:space="preserve">
+    <value>{0:N0} asemaa · luettelo {1} (offline-kopio)</value>
+  </data>
+  <data name="CatalogUnavailable" xml:space="preserve">
+    <value>Asemaluettelo ei ole käytettävissä</value>
+  </data>
+  <data name="CatalogDownloadFailed" xml:space="preserve">
+    <value>Asemaluetteloa ei voitu ladata osoitteesta {0}, eikä paikallista kopiota ole. ({1})</value>
+  </data>
+  <data name="StationListDownloaded" xml:space="preserve">
+    <value>Ladattu {0:d} klo {0:t}</value>
+  </data>
+  <data name="FavoritesLimitReached" xml:space="preserve">
+    <value>Suosikkeja voi olla enintään {0}, koska ne kaikki striimaavat taustalla. Poista ensin yksi.</value>
+  </data>
+  <data name="SettingsSaveFailed" xml:space="preserve">
+    <value>Asetuksia ei voitu tallentaa: {0}</value>
+  </data>
+  <data name="ChooseStation" xml:space="preserve">
+    <value>Valitse asema</value>
+  </data>
+  <data name="ClickFavoriteToListen" xml:space="preserve">
+    <value>Napsauta suosikkia kuunnellaksesi suoraa lähetystä heti</value>
+  </data>
+  <data name="Stopped" xml:space="preserve">
+    <value>Pysäytetty</value>
+  </data>
+  <data name="NowPlayingMuted" xml:space="preserve">
+    <value>mykistetty</value>
+  </data>
+  <data name="NowPlayingNotFavorite" xml:space="preserve">
+    <value>ei suosikki, striimi pysähtyy vaihdettaessa</value>
+  </data>
+  <data name="JumpListFavorites" xml:space="preserve">
+    <value>Suosikit</value>
+  </data>
+  <data name="JumpListListenTo" xml:space="preserve">
+    <value>Kuuntele: {0}</value>
+  </data>
+  <data name="JumpListListenToSong" xml:space="preserve">
+    <value>Kuuntele: {0}
+{1}</value>
+  </data>
+  <data name="JumpListMute" xml:space="preserve">
+    <value>Mykistä</value>
+  </data>
+  <data name="JumpListUnmute" xml:space="preserve">
+    <value>Poista mykistys</value>
+  </data>
+  <data name="JumpListMuteToolTip" xml:space="preserve">
+    <value>Hiljennä asema pysäyttämättä sitä</value>
+  </data>
+  <data name="JumpListUnmuteToolTip" xml:space="preserve">
+    <value>Kuule asema taas</value>
+  </data>
+  <data name="SongAdvertisement" xml:space="preserve">
+    <value>Mainos</value>
+  </data>
+  <data name="SongProbablyAdBreak" xml:space="preserve">
+    <value>Todennäköisesti mainoskatko</value>
+  </data>
+  <data name="LoudnessNotMeasured" xml:space="preserve">
+    <value>Ei vielä mitattu</value>
+  </data>
+  <data name="LoudnessTurnedDown" xml:space="preserve">
+    <value>hiljennetty {0} dB</value>
+  </data>
+  <data name="LoudnessTurnedUp" xml:space="preserve">
+    <value>voimistettu {0} dB</value>
+  </data>
+  <data name="LoudnessMeasuringAgain" xml:space="preserve">
+    <value>mitataan uudelleen…</value>
+  </data>
+  <data name="StatusConnecting" xml:space="preserve">
+    <value>Yhdistetään…</value>
+  </data>
+  <data name="StatusNowPlaying" xml:space="preserve">
+    <value>Nyt soi</value>
+  </data>
+  <data name="StatusLiveMuted" xml:space="preserve">
+    <value>Suora · mykistetty</value>
+  </data>
+  <data name="StatusBuffering" xml:space="preserve">
+    <value>Puskuroidaan…</value>
+  </data>
+  <data name="StatusReconnecting" xml:space="preserve">
+    <value>Yhdistetään uudelleen…</value>
+  </data>
+  <data name="StatusFailed" xml:space="preserve">
+    <value>Ei tavoitettavissa, yritetään edelleen</value>
+  </data>
+  <data name="SoundMusic" xml:space="preserve">
+    <value>musiikki</value>
+  </data>
+  <data name="SoundSpeech" xml:space="preserve">
+    <value>puhe</value>
+  </data>
+  <data name="ViewSwitchToFull" xml:space="preserve">
+    <value>Vaihda koko ikkunaan</value>
+  </data>
+  <data name="ViewSwitchToCompact" xml:space="preserve">
+    <value>Vaihda pieneen ikkunaan</value>
+  </data>
+  <data name="SaveTrackRemove" xml:space="preserve">
+    <value>Poista suosikkikappaleista</value>
+  </data>
+  <data name="SaveTrackAdd" xml:space="preserve">
+    <value>Lisää suosikkikappaleisiin</value>
+  </data>
+  <data name="MuteToolTipUnmute" xml:space="preserve">
+    <value>Poista mykistys (Ctrl+M)</value>
+  </data>
+  <data name="MuteToolTipMute" xml:space="preserve">
+    <value>Mykistä (Ctrl+M)</value>
+  </data>
+  <data name="HotkeyInUseOne" xml:space="preserve">
+    <value>{0} on jo toisen sovelluksen käytössä, eikä se toimi ikkunan ulkopuolelta.</value>
+  </data>
+  <data name="HotkeyInUseMany" xml:space="preserve">
+    <value>{0} ovat jo toisen sovelluksen käytössä, eivätkä ne toimi ikkunan ulkopuolelta.</value>
+  </data>
+  <data name="StreamStopped" xml:space="preserve">
+    <value>Striimi lakkasi vastaamasta.</value>
+  </data>
+  <data name="StreamEnded" xml:space="preserve">
+    <value>Striimi päättyi.</value>
+  </data>
+  <data name="UpdateNotice.Message" xml:space="preserve">
+    <value>Käynnistä uudelleen asentaaksesi sen nyt. Muuten se asennetaan, kun suljet ZapperRadion.</value>
+  </data>
+  <data name="RestartToUpdateButton.Content" xml:space="preserve">
+    <value>Käynnistä uudelleen ja päivitä</value>
+  </data>
+  <data name="UpdatesHeading.Text" xml:space="preserve">
+    <value>Päivitykset</value>
+  </data>
+  <data name="UpdatesText.Text" xml:space="preserve">
+    <value>ZapperRadio tarkistaa muutaman tunnin välein, onko uutta versiota, ja lataa sen taustalla. Se asennetaan, kun suljet sovelluksen. Suosikkisi ja asetuksesi säilyvät.</value>
+  </data>
+  <data name="CheckForUpdatesButton.Content" xml:space="preserve">
+    <value>Tarkista päivitykset</value>
+  </data>
+  <data name="UpdateChecking" xml:space="preserve">
+    <value>Tarkistetaan päivityksiä…</value>
+  </data>
+  <data name="UpdateDownloading" xml:space="preserve">
+    <value>Ladataan uutta versiota… {0} %</value>
+  </data>
+  <data name="UpdateReady" xml:space="preserve">
+    <value>Versio {0} on valmis ja asennetaan, kun ZapperRadio suljetaan.</value>
+  </data>
+  <data name="UpdateUpToDate" xml:space="preserve">
+    <value>ZapperRadio on ajan tasalla.</value>
+  </data>
+  <data name="UpdateFailed" xml:space="preserve">
+    <value>Päivityksiä ei voitu tarkistaa: {0}</value>
+  </data>
+  <data name="UpdateNoticeTitle" xml:space="preserve">
+    <value>ZapperRadio {0} on valmis</value>
+  </data>
+  <data name="TimeShiftBox.AutomationProperties.Name" xml:space="preserve">
+    <value>Aikasiirto</value>
+  </data>
+  <data name="TimeShiftMinutes" xml:space="preserve">
+    <value>{0} minuuttia</value>
+  </data>
+  <data name="NowPlayingBehindLive" xml:space="preserve">
+    <value>{0} suoraa lähetystä jäljessä</value>
+  </data>
+  <data name="GoLiveButton.Content" xml:space="preserve">
+    <value>Suoraan lähetykseen</value>
+  </data>
+  <data name="GoLiveButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Toista tämä asema taas suorana, siitä kohdasta, jossa lähetys nyt on</value>
+  </data>
+  <data name="ZapperTab.Text" xml:space="preserve">
+    <value>Zapperi</value>
+  </data>
+  <data name="ZapperHint.Text" xml:space="preserve">
+    <value>Miten zapperi väistää mainoskatkot ja puheen kuuntelemallasi asemalla ja mitä se tekee katkon päätyttyä.</value>
+  </data>
+  <data name="ZapperSwitch.Header" xml:space="preserve">
+    <value>Vaihda kanavaa mainosten ja puheen aikana</value>
+  </data>
+  <data name="ZapBackHeading.Text" xml:space="preserve">
+    <value>Katkon jälkeen</value>
+  </data>
+  <data name="ZapBackRadio.Content" xml:space="preserve">
+    <value>Palaa katkon asemalle, kun kappale asemalla, jolle vaihdettiin, on loppunut</value>
+  </data>
+  <data name="ZapStayRadio.Content" xml:space="preserve">
+    <value>Jää asemalle, jolle vaihdettiin</value>
+  </data>
+  <data name="CrossfadeHeading.Text" xml:space="preserve">
+    <value>Ristihäivytys</value>
+  </data>
+  <data name="CrossfadeText.Text" xml:space="preserve">
+    <value>Häivyttää asemalta toiselle katkaisemisen sijaan. Häivytys päättyy ennen katkon alkua, joten mainoksia ei pääse läpi. Suorana eikä aikasiirtopuskurista soiva asema katkaistaan edelleen, koska sen katko kuuluu jo.</value>
+  </data>
+  <data name="CrossfadeCheckBox.Content" xml:space="preserve">
+    <value>Ristihäivytys kanavaa vaihdettaessa</value>
+  </data>
+  <data name="ZapTargetsHeading.Text" xml:space="preserve">
+    <value>Vaihda asemalle</value>
+  </data>
+  <data name="ZapTargetsText.Text" xml:space="preserve">
+    <value>Suosikit, joille katkon aikana saa vaihtaa. Jätä pois asema, joka ei sovi musiikin odottamiseen, kuten uutisasema; siltä vaihdetaan silti pois ja sille palataan.</value>
+  </data>
+  <data name="NoZapTargetsText.Text" xml:space="preserve">
+    <value>Ei vielä suosikkeja. Lisää asemia suosikkeihin valitaksesi, minne zapperi saa vaihtaa.</value>
+  </data>
+  <data name="ZapToSongStartHeading.Text" xml:space="preserve">
+    <value>Vaihda kappaleen alkuun</value>
+  </data>
+  <data name="ZapToSongStartText.Text" xml:space="preserve">
+    <value>Vaihto osuu asemalle, jolla soi kappale, yleensä sen puoliväliin. Jotta kappale alkaisi sen sijaan alusta, jokaisen suosikin viimeiset minuutit pidetään muistissa (aikasiirtopuskuri). Se myös katkaisee katkon täsmälleen sen alusta, koska katko tiedetään ennen kuin se kuuluu. Kuuntelet silloin hieman lähetystä jäljessä, enintään sen kappaleen pituuden verran, johon vaihto osui, ja Suoraan lähetykseen ottaa sen heti kiinni. Pois päältä puskureita ei pidetä ja niiden muisti vapautetaan: jokainen asema soi suorana, ja vaihto osuu siihen kohtaan, jossa kappale on.</value>
+  </data>
+  <data name="ZapToSongStartCheckBox.Content" xml:space="preserve">
+    <value>Aloita kappale alusta vaihdettaessa</value>
+  </data>
+  <data name="TimeShiftMemory" xml:space="preserve">
+    <value>Käyttää noin {0} Mt muistia {1} suosikillesi. Vähemmän minuutteja tai tämän poistaminen käytöstä säästää muistia.</value>
+  </data>
+  <data name="TimeShiftMemoryOff" xml:space="preserve">
+    <value>Pois päältä, joten muistia ei käytetä. Päällä se veisi noin {0} Mt {1} suosikillesi.</value>
+  </data>
+  <data name="TimeShiftMemoryPerFavorite" xml:space="preserve">
+    <value>Vie noin {0} Mt muistia suosikkia kohden 128 kbit/s:n asemalla.</value>
+  </data>
+  <data name="AutoStartTurnedOffNotice.Message" xml:space="preserve">
+    <value>Windows on poistanut ZapperRadion käynnistyksen kirjautumisen yhteydessä. Ota se uudelleen käyttöön kohdassa Asetukset &gt; Sovellukset &gt; Käynnistys.</value>
+  </data>
+  <data name="StartupSettingsLink.Content" xml:space="preserve">
+    <value>Avaa käynnistysasetukset</value>
+  </data>
+</root>

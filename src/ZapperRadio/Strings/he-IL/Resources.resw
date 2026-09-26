@@ -1,0 +1,540 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!--
+    Microsoft ResX Schema
+
+    Version 2.0
+
+    The primary goals of this format is to allow a simple XML format
+    that is mostly human readable. The generation and parsing of the
+    various data types are done through the TypeConverter classes
+    associated with the data types.
+  -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="FavoriteLogoToolTip.Content" xml:space="preserve">
+    <value>גררו למעלה או למטה כדי לשנות את המיקום</value>
+  </data>
+  <data name="ZappCheckBox.Content" xml:space="preserve">
+    <value>מעבר בזמן פרסומות / דיבור</value>
+  </data>
+  <data name="ZappCheckBox.ToolTipService.ToolTip" xml:space="preserve">
+    <value>להאזנה למוזיקה בלבד: כשהתחנה שאתם מאזינים לה מתחילה הפסקת פרסומות או שמישהו מדבר, עוברים למועדפת הגבוהה ביותר שמשמיעה שיר, וחוזרים כשהתחנה משמיעה שוב מוזיקה. אבל אף פעם לא באמצע שיר: החזרה ממתינה עד שהתחנה שאליה עברו תגיע להפסקה משלה. בתחנות שלא מסמנות את הפרסומות שלהן, ההנחה היא שיש הפסקת פרסומות כששיר נמשך הרבה מעבר לאורכו ונשמע דיבור במקום מוזיקה.</value>
+  </data>
+  <data name="NoFavoritesText.Text" xml:space="preserve">
+    <value>אין עדיין מועדפים. מצאו תחנה משמאל ולחצו על ה-+ שלה.</value>
+  </data>
+  <data name="RemoveFavoriteButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>הסרה מהמועדפים</value>
+  </data>
+  <data name="StationsTab.Text" xml:space="preserve">
+    <value>תחנות</value>
+  </data>
+  <data name="PlayHistoryTab.Text" xml:space="preserve">
+    <value>היסטוריית שירים</value>
+  </data>
+  <data name="SearchBox.PlaceholderText" xml:space="preserve">
+    <value>חיפוש לפי שם, סגנון או מדינה (Ctrl+F)</value>
+  </data>
+  <data name="CountryBox.PlaceholderText" xml:space="preserve">
+    <value>מדינה</value>
+  </data>
+  <data name="CountryBox.AutomationProperties.Name" xml:space="preserve">
+    <value>מדינה</value>
+  </data>
+  <data name="ResultsOne" xml:space="preserve">
+    <value>תחנה אחת</value>
+  </data>
+  <data name="ResultsMany" xml:space="preserve">
+    <value>{0:N0} תחנות</value>
+  </data>
+  <data name="NoResultsText" xml:space="preserve">
+    <value>אין תחנה שמתאימה לחיפוש.</value>
+  </data>
+  <data name="NoResultsInCountry" xml:space="preserve">
+    <value>אין תחנה ב{0} שמתאימה לחיפוש.</value>
+  </data>
+  <data name="SearchAllCountriesButton.Content" xml:space="preserve">
+    <value>חיפוש בכל המדינות</value>
+  </data>
+  <data name="OfflineSince" xml:space="preserve">
+    <value>לא מקוונת מאז {0:d}</value>
+  </data>
+  <data name="OfflineAtLastCheck" xml:space="preserve">
+    <value>לא מקוונת בבדיקה האחרונה</value>
+  </data>
+  <data name="ReloadStationsButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>טעינה מחדש של רשימת התחנות</value>
+  </data>
+  <data name="PlayStation" xml:space="preserve">
+    <value>הפעלה</value>
+  </data>
+  <data name="StopStation" xml:space="preserve">
+    <value>עצירה</value>
+  </data>
+  <data name="FavoriteAdd" xml:space="preserve">
+    <value>הוספה למועדפים</value>
+  </data>
+  <data name="FavoriteRemove" xml:space="preserve">
+    <value>הסרה מהמועדפים</value>
+  </data>
+  <data name="FavoriteTracksHint.Text" xml:space="preserve">
+    <value>שירים ששמרתם עם הלב שליד השיר המושמע. מצאו אותם ב-Spotify או ב-YouTube, או העתיקו את השם.</value>
+  </data>
+  <data name="NoFavoriteTracksText.Text" xml:space="preserve">
+    <value>אין עדיין שירים מועדפים. כשתחנה משמיעה שיר שאתם אוהבים, לחצו על הלב שליד השיר למטה.</value>
+  </data>
+  <data name="FindSongButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>חיפוש השיר הזה</value>
+  </data>
+  <data name="FindSongButton.AutomationProperties.Name" xml:space="preserve">
+    <value>חיפוש השיר הזה</value>
+  </data>
+  <data name="FindOnSpotifyItem.Text" xml:space="preserve">
+    <value>חיפוש ב-Spotify</value>
+  </data>
+  <data name="FindOnYouTubeItem.Text" xml:space="preserve">
+    <value>חיפוש ב-YouTube</value>
+  </data>
+  <data name="CopyTitleButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>העתקת השם</value>
+  </data>
+  <data name="RemoveFavoriteTrackButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>הסרה מהשירים המועדפים</value>
+  </data>
+  <data name="HistoryHint.Text" xml:space="preserve">
+    <value>כל מה שהתחנות המועדפות שלכם השמיעו ב-12 השעות האחרונות, מהחדש לישן, בין אם האזנתם להן ובין אם לא. לחצו על לב כדי לשמור שיר.</value>
+  </data>
+  <data name="ClearHistoryButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>ניקוי היסטוריית השירים</value>
+  </data>
+  <data name="ClearHistoryButton.AutomationProperties.Name" xml:space="preserve">
+    <value>ניקוי היסטוריית השירים</value>
+  </data>
+  <data name="HistorySearchBox.PlaceholderText" xml:space="preserve">
+    <value>חיפוש לפי שיר, אמן או תחנה (Ctrl+F)</value>
+  </data>
+  <data name="HistorySearchBox.AutomationProperties.Name" xml:space="preserve">
+    <value>חיפוש בהיסטוריית השירים</value>
+  </data>
+  <data name="NoHistoryText.Text" xml:space="preserve">
+    <value>עדיין לא הושמע כלום. ברגע שהמועדפים שלכם ישדרו, כל שיר שהם משמיעים יופיע כאן.</value>
+  </data>
+  <data name="NoHistoryMatchesText.Text" xml:space="preserve">
+    <value>אין שיר בהיסטוריה שמתאים לחיפוש.</value>
+  </data>
+  <data name="CompactNoFavorites.Text" xml:space="preserve">
+    <value>אין עדיין מועדפים. עברו לחלון המלא כדי לחפש תחנות ולהוסיף אותן עם +.</value>
+  </data>
+  <data name="PlayStopButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>הפעלה / עצירה (Ctrl+Space)</value>
+  </data>
+  <data name="VolumeSlider.AutomationProperties.Name" xml:space="preserve">
+    <value>עוצמת קול</value>
+  </data>
+  <data name="SettingsTab.ToolTipService.ToolTip" xml:space="preserve">
+    <value>הגדרות</value>
+  </data>
+  <data name="SettingsTab.AutomationProperties.Name" xml:space="preserve">
+    <value>הגדרות</value>
+  </data>
+  <data name="StartupHeading.Text" xml:space="preserve">
+    <value>הפעלה אוטומטית</value>
+  </data>
+  <data name="AutoStartCheckBox.Content" xml:space="preserve">
+    <value>הפעלת ZapperRadio כש-Windows עולה</value>
+  </data>
+  <data name="LanguageHeading.Text" xml:space="preserve">
+    <value>שפה</value>
+  </data>
+  <data name="LanguageText.Text" xml:space="preserve">
+    <value>שפת האפליקציה. היא קובעת גם את אופן כתיבת התאריכים והמספרים.</value>
+  </data>
+  <data name="LanguageBox.AutomationProperties.Name" xml:space="preserve">
+    <value>שפה</value>
+  </data>
+  <data name="LanguageRestartText.Text" xml:space="preserve">
+    <value>הפעילו מחדש את ZapperRadio כדי לעבור לשפה הזו.</value>
+  </data>
+  <data name="AboutHeading.Text" xml:space="preserve">
+    <value>אודות</value>
+  </data>
+  <data name="AboutText.Text" xml:space="preserve">
+    <value>רדיו אינטרנט שמשאיר את השידורים של המועדפים שלכם פתוחים, כך שהמעבר מיידי ואתם לא שומעים את הפרסומת שתחנה משמיעה כשמתחברים.</value>
+  </data>
+  <data name="WebsiteLink.Content" xml:space="preserve">
+    <value>האתר של ZapperRadio</value>
+  </data>
+  <data name="GitHubLink.Content" xml:space="preserve">
+    <value>ZapperRadio ב-GitHub</value>
+  </data>
+  <data name="StationListHeading.Text" xml:space="preserve">
+    <value>רשימת תחנות</value>
+  </data>
+  <data name="CheckStationListButton.Content" xml:space="preserve">
+    <value>בדיקה אם יש רשימה חדשה יותר</value>
+  </data>
+  <data name="ShortcutsHeading.Text" xml:space="preserve">
+    <value>קיצורי מקלדת</value>
+  </data>
+  <data name="ShortcutsText.Text" xml:space="preserve">
+    <value>בחלון: Ctrl+Space לעצירה או הפעלה, Ctrl+M להשתקה, Ctrl+F לחיפוש. גם כפתורי ההפעלה, ההשהיה והבא בחלונית עוצמת הקול של Windows ובמסך הנעילה, מקשי המדיה והאוזניות שלכם עובדים, כשהבא והקודם עוברים בין המועדפים.</value>
+  </data>
+  <data name="GlobalHotkeysCheckBox.Content" xml:space="preserve">
+    <value>קיצורים מכל אפליקציה</value>
+  </data>
+  <data name="GlobalHotkeysCheckBox.ToolTipService.ToolTip" xml:space="preserve">
+    <value>גם בזמן שאתם עובדים באפליקציה אחרת. עם Ctrl+Alt במקום Ctrl, כי תפיסת Ctrl+Space לאפליקציה הזו הייתה לוקחת אותו מכל האחרות. צירוף שאפליקציה אחרת כבר משתמשת בו נשאר אצלה ומצוין למטה.</value>
+  </data>
+  <data name="GlobalHotkeysText.Text" xml:space="preserve">
+    <value>Ctrl+Alt+P לעצירה או הפעלה, Ctrl+Alt+M להשתקה, Ctrl+Alt+→ ו-Ctrl+Alt+← למועדפת הבאה והקודמת, מכל אפליקציה שבה אתם עובדים.</value>
+  </data>
+  <data name="LoudnessHeading.Text" xml:space="preserve">
+    <value>עוצמה נשמעת</value>
+  </data>
+  <data name="LoudnessText.Text" xml:space="preserve">
+    <value>תחנה אחת עוברת מאסטרינג בכמה דציבלים חזק יותר מהבאה, וזה החלק המעצבן ביותר במעבר בין תחנות. השמע של כל מועדפת מפוענח בכל מקרה, כך שנמדד ממנו כמה חזקה המוזיקה שלה באמת (EBU R128), והחזקות מונמכות לאותה רמה. רק מוזיקה נספרת, כך שפרסומות ושדרנים לא מעוותים את התוצאה, ונדרשת בערך דקה של מוזיקה לכל תחנה. תחנות שלא ניתן לנתח (HLS) שומרות על עוצמת הקול המקורית שלהן.</value>
+  </data>
+  <data name="NormalizeLoudnessCheckBox.Content" xml:space="preserve">
+    <value>השוואת העוצמה בין התחנות</value>
+  </data>
+  <data name="NormalizeLoudnessCheckBox.ToolTipService.ToolTip" xml:space="preserve">
+    <value>מביא כל תחנה לכ-‎-14 LUFS, הרמה שאליה שירותי סטרימינג מנרמלים, בהנמכה של עד 12 dB או הגברה של עד 6 dB. תחנה שצריך להגביר לא יכולה לעבור את עוצמת הקול המלאה, כך שכשהמחוון למעלה היא עשויה להישאר מעט שקטה יותר.</value>
+  </data>
+  <data name="NoFavoritesLoudnessText.Text" xml:space="preserve">
+    <value>אין עדיין מועדפים.</value>
+  </data>
+  <data name="RemeasureLoudnessButton.Content" xml:space="preserve">
+    <value>מדידה חוזרת של העוצמה</value>
+  </data>
+  <data name="RemeasureLoudnessButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>שוכח את מה שנשמע עד כה מכל מועדפת ומודד מחדש. עוצמת הקול שומרת על התיקון הנוכחי עד שנשמעת בערך דקה של מוזיקה, ואז עוברת לתוצאה החדשה.</value>
+  </data>
+  <data name="CacheHeading.Text" xml:space="preserve">
+    <value>סמלילים שמורים</value>
+  </data>
+  <data name="CacheText.Text" xml:space="preserve">
+    <value>סמלילי התחנות ורשימות המושמעות ביותר נבדקים פעם אחת ואז נשמרים. ניקוי שלהם גורם לבדיקה מחדש של כל סמליל, מה שעוזר כשתחנה מציגה סמליל שגוי. רשימת התחנות עצמה נשמרת.</value>
+  </data>
+  <data name="ClearCacheButton.Content" xml:space="preserve">
+    <value>ניקוי המטמון</value>
+  </data>
+  <data name="AllCountries" xml:space="preserve">
+    <value>כל המדינות</value>
+  </data>
+  <data name="LanguageWindows" xml:space="preserve">
+    <value>שפת Windows</value>
+  </data>
+  <data name="FavoritesHeader" xml:space="preserve">
+    <value>מועדפים ({0}/{1})</value>
+  </data>
+  <data name="FavoriteTracksHeader" xml:space="preserve">
+    <value>שירים מועדפים ({0})</value>
+  </data>
+  <data name="CacheEmpty" xml:space="preserve">
+    <value>אין עדיין כלום במטמון</value>
+  </data>
+  <data name="CacheSummary" xml:space="preserve">
+    <value>{0:N0} בדיקות · {1}</value>
+  </data>
+  <data name="CacheClearFailed" xml:space="preserve">
+    <value>לא ניתן לנקות את המטמון: {0}</value>
+  </data>
+  <data name="CatalogLoading" xml:space="preserve">
+    <value>טוען את רשימת התחנות…</value>
+  </data>
+  <data name="CatalogStatus" xml:space="preserve">
+    <value>{0:N0} תחנות · רשימה מ-{1}</value>
+  </data>
+  <data name="CatalogStatusOffline" xml:space="preserve">
+    <value>{0:N0} תחנות · רשימה מ-{1} (עותק לא מקוון)</value>
+  </data>
+  <data name="CatalogUnavailable" xml:space="preserve">
+    <value>רשימת התחנות אינה זמינה</value>
+  </data>
+  <data name="CatalogDownloadFailed" xml:space="preserve">
+    <value>לא ניתן להוריד את רשימת התחנות מ-{0} ואין עותק מקומי. ({1})</value>
+  </data>
+  <data name="StationListDownloaded" xml:space="preserve">
+    <value>הורדה ב-{0:d} בשעה {0:t}</value>
+  </data>
+  <data name="FavoritesLimitReached" xml:space="preserve">
+    <value>אפשר להחזיק עד {0} מועדפים, כי כולם ממשיכים לשדר ברקע. הסירו אחד קודם.</value>
+  </data>
+  <data name="SettingsSaveFailed" xml:space="preserve">
+    <value>לא ניתן לשמור את ההגדרות: {0}</value>
+  </data>
+  <data name="ChooseStation" xml:space="preserve">
+    <value>בחרו תחנה</value>
+  </data>
+  <data name="ClickFavoriteToListen" xml:space="preserve">
+    <value>לחצו על מועדפת כדי להאזין מיד בשידור חי</value>
+  </data>
+  <data name="Stopped" xml:space="preserve">
+    <value>נעצר</value>
+  </data>
+  <data name="NowPlayingMuted" xml:space="preserve">
+    <value>מושתק</value>
+  </data>
+  <data name="NowPlayingNotFavorite" xml:space="preserve">
+    <value>לא מועדפת, השידור ייעצר במעבר</value>
+  </data>
+  <data name="JumpListFavorites" xml:space="preserve">
+    <value>מועדפים</value>
+  </data>
+  <data name="JumpListListenTo" xml:space="preserve">
+    <value>האזנה ל-{0}</value>
+  </data>
+  <data name="JumpListListenToSong" xml:space="preserve">
+    <value>האזנה ל-{0}
+{1}</value>
+  </data>
+  <data name="JumpListMute" xml:space="preserve">
+    <value>השתקה</value>
+  </data>
+  <data name="JumpListUnmute" xml:space="preserve">
+    <value>ביטול השתקה</value>
+  </data>
+  <data name="JumpListMuteToolTip" xml:space="preserve">
+    <value>השתקת התחנה בלי לעצור אותה</value>
+  </data>
+  <data name="JumpListUnmuteToolTip" xml:space="preserve">
+    <value>לשמוע שוב את התחנה</value>
+  </data>
+  <data name="SongAdvertisement" xml:space="preserve">
+    <value>פרסומת</value>
+  </data>
+  <data name="SongProbablyAdBreak" xml:space="preserve">
+    <value>כנראה הפסקת פרסומות</value>
+  </data>
+  <data name="LoudnessNotMeasured" xml:space="preserve">
+    <value>עדיין לא נמדד</value>
+  </data>
+  <data name="LoudnessTurnedDown" xml:space="preserve">
+    <value>הונמך ב-{0} dB</value>
+  </data>
+  <data name="LoudnessTurnedUp" xml:space="preserve">
+    <value>הוגבר ב-{0} dB</value>
+  </data>
+  <data name="LoudnessMeasuringAgain" xml:space="preserve">
+    <value>מודד מחדש…</value>
+  </data>
+  <data name="StatusConnecting" xml:space="preserve">
+    <value>מתחבר…</value>
+  </data>
+  <data name="StatusNowPlaying" xml:space="preserve">
+    <value>מתנגן עכשיו</value>
+  </data>
+  <data name="StatusLiveMuted" xml:space="preserve">
+    <value>חי · מושתק</value>
+  </data>
+  <data name="StatusBuffering" xml:space="preserve">
+    <value>אוגר נתונים…</value>
+  </data>
+  <data name="StatusReconnecting" xml:space="preserve">
+    <value>מתחבר מחדש…</value>
+  </data>
+  <data name="StatusFailed" xml:space="preserve">
+    <value>לא נגישה, ממשיך לנסות</value>
+  </data>
+  <data name="SoundMusic" xml:space="preserve">
+    <value>מוזיקה</value>
+  </data>
+  <data name="SoundSpeech" xml:space="preserve">
+    <value>דיבור</value>
+  </data>
+  <data name="ViewSwitchToFull" xml:space="preserve">
+    <value>מעבר לחלון המלא</value>
+  </data>
+  <data name="ViewSwitchToCompact" xml:space="preserve">
+    <value>מעבר לחלון המצומצם</value>
+  </data>
+  <data name="SaveTrackRemove" xml:space="preserve">
+    <value>הסרה מהשירים המועדפים</value>
+  </data>
+  <data name="SaveTrackAdd" xml:space="preserve">
+    <value>הוספה לשירים המועדפים</value>
+  </data>
+  <data name="MuteToolTipUnmute" xml:space="preserve">
+    <value>ביטול השתקה (Ctrl+M)</value>
+  </data>
+  <data name="MuteToolTipMute" xml:space="preserve">
+    <value>השתקה (Ctrl+M)</value>
+  </data>
+  <data name="HotkeyInUseOne" xml:space="preserve">
+    <value>{0} כבר בשימוש על ידי אפליקציה אחרת ולא יעבוד מחוץ לחלון.</value>
+  </data>
+  <data name="HotkeyInUseMany" xml:space="preserve">
+    <value>{0} כבר בשימוש על ידי אפליקציה אחרת ולא יעבדו מחוץ לחלון.</value>
+  </data>
+  <data name="StreamStopped" xml:space="preserve">
+    <value>השידור הפסיק להגיב.</value>
+  </data>
+  <data name="StreamEnded" xml:space="preserve">
+    <value>השידור הסתיים.</value>
+  </data>
+  <data name="UpdateNotice.Message" xml:space="preserve">
+    <value>הפעילו מחדש כדי להתקין עכשיו. אחרת היא תותקן כשתסגרו את ZapperRadio.</value>
+  </data>
+  <data name="RestartToUpdateButton.Content" xml:space="preserve">
+    <value>הפעלה מחדש לעדכון</value>
+  </data>
+  <data name="UpdatesHeading.Text" xml:space="preserve">
+    <value>עדכונים</value>
+  </data>
+  <data name="UpdatesText.Text" xml:space="preserve">
+    <value>ZapperRadio בודקת אם יש גרסה חדשה כל כמה שעות ומורידה אותה ברקע. היא מותקנת כשסוגרים את האפליקציה. המועדפים וההגדרות שלכם נשמרים.</value>
+  </data>
+  <data name="CheckForUpdatesButton.Content" xml:space="preserve">
+    <value>בדיקת עדכונים</value>
+  </data>
+  <data name="UpdateChecking" xml:space="preserve">
+    <value>בודק עדכונים…</value>
+  </data>
+  <data name="UpdateDownloading" xml:space="preserve">
+    <value>מוריד את הגרסה החדשה… {0}%</value>
+  </data>
+  <data name="UpdateReady" xml:space="preserve">
+    <value>גרסה {0} מוכנה ותותקן כש-ZapperRadio תיסגר.</value>
+  </data>
+  <data name="UpdateUpToDate" xml:space="preserve">
+    <value>ZapperRadio מעודכנת.</value>
+  </data>
+  <data name="UpdateFailed" xml:space="preserve">
+    <value>לא ניתן לבדוק עדכונים: {0}</value>
+  </data>
+  <data name="UpdateNoticeTitle" xml:space="preserve">
+    <value>ZapperRadio {0} מוכנה</value>
+  </data>
+  <data name="TimeShiftBox.AutomationProperties.Name" xml:space="preserve">
+    <value>הסטת זמן</value>
+  </data>
+  <data name="TimeShiftMinutes" xml:space="preserve">
+    <value>{0} דקות</value>
+  </data>
+  <data name="NowPlayingBehindLive" xml:space="preserve">
+    <value>{0} אחרי השידור החי</value>
+  </data>
+  <data name="GoLiveButton.Content" xml:space="preserve">
+    <value>לשידור החי</value>
+  </data>
+  <data name="GoLiveButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>השמעת התחנה שוב בשידור חי, מהנקודה שבה השידור נמצא עכשיו</value>
+  </data>
+  <data name="ZapperTab.Text" xml:space="preserve">
+    <value>זאפר</value>
+  </data>
+  <data name="ZapperHint.Text" xml:space="preserve">
+    <value>איך הזאפר עוזב הפסקות פרסומות ודיבור בתחנה שאתם מאזינים לה, ומה הוא עושה כשההפסקה נגמרת.</value>
+  </data>
+  <data name="ZapperSwitch.Header" xml:space="preserve">
+    <value>מעבר בזמן פרסומות ודיבור</value>
+  </data>
+  <data name="ZapBackHeading.Text" xml:space="preserve">
+    <value>אחרי הפסקה</value>
+  </data>
+  <data name="ZapBackRadio.Content" xml:space="preserve">
+    <value>חזרה לתחנה שבה הייתה ההפסקה, כשהשיר בתחנה שאליה עברו מסתיים</value>
+  </data>
+  <data name="ZapStayRadio.Content" xml:space="preserve">
+    <value>הישארות בתחנה שאליה עברו</value>
+  </data>
+  <data name="CrossfadeHeading.Text" xml:space="preserve">
+    <value>מעבר הדרגתי</value>
+  </data>
+  <data name="CrossfadeText.Text" xml:space="preserve">
+    <value>עובר בהדרגה מתחנה אחת לשנייה במקום לחתוך. הדעיכה מסתיימת לפני שההפסקה מתחילה, כך שאף פרסומת לא מסתננת. תחנה שמושמעת בשידור חי ולא ממאגר הסטת הזמן עדיין נחתכת, כי ההפסקה שלה כבר נשמעת.</value>
+  </data>
+  <data name="CrossfadeCheckBox.Content" xml:space="preserve">
+    <value>מעבר הדרגתי בזמן זאפינג</value>
+  </data>
+  <data name="ZapTargetsHeading.Text" xml:space="preserve">
+    <value>מעבר אל</value>
+  </data>
+  <data name="ZapTargetsText.Text" xml:space="preserve">
+    <value>המועדפים שאליהם מותר לעבור בזמן הפסקה. השמיטו תחנה שלא מתאימה לחכות בה למוזיקה, כמו תחנת חדשות; עדיין עוברים ממנה וחוזרים אליה.</value>
+  </data>
+  <data name="NoZapTargetsText.Text" xml:space="preserve">
+    <value>אין עדיין מועדפים. הוסיפו תחנות למועדפים כדי לבחור לאן הזאפר יכול לעבור.</value>
+  </data>
+  <data name="ZapToSongStartHeading.Text" xml:space="preserve">
+    <value>מעבר לתחילת השיר</value>
+  </data>
+  <data name="ZapToSongStartText.Text" xml:space="preserve">
+    <value>מעבר נוחת בתחנה שמשמיעה שיר, בדרך כלל באמצעו. כדי להתחיל את השיר מתחילתו במקום זאת, הדקות האחרונות של כל מועדפת נשמרות בזיכרון (מאגר הסטת זמן). זה גם חותך הפסקה בדיוק היכן שהיא מתחילה, כי היא ידועה לפני שהיא נשמעת. אז אתם מאזינים מעט אחרי השידור, לכל היותר באורך השיר שאליו נחת המעבר, ו"לשידור החי" משלים את הפער מיד. כשהאפשרות כבויה, לא נשמרים מאגרים והזיכרון שלהם משתחרר: כל תחנה מושמעת בשידור חי, והמעבר נוחת היכן שהשיר נמצא.</value>
+  </data>
+  <data name="ZapToSongStartCheckBox.Content" xml:space="preserve">
+    <value>התחלת השיר מתחילתו במעבר</value>
+  </data>
+  <data name="TimeShiftMemory" xml:space="preserve">
+    <value>משתמש בכ-{0} MB זיכרון עבור {1} המועדפים שלכם. שמירת פחות דקות, או כיבוי האפשרות, חוסכים זיכרון.</value>
+  </data>
+  <data name="TimeShiftMemoryOff" xml:space="preserve">
+    <value>כבוי, ולכן לא משתמש בזיכרון. כשיופעל, ידרוש כ-{0} MB עבור {1} המועדפים שלכם.</value>
+  </data>
+  <data name="TimeShiftMemoryPerFavorite" xml:space="preserve">
+    <value>דורש כ-{0} MB זיכרון לכל מועדפת, עבור תחנה ב-128 kbit/s.</value>
+  </data>
+  <data name="AutoStartTurnedOffNotice.Message" xml:space="preserve">
+    <value>Windows כיבתה את הפעלת ZapperRadio בעת הכניסה. הפעילו אותה מחדש בהגדרות &gt; אפליקציות &gt; הפעלה.</value>
+  </data>
+  <data name="StartupSettingsLink.Content" xml:space="preserve">
+    <value>פתיחת הגדרות ההפעלה</value>
+  </data>
+</root>

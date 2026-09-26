@@ -1,0 +1,540 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!--
+    Microsoft ResX Schema
+
+    Version 2.0
+
+    The primary goals of this format is to allow a simple XML format
+    that is mostly human readable. The generation and parsing of the
+    various data types are done through the TypeConverter classes
+    associated with the data types.
+  -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="FavoriteLogoToolTip.Content" xml:space="preserve">
+    <value>Σύρετε πάνω ή κάτω για να αλλάξετε τη θέση</value>
+  </data>
+  <data name="ZappCheckBox.Content" xml:space="preserve">
+    <value>Αλλαγή σταθμού σε διαφημίσεις / ομιλία</value>
+  </data>
+  <data name="ZappCheckBox.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Για να ακούτε μόνο μουσική: όταν ο σταθμός που ακούτε ξεκινά διαφημιστικό διάλειμμα ή μιλάει κάποιος, γίνεται μετάβαση στο ψηλότερο αγαπημένο που παίζει τραγούδι και επιστροφή όταν ξαναπαίξει μουσική. Ποτέ όμως στη μέση ενός τραγουδιού: η επιστροφή περιμένει μέχρι ο σταθμός όπου έγινε η μετάβαση να φτάσει στο δικό του διάλειμμα. Για σταθμούς που δεν επισημαίνουν τις διαφημίσεις τους, θεωρείται ότι υπάρχει διαφημιστικό διάλειμμα όταν ένα τραγούδι ξεπεράσει αρκετά τη διάρκειά του και ακούγεται ομιλία αντί για μουσική.</value>
+  </data>
+  <data name="NoFavoritesText.Text" xml:space="preserve">
+    <value>Δεν υπάρχουν ακόμη αγαπημένα. Βρείτε έναν σταθμό στα δεξιά και πατήστε το + του.</value>
+  </data>
+  <data name="RemoveFavoriteButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Κατάργηση από τα αγαπημένα</value>
+  </data>
+  <data name="StationsTab.Text" xml:space="preserve">
+    <value>Σταθμοί</value>
+  </data>
+  <data name="PlayHistoryTab.Text" xml:space="preserve">
+    <value>Ιστορικό τραγουδιών</value>
+  </data>
+  <data name="SearchBox.PlaceholderText" xml:space="preserve">
+    <value>Αναζήτηση κατά όνομα, είδος ή χώρα (Ctrl+F)</value>
+  </data>
+  <data name="CountryBox.PlaceholderText" xml:space="preserve">
+    <value>Χώρα</value>
+  </data>
+  <data name="CountryBox.AutomationProperties.Name" xml:space="preserve">
+    <value>Χώρα</value>
+  </data>
+  <data name="ResultsOne" xml:space="preserve">
+    <value>1 σταθμός</value>
+  </data>
+  <data name="ResultsMany" xml:space="preserve">
+    <value>{0:N0} σταθμοί</value>
+  </data>
+  <data name="NoResultsText" xml:space="preserve">
+    <value>Κανένας σταθμός δεν ταιριάζει με την αναζήτηση.</value>
+  </data>
+  <data name="NoResultsInCountry" xml:space="preserve">
+    <value>Κανένας σταθμός σε {0} δεν ταιριάζει με την αναζήτηση.</value>
+  </data>
+  <data name="SearchAllCountriesButton.Content" xml:space="preserve">
+    <value>Αναζήτηση σε όλες τις χώρες</value>
+  </data>
+  <data name="OfflineSince" xml:space="preserve">
+    <value>Εκτός σύνδεσης από {0:d}</value>
+  </data>
+  <data name="OfflineAtLastCheck" xml:space="preserve">
+    <value>Εκτός σύνδεσης στον τελευταίο έλεγχο</value>
+  </data>
+  <data name="ReloadStationsButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Επαναφόρτωση λίστας σταθμών</value>
+  </data>
+  <data name="PlayStation" xml:space="preserve">
+    <value>Αναπαραγωγή</value>
+  </data>
+  <data name="StopStation" xml:space="preserve">
+    <value>Διακοπή</value>
+  </data>
+  <data name="FavoriteAdd" xml:space="preserve">
+    <value>Προσθήκη στα αγαπημένα</value>
+  </data>
+  <data name="FavoriteRemove" xml:space="preserve">
+    <value>Κατάργηση από τα αγαπημένα</value>
+  </data>
+  <data name="FavoriteTracksHint.Text" xml:space="preserve">
+    <value>Τραγούδια που αποθηκεύσατε με την καρδιά δίπλα στο τραγούδι που παίζει. Βρείτε τα στο Spotify ή στο YouTube ή αντιγράψτε τον τίτλο.</value>
+  </data>
+  <data name="NoFavoriteTracksText.Text" xml:space="preserve">
+    <value>Δεν υπάρχουν ακόμη αγαπημένα τραγούδια. Όταν ένας σταθμός παίζει ένα τραγούδι που σας αρέσει, πατήστε την καρδιά δίπλα στο τραγούδι κάτω.</value>
+  </data>
+  <data name="FindSongButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Εύρεση αυτού του τραγουδιού</value>
+  </data>
+  <data name="FindSongButton.AutomationProperties.Name" xml:space="preserve">
+    <value>Εύρεση αυτού του τραγουδιού</value>
+  </data>
+  <data name="FindOnSpotifyItem.Text" xml:space="preserve">
+    <value>Εύρεση στο Spotify</value>
+  </data>
+  <data name="FindOnYouTubeItem.Text" xml:space="preserve">
+    <value>Εύρεση στο YouTube</value>
+  </data>
+  <data name="CopyTitleButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Αντιγραφή τίτλου</value>
+  </data>
+  <data name="RemoveFavoriteTrackButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Κατάργηση από τα αγαπημένα τραγούδια</value>
+  </data>
+  <data name="HistoryHint.Text" xml:space="preserve">
+    <value>Ό,τι έπαιξαν τα αγαπημένα σας τις τελευταίες 12 ώρες, τα νεότερα πρώτα, είτε τα ακούγατε είτε όχι. Πατήστε μια καρδιά για να κρατήσετε ένα τραγούδι.</value>
+  </data>
+  <data name="ClearHistoryButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Διαγραφή ιστορικού τραγουδιών</value>
+  </data>
+  <data name="ClearHistoryButton.AutomationProperties.Name" xml:space="preserve">
+    <value>Διαγραφή ιστορικού τραγουδιών</value>
+  </data>
+  <data name="HistorySearchBox.PlaceholderText" xml:space="preserve">
+    <value>Αναζήτηση κατά τραγούδι, καλλιτέχνη ή σταθμό (Ctrl+F)</value>
+  </data>
+  <data name="HistorySearchBox.AutomationProperties.Name" xml:space="preserve">
+    <value>Αναζήτηση στο ιστορικό τραγουδιών</value>
+  </data>
+  <data name="NoHistoryText.Text" xml:space="preserve">
+    <value>Δεν έχει παίξει τίποτα ακόμη. Μόλις τα αγαπημένα σας αρχίσουν να μεταδίδουν, κάθε τραγούδι που παίζουν θα εμφανίζεται εδώ.</value>
+  </data>
+  <data name="NoHistoryMatchesText.Text" xml:space="preserve">
+    <value>Κανένα τραγούδι στο ιστορικό δεν ταιριάζει με την αναζήτηση.</value>
+  </data>
+  <data name="CompactNoFavorites.Text" xml:space="preserve">
+    <value>Δεν υπάρχουν ακόμη αγαπημένα. Μεταβείτε στο πλήρες παράθυρο για να αναζητήσετε σταθμούς και να τους προσθέσετε με το +.</value>
+  </data>
+  <data name="PlayStopButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Αναπαραγωγή / διακοπή (Ctrl+Space)</value>
+  </data>
+  <data name="VolumeSlider.AutomationProperties.Name" xml:space="preserve">
+    <value>Ένταση</value>
+  </data>
+  <data name="SettingsTab.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Ρυθμίσεις</value>
+  </data>
+  <data name="SettingsTab.AutomationProperties.Name" xml:space="preserve">
+    <value>Ρυθμίσεις</value>
+  </data>
+  <data name="StartupHeading.Text" xml:space="preserve">
+    <value>Εκκίνηση</value>
+  </data>
+  <data name="AutoStartCheckBox.Content" xml:space="preserve">
+    <value>Εκκίνηση του ZapperRadio με την εκκίνηση των Windows</value>
+  </data>
+  <data name="LanguageHeading.Text" xml:space="preserve">
+    <value>Γλώσσα</value>
+  </data>
+  <data name="LanguageText.Text" xml:space="preserve">
+    <value>Η γλώσσα της εφαρμογής. Καθορίζει επίσης πώς γράφονται οι ημερομηνίες και οι αριθμοί.</value>
+  </data>
+  <data name="LanguageBox.AutomationProperties.Name" xml:space="preserve">
+    <value>Γλώσσα</value>
+  </data>
+  <data name="LanguageRestartText.Text" xml:space="preserve">
+    <value>Επανεκκινήστε το ZapperRadio για να αλλάξει σε αυτή τη γλώσσα.</value>
+  </data>
+  <data name="AboutHeading.Text" xml:space="preserve">
+    <value>Πληροφορίες</value>
+  </data>
+  <data name="AboutText.Text" xml:space="preserve">
+    <value>Ραδιόφωνο διαδικτύου που κρατά ανοιχτές τις ροές των αγαπημένων σας, ώστε η αλλαγή να είναι άμεση και να μην ακούτε τη διαφήμιση που παίζει ένας σταθμός όταν συνδέεστε.</value>
+  </data>
+  <data name="WebsiteLink.Content" xml:space="preserve">
+    <value>Ιστότοπος του ZapperRadio</value>
+  </data>
+  <data name="GitHubLink.Content" xml:space="preserve">
+    <value>Το ZapperRadio στο GitHub</value>
+  </data>
+  <data name="StationListHeading.Text" xml:space="preserve">
+    <value>Λίστα σταθμών</value>
+  </data>
+  <data name="CheckStationListButton.Content" xml:space="preserve">
+    <value>Έλεγχος για νεότερη λίστα</value>
+  </data>
+  <data name="ShortcutsHeading.Text" xml:space="preserve">
+    <value>Συντομεύσεις</value>
+  </data>
+  <data name="ShortcutsText.Text" xml:space="preserve">
+    <value>Στο παράθυρο: Ctrl+Space για διακοπή ή αναπαραγωγή, Ctrl+M για σίγαση, Ctrl+F για αναζήτηση. Λειτουργούν επίσης τα κουμπιά αναπαραγωγής, παύσης και επόμενου στο αναδυόμενο παράθυρο έντασης των Windows και στην οθόνη κλειδώματος, τα πλήκτρα πολυμέσων και τα ακουστικά σας, όπου το επόμενο και το προηγούμενο περνούν από τα αγαπημένα.</value>
+  </data>
+  <data name="GlobalHotkeysCheckBox.Content" xml:space="preserve">
+    <value>Συντομεύσεις από οποιαδήποτε εφαρμογή</value>
+  </data>
+  <data name="GlobalHotkeysCheckBox.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Και ενώ εργάζεστε σε άλλη εφαρμογή. Με Ctrl+Alt αντί για Ctrl, επειδή αν αυτή η εφαρμογή δέσμευε το Ctrl+Space θα το στερούσε από όλες τις άλλες. Ένας συνδυασμός που χρησιμοποιεί ήδη άλλη εφαρμογή αφήνεται σε αυτήν και αναφέρεται παρακάτω.</value>
+  </data>
+  <data name="GlobalHotkeysText.Text" xml:space="preserve">
+    <value>Ctrl+Alt+P για διακοπή ή αναπαραγωγή, Ctrl+Alt+M για σίγαση, Ctrl+Alt+→ και Ctrl+Alt+← για το επόμενο και το προηγούμενο αγαπημένο, από οποιαδήποτε εφαρμογή εργάζεστε.</value>
+  </data>
+  <data name="LoudnessHeading.Text" xml:space="preserve">
+    <value>Ακουστότητα</value>
+  </data>
+  <data name="LoudnessText.Text" xml:space="preserve">
+    <value>Ένας σταθμός έχει γίνει mastering αρκετά ντεσιμπέλ πιο δυνατά από τον επόμενο, και αυτό είναι το πιο ενοχλητικό κομμάτι της αλλαγής σταθμών. Ο ήχος κάθε αγαπημένου αποκωδικοποιείται έτσι κι αλλιώς, οπότε μετριέται από αυτόν πόσο δυνατή είναι πραγματικά η μουσική του (EBU R128), και οι δυνατοί σταθμοί χαμηλώνουν στο ίδιο επίπεδο. Μετράει μόνο η μουσική, έτσι οι διαφημίσεις και οι παρουσιαστές δεν αλλοιώνουν το αποτέλεσμα, και χρειάζεται περίπου ένα λεπτό μουσικής ανά σταθμό. Οι σταθμοί που δεν μπορούν να αναλυθούν (HLS) διατηρούν την ένταση με την οποία έρχονται.</value>
+  </data>
+  <data name="NormalizeLoudnessCheckBox.Content" xml:space="preserve">
+    <value>Εξίσωση ακουστότητας σταθμών</value>
+  </data>
+  <data name="NormalizeLoudnessCheckBox.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Φέρνει κάθε σταθμό σε περίπου -14 LUFS, το επίπεδο στο οποίο κανονικοποιούν οι υπηρεσίες streaming, κατά το πολύ 12 dB κάτω ή 6 dB πάνω. Ένας σταθμός που πρέπει να δυναμώσει δεν μπορεί να ξεπεράσει την πλήρη ένταση, οπότε με το ρυθμιστικό στο τέρμα μπορεί να μείνει λίγο πιο σιγανός.</value>
+  </data>
+  <data name="NoFavoritesLoudnessText.Text" xml:space="preserve">
+    <value>Δεν υπάρχουν ακόμη αγαπημένα.</value>
+  </data>
+  <data name="RemeasureLoudnessButton.Content" xml:space="preserve">
+    <value>Νέα μέτρηση ακουστότητας</value>
+  </data>
+  <data name="RemeasureLoudnessButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Ξεχνά ό,τι έχει ακουστεί μέχρι τώρα από κάθε αγαπημένο και μετρά ξανά. Η ένταση κρατά την τρέχουσα διόρθωση μέχρι να ακουστεί περίπου ένα λεπτό μουσικής και μετά περνά στο νέο αποτέλεσμα.</value>
+  </data>
+  <data name="CacheHeading.Text" xml:space="preserve">
+    <value>Αποθηκευμένα λογότυπα</value>
+  </data>
+  <data name="CacheText.Text" xml:space="preserve">
+    <value>Τα λογότυπα των σταθμών και οι λίστες με τους πιο δημοφιλείς αναζητούνται μία φορά και μετά διατηρούνται. Η διαγραφή τους κάνει κάθε λογότυπο να αναζητηθεί ξανά, κάτι που βοηθά όταν ένας σταθμός δείχνει λάθος λογότυπο. Η ίδια η λίστα σταθμών διατηρείται.</value>
+  </data>
+  <data name="ClearCacheButton.Content" xml:space="preserve">
+    <value>Εκκαθάριση προσωρινής μνήμης</value>
+  </data>
+  <data name="AllCountries" xml:space="preserve">
+    <value>Όλες οι χώρες</value>
+  </data>
+  <data name="LanguageWindows" xml:space="preserve">
+    <value>Γλώσσα των Windows</value>
+  </data>
+  <data name="FavoritesHeader" xml:space="preserve">
+    <value>Αγαπημένα ({0}/{1})</value>
+  </data>
+  <data name="FavoriteTracksHeader" xml:space="preserve">
+    <value>Αγαπημένα τραγούδια ({0})</value>
+  </data>
+  <data name="CacheEmpty" xml:space="preserve">
+    <value>Τίποτα αποθηκευμένο ακόμη</value>
+  </data>
+  <data name="CacheSummary" xml:space="preserve">
+    <value>{0:N0} αναζητήσεις · {1}</value>
+  </data>
+  <data name="CacheClearFailed" xml:space="preserve">
+    <value>Δεν ήταν δυνατή η εκκαθάριση της προσωρινής μνήμης: {0}</value>
+  </data>
+  <data name="CatalogLoading" xml:space="preserve">
+    <value>Φόρτωση λίστας σταθμών…</value>
+  </data>
+  <data name="CatalogStatus" xml:space="preserve">
+    <value>{0:N0} σταθμοί · λίστα από {1}</value>
+  </data>
+  <data name="CatalogStatusOffline" xml:space="preserve">
+    <value>{0:N0} σταθμοί · λίστα από {1} (αντίγραφο εκτός σύνδεσης)</value>
+  </data>
+  <data name="CatalogUnavailable" xml:space="preserve">
+    <value>Η λίστα σταθμών δεν είναι διαθέσιμη</value>
+  </data>
+  <data name="CatalogDownloadFailed" xml:space="preserve">
+    <value>Δεν ήταν δυνατή η λήψη της λίστας σταθμών από {0} και δεν υπάρχει τοπικό αντίγραφο. ({1})</value>
+  </data>
+  <data name="StationListDownloaded" xml:space="preserve">
+    <value>Λήψη στις {0:d}, {0:t}</value>
+  </data>
+  <data name="FavoritesLimitReached" xml:space="preserve">
+    <value>Μπορείτε να έχετε έως {0} αγαπημένα, επειδή όλα συνεχίζουν να μεταδίδουν στο παρασκήνιο. Καταργήστε πρώτα ένα.</value>
+  </data>
+  <data name="SettingsSaveFailed" xml:space="preserve">
+    <value>Δεν ήταν δυνατή η αποθήκευση των ρυθμίσεων: {0}</value>
+  </data>
+  <data name="ChooseStation" xml:space="preserve">
+    <value>Επιλέξτε σταθμό</value>
+  </data>
+  <data name="ClickFavoriteToListen" xml:space="preserve">
+    <value>Πατήστε ένα αγαπημένο για να ακούσετε αμέσως ζωντανά</value>
+  </data>
+  <data name="Stopped" xml:space="preserve">
+    <value>Διακόπηκε</value>
+  </data>
+  <data name="NowPlayingMuted" xml:space="preserve">
+    <value>σε σίγαση</value>
+  </data>
+  <data name="NowPlayingNotFavorite" xml:space="preserve">
+    <value>δεν είναι αγαπημένο, η ροή σταματά κατά την αλλαγή</value>
+  </data>
+  <data name="JumpListFavorites" xml:space="preserve">
+    <value>Αγαπημένα</value>
+  </data>
+  <data name="JumpListListenTo" xml:space="preserve">
+    <value>Ακρόαση: {0}</value>
+  </data>
+  <data name="JumpListListenToSong" xml:space="preserve">
+    <value>Ακρόαση: {0}
+{1}</value>
+  </data>
+  <data name="JumpListMute" xml:space="preserve">
+    <value>Σίγαση</value>
+  </data>
+  <data name="JumpListUnmute" xml:space="preserve">
+    <value>Κατάργηση σίγασης</value>
+  </data>
+  <data name="JumpListMuteToolTip" xml:space="preserve">
+    <value>Σίγαση του σταθμού χωρίς διακοπή</value>
+  </data>
+  <data name="JumpListUnmuteToolTip" xml:space="preserve">
+    <value>Ακούστε ξανά τον σταθμό</value>
+  </data>
+  <data name="SongAdvertisement" xml:space="preserve">
+    <value>Διαφήμιση</value>
+  </data>
+  <data name="SongProbablyAdBreak" xml:space="preserve">
+    <value>Πιθανώς διαφημιστικό διάλειμμα</value>
+  </data>
+  <data name="LoudnessNotMeasured" xml:space="preserve">
+    <value>Δεν έχει μετρηθεί ακόμη</value>
+  </data>
+  <data name="LoudnessTurnedDown" xml:space="preserve">
+    <value>χαμηλώθηκε {0} dB</value>
+  </data>
+  <data name="LoudnessTurnedUp" xml:space="preserve">
+    <value>δυνάμωσε {0} dB</value>
+  </data>
+  <data name="LoudnessMeasuringAgain" xml:space="preserve">
+    <value>νέα μέτρηση…</value>
+  </data>
+  <data name="StatusConnecting" xml:space="preserve">
+    <value>Σύνδεση…</value>
+  </data>
+  <data name="StatusNowPlaying" xml:space="preserve">
+    <value>Παίζει τώρα</value>
+  </data>
+  <data name="StatusLiveMuted" xml:space="preserve">
+    <value>Ζωντανά · σε σίγαση</value>
+  </data>
+  <data name="StatusBuffering" xml:space="preserve">
+    <value>Προσωρινή αποθήκευση…</value>
+  </data>
+  <data name="StatusReconnecting" xml:space="preserve">
+    <value>Επανασύνδεση…</value>
+  </data>
+  <data name="StatusFailed" xml:space="preserve">
+    <value>Μη προσβάσιμος, νέες προσπάθειες σε εξέλιξη</value>
+  </data>
+  <data name="SoundMusic" xml:space="preserve">
+    <value>μουσική</value>
+  </data>
+  <data name="SoundSpeech" xml:space="preserve">
+    <value>ομιλία</value>
+  </data>
+  <data name="ViewSwitchToFull" xml:space="preserve">
+    <value>Μετάβαση στο πλήρες παράθυρο</value>
+  </data>
+  <data name="ViewSwitchToCompact" xml:space="preserve">
+    <value>Μετάβαση στο συμπαγές παράθυρο</value>
+  </data>
+  <data name="SaveTrackRemove" xml:space="preserve">
+    <value>Κατάργηση από τα αγαπημένα τραγούδια</value>
+  </data>
+  <data name="SaveTrackAdd" xml:space="preserve">
+    <value>Προσθήκη στα αγαπημένα τραγούδια</value>
+  </data>
+  <data name="MuteToolTipUnmute" xml:space="preserve">
+    <value>Κατάργηση σίγασης (Ctrl+M)</value>
+  </data>
+  <data name="MuteToolTipMute" xml:space="preserve">
+    <value>Σίγαση (Ctrl+M)</value>
+  </data>
+  <data name="HotkeyInUseOne" xml:space="preserve">
+    <value>Το {0} χρησιμοποιείται ήδη από άλλη εφαρμογή και δεν θα λειτουργεί εκτός του παραθύρου.</value>
+  </data>
+  <data name="HotkeyInUseMany" xml:space="preserve">
+    <value>Τα {0} χρησιμοποιούνται ήδη από άλλη εφαρμογή και δεν θα λειτουργούν εκτός του παραθύρου.</value>
+  </data>
+  <data name="StreamStopped" xml:space="preserve">
+    <value>Η ροή σταμάτησε να αποκρίνεται.</value>
+  </data>
+  <data name="StreamEnded" xml:space="preserve">
+    <value>Η ροή τελείωσε.</value>
+  </data>
+  <data name="UpdateNotice.Message" xml:space="preserve">
+    <value>Κάντε επανεκκίνηση για να την εγκαταστήσετε τώρα. Διαφορετικά θα εγκατασταθεί όταν κλείσετε το ZapperRadio.</value>
+  </data>
+  <data name="RestartToUpdateButton.Content" xml:space="preserve">
+    <value>Επανεκκίνηση για ενημέρωση</value>
+  </data>
+  <data name="UpdatesHeading.Text" xml:space="preserve">
+    <value>Ενημερώσεις</value>
+  </data>
+  <data name="UpdatesText.Text" xml:space="preserve">
+    <value>Το ZapperRadio ελέγχει για νέα έκδοση κάθε λίγες ώρες και τη λαμβάνει στο παρασκήνιο. Εγκαθίσταται όταν κλείσετε την εφαρμογή. Τα αγαπημένα και οι ρυθμίσεις σας διατηρούνται.</value>
+  </data>
+  <data name="CheckForUpdatesButton.Content" xml:space="preserve">
+    <value>Έλεγχος για ενημερώσεις</value>
+  </data>
+  <data name="UpdateChecking" xml:space="preserve">
+    <value>Έλεγχος για ενημερώσεις…</value>
+  </data>
+  <data name="UpdateDownloading" xml:space="preserve">
+    <value>Λήψη της νέας έκδοσης… {0}%</value>
+  </data>
+  <data name="UpdateReady" xml:space="preserve">
+    <value>Η έκδοση {0} είναι έτοιμη και θα εγκατασταθεί όταν κλείσει το ZapperRadio.</value>
+  </data>
+  <data name="UpdateUpToDate" xml:space="preserve">
+    <value>Το ZapperRadio είναι ενημερωμένο.</value>
+  </data>
+  <data name="UpdateFailed" xml:space="preserve">
+    <value>Δεν ήταν δυνατός ο έλεγχος για ενημερώσεις: {0}</value>
+  </data>
+  <data name="UpdateNoticeTitle" xml:space="preserve">
+    <value>Το ZapperRadio {0} είναι έτοιμο</value>
+  </data>
+  <data name="TimeShiftBox.AutomationProperties.Name" xml:space="preserve">
+    <value>Χρονική μετατόπιση</value>
+  </data>
+  <data name="TimeShiftMinutes" xml:space="preserve">
+    <value>{0} λεπτά</value>
+  </data>
+  <data name="NowPlayingBehindLive" xml:space="preserve">
+    <value>{0} πίσω από τη ζωντανή μετάδοση</value>
+  </data>
+  <data name="GoLiveButton.Content" xml:space="preserve">
+    <value>Ζωντανά</value>
+  </data>
+  <data name="GoLiveButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Αναπαραγωγή του σταθμού ξανά ζωντανά, εκεί που βρίσκεται τώρα η μετάδοσή του</value>
+  </data>
+  <data name="ZapperTab.Text" xml:space="preserve">
+    <value>Zapper</value>
+  </data>
+  <data name="ZapperHint.Text" xml:space="preserve">
+    <value>Πώς ο zapper αφήνει τα διαφημιστικά διαλείμματα και την ομιλία στον σταθμό που ακούτε και τι κάνει όταν τελειώσει το διάλειμμα.</value>
+  </data>
+  <data name="ZapperSwitch.Header" xml:space="preserve">
+    <value>Αλλαγή σταθμού σε διαφημίσεις και ομιλία</value>
+  </data>
+  <data name="ZapBackHeading.Text" xml:space="preserve">
+    <value>Μετά από διάλειμμα</value>
+  </data>
+  <data name="ZapBackRadio.Content" xml:space="preserve">
+    <value>Επιστροφή στον σταθμό με το διάλειμμα, όταν τελειώσει το τραγούδι στον σταθμό όπου έγινε η μετάβαση</value>
+  </data>
+  <data name="ZapStayRadio.Content" xml:space="preserve">
+    <value>Παραμονή στον σταθμό όπου έγινε η μετάβαση</value>
+  </data>
+  <data name="CrossfadeHeading.Text" xml:space="preserve">
+    <value>Διασταυρούμενο σβήσιμο</value>
+  </data>
+  <data name="CrossfadeText.Text" xml:space="preserve">
+    <value>Περνά σταδιακά από τον έναν σταθμό στον άλλο αντί για απότομη αλλαγή. Το σβήσιμο τελειώνει πριν αρχίσει το διάλειμμα, οπότε δεν περνά καμία διαφήμιση. Ένας σταθμός που παίζει ζωντανά αντί από την προσωρινή μνήμη χρονικής μετατόπισης κόβεται ακόμη απότομα, επειδή το διάλειμμά του ακούγεται ήδη.</value>
+  </data>
+  <data name="CrossfadeCheckBox.Content" xml:space="preserve">
+    <value>Διασταυρούμενο σβήσιμο κατά την αλλαγή</value>
+  </data>
+  <data name="ZapTargetsHeading.Text" xml:space="preserve">
+    <value>Μετάβαση σε</value>
+  </data>
+  <data name="ZapTargetsText.Text" xml:space="preserve">
+    <value>Τα αγαπημένα στα οποία μπορεί να γίνει μετάβαση σε διάλειμμα. Εξαιρέστε έναν σταθμό που δεν είναι κατάλληλος για να περιμένετε τη μουσική, όπως έναν ειδησεογραφικό· από αυτόν εξακολουθεί να γίνεται μετάβαση και επιστροφή.</value>
+  </data>
+  <data name="NoZapTargetsText.Text" xml:space="preserve">
+    <value>Δεν υπάρχουν ακόμη αγαπημένα. Προσθέστε σταθμούς στα αγαπημένα για να επιλέξετε πού μπορεί να πηγαίνει ο zapper.</value>
+  </data>
+  <data name="ZapToSongStartHeading.Text" xml:space="preserve">
+    <value>Μετάβαση στην αρχή του τραγουδιού</value>
+  </data>
+  <data name="ZapToSongStartText.Text" xml:space="preserve">
+    <value>Μια μετάβαση καταλήγει σε σταθμό που παίζει τραγούδι, συνήθως στη μέση του. Για να ξεκινά αντί γι' αυτό το τραγούδι από την αρχή, τα τελευταία λεπτά κάθε αγαπημένου κρατιούνται στη μνήμη (προσωρινή μνήμη χρονικής μετατόπισης). Έτσι κόβεται επίσης ένα διάλειμμα ακριβώς εκεί που αρχίζει, επειδή είναι γνωστό πριν ακουστεί. Ακούτε τότε λίγο πίσω από τη μετάδοση, το πολύ όσο διαρκεί το τραγούδι όπου κατέληξε η μετάβαση, και το Ζωντανά καλύπτει αμέσως τη διαφορά. Όταν είναι απενεργοποιημένο, δεν κρατιούνται προσωρινές μνήμες και η μνήμη τους αποδεσμεύεται: κάθε σταθμός παίζει ζωντανά και η μετάβαση καταλήγει όπου βρίσκεται το τραγούδι.</value>
+  </data>
+  <data name="ZapToSongStartCheckBox.Content" xml:space="preserve">
+    <value>Έναρξη του τραγουδιού από την αρχή κατά την αλλαγή</value>
+  </data>
+  <data name="TimeShiftMemory" xml:space="preserve">
+    <value>Χρησιμοποιεί περίπου {0} MB μνήμης για τα {1} αγαπημένα σας. Λιγότερα λεπτά ή η απενεργοποίηση εξοικονομούν μνήμη.</value>
+  </data>
+  <data name="TimeShiftMemoryOff" xml:space="preserve">
+    <value>Απενεργοποιημένο, οπότε δεν χρησιμοποιεί μνήμη. Αν ενεργοποιηθεί, θα χρειαστεί περίπου {0} MB για τα {1} αγαπημένα σας.</value>
+  </data>
+  <data name="TimeShiftMemoryPerFavorite" xml:space="preserve">
+    <value>Χρειάζεται περίπου {0} MB μνήμης ανά αγαπημένο, για σταθμό στα 128 kbit/s.</value>
+  </data>
+  <data name="AutoStartTurnedOffNotice.Message" xml:space="preserve">
+    <value>Τα Windows απενεργοποίησαν την εκκίνηση του ZapperRadio κατά τη σύνδεση. Ενεργοποιήστε την ξανά από Ρυθμίσεις &gt; Εφαρμογές &gt; Εκκίνηση.</value>
+  </data>
+  <data name="StartupSettingsLink.Content" xml:space="preserve">
+    <value>Άνοιγμα ρυθμίσεων εκκίνησης</value>
+  </data>
+</root>

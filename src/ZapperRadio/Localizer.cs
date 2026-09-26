@@ -32,12 +32,35 @@ public static class Localizer
         new("uk-UA", "Українська"),
         new("it-IT", "Italiano"),
         new("nl-NL", "Nederlands"),
+        new("pl-PL", "Polski"),
+        new("tr-TR", "Türkçe"),
+        new("ko-KR", "한국어"),
+        new("zh-TW", "中文 (繁體)"),
+        new("ru-RU", "Русский"),
+        new("cs-CZ", "Čeština"),
+        new("sv-SE", "Svenska"),
+        new("id-ID", "Bahasa Indonesia"),
+        new("hu-HU", "Magyar"),
+        new("ro-RO", "Română"),
+        new("da-DK", "Dansk"),
+        new("nb-NO", "Norsk (bokmål)"),
+        new("fi-FI", "Suomi"),
+        new("el-GR", "Ελληνικά"),
+        new("sk-SK", "Slovenčina"),
+        new("vi-VN", "Tiếng Việt"),
+        new("th-TH", "ไทย"),
+        new("hi-IN", "हिन्दी"),
+        new("ar-SA", "العربية"),
+        new("he-IL", "עברית"),
     ];
 
     private static ResourceLoader? _loader;
 
     /// <summary>The language the app is shown in, as one of the tags in <see cref="Languages"/>.</summary>
     public static string Current { get; private set; } = Fallback;
+
+    /// <summary>Whether <see cref="Current"/> is written from right to left (Arabic, Hebrew), so the window is mirrored.</summary>
+    public static bool IsRightToLeft => CultureInfo.GetCultureInfo(Current).TextInfo.IsRightToLeft;
 
     /// <summary>
     /// Switches the app to <paramref name="preferred"/>, or to the first language of Windows that is available
@@ -85,8 +108,9 @@ public static class Localizer
 
     /// <summary>
     /// The language of the app that a Windows language falls under: "nl-BE" is Dutch and "pt-PT" is Portuguese.
-    /// Chinese is the one where the country matters, since the app has simplified characters only and
-    /// traditional ones (zh-Hant, zh-TW, zh-HK) would not be read by everyone who asks for them.
+    /// Chinese is the one where the country matters: simplified characters (zh-Hans, zh-CN, zh-SG) and
+    /// traditional ones (zh-Hant, zh-TW, zh-HK, zh-MO) are not read by everyone who asks for the other.
+    /// Norwegian comes as "nb", "nn" or plain "no", and all of them read the bokmål texts.
     /// </summary>
     private static string? Match(string windowsTag)
     {
@@ -95,10 +119,11 @@ public static class Localizer
         {
             var simplified = parts.Length == 1 || parts.Any(p => p.Equals("Hans", StringComparison.OrdinalIgnoreCase))
                              || (!parts.Any(p => p.Equals("Hant", StringComparison.OrdinalIgnoreCase))
-                                 && parts.Any(p => p.Equals("CN", StringComparison.OrdinalIgnoreCase) || p.Equals("SG", StringComparison.OrdinalIgnoreCase)));
-            return simplified ? "zh-CN" : null;
+                                 && !parts.Any(p => p.Equals("TW", StringComparison.OrdinalIgnoreCase) || p.Equals("HK", StringComparison.OrdinalIgnoreCase) || p.Equals("MO", StringComparison.OrdinalIgnoreCase)));
+            return simplified ? "zh-CN" : "zh-TW";
         }
 
-        return Languages.FirstOrDefault(l => l.Tag!.StartsWith(parts[0] + "-", StringComparison.OrdinalIgnoreCase))?.Tag;
+        var language = parts[0].ToLowerInvariant() is "nn" or "no" ? "nb" : parts[0];
+        return Languages.FirstOrDefault(l => l.Tag!.StartsWith(language + "-", StringComparison.OrdinalIgnoreCase))?.Tag;
     }
 }

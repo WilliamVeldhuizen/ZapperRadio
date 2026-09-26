@@ -1,0 +1,540 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!--
+    Microsoft ResX Schema
+
+    Version 2.0
+
+    The primary goals of this format is to allow a simple XML format
+    that is mostly human readable. The generation and parsing of the
+    various data types are done through the TypeConverter classes
+    associated with the data types.
+  -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="FavoriteLogoToolTip.Content" xml:space="preserve">
+    <value>Sırasını değiştirmek için yukarı veya aşağı sürükleyin</value>
+  </data>
+  <data name="ZappCheckBox.Content" xml:space="preserve">
+    <value>Reklam / konuşmada kanal değiştir</value>
+  </data>
+  <data name="ZappCheckBox.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Yalnızca müzik dinlemek için: dinlediğiniz istasyon reklam arasına girdiğinde veya biri konuştuğunda, şarkı çalan en üstteki favoriye geçer ve istasyon yeniden müzik çalınca geri döner. Ama asla bir şarkının ortasında değil: geri dönüş, geçilen istasyonun kendi arasına gelmesini bekler. Reklamlarını işaretlemeyen istasyonlarda, bir şarkı süresini epey aştığında ve müzik yerine konuşma duyulduğunda reklam arası olduğu varsayılır.</value>
+  </data>
+  <data name="NoFavoritesText.Text" xml:space="preserve">
+    <value>Henüz favori yok. Sağda bir istasyon bulun ve + düğmesine tıklayın.</value>
+  </data>
+  <data name="RemoveFavoriteButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Favorilerden kaldır</value>
+  </data>
+  <data name="StationsTab.Text" xml:space="preserve">
+    <value>İstasyonlar</value>
+  </data>
+  <data name="PlayHistoryTab.Text" xml:space="preserve">
+    <value>Şarkı geçmişi</value>
+  </data>
+  <data name="SearchBox.PlaceholderText" xml:space="preserve">
+    <value>Ada, türe veya ülkeye göre ara (Ctrl+F)</value>
+  </data>
+  <data name="CountryBox.PlaceholderText" xml:space="preserve">
+    <value>Ülke</value>
+  </data>
+  <data name="CountryBox.AutomationProperties.Name" xml:space="preserve">
+    <value>Ülke</value>
+  </data>
+  <data name="ResultsOne" xml:space="preserve">
+    <value>1 istasyon</value>
+  </data>
+  <data name="ResultsMany" xml:space="preserve">
+    <value>{0:N0} istasyon</value>
+  </data>
+  <data name="NoResultsText" xml:space="preserve">
+    <value>Aramanızla eşleşen istasyon yok.</value>
+  </data>
+  <data name="NoResultsInCountry" xml:space="preserve">
+    <value>{0} içinde aramanızla eşleşen istasyon yok.</value>
+  </data>
+  <data name="SearchAllCountriesButton.Content" xml:space="preserve">
+    <value>Tüm ülkelerde ara</value>
+  </data>
+  <data name="OfflineSince" xml:space="preserve">
+    <value>{0:d} tarihinden beri çevrimdışı</value>
+  </data>
+  <data name="OfflineAtLastCheck" xml:space="preserve">
+    <value>Son kontrolde çevrimdışıydı</value>
+  </data>
+  <data name="ReloadStationsButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>İstasyon listesini yeniden yükle</value>
+  </data>
+  <data name="PlayStation" xml:space="preserve">
+    <value>Çal</value>
+  </data>
+  <data name="StopStation" xml:space="preserve">
+    <value>Durdur</value>
+  </data>
+  <data name="FavoriteAdd" xml:space="preserve">
+    <value>Favorilere ekle</value>
+  </data>
+  <data name="FavoriteRemove" xml:space="preserve">
+    <value>Favorilerden kaldır</value>
+  </data>
+  <data name="FavoriteTracksHint.Text" xml:space="preserve">
+    <value>Çalan şarkının yanındaki kalple kaydettiğiniz şarkılar. Birini Spotify'da veya YouTube'da bulun ya da adını kopyalayın.</value>
+  </data>
+  <data name="NoFavoriteTracksText.Text" xml:space="preserve">
+    <value>Henüz favori şarkı yok. Bir istasyon sevdiğiniz bir şarkıyı çaldığında, alttaki şarkının yanındaki kalbe tıklayın.</value>
+  </data>
+  <data name="FindSongButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Bu şarkıyı bul</value>
+  </data>
+  <data name="FindSongButton.AutomationProperties.Name" xml:space="preserve">
+    <value>Bu şarkıyı bul</value>
+  </data>
+  <data name="FindOnSpotifyItem.Text" xml:space="preserve">
+    <value>Spotify'da bul</value>
+  </data>
+  <data name="FindOnYouTubeItem.Text" xml:space="preserve">
+    <value>YouTube'da bul</value>
+  </data>
+  <data name="CopyTitleButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Adı kopyala</value>
+  </data>
+  <data name="RemoveFavoriteTrackButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Favori şarkılardan kaldır</value>
+  </data>
+  <data name="HistoryHint.Text" xml:space="preserve">
+    <value>Favorilerinizin son 12 saatte çaldığı her şey, en yenisi önce; onları dinleseniz de dinlemeseniz de. Bir şarkıyı saklamak için kalbe tıklayın.</value>
+  </data>
+  <data name="ClearHistoryButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Şarkı geçmişini temizle</value>
+  </data>
+  <data name="ClearHistoryButton.AutomationProperties.Name" xml:space="preserve">
+    <value>Şarkı geçmişini temizle</value>
+  </data>
+  <data name="HistorySearchBox.PlaceholderText" xml:space="preserve">
+    <value>Şarkıya, sanatçıya veya istasyona göre ara (Ctrl+F)</value>
+  </data>
+  <data name="HistorySearchBox.AutomationProperties.Name" xml:space="preserve">
+    <value>Şarkı geçmişinde ara</value>
+  </data>
+  <data name="NoHistoryText.Text" xml:space="preserve">
+    <value>Henüz bir şey çalmadı. Favorileriniz yayın yapmaya başlar başlamaz çaldıkları her şarkı burada listelenir.</value>
+  </data>
+  <data name="NoHistoryMatchesText.Text" xml:space="preserve">
+    <value>Geçmişte aramanızla eşleşen şarkı yok.</value>
+  </data>
+  <data name="CompactNoFavorites.Text" xml:space="preserve">
+    <value>Henüz favori yok. İstasyon aramak ve + ile eklemek için tam pencereye geçin.</value>
+  </data>
+  <data name="PlayStopButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Çal / durdur (Ctrl+Boşluk)</value>
+  </data>
+  <data name="VolumeSlider.AutomationProperties.Name" xml:space="preserve">
+    <value>Ses düzeyi</value>
+  </data>
+  <data name="SettingsTab.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Ayarlar</value>
+  </data>
+  <data name="SettingsTab.AutomationProperties.Name" xml:space="preserve">
+    <value>Ayarlar</value>
+  </data>
+  <data name="StartupHeading.Text" xml:space="preserve">
+    <value>Başlangıç</value>
+  </data>
+  <data name="AutoStartCheckBox.Content" xml:space="preserve">
+    <value>Windows başladığında ZapperRadio'yu başlat</value>
+  </data>
+  <data name="LanguageHeading.Text" xml:space="preserve">
+    <value>Dil</value>
+  </data>
+  <data name="LanguageText.Text" xml:space="preserve">
+    <value>Uygulamanın dili. Tarihlerin ve sayıların nasıl yazılacağını da belirler.</value>
+  </data>
+  <data name="LanguageBox.AutomationProperties.Name" xml:space="preserve">
+    <value>Dil</value>
+  </data>
+  <data name="LanguageRestartText.Text" xml:space="preserve">
+    <value>Bu dile geçmek için ZapperRadio'yu yeniden başlatın.</value>
+  </data>
+  <data name="AboutHeading.Text" xml:space="preserve">
+    <value>Hakkında</value>
+  </data>
+  <data name="AboutText.Text" xml:space="preserve">
+    <value>Favorilerinizin yayınlarını açık tutan internet radyosu; böylece geçişler anında olur ve bir istasyonun bağlandığınızda çaldığı reklamı duymazsınız.</value>
+  </data>
+  <data name="WebsiteLink.Content" xml:space="preserve">
+    <value>ZapperRadio web sitesi</value>
+  </data>
+  <data name="GitHubLink.Content" xml:space="preserve">
+    <value>GitHub'da ZapperRadio</value>
+  </data>
+  <data name="StationListHeading.Text" xml:space="preserve">
+    <value>İstasyon listesi</value>
+  </data>
+  <data name="CheckStationListButton.Content" xml:space="preserve">
+    <value>Daha yeni bir liste var mı bak</value>
+  </data>
+  <data name="ShortcutsHeading.Text" xml:space="preserve">
+    <value>Kısayollar</value>
+  </data>
+  <data name="ShortcutsText.Text" xml:space="preserve">
+    <value>Pencerede: durdurmak veya çalmak için Ctrl+Boşluk, sessize almak için Ctrl+M, aramak için Ctrl+F. Windows ses açılır penceresindeki, kilit ekranındaki çal, duraklat ve sonraki düğmeleri, medya tuşlarınız ve kulaklığınız da çalışır; sonraki ve önceki favoriler arasında gezinir.</value>
+  </data>
+  <data name="GlobalHotkeysCheckBox.Content" xml:space="preserve">
+    <value>Her uygulamadan kısayollar</value>
+  </data>
+  <data name="GlobalHotkeysCheckBox.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Başka bir uygulamada çalışırken de. Ctrl yerine Ctrl+Alt ile, çünkü Ctrl+Boşluk'u bu uygulamaya ayırmak onu diğer tüm uygulamalardan alırdı. Başka bir uygulamanın zaten kullandığı bir kombinasyon ona bırakılır ve aşağıda belirtilir.</value>
+  </data>
+  <data name="GlobalHotkeysText.Text" xml:space="preserve">
+    <value>Durdurmak veya çalmak için Ctrl+Alt+P, sessize almak için Ctrl+Alt+M, sonraki ve önceki favori için Ctrl+Alt+→ ve Ctrl+Alt+←; hangi uygulamada çalışıyor olursanız olun.</value>
+  </data>
+  <data name="LoudnessHeading.Text" xml:space="preserve">
+    <value>Ses yüksekliği</value>
+  </data>
+  <data name="LoudnessText.Text" xml:space="preserve">
+    <value>Bir istasyon diğerinden birkaç desibel daha yüksek masterlanmıştır ve bu, kanal değiştirmenin en can sıkıcı yanıdır. Her favorinin sesi zaten çözülür, bu yüzden müziğinin gerçekte ne kadar yüksek olduğu ondan ölçülür (EBU R128) ve yüksek olanlar aynı seviyeye indirilir. Yalnızca müzik sayılır, böylece reklamlar ve sunucular ölçümü bozmaz; istasyon başına yaklaşık bir dakikalık müzik gerekir. Dinlenemeyen istasyonlar (HLS) geldikleri ses düzeyini korur.</value>
+  </data>
+  <data name="NormalizeLoudnessCheckBox.Content" xml:space="preserve">
+    <value>İstasyonların ses yüksekliğini eşitle</value>
+  </data>
+  <data name="NormalizeLoudnessCheckBox.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Her istasyonu, yayın hizmetlerinin normalleştirdiği seviye olan yaklaşık -14 LUFS'e getirir; en fazla 12 dB aşağı veya 6 dB yukarı. Yükseltilmesi gereken bir istasyon tam ses düzeyini aşamaz, bu yüzden kaydırıcı en üstteyken biraz daha sessiz kalabilir.</value>
+  </data>
+  <data name="NoFavoritesLoudnessText.Text" xml:space="preserve">
+    <value>Henüz favori yok.</value>
+  </data>
+  <data name="RemeasureLoudnessButton.Content" xml:space="preserve">
+    <value>Ses yüksekliğini yeniden ölç</value>
+  </data>
+  <data name="RemeasureLoudnessButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Her favoriden şimdiye kadar duyulanı unutur ve yeniden ölçer. Ses düzeyi, yaklaşık bir dakikalık müzik duyulana kadar mevcut düzeltmeyi korur, ardından yeni sonuca geçer.</value>
+  </data>
+  <data name="CacheHeading.Text" xml:space="preserve">
+    <value>Önbellekteki logolar</value>
+  </data>
+  <data name="CacheText.Text" xml:space="preserve">
+    <value>İstasyon logoları ve en çok dinlenenler listeleri bir kez aranır ve sonra saklanır. Temizlemek her logonun yeniden aranmasını sağlar; bu, bir istasyon yanlış logo gösterdiğinde işe yarar. İstasyon listesinin kendisi korunur.</value>
+  </data>
+  <data name="ClearCacheButton.Content" xml:space="preserve">
+    <value>Önbelleği temizle</value>
+  </data>
+  <data name="AllCountries" xml:space="preserve">
+    <value>Tüm ülkeler</value>
+  </data>
+  <data name="LanguageWindows" xml:space="preserve">
+    <value>Windows dili</value>
+  </data>
+  <data name="FavoritesHeader" xml:space="preserve">
+    <value>Favoriler ({0}/{1})</value>
+  </data>
+  <data name="FavoriteTracksHeader" xml:space="preserve">
+    <value>Favori şarkılar ({0})</value>
+  </data>
+  <data name="CacheEmpty" xml:space="preserve">
+    <value>Henüz önbellekte bir şey yok</value>
+  </data>
+  <data name="CacheSummary" xml:space="preserve">
+    <value>{0:N0} arama · {1}</value>
+  </data>
+  <data name="CacheClearFailed" xml:space="preserve">
+    <value>Önbellek temizlenemedi: {0}</value>
+  </data>
+  <data name="CatalogLoading" xml:space="preserve">
+    <value>İstasyon listesi yükleniyor…</value>
+  </data>
+  <data name="CatalogStatus" xml:space="preserve">
+    <value>{0:N0} istasyon · {1} tarihli liste</value>
+  </data>
+  <data name="CatalogStatusOffline" xml:space="preserve">
+    <value>{0:N0} istasyon · {1} tarihli liste (çevrimdışı kopya)</value>
+  </data>
+  <data name="CatalogUnavailable" xml:space="preserve">
+    <value>İstasyon listesi kullanılamıyor</value>
+  </data>
+  <data name="CatalogDownloadFailed" xml:space="preserve">
+    <value>İstasyon listesi {0} adresinden indirilemedi ve yerel kopya yok. ({1})</value>
+  </data>
+  <data name="StationListDownloaded" xml:space="preserve">
+    <value>{0:d} {0:t} tarihinde indirildi</value>
+  </data>
+  <data name="FavoritesLimitReached" xml:space="preserve">
+    <value>En fazla {0} favoriniz olabilir, çünkü hepsi arka planda yayın almaya devam eder. Önce birini kaldırın.</value>
+  </data>
+  <data name="SettingsSaveFailed" xml:space="preserve">
+    <value>Ayarlar kaydedilemedi: {0}</value>
+  </data>
+  <data name="ChooseStation" xml:space="preserve">
+    <value>Bir istasyon seçin</value>
+  </data>
+  <data name="ClickFavoriteToListen" xml:space="preserve">
+    <value>Anında canlı dinlemek için bir favoriye tıklayın</value>
+  </data>
+  <data name="Stopped" xml:space="preserve">
+    <value>Durduruldu</value>
+  </data>
+  <data name="NowPlayingMuted" xml:space="preserve">
+    <value>sessiz</value>
+  </data>
+  <data name="NowPlayingNotFavorite" xml:space="preserve">
+    <value>favori değil, geçiş yapınca yayın durur</value>
+  </data>
+  <data name="JumpListFavorites" xml:space="preserve">
+    <value>Favoriler</value>
+  </data>
+  <data name="JumpListListenTo" xml:space="preserve">
+    <value>{0} dinle</value>
+  </data>
+  <data name="JumpListListenToSong" xml:space="preserve">
+    <value>{0} dinle
+{1}</value>
+  </data>
+  <data name="JumpListMute" xml:space="preserve">
+    <value>Sessize al</value>
+  </data>
+  <data name="JumpListUnmute" xml:space="preserve">
+    <value>Sesi aç</value>
+  </data>
+  <data name="JumpListMuteToolTip" xml:space="preserve">
+    <value>İstasyonu durdurmadan sessize al</value>
+  </data>
+  <data name="JumpListUnmuteToolTip" xml:space="preserve">
+    <value>İstasyonu yeniden duy</value>
+  </data>
+  <data name="SongAdvertisement" xml:space="preserve">
+    <value>Reklam</value>
+  </data>
+  <data name="SongProbablyAdBreak" xml:space="preserve">
+    <value>Muhtemelen reklam arası</value>
+  </data>
+  <data name="LoudnessNotMeasured" xml:space="preserve">
+    <value>Henüz ölçülmedi</value>
+  </data>
+  <data name="LoudnessTurnedDown" xml:space="preserve">
+    <value>{0} dB kısıldı</value>
+  </data>
+  <data name="LoudnessTurnedUp" xml:space="preserve">
+    <value>{0} dB açıldı</value>
+  </data>
+  <data name="LoudnessMeasuringAgain" xml:space="preserve">
+    <value>yeniden ölçülüyor…</value>
+  </data>
+  <data name="StatusConnecting" xml:space="preserve">
+    <value>Bağlanıyor…</value>
+  </data>
+  <data name="StatusNowPlaying" xml:space="preserve">
+    <value>Şimdi çalıyor</value>
+  </data>
+  <data name="StatusLiveMuted" xml:space="preserve">
+    <value>Canlı · sessiz</value>
+  </data>
+  <data name="StatusBuffering" xml:space="preserve">
+    <value>Arabelleğe alınıyor…</value>
+  </data>
+  <data name="StatusReconnecting" xml:space="preserve">
+    <value>Yeniden bağlanıyor…</value>
+  </data>
+  <data name="StatusFailed" xml:space="preserve">
+    <value>Ulaşılamıyor, yeniden deneniyor</value>
+  </data>
+  <data name="SoundMusic" xml:space="preserve">
+    <value>müzik</value>
+  </data>
+  <data name="SoundSpeech" xml:space="preserve">
+    <value>konuşma</value>
+  </data>
+  <data name="ViewSwitchToFull" xml:space="preserve">
+    <value>Tam pencereye geç</value>
+  </data>
+  <data name="ViewSwitchToCompact" xml:space="preserve">
+    <value>Kompakt pencereye geç</value>
+  </data>
+  <data name="SaveTrackRemove" xml:space="preserve">
+    <value>Favori şarkılardan kaldır</value>
+  </data>
+  <data name="SaveTrackAdd" xml:space="preserve">
+    <value>Favori şarkılara ekle</value>
+  </data>
+  <data name="MuteToolTipUnmute" xml:space="preserve">
+    <value>Sesi aç (Ctrl+M)</value>
+  </data>
+  <data name="MuteToolTipMute" xml:space="preserve">
+    <value>Sessize al (Ctrl+M)</value>
+  </data>
+  <data name="HotkeyInUseOne" xml:space="preserve">
+    <value>{0} zaten başka bir uygulama tarafından kullanılıyor ve pencere dışından çalışmayacak.</value>
+  </data>
+  <data name="HotkeyInUseMany" xml:space="preserve">
+    <value>{0} zaten başka bir uygulama tarafından kullanılıyor ve pencere dışından çalışmayacak.</value>
+  </data>
+  <data name="StreamStopped" xml:space="preserve">
+    <value>Yayın yanıt vermeyi bıraktı.</value>
+  </data>
+  <data name="StreamEnded" xml:space="preserve">
+    <value>Yayın sona erdi.</value>
+  </data>
+  <data name="UpdateNotice.Message" xml:space="preserve">
+    <value>Şimdi yüklemek için yeniden başlatın. Aksi halde ZapperRadio'yu kapattığınızda yüklenir.</value>
+  </data>
+  <data name="RestartToUpdateButton.Content" xml:space="preserve">
+    <value>Güncellemek için yeniden başlat</value>
+  </data>
+  <data name="UpdatesHeading.Text" xml:space="preserve">
+    <value>Güncellemeler</value>
+  </data>
+  <data name="UpdatesText.Text" xml:space="preserve">
+    <value>ZapperRadio birkaç saatte bir yeni sürüm olup olmadığını denetler ve arka planda indirir. Uygulamayı kapattığınızda yüklenir. Favorileriniz ve ayarlarınız korunur.</value>
+  </data>
+  <data name="CheckForUpdatesButton.Content" xml:space="preserve">
+    <value>Güncellemeleri denetle</value>
+  </data>
+  <data name="UpdateChecking" xml:space="preserve">
+    <value>Güncellemeler denetleniyor…</value>
+  </data>
+  <data name="UpdateDownloading" xml:space="preserve">
+    <value>Yeni sürüm indiriliyor… %{0}</value>
+  </data>
+  <data name="UpdateReady" xml:space="preserve">
+    <value>{0} sürümü hazır ve ZapperRadio kapandığında yüklenecek.</value>
+  </data>
+  <data name="UpdateUpToDate" xml:space="preserve">
+    <value>ZapperRadio güncel.</value>
+  </data>
+  <data name="UpdateFailed" xml:space="preserve">
+    <value>Güncellemeler denetlenemedi: {0}</value>
+  </data>
+  <data name="UpdateNoticeTitle" xml:space="preserve">
+    <value>ZapperRadio {0} hazır</value>
+  </data>
+  <data name="TimeShiftBox.AutomationProperties.Name" xml:space="preserve">
+    <value>Zaman kaydırma</value>
+  </data>
+  <data name="TimeShiftMinutes" xml:space="preserve">
+    <value>{0} dakika</value>
+  </data>
+  <data name="NowPlayingBehindLive" xml:space="preserve">
+    <value>Canlı yayının {0} gerisinde</value>
+  </data>
+  <data name="GoLiveButton.Content" xml:space="preserve">
+    <value>Canlıya geç</value>
+  </data>
+  <data name="GoLiveButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Bu istasyonu yeniden canlı çal, yayının şu an olduğu yerden</value>
+  </data>
+  <data name="ZapperTab.Text" xml:space="preserve">
+    <value>Zapper</value>
+  </data>
+  <data name="ZapperHint.Text" xml:space="preserve">
+    <value>Zapper'ın dinlediğiniz istasyondaki reklam aralarından ve konuşmalardan nasıl kaçtığı ve ara bittiğinde ne yaptığı.</value>
+  </data>
+  <data name="ZapperSwitch.Header" xml:space="preserve">
+    <value>Reklam ve konuşmada kanal değiştir</value>
+  </data>
+  <data name="ZapBackHeading.Text" xml:space="preserve">
+    <value>Aradan sonra</value>
+  </data>
+  <data name="ZapBackRadio.Content" xml:space="preserve">
+    <value>Geçilen istasyondaki şarkı bitince aranın olduğu istasyona geri dön</value>
+  </data>
+  <data name="ZapStayRadio.Content" xml:space="preserve">
+    <value>Geçilen istasyonda kal</value>
+  </data>
+  <data name="CrossfadeHeading.Text" xml:space="preserve">
+    <value>Geçiş efekti</value>
+  </data>
+  <data name="CrossfadeText.Text" xml:space="preserve">
+    <value>Kesip geçmek yerine bir istasyondan diğerine yumuşakça geçer. Sesin azalması ara başlamadan biter, böylece hiçbir reklam sızmaz. Zaman kaydırma arabelleğinden değil de canlı çalan bir istasyon yine de kesilir, çünkü arası zaten duyulabilir.</value>
+  </data>
+  <data name="CrossfadeCheckBox.Content" xml:space="preserve">
+    <value>Kanal değiştirirken geçiş efekti</value>
+  </data>
+  <data name="ZapTargetsHeading.Text" xml:space="preserve">
+    <value>Geçilecek istasyonlar</value>
+  </data>
+  <data name="ZapTargetsText.Text" xml:space="preserve">
+    <value>Bir arada geçilebilecek favoriler. Müziği beklemek için uygun olmayan bir istasyonu, örneğin bir haber istasyonunu dışarıda bırakın; ondan yine de uzaklaşılır ve ona geri dönülür.</value>
+  </data>
+  <data name="NoZapTargetsText.Text" xml:space="preserve">
+    <value>Henüz favori yok. Zapper'ın nereye gidebileceğini seçmek için istasyonları favorilerinize ekleyin.</value>
+  </data>
+  <data name="ZapToSongStartHeading.Text" xml:space="preserve">
+    <value>Şarkının başına geç</value>
+  </data>
+  <data name="ZapToSongStartText.Text" xml:space="preserve">
+    <value>Bir geçiş, şarkı çalan bir istasyona genellikle şarkının ortasında denk gelir. Bunun yerine o şarkıyı baştan başlatmak için her favorinin son dakikaları bellekte tutulur (zaman kaydırma arabelleği). Bu ayrıca bir arayı tam başladığı yerde keser, çünkü ara duyulmadan önce bilinir. O zaman yayını biraz geriden, en fazla geçilen şarkının uzunluğu kadar geriden dinlersiniz ve Canlıya geç hemen yetişir. Kapatıldığında arabellek tutulmaz ve belleği serbest bırakılır: her istasyon canlı çalar ve geçiş şarkının neresindeyse oraya denk gelir.</value>
+  </data>
+  <data name="ZapToSongStartCheckBox.Content" xml:space="preserve">
+    <value>Kanal değiştirirken şarkıyı baştan başlat</value>
+  </data>
+  <data name="TimeShiftMemory" xml:space="preserve">
+    <value>{1} favoriniz için yaklaşık {0} MB bellek kullanır. Daha az dakika tutmak veya bunu kapatmak bellek tasarrufu sağlar.</value>
+  </data>
+  <data name="TimeShiftMemoryOff" xml:space="preserve">
+    <value>Kapalı, bu yüzden bellek kullanmıyor. Açılırsa {1} favoriniz için yaklaşık {0} MB kullanır.</value>
+  </data>
+  <data name="TimeShiftMemoryPerFavorite" xml:space="preserve">
+    <value>128 kbit/s bir istasyon için favori başına yaklaşık {0} MB bellek kullanır.</value>
+  </data>
+  <data name="AutoStartTurnedOffNotice.Message" xml:space="preserve">
+    <value>Windows, oturum açtığınızda ZapperRadio'nun başlatılmasını kapattı. Ayarlar &gt; Uygulamalar &gt; Başlangıç bölümünden yeniden açın.</value>
+  </data>
+  <data name="StartupSettingsLink.Content" xml:space="preserve">
+    <value>Başlangıç ayarlarını aç</value>
+  </data>
+</root>

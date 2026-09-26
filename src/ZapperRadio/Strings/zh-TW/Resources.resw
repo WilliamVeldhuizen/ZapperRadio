@@ -1,0 +1,540 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!--
+    Microsoft ResX Schema
+
+    Version 2.0
+
+    The primary goals of this format is to allow a simple XML format
+    that is mostly human readable. The generation and parsing of the
+    various data types are done through the TypeConverter classes
+    associated with the data types.
+  -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="FavoriteLogoToolTip.Content" xml:space="preserve">
+    <value>上下拖曳以變更位置</value>
+  </data>
+  <data name="ZappCheckBox.Content" xml:space="preserve">
+    <value>遇到廣告 / 談話時轉台</value>
+  </data>
+  <data name="ZappCheckBox.ToolTipService.ToolTip" xml:space="preserve">
+    <value>只想聽音樂時使用：當您正在收聽的電台開始播廣告或有人說話時，轉到清單中最上方正在播放歌曲的最愛電台，等原電台再次播放音樂時再轉回來。但絕不會在歌曲播到一半時轉回：會等到轉入的電台自己進入廣告時段。對於不標示廣告的電台，當歌曲明顯超過其長度且聽到的是談話而非音樂時，就會視為進入廣告時段。</value>
+  </data>
+  <data name="NoFavoritesText.Text" xml:space="preserve">
+    <value>尚無最愛。在右側找到電台後按一下它的 +。</value>
+  </data>
+  <data name="RemoveFavoriteButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>從最愛中移除</value>
+  </data>
+  <data name="StationsTab.Text" xml:space="preserve">
+    <value>電台</value>
+  </data>
+  <data name="PlayHistoryTab.Text" xml:space="preserve">
+    <value>播放紀錄</value>
+  </data>
+  <data name="SearchBox.PlaceholderText" xml:space="preserve">
+    <value>依名稱、類型或國家搜尋 (Ctrl+F)</value>
+  </data>
+  <data name="CountryBox.PlaceholderText" xml:space="preserve">
+    <value>國家</value>
+  </data>
+  <data name="CountryBox.AutomationProperties.Name" xml:space="preserve">
+    <value>國家</value>
+  </data>
+  <data name="ResultsOne" xml:space="preserve">
+    <value>1 個電台</value>
+  </data>
+  <data name="ResultsMany" xml:space="preserve">
+    <value>{0:N0} 個電台</value>
+  </data>
+  <data name="NoResultsText" xml:space="preserve">
+    <value>沒有符合搜尋條件的電台。</value>
+  </data>
+  <data name="NoResultsInCountry" xml:space="preserve">
+    <value>{0} 沒有符合搜尋條件的電台。</value>
+  </data>
+  <data name="SearchAllCountriesButton.Content" xml:space="preserve">
+    <value>搜尋所有國家</value>
+  </data>
+  <data name="OfflineSince" xml:space="preserve">
+    <value>自 {0:d} 起離線</value>
+  </data>
+  <data name="OfflineAtLastCheck" xml:space="preserve">
+    <value>上次檢查時離線</value>
+  </data>
+  <data name="ReloadStationsButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>重新載入電台清單</value>
+  </data>
+  <data name="PlayStation" xml:space="preserve">
+    <value>播放</value>
+  </data>
+  <data name="StopStation" xml:space="preserve">
+    <value>停止</value>
+  </data>
+  <data name="FavoriteAdd" xml:space="preserve">
+    <value>加入最愛</value>
+  </data>
+  <data name="FavoriteRemove" xml:space="preserve">
+    <value>從最愛中移除</value>
+  </data>
+  <data name="FavoriteTracksHint.Text" xml:space="preserve">
+    <value>您用正在播放歌曲旁的愛心儲存的歌曲。可在 Spotify 或 YouTube 上尋找，或複製歌名。</value>
+  </data>
+  <data name="NoFavoriteTracksText.Text" xml:space="preserve">
+    <value>尚無最愛歌曲。當電台播放您喜歡的歌曲時，按一下下方歌曲旁的愛心。</value>
+  </data>
+  <data name="FindSongButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>尋找這首歌</value>
+  </data>
+  <data name="FindSongButton.AutomationProperties.Name" xml:space="preserve">
+    <value>尋找這首歌</value>
+  </data>
+  <data name="FindOnSpotifyItem.Text" xml:space="preserve">
+    <value>在 Spotify 上尋找</value>
+  </data>
+  <data name="FindOnYouTubeItem.Text" xml:space="preserve">
+    <value>在 YouTube 上尋找</value>
+  </data>
+  <data name="CopyTitleButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>複製歌名</value>
+  </data>
+  <data name="RemoveFavoriteTrackButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>從最愛歌曲中移除</value>
+  </data>
+  <data name="HistoryHint.Text" xml:space="preserve">
+    <value>您的最愛電台在過去 12 小時播放的所有歌曲，最新的在前，無論您是否在收聽。按一下愛心即可保留歌曲。</value>
+  </data>
+  <data name="ClearHistoryButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>清除播放紀錄</value>
+  </data>
+  <data name="ClearHistoryButton.AutomationProperties.Name" xml:space="preserve">
+    <value>清除播放紀錄</value>
+  </data>
+  <data name="HistorySearchBox.PlaceholderText" xml:space="preserve">
+    <value>依歌曲、演出者或電台搜尋 (Ctrl+F)</value>
+  </data>
+  <data name="HistorySearchBox.AutomationProperties.Name" xml:space="preserve">
+    <value>搜尋播放紀錄</value>
+  </data>
+  <data name="NoHistoryText.Text" xml:space="preserve">
+    <value>尚未播放任何歌曲。一旦您的最愛電台開始串流，它們播放的每首歌都會列在這裡。</value>
+  </data>
+  <data name="NoHistoryMatchesText.Text" xml:space="preserve">
+    <value>紀錄中沒有符合搜尋條件的歌曲。</value>
+  </data>
+  <data name="CompactNoFavorites.Text" xml:space="preserve">
+    <value>尚無最愛。切換到完整視窗以搜尋電台，並用 + 加入。</value>
+  </data>
+  <data name="PlayStopButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>播放 / 停止 (Ctrl+空白鍵)</value>
+  </data>
+  <data name="VolumeSlider.AutomationProperties.Name" xml:space="preserve">
+    <value>音量</value>
+  </data>
+  <data name="SettingsTab.ToolTipService.ToolTip" xml:space="preserve">
+    <value>設定</value>
+  </data>
+  <data name="SettingsTab.AutomationProperties.Name" xml:space="preserve">
+    <value>設定</value>
+  </data>
+  <data name="StartupHeading.Text" xml:space="preserve">
+    <value>啟動</value>
+  </data>
+  <data name="AutoStartCheckBox.Content" xml:space="preserve">
+    <value>Windows 啟動時啟動 ZapperRadio</value>
+  </data>
+  <data name="LanguageHeading.Text" xml:space="preserve">
+    <value>語言</value>
+  </data>
+  <data name="LanguageText.Text" xml:space="preserve">
+    <value>應用程式的語言。也決定日期和數字的顯示方式。</value>
+  </data>
+  <data name="LanguageBox.AutomationProperties.Name" xml:space="preserve">
+    <value>語言</value>
+  </data>
+  <data name="LanguageRestartText.Text" xml:space="preserve">
+    <value>請重新啟動 ZapperRadio 以切換為此語言。</value>
+  </data>
+  <data name="AboutHeading.Text" xml:space="preserve">
+    <value>關於</value>
+  </data>
+  <data name="AboutText.Text" xml:space="preserve">
+    <value>讓您最愛電台的串流保持開啟的網路收音機，因此轉台瞬間完成，也聽不到電台在您連線時播放的廣告。</value>
+  </data>
+  <data name="WebsiteLink.Content" xml:space="preserve">
+    <value>ZapperRadio 網站</value>
+  </data>
+  <data name="GitHubLink.Content" xml:space="preserve">
+    <value>GitHub 上的 ZapperRadio</value>
+  </data>
+  <data name="StationListHeading.Text" xml:space="preserve">
+    <value>電台清單</value>
+  </data>
+  <data name="CheckStationListButton.Content" xml:space="preserve">
+    <value>檢查是否有較新的清單</value>
+  </data>
+  <data name="ShortcutsHeading.Text" xml:space="preserve">
+    <value>快速鍵</value>
+  </data>
+  <data name="ShortcutsText.Text" xml:space="preserve">
+    <value>在視窗中：Ctrl+空白鍵停止或播放，Ctrl+M 靜音，Ctrl+F 搜尋。Windows 音量飛出視窗、鎖定畫面上的播放、暫停和下一首按鈕，以及媒體鍵和耳機也能使用，其中下一首和上一首會在最愛之間切換。</value>
+  </data>
+  <data name="GlobalHotkeysCheckBox.Content" xml:space="preserve">
+    <value>在任何應用程式中使用快速鍵</value>
+  </data>
+  <data name="GlobalHotkeysCheckBox.ToolTipService.ToolTip" xml:space="preserve">
+    <value>在其他應用程式中工作時也能使用。使用 Ctrl+Alt 而非 Ctrl，因為讓此應用程式佔用 Ctrl+空白鍵會讓其他所有應用程式都無法使用。已被其他應用程式佔用的組合會留給該應用程式，並列在下方。</value>
+  </data>
+  <data name="GlobalHotkeysText.Text" xml:space="preserve">
+    <value>無論您在哪個應用程式中工作，Ctrl+Alt+P 停止或播放，Ctrl+Alt+M 靜音，Ctrl+Alt+→ 和 Ctrl+Alt+← 切換到下一個和上一個最愛。</value>
+  </data>
+  <data name="LoudnessHeading.Text" xml:space="preserve">
+    <value>響度</value>
+  </data>
+  <data name="LoudnessText.Text" xml:space="preserve">
+    <value>不同電台的母帶響度可能相差好幾分貝，這是轉台時最惱人的地方。每個最愛電台的音訊反正都會解碼，因此可以從中測量其音樂的實際響度 (EBU R128)，並把較大聲的電台調低到相同的音量。只計算音樂，因此廣告和主持人不會影響結果，每個電台大約需要一分鐘的音樂。無法分析的電台 (HLS) 保持原本的音量。</value>
+  </data>
+  <data name="NormalizeLoudnessCheckBox.Content" xml:space="preserve">
+    <value>統一各電台的響度</value>
+  </data>
+  <data name="NormalizeLoudnessCheckBox.ToolTipService.ToolTip" xml:space="preserve">
+    <value>將每個電台調整到約 -14 LUFS，也就是串流服務標準化的音量，最多調低 12 dB 或調高 6 dB。需要調高的電台無法超過最大音量，因此滑桿在最上方時，它可能仍稍微小聲一點。</value>
+  </data>
+  <data name="NoFavoritesLoudnessText.Text" xml:space="preserve">
+    <value>尚無最愛。</value>
+  </data>
+  <data name="RemeasureLoudnessButton.Content" xml:space="preserve">
+    <value>重新測量響度</value>
+  </data>
+  <data name="RemeasureLoudnessButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>忘記目前為止每個最愛電台的測量結果並重新測量。在聽到約一分鐘的音樂之前，音量會保持目前的校正，之後再換成新的結果。</value>
+  </data>
+  <data name="CacheHeading.Text" xml:space="preserve">
+    <value>快取的標誌</value>
+  </data>
+  <data name="CacheText.Text" xml:space="preserve">
+    <value>電台標誌和最常播放清單只查詢一次，之後就會保留。清除後會重新查詢每個標誌，這在電台顯示錯誤標誌時很有用。電台清單本身會保留。</value>
+  </data>
+  <data name="ClearCacheButton.Content" xml:space="preserve">
+    <value>清除快取</value>
+  </data>
+  <data name="AllCountries" xml:space="preserve">
+    <value>所有國家</value>
+  </data>
+  <data name="LanguageWindows" xml:space="preserve">
+    <value>Windows 語言</value>
+  </data>
+  <data name="FavoritesHeader" xml:space="preserve">
+    <value>最愛 ({0}/{1})</value>
+  </data>
+  <data name="FavoriteTracksHeader" xml:space="preserve">
+    <value>最愛歌曲 ({0})</value>
+  </data>
+  <data name="CacheEmpty" xml:space="preserve">
+    <value>尚無快取內容</value>
+  </data>
+  <data name="CacheSummary" xml:space="preserve">
+    <value>{0:N0} 次查詢 · {1}</value>
+  </data>
+  <data name="CacheClearFailed" xml:space="preserve">
+    <value>無法清除快取：{0}</value>
+  </data>
+  <data name="CatalogLoading" xml:space="preserve">
+    <value>正在載入電台清單…</value>
+  </data>
+  <data name="CatalogStatus" xml:space="preserve">
+    <value>{0:N0} 個電台 · 清單日期 {1}</value>
+  </data>
+  <data name="CatalogStatusOffline" xml:space="preserve">
+    <value>{0:N0} 個電台 · 清單日期 {1} (離線副本)</value>
+  </data>
+  <data name="CatalogUnavailable" xml:space="preserve">
+    <value>無法取得電台清單</value>
+  </data>
+  <data name="CatalogDownloadFailed" xml:space="preserve">
+    <value>無法從 {0} 下載電台清單，且沒有本機副本。({1})</value>
+  </data>
+  <data name="StationListDownloaded" xml:space="preserve">
+    <value>下載於 {0:d} {0:t}</value>
+  </data>
+  <data name="FavoritesLimitReached" xml:space="preserve">
+    <value>最多只能有 {0} 個最愛，因為它們都會在背景持續串流。請先移除一個。</value>
+  </data>
+  <data name="SettingsSaveFailed" xml:space="preserve">
+    <value>無法儲存設定：{0}</value>
+  </data>
+  <data name="ChooseStation" xml:space="preserve">
+    <value>選擇電台</value>
+  </data>
+  <data name="ClickFavoriteToListen" xml:space="preserve">
+    <value>按一下最愛電台即可立即收聽直播</value>
+  </data>
+  <data name="Stopped" xml:space="preserve">
+    <value>已停止</value>
+  </data>
+  <data name="NowPlayingMuted" xml:space="preserve">
+    <value>已靜音</value>
+  </data>
+  <data name="NowPlayingNotFavorite" xml:space="preserve">
+    <value>非最愛，轉台時串流會停止</value>
+  </data>
+  <data name="JumpListFavorites" xml:space="preserve">
+    <value>最愛</value>
+  </data>
+  <data name="JumpListListenTo" xml:space="preserve">
+    <value>收聽 {0}</value>
+  </data>
+  <data name="JumpListListenToSong" xml:space="preserve">
+    <value>收聽 {0}
+{1}</value>
+  </data>
+  <data name="JumpListMute" xml:space="preserve">
+    <value>靜音</value>
+  </data>
+  <data name="JumpListUnmute" xml:space="preserve">
+    <value>取消靜音</value>
+  </data>
+  <data name="JumpListMuteToolTip" xml:space="preserve">
+    <value>將電台靜音而不停止</value>
+  </data>
+  <data name="JumpListUnmuteToolTip" xml:space="preserve">
+    <value>重新聽到電台</value>
+  </data>
+  <data name="SongAdvertisement" xml:space="preserve">
+    <value>廣告</value>
+  </data>
+  <data name="SongProbablyAdBreak" xml:space="preserve">
+    <value>可能是廣告時段</value>
+  </data>
+  <data name="LoudnessNotMeasured" xml:space="preserve">
+    <value>尚未測量</value>
+  </data>
+  <data name="LoudnessTurnedDown" xml:space="preserve">
+    <value>已調低 {0} dB</value>
+  </data>
+  <data name="LoudnessTurnedUp" xml:space="preserve">
+    <value>已調高 {0} dB</value>
+  </data>
+  <data name="LoudnessMeasuringAgain" xml:space="preserve">
+    <value>正在重新測量…</value>
+  </data>
+  <data name="StatusConnecting" xml:space="preserve">
+    <value>正在連線…</value>
+  </data>
+  <data name="StatusNowPlaying" xml:space="preserve">
+    <value>正在播放</value>
+  </data>
+  <data name="StatusLiveMuted" xml:space="preserve">
+    <value>直播 · 已靜音</value>
+  </data>
+  <data name="StatusBuffering" xml:space="preserve">
+    <value>正在緩衝…</value>
+  </data>
+  <data name="StatusReconnecting" xml:space="preserve">
+    <value>正在重新連線…</value>
+  </data>
+  <data name="StatusFailed" xml:space="preserve">
+    <value>無法連線，持續重試中</value>
+  </data>
+  <data name="SoundMusic" xml:space="preserve">
+    <value>音樂</value>
+  </data>
+  <data name="SoundSpeech" xml:space="preserve">
+    <value>談話</value>
+  </data>
+  <data name="ViewSwitchToFull" xml:space="preserve">
+    <value>切換到完整視窗</value>
+  </data>
+  <data name="ViewSwitchToCompact" xml:space="preserve">
+    <value>切換到精簡視窗</value>
+  </data>
+  <data name="SaveTrackRemove" xml:space="preserve">
+    <value>從最愛歌曲中移除</value>
+  </data>
+  <data name="SaveTrackAdd" xml:space="preserve">
+    <value>加入最愛歌曲</value>
+  </data>
+  <data name="MuteToolTipUnmute" xml:space="preserve">
+    <value>取消靜音 (Ctrl+M)</value>
+  </data>
+  <data name="MuteToolTipMute" xml:space="preserve">
+    <value>靜音 (Ctrl+M)</value>
+  </data>
+  <data name="HotkeyInUseOne" xml:space="preserve">
+    <value>{0} 已被其他應用程式使用，在視窗外無法使用。</value>
+  </data>
+  <data name="HotkeyInUseMany" xml:space="preserve">
+    <value>{0} 已被其他應用程式使用，在視窗外無法使用。</value>
+  </data>
+  <data name="StreamStopped" xml:space="preserve">
+    <value>串流停止回應。</value>
+  </data>
+  <data name="StreamEnded" xml:space="preserve">
+    <value>串流已結束。</value>
+  </data>
+  <data name="UpdateNotice.Message" xml:space="preserve">
+    <value>立即重新啟動以安裝。否則將在您關閉 ZapperRadio 時安裝。</value>
+  </data>
+  <data name="RestartToUpdateButton.Content" xml:space="preserve">
+    <value>重新啟動以更新</value>
+  </data>
+  <data name="UpdatesHeading.Text" xml:space="preserve">
+    <value>更新</value>
+  </data>
+  <data name="UpdatesText.Text" xml:space="preserve">
+    <value>ZapperRadio 每隔幾小時會檢查是否有新版本，並在背景下載。新版本會在您關閉應用程式時安裝。您的最愛和設定都會保留。</value>
+  </data>
+  <data name="CheckForUpdatesButton.Content" xml:space="preserve">
+    <value>檢查更新</value>
+  </data>
+  <data name="UpdateChecking" xml:space="preserve">
+    <value>正在檢查更新…</value>
+  </data>
+  <data name="UpdateDownloading" xml:space="preserve">
+    <value>正在下載新版本… {0}%</value>
+  </data>
+  <data name="UpdateReady" xml:space="preserve">
+    <value>版本 {0} 已就緒，將在 ZapperRadio 關閉時安裝。</value>
+  </data>
+  <data name="UpdateUpToDate" xml:space="preserve">
+    <value>ZapperRadio 已是最新版本。</value>
+  </data>
+  <data name="UpdateFailed" xml:space="preserve">
+    <value>無法檢查更新：{0}</value>
+  </data>
+  <data name="UpdateNoticeTitle" xml:space="preserve">
+    <value>ZapperRadio {0} 已就緒</value>
+  </data>
+  <data name="TimeShiftBox.AutomationProperties.Name" xml:space="preserve">
+    <value>時間平移</value>
+  </data>
+  <data name="TimeShiftMinutes" xml:space="preserve">
+    <value>{0} 分鐘</value>
+  </data>
+  <data name="NowPlayingBehindLive" xml:space="preserve">
+    <value>落後直播 {0}</value>
+  </data>
+  <data name="GoLiveButton.Content" xml:space="preserve">
+    <value>回到直播</value>
+  </data>
+  <data name="GoLiveButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>從電台目前的播出位置重新直播此電台</value>
+  </data>
+  <data name="ZapperTab.Text" xml:space="preserve">
+    <value>轉台器</value>
+  </data>
+  <data name="ZapperHint.Text" xml:space="preserve">
+    <value>轉台器如何避開您正在收聽電台的廣告和談話，以及廣告結束後要做什麼。</value>
+  </data>
+  <data name="ZapperSwitch.Header" xml:space="preserve">
+    <value>遇到廣告和談話時轉台</value>
+  </data>
+  <data name="ZapBackHeading.Text" xml:space="preserve">
+    <value>廣告結束後</value>
+  </data>
+  <data name="ZapBackRadio.Content" xml:space="preserve">
+    <value>等轉入電台的歌曲結束後，回到播廣告的電台</value>
+  </data>
+  <data name="ZapStayRadio.Content" xml:space="preserve">
+    <value>留在轉入的電台</value>
+  </data>
+  <data name="CrossfadeHeading.Text" xml:space="preserve">
+    <value>交叉淡化</value>
+  </data>
+  <data name="CrossfadeText.Text" xml:space="preserve">
+    <value>從一個電台漸變到另一個，而不是直接切換。淡出會在廣告開始前結束，因此不會漏出廣告。直播而非從時間平移緩衝區播放的電台仍會直接切斷，因為它的廣告已經聽得到了。</value>
+  </data>
+  <data name="CrossfadeCheckBox.Content" xml:space="preserve">
+    <value>轉台時交叉淡化</value>
+  </data>
+  <data name="ZapTargetsHeading.Text" xml:space="preserve">
+    <value>轉台目標</value>
+  </data>
+  <data name="ZapTargetsText.Text" xml:space="preserve">
+    <value>廣告時可以轉到的最愛電台。請排除不適合等待音樂的電台，例如新聞台；仍會從它轉走並轉回它。</value>
+  </data>
+  <data name="NoZapTargetsText.Text" xml:space="preserve">
+    <value>尚無最愛。將電台加入最愛，即可選擇轉台器可以轉到哪裡。</value>
+  </data>
+  <data name="ZapToSongStartHeading.Text" xml:space="preserve">
+    <value>轉台時從歌曲開頭播放</value>
+  </data>
+  <data name="ZapToSongStartText.Text" xml:space="preserve">
+    <value>轉台時會轉到正在播放歌曲的電台，通常是在歌曲中段。為了改從歌曲開頭播放，每個最愛電台最近幾分鐘的內容會保留在記憶體中 (時間平移緩衝區)。這也能在廣告開始的位置精準切斷，因為在聽到廣告之前就已經知道了。您會比直播稍微落後，最多落後轉入那首歌曲的長度，按「回到直播」可立即追上。關閉後不保留緩衝區並釋放記憶體：所有電台都以直播播放，轉台會落在歌曲當下的位置。</value>
+  </data>
+  <data name="ZapToSongStartCheckBox.Content" xml:space="preserve">
+    <value>轉台時從頭開始播放歌曲</value>
+  </data>
+  <data name="TimeShiftMemory" xml:space="preserve">
+    <value>您的 {1} 個最愛約使用 {0} MB 記憶體。保留較少分鐘數或關閉此功能可節省記憶體。</value>
+  </data>
+  <data name="TimeShiftMemoryOff" xml:space="preserve">
+    <value>已關閉，因此不使用記憶體。開啟後，您的 {1} 個最愛約需 {0} MB。</value>
+  </data>
+  <data name="TimeShiftMemoryPerFavorite" xml:space="preserve">
+    <value>以 128 kbit/s 的電台計算，每個最愛約使用 {0} MB 記憶體。</value>
+  </data>
+  <data name="AutoStartTurnedOffNotice.Message" xml:space="preserve">
+    <value>Windows 已關閉登入時啟動 ZapperRadio。請在 [設定] &gt; [應用程式] &gt; [啟動] 中重新開啟。</value>
+  </data>
+  <data name="StartupSettingsLink.Content" xml:space="preserve">
+    <value>開啟啟動設定</value>
+  </data>
+</root>

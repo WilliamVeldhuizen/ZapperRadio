@@ -1,0 +1,540 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!--
+    Microsoft ResX Schema
+
+    Version 2.0
+
+    The primary goals of this format is to allow a simple XML format
+    that is mostly human readable. The generation and parsing of the
+    various data types are done through the TypeConverter classes
+    associated with the data types.
+  -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="FavoriteLogoToolTip.Content" xml:space="preserve">
+    <value>Træk op eller ned for at ændre placeringen</value>
+  </data>
+  <data name="ZappCheckBox.Content" xml:space="preserve">
+    <value>Zap ved reklamer / snak</value>
+  </data>
+  <data name="ZappCheckBox.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Til at lytte til musik alene: når den station, du lytter til, starter en reklamepause, eller nogen snakker, zappes der til den øverste favorit, der spiller en sang, og tilbage igen, når den spiller musik. Dog aldrig midt i en sang: tilbagevenden venter, til den station, du landede på, når sin egen pause. Stationer, der ikke markerer deres reklamer, antages at have reklamepause, når en sang varer et godt stykke ud over sin længde, og der høres tale i stedet for musik.</value>
+  </data>
+  <data name="NoFavoritesText.Text" xml:space="preserve">
+    <value>Ingen favoritter endnu. Find en station til højre, og klik på dens +.</value>
+  </data>
+  <data name="RemoveFavoriteButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Fjern fra favoritter</value>
+  </data>
+  <data name="StationsTab.Text" xml:space="preserve">
+    <value>Stationer</value>
+  </data>
+  <data name="PlayHistoryTab.Text" xml:space="preserve">
+    <value>Sanghistorik</value>
+  </data>
+  <data name="SearchBox.PlaceholderText" xml:space="preserve">
+    <value>Søg efter navn, genre eller land (Ctrl+F)</value>
+  </data>
+  <data name="CountryBox.PlaceholderText" xml:space="preserve">
+    <value>Land</value>
+  </data>
+  <data name="CountryBox.AutomationProperties.Name" xml:space="preserve">
+    <value>Land</value>
+  </data>
+  <data name="ResultsOne" xml:space="preserve">
+    <value>1 station</value>
+  </data>
+  <data name="ResultsMany" xml:space="preserve">
+    <value>{0:N0} stationer</value>
+  </data>
+  <data name="NoResultsText" xml:space="preserve">
+    <value>Ingen station matcher din søgning.</value>
+  </data>
+  <data name="NoResultsInCountry" xml:space="preserve">
+    <value>Ingen station i {0} matcher din søgning.</value>
+  </data>
+  <data name="SearchAllCountriesButton.Content" xml:space="preserve">
+    <value>Søg i alle lande</value>
+  </data>
+  <data name="OfflineSince" xml:space="preserve">
+    <value>Offline siden {0:d}</value>
+  </data>
+  <data name="OfflineAtLastCheck" xml:space="preserve">
+    <value>Offline ved sidste kontrol</value>
+  </data>
+  <data name="ReloadStationsButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Genindlæs stationslisten</value>
+  </data>
+  <data name="PlayStation" xml:space="preserve">
+    <value>Afspil</value>
+  </data>
+  <data name="StopStation" xml:space="preserve">
+    <value>Stop</value>
+  </data>
+  <data name="FavoriteAdd" xml:space="preserve">
+    <value>Føj til favoritter</value>
+  </data>
+  <data name="FavoriteRemove" xml:space="preserve">
+    <value>Fjern fra favoritter</value>
+  </data>
+  <data name="FavoriteTracksHint.Text" xml:space="preserve">
+    <value>Sange, du har gemt med hjertet ved siden af den sang, der spiller. Find en på Spotify eller YouTube, eller kopiér titlen.</value>
+  </data>
+  <data name="NoFavoriteTracksText.Text" xml:space="preserve">
+    <value>Ingen favoritsange endnu. Når en station spiller en sang, du kan lide, så klik på hjertet ved siden af sangen nederst.</value>
+  </data>
+  <data name="FindSongButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Find denne sang</value>
+  </data>
+  <data name="FindSongButton.AutomationProperties.Name" xml:space="preserve">
+    <value>Find denne sang</value>
+  </data>
+  <data name="FindOnSpotifyItem.Text" xml:space="preserve">
+    <value>Find på Spotify</value>
+  </data>
+  <data name="FindOnYouTubeItem.Text" xml:space="preserve">
+    <value>Find på YouTube</value>
+  </data>
+  <data name="CopyTitleButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Kopiér titel</value>
+  </data>
+  <data name="RemoveFavoriteTrackButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Fjern fra favoritsange</value>
+  </data>
+  <data name="HistoryHint.Text" xml:space="preserve">
+    <value>Alt, hvad dine favoritter har spillet de sidste 12 timer, nyeste først, uanset om du lyttede til dem eller ej. Klik på et hjerte for at gemme en sang.</value>
+  </data>
+  <data name="ClearHistoryButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Ryd sanghistorikken</value>
+  </data>
+  <data name="ClearHistoryButton.AutomationProperties.Name" xml:space="preserve">
+    <value>Ryd sanghistorikken</value>
+  </data>
+  <data name="HistorySearchBox.PlaceholderText" xml:space="preserve">
+    <value>Søg efter sang, kunstner eller station (Ctrl+F)</value>
+  </data>
+  <data name="HistorySearchBox.AutomationProperties.Name" xml:space="preserve">
+    <value>Søg i sanghistorikken</value>
+  </data>
+  <data name="NoHistoryText.Text" xml:space="preserve">
+    <value>Intet spillet endnu. Så snart dine favoritter streamer, vises hver sang, de spiller, her.</value>
+  </data>
+  <data name="NoHistoryMatchesText.Text" xml:space="preserve">
+    <value>Ingen sang i historikken matcher din søgning.</value>
+  </data>
+  <data name="CompactNoFavorites.Text" xml:space="preserve">
+    <value>Ingen favoritter endnu. Skift til det fulde vindue for at søge efter stationer og tilføje dem med +.</value>
+  </data>
+  <data name="PlayStopButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Afspil / stop (Ctrl+Mellemrum)</value>
+  </data>
+  <data name="VolumeSlider.AutomationProperties.Name" xml:space="preserve">
+    <value>Lydstyrke</value>
+  </data>
+  <data name="SettingsTab.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Indstillinger</value>
+  </data>
+  <data name="SettingsTab.AutomationProperties.Name" xml:space="preserve">
+    <value>Indstillinger</value>
+  </data>
+  <data name="StartupHeading.Text" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="AutoStartCheckBox.Content" xml:space="preserve">
+    <value>Start ZapperRadio, når Windows starter</value>
+  </data>
+  <data name="LanguageHeading.Text" xml:space="preserve">
+    <value>Sprog</value>
+  </data>
+  <data name="LanguageText.Text" xml:space="preserve">
+    <value>Appens sprog. Det bestemmer også, hvordan datoer og tal skrives.</value>
+  </data>
+  <data name="LanguageBox.AutomationProperties.Name" xml:space="preserve">
+    <value>Sprog</value>
+  </data>
+  <data name="LanguageRestartText.Text" xml:space="preserve">
+    <value>Genstart ZapperRadio for at skifte til dette sprog.</value>
+  </data>
+  <data name="AboutHeading.Text" xml:space="preserve">
+    <value>Om</value>
+  </data>
+  <data name="AboutText.Text" xml:space="preserve">
+    <value>Internetradio, der holder dine favoritters streams åbne, så skiftet sker med det samme, og du ikke hører den reklame, en station spiller, når du opretter forbindelse.</value>
+  </data>
+  <data name="WebsiteLink.Content" xml:space="preserve">
+    <value>ZapperRadios websted</value>
+  </data>
+  <data name="GitHubLink.Content" xml:space="preserve">
+    <value>ZapperRadio på GitHub</value>
+  </data>
+  <data name="StationListHeading.Text" xml:space="preserve">
+    <value>Stationsliste</value>
+  </data>
+  <data name="CheckStationListButton.Content" xml:space="preserve">
+    <value>Søg efter en nyere liste</value>
+  </data>
+  <data name="ShortcutsHeading.Text" xml:space="preserve">
+    <value>Genveje</value>
+  </data>
+  <data name="ShortcutsText.Text" xml:space="preserve">
+    <value>I vinduet: Ctrl+Mellemrum for at stoppe eller afspille, Ctrl+M for at slå lyden fra, Ctrl+F for at søge. Knapperne afspil, pause og næste i Windows' lydstyrkepanel og på låseskærmen, dine medietaster og dit headset virker også, hvor næste og forrige skifter mellem favoritterne.</value>
+  </data>
+  <data name="GlobalHotkeysCheckBox.Content" xml:space="preserve">
+    <value>Genveje fra alle apps</value>
+  </data>
+  <data name="GlobalHotkeysCheckBox.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Også mens du arbejder i en anden app. Med Ctrl+Alt i stedet for Ctrl, fordi Ctrl+Mellemrum til denne app ville tage den fra alle andre. En kombination, som en anden app allerede bruger, overlades til den og nævnes nedenfor.</value>
+  </data>
+  <data name="GlobalHotkeysText.Text" xml:space="preserve">
+    <value>Ctrl+Alt+P for at stoppe eller afspille, Ctrl+Alt+M for at slå lyden fra, Ctrl+Alt+→ og Ctrl+Alt+← for næste og forrige favorit, fra den app, du arbejder i.</value>
+  </data>
+  <data name="LoudnessHeading.Text" xml:space="preserve">
+    <value>Lydniveau</value>
+  </data>
+  <data name="LoudnessText.Text" xml:space="preserve">
+    <value>En station er mastered flere decibel højere end den næste, og det er det mest irriterende ved at zappe. Lyden fra hver favorit afkodes alligevel, så hvor højt dens musik virkelig spiller, måles derfra (EBU R128), og de høje skrues ned til samme niveau. Kun musik tæller, så reklamer og værter ikke forvrænger målingen, og det tager omkring et minuts musik pr. station. Stationer, der ikke kan analyseres (HLS), beholder deres lydstyrke.</value>
+  </data>
+  <data name="NormalizeLoudnessCheckBox.Content" xml:space="preserve">
+    <value>Udjævn stationernes lydniveau</value>
+  </data>
+  <data name="NormalizeLoudnessCheckBox.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Bringer hver station til omkring -14 LUFS, det niveau streamingtjenester normaliserer til, med højst 12 dB ned eller 6 dB op. En station, der skal skrues op, kan ikke komme over fuld lydstyrke, så med skyderen i top kan den forblive lidt lavere.</value>
+  </data>
+  <data name="NoFavoritesLoudnessText.Text" xml:space="preserve">
+    <value>Ingen favoritter endnu.</value>
+  </data>
+  <data name="RemeasureLoudnessButton.Content" xml:space="preserve">
+    <value>Mål lydniveauet igen</value>
+  </data>
+  <data name="RemeasureLoudnessButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Glemmer, hvad der hidtil er hørt fra hver favorit, og måler igen. Lydstyrken beholder den nuværende korrektion, indtil der er hørt omkring et minuts musik, og går derefter over til det nye resultat.</value>
+  </data>
+  <data name="CacheHeading.Text" xml:space="preserve">
+    <value>Cachelagrede logoer</value>
+  </data>
+  <data name="CacheText.Text" xml:space="preserve">
+    <value>Stationslogoer og listerne over mest spillede slås op én gang og gemmes derefter. Rydder du dem, slås alle logoer op igen, hvilket hjælper, når en station viser det forkerte. Selve stationslisten bevares.</value>
+  </data>
+  <data name="ClearCacheButton.Content" xml:space="preserve">
+    <value>Ryd cache</value>
+  </data>
+  <data name="AllCountries" xml:space="preserve">
+    <value>Alle lande</value>
+  </data>
+  <data name="LanguageWindows" xml:space="preserve">
+    <value>Windows-sprog</value>
+  </data>
+  <data name="FavoritesHeader" xml:space="preserve">
+    <value>Favoritter ({0}/{1})</value>
+  </data>
+  <data name="FavoriteTracksHeader" xml:space="preserve">
+    <value>Favoritsange ({0})</value>
+  </data>
+  <data name="CacheEmpty" xml:space="preserve">
+    <value>Intet i cachen endnu</value>
+  </data>
+  <data name="CacheSummary" xml:space="preserve">
+    <value>{0:N0} opslag · {1}</value>
+  </data>
+  <data name="CacheClearFailed" xml:space="preserve">
+    <value>Cachen kunne ikke ryddes: {0}</value>
+  </data>
+  <data name="CatalogLoading" xml:space="preserve">
+    <value>Indlæser stationslisten…</value>
+  </data>
+  <data name="CatalogStatus" xml:space="preserve">
+    <value>{0:N0} stationer · liste fra {1}</value>
+  </data>
+  <data name="CatalogStatusOffline" xml:space="preserve">
+    <value>{0:N0} stationer · liste fra {1} (offlinekopi)</value>
+  </data>
+  <data name="CatalogUnavailable" xml:space="preserve">
+    <value>Stationslisten er ikke tilgængelig</value>
+  </data>
+  <data name="CatalogDownloadFailed" xml:space="preserve">
+    <value>Stationslisten kunne ikke hentes fra {0}, og der er ingen lokal kopi. ({1})</value>
+  </data>
+  <data name="StationListDownloaded" xml:space="preserve">
+    <value>Hentet {0:d} kl. {0:t}</value>
+  </data>
+  <data name="FavoritesLimitReached" xml:space="preserve">
+    <value>Du kan højst have {0} favoritter, fordi de alle bliver ved med at streame i baggrunden. Fjern en først.</value>
+  </data>
+  <data name="SettingsSaveFailed" xml:space="preserve">
+    <value>Indstillingerne kunne ikke gemmes: {0}</value>
+  </data>
+  <data name="ChooseStation" xml:space="preserve">
+    <value>Vælg en station</value>
+  </data>
+  <data name="ClickFavoriteToListen" xml:space="preserve">
+    <value>Klik på en favorit for at lytte live med det samme</value>
+  </data>
+  <data name="Stopped" xml:space="preserve">
+    <value>Stoppet</value>
+  </data>
+  <data name="NowPlayingMuted" xml:space="preserve">
+    <value>lyd fra</value>
+  </data>
+  <data name="NowPlayingNotFavorite" xml:space="preserve">
+    <value>ikke en favorit, streamen stopper ved skift</value>
+  </data>
+  <data name="JumpListFavorites" xml:space="preserve">
+    <value>Favoritter</value>
+  </data>
+  <data name="JumpListListenTo" xml:space="preserve">
+    <value>Lyt til {0}</value>
+  </data>
+  <data name="JumpListListenToSong" xml:space="preserve">
+    <value>Lyt til {0}
+{1}</value>
+  </data>
+  <data name="JumpListMute" xml:space="preserve">
+    <value>Slå lyden fra</value>
+  </data>
+  <data name="JumpListUnmute" xml:space="preserve">
+    <value>Slå lyden til</value>
+  </data>
+  <data name="JumpListMuteToolTip" xml:space="preserve">
+    <value>Gør stationen lydløs uden at stoppe den</value>
+  </data>
+  <data name="JumpListUnmuteToolTip" xml:space="preserve">
+    <value>Hør stationen igen</value>
+  </data>
+  <data name="SongAdvertisement" xml:space="preserve">
+    <value>Reklame</value>
+  </data>
+  <data name="SongProbablyAdBreak" xml:space="preserve">
+    <value>Sandsynligvis en reklamepause</value>
+  </data>
+  <data name="LoudnessNotMeasured" xml:space="preserve">
+    <value>Ikke målt endnu</value>
+  </data>
+  <data name="LoudnessTurnedDown" xml:space="preserve">
+    <value>skruet {0} dB ned</value>
+  </data>
+  <data name="LoudnessTurnedUp" xml:space="preserve">
+    <value>skruet {0} dB op</value>
+  </data>
+  <data name="LoudnessMeasuringAgain" xml:space="preserve">
+    <value>måler igen…</value>
+  </data>
+  <data name="StatusConnecting" xml:space="preserve">
+    <value>Opretter forbindelse…</value>
+  </data>
+  <data name="StatusNowPlaying" xml:space="preserve">
+    <value>Spiller nu</value>
+  </data>
+  <data name="StatusLiveMuted" xml:space="preserve">
+    <value>Live · lyd fra</value>
+  </data>
+  <data name="StatusBuffering" xml:space="preserve">
+    <value>Bufferlagrer…</value>
+  </data>
+  <data name="StatusReconnecting" xml:space="preserve">
+    <value>Genopretter forbindelse…</value>
+  </data>
+  <data name="StatusFailed" xml:space="preserve">
+    <value>Kan ikke nås, prøver stadig igen</value>
+  </data>
+  <data name="SoundMusic" xml:space="preserve">
+    <value>musik</value>
+  </data>
+  <data name="SoundSpeech" xml:space="preserve">
+    <value>tale</value>
+  </data>
+  <data name="ViewSwitchToFull" xml:space="preserve">
+    <value>Skift til det fulde vindue</value>
+  </data>
+  <data name="ViewSwitchToCompact" xml:space="preserve">
+    <value>Skift til det kompakte vindue</value>
+  </data>
+  <data name="SaveTrackRemove" xml:space="preserve">
+    <value>Fjern fra favoritsange</value>
+  </data>
+  <data name="SaveTrackAdd" xml:space="preserve">
+    <value>Føj til favoritsange</value>
+  </data>
+  <data name="MuteToolTipUnmute" xml:space="preserve">
+    <value>Slå lyden til (Ctrl+M)</value>
+  </data>
+  <data name="MuteToolTipMute" xml:space="preserve">
+    <value>Slå lyden fra (Ctrl+M)</value>
+  </data>
+  <data name="HotkeyInUseOne" xml:space="preserve">
+    <value>{0} bruges allerede af en anden app og virker ikke uden for vinduet.</value>
+  </data>
+  <data name="HotkeyInUseMany" xml:space="preserve">
+    <value>{0} bruges allerede af en anden app og virker ikke uden for vinduet.</value>
+  </data>
+  <data name="StreamStopped" xml:space="preserve">
+    <value>Streamen holdt op med at svare.</value>
+  </data>
+  <data name="StreamEnded" xml:space="preserve">
+    <value>Streamen sluttede.</value>
+  </data>
+  <data name="UpdateNotice.Message" xml:space="preserve">
+    <value>Genstart for at installere den nu. Ellers installeres den, når du lukker ZapperRadio.</value>
+  </data>
+  <data name="RestartToUpdateButton.Content" xml:space="preserve">
+    <value>Genstart for at opdatere</value>
+  </data>
+  <data name="UpdatesHeading.Text" xml:space="preserve">
+    <value>Opdateringer</value>
+  </data>
+  <data name="UpdatesText.Text" xml:space="preserve">
+    <value>ZapperRadio søger efter en ny version med få timers mellemrum og henter den i baggrunden. Den installeres, når du lukker appen. Dine favoritter og indstillinger bevares.</value>
+  </data>
+  <data name="CheckForUpdatesButton.Content" xml:space="preserve">
+    <value>Søg efter opdateringer</value>
+  </data>
+  <data name="UpdateChecking" xml:space="preserve">
+    <value>Søger efter opdateringer…</value>
+  </data>
+  <data name="UpdateDownloading" xml:space="preserve">
+    <value>Henter den nye version… {0} %</value>
+  </data>
+  <data name="UpdateReady" xml:space="preserve">
+    <value>Version {0} er klar og installeres, når ZapperRadio lukkes.</value>
+  </data>
+  <data name="UpdateUpToDate" xml:space="preserve">
+    <value>ZapperRadio er opdateret.</value>
+  </data>
+  <data name="UpdateFailed" xml:space="preserve">
+    <value>Der kunne ikke søges efter opdateringer: {0}</value>
+  </data>
+  <data name="UpdateNoticeTitle" xml:space="preserve">
+    <value>ZapperRadio {0} er klar</value>
+  </data>
+  <data name="TimeShiftBox.AutomationProperties.Name" xml:space="preserve">
+    <value>Tidsforskydning</value>
+  </data>
+  <data name="TimeShiftMinutes" xml:space="preserve">
+    <value>{0} minutter</value>
+  </data>
+  <data name="NowPlayingBehindLive" xml:space="preserve">
+    <value>{0} efter live</value>
+  </data>
+  <data name="GoLiveButton.Content" xml:space="preserve">
+    <value>Gå live</value>
+  </data>
+  <data name="GoLiveButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Afspil stationen live igen, der hvor udsendelsen er nu</value>
+  </data>
+  <data name="ZapperTab.Text" xml:space="preserve">
+    <value>Zapper</value>
+  </data>
+  <data name="ZapperHint.Text" xml:space="preserve">
+    <value>Hvordan zapperen forlader reklamepauser og snak på den station, du lytter til, og hvad den gør, når pausen er ovre.</value>
+  </data>
+  <data name="ZapperSwitch.Header" xml:space="preserve">
+    <value>Zap ved reklamer og snak</value>
+  </data>
+  <data name="ZapBackHeading.Text" xml:space="preserve">
+    <value>Efter en pause</value>
+  </data>
+  <data name="ZapBackRadio.Content" xml:space="preserve">
+    <value>Gå tilbage til stationen med pausen, når sangen på den station, der blev landet på, er slut</value>
+  </data>
+  <data name="ZapStayRadio.Content" xml:space="preserve">
+    <value>Bliv på den station, der blev landet på</value>
+  </data>
+  <data name="CrossfadeHeading.Text" xml:space="preserve">
+    <value>Crossfade</value>
+  </data>
+  <data name="CrossfadeText.Text" xml:space="preserve">
+    <value>Toner fra den ene station over i den anden i stedet for at klippe. Udtoningen slutter, før pausen begynder, så ingen reklame slipper igennem. En station, der spiller live i stedet for fra tidsforskydningsbufferen, klippes stadig, fordi dens pause allerede kan høres.</value>
+  </data>
+  <data name="CrossfadeCheckBox.Content" xml:space="preserve">
+    <value>Crossfade ved zapning</value>
+  </data>
+  <data name="ZapTargetsHeading.Text" xml:space="preserve">
+    <value>Zap til</value>
+  </data>
+  <data name="ZapTargetsText.Text" xml:space="preserve">
+    <value>De favoritter, en pause må zappes til. Udelad en station, der ikke egner sig til at vente på musikken, f.eks. en nyhedsstation; der zappes stadig væk fra og tilbage til den.</value>
+  </data>
+  <data name="NoZapTargetsText.Text" xml:space="preserve">
+    <value>Ingen favoritter endnu. Føj stationer til dine favoritter for at vælge, hvor zapperen må gå hen.</value>
+  </data>
+  <data name="ZapToSongStartHeading.Text" xml:space="preserve">
+    <value>Zap til starten af sangen</value>
+  </data>
+  <data name="ZapToSongStartText.Text" xml:space="preserve">
+    <value>En zapning lander på en station, der spiller en sang, som regel midt i den. For i stedet at starte sangen fra begyndelsen gemmes de sidste minutter af hver favorit i hukommelsen (en tidsforskydningsbuffer). Det klipper også en pause af præcis, hvor den begynder, fordi pausen kendes, før den høres. Du lytter så lidt efter udsendelsen, højst så længe som den sang, zapningen landede i, og Gå live indhenter det med det samme. Slået fra gemmes ingen buffere, og deres hukommelse frigives: alle stationer spiller live, og en zapning lander, hvor sangen er.</value>
+  </data>
+  <data name="ZapToSongStartCheckBox.Content" xml:space="preserve">
+    <value>Start sangen fra begyndelsen ved zapning</value>
+  </data>
+  <data name="TimeShiftMemory" xml:space="preserve">
+    <value>Bruger omkring {0} MB hukommelse til dine {1} favoritter. Færre minutter, eller at slå dette fra, sparer hukommelse.</value>
+  </data>
+  <data name="TimeShiftMemoryOff" xml:space="preserve">
+    <value>Slået fra, så det bruger ingen hukommelse. Slået til ville det bruge omkring {0} MB til dine {1} favoritter.</value>
+  </data>
+  <data name="TimeShiftMemoryPerFavorite" xml:space="preserve">
+    <value>Bruger omkring {0} MB hukommelse pr. favorit for en station på 128 kbit/s.</value>
+  </data>
+  <data name="AutoStartTurnedOffNotice.Message" xml:space="preserve">
+    <value>Windows har slået start af ZapperRadio ved logon fra. Slå det til igen under Indstillinger &gt; Apps &gt; Start.</value>
+  </data>
+  <data name="StartupSettingsLink.Content" xml:space="preserve">
+    <value>Åbn startindstillinger</value>
+  </data>
+</root>

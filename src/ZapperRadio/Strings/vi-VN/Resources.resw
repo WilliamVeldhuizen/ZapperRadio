@@ -1,0 +1,540 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!--
+    Microsoft ResX Schema
+
+    Version 2.0
+
+    The primary goals of this format is to allow a simple XML format
+    that is mostly human readable. The generation and parsing of the
+    various data types are done through the TypeConverter classes
+    associated with the data types.
+  -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="FavoriteLogoToolTip.Content" xml:space="preserve">
+    <value>Kéo lên hoặc xuống để thay đổi vị trí</value>
+  </data>
+  <data name="ZappCheckBox.Content" xml:space="preserve">
+    <value>Chuyển kênh khi quảng cáo / nói chuyện</value>
+  </data>
+  <data name="ZappCheckBox.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Để chỉ nghe nhạc: khi đài bạn đang nghe bắt đầu quảng cáo hoặc có người nói, ứng dụng chuyển sang đài yêu thích cao nhất đang phát bài hát, rồi quay lại khi đài đó phát nhạc trở lại. Nhưng không bao giờ giữa chừng một bài hát: việc quay lại sẽ chờ đến khi đài vừa chuyển sang tới lượt nghỉ của chính nó. Với những đài không đánh dấu quảng cáo, ứng dụng coi là đang quảng cáo khi một bài hát kéo dài quá thời lượng của nó và nghe thấy tiếng nói thay vì nhạc.</value>
+  </data>
+  <data name="NoFavoritesText.Text" xml:space="preserve">
+    <value>Chưa có đài yêu thích. Hãy tìm một đài ở bên phải và nhấp vào dấu + của đài đó.</value>
+  </data>
+  <data name="RemoveFavoriteButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Xóa khỏi yêu thích</value>
+  </data>
+  <data name="StationsTab.Text" xml:space="preserve">
+    <value>Đài</value>
+  </data>
+  <data name="PlayHistoryTab.Text" xml:space="preserve">
+    <value>Lịch sử bài hát</value>
+  </data>
+  <data name="SearchBox.PlaceholderText" xml:space="preserve">
+    <value>Tìm theo tên, thể loại hoặc quốc gia (Ctrl+F)</value>
+  </data>
+  <data name="CountryBox.PlaceholderText" xml:space="preserve">
+    <value>Quốc gia</value>
+  </data>
+  <data name="CountryBox.AutomationProperties.Name" xml:space="preserve">
+    <value>Quốc gia</value>
+  </data>
+  <data name="ResultsOne" xml:space="preserve">
+    <value>1 đài</value>
+  </data>
+  <data name="ResultsMany" xml:space="preserve">
+    <value>{0:N0} đài</value>
+  </data>
+  <data name="NoResultsText" xml:space="preserve">
+    <value>Không có đài nào khớp với tìm kiếm của bạn.</value>
+  </data>
+  <data name="NoResultsInCountry" xml:space="preserve">
+    <value>Không có đài nào ở {0} khớp với tìm kiếm của bạn.</value>
+  </data>
+  <data name="SearchAllCountriesButton.Content" xml:space="preserve">
+    <value>Tìm ở tất cả quốc gia</value>
+  </data>
+  <data name="OfflineSince" xml:space="preserve">
+    <value>Ngoại tuyến từ {0:d}</value>
+  </data>
+  <data name="OfflineAtLastCheck" xml:space="preserve">
+    <value>Ngoại tuyến ở lần kiểm tra gần nhất</value>
+  </data>
+  <data name="ReloadStationsButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Tải lại danh sách đài</value>
+  </data>
+  <data name="PlayStation" xml:space="preserve">
+    <value>Phát</value>
+  </data>
+  <data name="StopStation" xml:space="preserve">
+    <value>Dừng</value>
+  </data>
+  <data name="FavoriteAdd" xml:space="preserve">
+    <value>Thêm vào yêu thích</value>
+  </data>
+  <data name="FavoriteRemove" xml:space="preserve">
+    <value>Xóa khỏi yêu thích</value>
+  </data>
+  <data name="FavoriteTracksHint.Text" xml:space="preserve">
+    <value>Những bài hát bạn đã lưu bằng biểu tượng trái tim bên cạnh bài đang phát. Tìm trên Spotify hoặc YouTube, hoặc sao chép tên bài.</value>
+  </data>
+  <data name="NoFavoriteTracksText.Text" xml:space="preserve">
+    <value>Chưa có bài hát yêu thích. Khi một đài phát bài bạn thích, hãy nhấp vào trái tim bên cạnh bài hát ở phía dưới.</value>
+  </data>
+  <data name="FindSongButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Tìm bài hát này</value>
+  </data>
+  <data name="FindSongButton.AutomationProperties.Name" xml:space="preserve">
+    <value>Tìm bài hát này</value>
+  </data>
+  <data name="FindOnSpotifyItem.Text" xml:space="preserve">
+    <value>Tìm trên Spotify</value>
+  </data>
+  <data name="FindOnYouTubeItem.Text" xml:space="preserve">
+    <value>Tìm trên YouTube</value>
+  </data>
+  <data name="CopyTitleButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Sao chép tên bài</value>
+  </data>
+  <data name="RemoveFavoriteTrackButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Xóa khỏi bài hát yêu thích</value>
+  </data>
+  <data name="HistoryHint.Text" xml:space="preserve">
+    <value>Mọi bài các đài yêu thích của bạn đã phát trong 12 giờ qua, mới nhất trước, dù bạn có nghe hay không. Nhấp vào trái tim để giữ lại bài hát.</value>
+  </data>
+  <data name="ClearHistoryButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Xóa lịch sử bài hát</value>
+  </data>
+  <data name="ClearHistoryButton.AutomationProperties.Name" xml:space="preserve">
+    <value>Xóa lịch sử bài hát</value>
+  </data>
+  <data name="HistorySearchBox.PlaceholderText" xml:space="preserve">
+    <value>Tìm theo bài hát, nghệ sĩ hoặc đài (Ctrl+F)</value>
+  </data>
+  <data name="HistorySearchBox.AutomationProperties.Name" xml:space="preserve">
+    <value>Tìm trong lịch sử bài hát</value>
+  </data>
+  <data name="NoHistoryText.Text" xml:space="preserve">
+    <value>Chưa phát gì. Ngay khi các đài yêu thích bắt đầu phát trực tuyến, mọi bài chúng phát sẽ được liệt kê ở đây.</value>
+  </data>
+  <data name="NoHistoryMatchesText.Text" xml:space="preserve">
+    <value>Không có bài hát nào trong lịch sử khớp với tìm kiếm của bạn.</value>
+  </data>
+  <data name="CompactNoFavorites.Text" xml:space="preserve">
+    <value>Chưa có đài yêu thích. Chuyển sang cửa sổ đầy đủ để tìm đài và thêm bằng dấu +.</value>
+  </data>
+  <data name="PlayStopButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Phát / dừng (Ctrl+Space)</value>
+  </data>
+  <data name="VolumeSlider.AutomationProperties.Name" xml:space="preserve">
+    <value>Âm lượng</value>
+  </data>
+  <data name="SettingsTab.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Cài đặt</value>
+  </data>
+  <data name="SettingsTab.AutomationProperties.Name" xml:space="preserve">
+    <value>Cài đặt</value>
+  </data>
+  <data name="StartupHeading.Text" xml:space="preserve">
+    <value>Khởi động</value>
+  </data>
+  <data name="AutoStartCheckBox.Content" xml:space="preserve">
+    <value>Khởi động ZapperRadio khi Windows khởi động</value>
+  </data>
+  <data name="LanguageHeading.Text" xml:space="preserve">
+    <value>Ngôn ngữ</value>
+  </data>
+  <data name="LanguageText.Text" xml:space="preserve">
+    <value>Ngôn ngữ của ứng dụng. Nó cũng quyết định cách hiển thị ngày và số.</value>
+  </data>
+  <data name="LanguageBox.AutomationProperties.Name" xml:space="preserve">
+    <value>Ngôn ngữ</value>
+  </data>
+  <data name="LanguageRestartText.Text" xml:space="preserve">
+    <value>Khởi động lại ZapperRadio để chuyển sang ngôn ngữ này.</value>
+  </data>
+  <data name="AboutHeading.Text" xml:space="preserve">
+    <value>Giới thiệu</value>
+  </data>
+  <data name="AboutText.Text" xml:space="preserve">
+    <value>Radio internet giữ cho luồng của các đài yêu thích luôn mở, nhờ đó chuyển đài tức thì và bạn không phải nghe quảng cáo mà đài phát khi bạn kết nối.</value>
+  </data>
+  <data name="WebsiteLink.Content" xml:space="preserve">
+    <value>Trang web ZapperRadio</value>
+  </data>
+  <data name="GitHubLink.Content" xml:space="preserve">
+    <value>ZapperRadio trên GitHub</value>
+  </data>
+  <data name="StationListHeading.Text" xml:space="preserve">
+    <value>Danh sách đài</value>
+  </data>
+  <data name="CheckStationListButton.Content" xml:space="preserve">
+    <value>Kiểm tra danh sách mới hơn</value>
+  </data>
+  <data name="ShortcutsHeading.Text" xml:space="preserve">
+    <value>Phím tắt</value>
+  </data>
+  <data name="ShortcutsText.Text" xml:space="preserve">
+    <value>Trong cửa sổ: Ctrl+Space để dừng hoặc phát, Ctrl+M để tắt tiếng, Ctrl+F để tìm kiếm. Các nút phát, tạm dừng và tiếp theo trong bảng âm lượng của Windows và trên màn hình khóa, phím đa phương tiện và tai nghe của bạn cũng hoạt động, trong đó tiếp theo và trước đó sẽ chuyển giữa các đài yêu thích.</value>
+  </data>
+  <data name="GlobalHotkeysCheckBox.Content" xml:space="preserve">
+    <value>Phím tắt từ mọi ứng dụng</value>
+  </data>
+  <data name="GlobalHotkeysCheckBox.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Kể cả khi bạn đang làm việc trong ứng dụng khác. Dùng Ctrl+Alt thay vì Ctrl, vì chiếm Ctrl+Space cho ứng dụng này sẽ lấy mất nó khỏi mọi ứng dụng khác. Tổ hợp mà ứng dụng khác đã dùng sẽ được để lại cho ứng dụng đó và được nêu bên dưới.</value>
+  </data>
+  <data name="GlobalHotkeysText.Text" xml:space="preserve">
+    <value>Ctrl+Alt+P để dừng hoặc phát, Ctrl+Alt+M để tắt tiếng, Ctrl+Alt+→ và Ctrl+Alt+← để chuyển đến đài yêu thích tiếp theo và trước đó, từ bất kỳ ứng dụng nào bạn đang dùng.</value>
+  </data>
+  <data name="LoudnessHeading.Text" xml:space="preserve">
+    <value>Độ lớn âm thanh</value>
+  </data>
+  <data name="LoudnessText.Text" xml:space="preserve">
+    <value>Đài này được master to hơn đài kia vài decibel, và đó là điều khó chịu nhất khi chuyển đài. Âm thanh của mỗi đài yêu thích vốn đã được giải mã, nên độ lớn thực sự của nhạc được đo từ đó (EBU R128), và các đài to được giảm xuống cùng một mức. Chỉ tính nhạc, nên quảng cáo và người dẫn chương trình không làm sai lệch kết quả; mỗi đài cần khoảng một phút nhạc. Những đài không thể phân tích (HLS) giữ nguyên âm lượng gốc.</value>
+  </data>
+  <data name="NormalizeLoudnessCheckBox.Content" xml:space="preserve">
+    <value>Cân bằng độ lớn giữa các đài</value>
+  </data>
+  <data name="NormalizeLoudnessCheckBox.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Đưa mỗi đài về khoảng -14 LUFS, mức mà các dịch vụ phát trực tuyến chuẩn hóa, giảm tối đa 12 dB hoặc tăng 6 dB. Đài cần tăng không thể vượt quá âm lượng tối đa, nên khi thanh trượt ở mức cao nhất, đài đó có thể vẫn nhỏ hơn một chút.</value>
+  </data>
+  <data name="NoFavoritesLoudnessText.Text" xml:space="preserve">
+    <value>Chưa có đài yêu thích.</value>
+  </data>
+  <data name="RemeasureLoudnessButton.Content" xml:space="preserve">
+    <value>Đo lại độ lớn</value>
+  </data>
+  <data name="RemeasureLoudnessButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Quên những gì đã nghe từ mỗi đài yêu thích cho đến nay và đo lại. Âm lượng giữ mức hiệu chỉnh hiện tại cho đến khi nghe được khoảng một phút nhạc, rồi chuyển sang kết quả mới.</value>
+  </data>
+  <data name="CacheHeading.Text" xml:space="preserve">
+    <value>Logo đã lưu</value>
+  </data>
+  <data name="CacheText.Text" xml:space="preserve">
+    <value>Logo đài và danh sách được nghe nhiều nhất chỉ được tra cứu một lần rồi lưu lại. Xóa chúng sẽ tra cứu lại mọi logo, hữu ích khi một đài hiển thị sai logo. Bản thân danh sách đài vẫn được giữ.</value>
+  </data>
+  <data name="ClearCacheButton.Content" xml:space="preserve">
+    <value>Xóa bộ nhớ đệm</value>
+  </data>
+  <data name="AllCountries" xml:space="preserve">
+    <value>Tất cả quốc gia</value>
+  </data>
+  <data name="LanguageWindows" xml:space="preserve">
+    <value>Ngôn ngữ của Windows</value>
+  </data>
+  <data name="FavoritesHeader" xml:space="preserve">
+    <value>Yêu thích ({0}/{1})</value>
+  </data>
+  <data name="FavoriteTracksHeader" xml:space="preserve">
+    <value>Bài hát yêu thích ({0})</value>
+  </data>
+  <data name="CacheEmpty" xml:space="preserve">
+    <value>Chưa có gì được lưu</value>
+  </data>
+  <data name="CacheSummary" xml:space="preserve">
+    <value>{0:N0} lượt tra cứu · {1}</value>
+  </data>
+  <data name="CacheClearFailed" xml:space="preserve">
+    <value>Không thể xóa bộ nhớ đệm: {0}</value>
+  </data>
+  <data name="CatalogLoading" xml:space="preserve">
+    <value>Đang tải danh sách đài…</value>
+  </data>
+  <data name="CatalogStatus" xml:space="preserve">
+    <value>{0:N0} đài · danh sách từ {1}</value>
+  </data>
+  <data name="CatalogStatusOffline" xml:space="preserve">
+    <value>{0:N0} đài · danh sách từ {1} (bản sao ngoại tuyến)</value>
+  </data>
+  <data name="CatalogUnavailable" xml:space="preserve">
+    <value>Không có danh sách đài</value>
+  </data>
+  <data name="CatalogDownloadFailed" xml:space="preserve">
+    <value>Không thể tải danh sách đài từ {0} và không có bản sao cục bộ. ({1})</value>
+  </data>
+  <data name="StationListDownloaded" xml:space="preserve">
+    <value>Đã tải về ngày {0:d} lúc {0:t}</value>
+  </data>
+  <data name="FavoritesLimitReached" xml:space="preserve">
+    <value>Bạn chỉ có thể có tối đa {0} đài yêu thích, vì tất cả đều tiếp tục phát trực tuyến ở chế độ nền. Hãy xóa bớt một đài trước.</value>
+  </data>
+  <data name="SettingsSaveFailed" xml:space="preserve">
+    <value>Không thể lưu cài đặt: {0}</value>
+  </data>
+  <data name="ChooseStation" xml:space="preserve">
+    <value>Chọn một đài</value>
+  </data>
+  <data name="ClickFavoriteToListen" xml:space="preserve">
+    <value>Nhấp vào một đài yêu thích để nghe trực tiếp ngay</value>
+  </data>
+  <data name="Stopped" xml:space="preserve">
+    <value>Đã dừng</value>
+  </data>
+  <data name="NowPlayingMuted" xml:space="preserve">
+    <value>đã tắt tiếng</value>
+  </data>
+  <data name="NowPlayingNotFavorite" xml:space="preserve">
+    <value>không phải đài yêu thích, luồng sẽ dừng khi chuyển đài</value>
+  </data>
+  <data name="JumpListFavorites" xml:space="preserve">
+    <value>Yêu thích</value>
+  </data>
+  <data name="JumpListListenTo" xml:space="preserve">
+    <value>Nghe {0}</value>
+  </data>
+  <data name="JumpListListenToSong" xml:space="preserve">
+    <value>Nghe {0}
+{1}</value>
+  </data>
+  <data name="JumpListMute" xml:space="preserve">
+    <value>Tắt tiếng</value>
+  </data>
+  <data name="JumpListUnmute" xml:space="preserve">
+    <value>Bật tiếng</value>
+  </data>
+  <data name="JumpListMuteToolTip" xml:space="preserve">
+    <value>Tắt tiếng đài mà không dừng</value>
+  </data>
+  <data name="JumpListUnmuteToolTip" xml:space="preserve">
+    <value>Nghe lại đài</value>
+  </data>
+  <data name="SongAdvertisement" xml:space="preserve">
+    <value>Quảng cáo</value>
+  </data>
+  <data name="SongProbablyAdBreak" xml:space="preserve">
+    <value>Có thể đang quảng cáo</value>
+  </data>
+  <data name="LoudnessNotMeasured" xml:space="preserve">
+    <value>Chưa đo</value>
+  </data>
+  <data name="LoudnessTurnedDown" xml:space="preserve">
+    <value>đã giảm {0} dB</value>
+  </data>
+  <data name="LoudnessTurnedUp" xml:space="preserve">
+    <value>đã tăng {0} dB</value>
+  </data>
+  <data name="LoudnessMeasuringAgain" xml:space="preserve">
+    <value>đang đo lại…</value>
+  </data>
+  <data name="StatusConnecting" xml:space="preserve">
+    <value>Đang kết nối…</value>
+  </data>
+  <data name="StatusNowPlaying" xml:space="preserve">
+    <value>Đang phát</value>
+  </data>
+  <data name="StatusLiveMuted" xml:space="preserve">
+    <value>Trực tiếp · đã tắt tiếng</value>
+  </data>
+  <data name="StatusBuffering" xml:space="preserve">
+    <value>Đang tải bộ đệm…</value>
+  </data>
+  <data name="StatusReconnecting" xml:space="preserve">
+    <value>Đang kết nối lại…</value>
+  </data>
+  <data name="StatusFailed" xml:space="preserve">
+    <value>Không thể truy cập, vẫn đang thử lại</value>
+  </data>
+  <data name="SoundMusic" xml:space="preserve">
+    <value>nhạc</value>
+  </data>
+  <data name="SoundSpeech" xml:space="preserve">
+    <value>lời nói</value>
+  </data>
+  <data name="ViewSwitchToFull" xml:space="preserve">
+    <value>Chuyển sang cửa sổ đầy đủ</value>
+  </data>
+  <data name="ViewSwitchToCompact" xml:space="preserve">
+    <value>Chuyển sang cửa sổ thu gọn</value>
+  </data>
+  <data name="SaveTrackRemove" xml:space="preserve">
+    <value>Xóa khỏi bài hát yêu thích</value>
+  </data>
+  <data name="SaveTrackAdd" xml:space="preserve">
+    <value>Thêm vào bài hát yêu thích</value>
+  </data>
+  <data name="MuteToolTipUnmute" xml:space="preserve">
+    <value>Bật tiếng (Ctrl+M)</value>
+  </data>
+  <data name="MuteToolTipMute" xml:space="preserve">
+    <value>Tắt tiếng (Ctrl+M)</value>
+  </data>
+  <data name="HotkeyInUseOne" xml:space="preserve">
+    <value>{0} đã được ứng dụng khác sử dụng và sẽ không hoạt động bên ngoài cửa sổ.</value>
+  </data>
+  <data name="HotkeyInUseMany" xml:space="preserve">
+    <value>{0} đã được ứng dụng khác sử dụng và sẽ không hoạt động bên ngoài cửa sổ.</value>
+  </data>
+  <data name="StreamStopped" xml:space="preserve">
+    <value>Luồng đã ngừng phản hồi.</value>
+  </data>
+  <data name="StreamEnded" xml:space="preserve">
+    <value>Luồng đã kết thúc.</value>
+  </data>
+  <data name="UpdateNotice.Message" xml:space="preserve">
+    <value>Khởi động lại để cài đặt ngay. Nếu không, bản cập nhật sẽ được cài khi bạn đóng ZapperRadio.</value>
+  </data>
+  <data name="RestartToUpdateButton.Content" xml:space="preserve">
+    <value>Khởi động lại để cập nhật</value>
+  </data>
+  <data name="UpdatesHeading.Text" xml:space="preserve">
+    <value>Cập nhật</value>
+  </data>
+  <data name="UpdatesText.Text" xml:space="preserve">
+    <value>ZapperRadio kiểm tra phiên bản mới vài giờ một lần và tải về ở chế độ nền. Phiên bản đó được cài khi bạn đóng ứng dụng. Đài yêu thích và cài đặt của bạn được giữ nguyên.</value>
+  </data>
+  <data name="CheckForUpdatesButton.Content" xml:space="preserve">
+    <value>Kiểm tra cập nhật</value>
+  </data>
+  <data name="UpdateChecking" xml:space="preserve">
+    <value>Đang kiểm tra cập nhật…</value>
+  </data>
+  <data name="UpdateDownloading" xml:space="preserve">
+    <value>Đang tải phiên bản mới… {0}%</value>
+  </data>
+  <data name="UpdateReady" xml:space="preserve">
+    <value>Phiên bản {0} đã sẵn sàng và sẽ được cài khi đóng ZapperRadio.</value>
+  </data>
+  <data name="UpdateUpToDate" xml:space="preserve">
+    <value>ZapperRadio đã được cập nhật.</value>
+  </data>
+  <data name="UpdateFailed" xml:space="preserve">
+    <value>Không thể kiểm tra cập nhật: {0}</value>
+  </data>
+  <data name="UpdateNoticeTitle" xml:space="preserve">
+    <value>ZapperRadio {0} đã sẵn sàng</value>
+  </data>
+  <data name="TimeShiftBox.AutomationProperties.Name" xml:space="preserve">
+    <value>Dịch thời gian</value>
+  </data>
+  <data name="TimeShiftMinutes" xml:space="preserve">
+    <value>{0} phút</value>
+  </data>
+  <data name="NowPlayingBehindLive" xml:space="preserve">
+    <value>Chậm {0} so với trực tiếp</value>
+  </data>
+  <data name="GoLiveButton.Content" xml:space="preserve">
+    <value>Về trực tiếp</value>
+  </data>
+  <data name="GoLiveButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Phát trực tiếp lại đài này, tại vị trí đang phát sóng hiện giờ</value>
+  </data>
+  <data name="ZapperTab.Text" xml:space="preserve">
+    <value>Zapper</value>
+  </data>
+  <data name="ZapperHint.Text" xml:space="preserve">
+    <value>Cách zapper tránh quảng cáo và lời nói trên đài bạn đang nghe, và những gì nó làm khi hết quảng cáo.</value>
+  </data>
+  <data name="ZapperSwitch.Header" xml:space="preserve">
+    <value>Chuyển kênh khi quảng cáo và nói chuyện</value>
+  </data>
+  <data name="ZapBackHeading.Text" xml:space="preserve">
+    <value>Sau quảng cáo</value>
+  </data>
+  <data name="ZapBackRadio.Content" xml:space="preserve">
+    <value>Quay lại đài có quảng cáo khi bài hát trên đài vừa chuyển sang kết thúc</value>
+  </data>
+  <data name="ZapStayRadio.Content" xml:space="preserve">
+    <value>Ở lại đài vừa chuyển sang</value>
+  </data>
+  <data name="CrossfadeHeading.Text" xml:space="preserve">
+    <value>Chuyển tiếp mượt</value>
+  </data>
+  <data name="CrossfadeText.Text" xml:space="preserve">
+    <value>Chuyển dần từ đài này sang đài kia thay vì cắt ngang. Phần nhỏ dần kết thúc trước khi quảng cáo bắt đầu, nên không có quảng cáo nào lọt vào. Đài đang phát trực tiếp thay vì từ bộ đệm dịch thời gian vẫn bị cắt ngang, vì quảng cáo của nó đã nghe thấy.</value>
+  </data>
+  <data name="CrossfadeCheckBox.Content" xml:space="preserve">
+    <value>Chuyển tiếp mượt khi chuyển kênh</value>
+  </data>
+  <data name="ZapTargetsHeading.Text" xml:space="preserve">
+    <value>Chuyển đến</value>
+  </data>
+  <data name="ZapTargetsText.Text" xml:space="preserve">
+    <value>Các đài yêu thích có thể chuyển đến khi có quảng cáo. Hãy bỏ đài không phù hợp để chờ nhạc, chẳng hạn đài tin tức; vẫn có thể chuyển khỏi và quay lại đài đó.</value>
+  </data>
+  <data name="NoZapTargetsText.Text" xml:space="preserve">
+    <value>Chưa có đài yêu thích. Thêm đài vào yêu thích để chọn nơi zapper có thể chuyển đến.</value>
+  </data>
+  <data name="ZapToSongStartHeading.Text" xml:space="preserve">
+    <value>Chuyển đến đầu bài hát</value>
+  </data>
+  <data name="ZapToSongStartText.Text" xml:space="preserve">
+    <value>Một lần chuyển kênh sẽ rơi vào đài đang phát bài hát, thường là giữa bài. Để bài hát bắt đầu từ đầu, vài phút cuối của mỗi đài yêu thích được giữ trong bộ nhớ (bộ đệm dịch thời gian). Nhờ đó cũng cắt quảng cáo đúng lúc bắt đầu, vì quảng cáo đã được biết trước khi nghe thấy. Khi đó bạn nghe chậm hơn một chút so với phát sóng, tối đa bằng độ dài bài hát mà lần chuyển kênh rơi vào, và Về trực tiếp sẽ bắt kịp ngay. Khi tắt, không giữ bộ đệm và bộ nhớ được giải phóng: mọi đài phát trực tiếp, và lần chuyển kênh rơi vào đúng chỗ bài hát đang phát.</value>
+  </data>
+  <data name="ZapToSongStartCheckBox.Content" xml:space="preserve">
+    <value>Bắt đầu bài hát từ đầu khi chuyển kênh</value>
+  </data>
+  <data name="TimeShiftMemory" xml:space="preserve">
+    <value>Dùng khoảng {0} MB bộ nhớ cho {1} đài yêu thích của bạn. Giữ ít phút hơn, hoặc tắt tính năng này, sẽ tiết kiệm bộ nhớ.</value>
+  </data>
+  <data name="TimeShiftMemoryOff" xml:space="preserve">
+    <value>Đang tắt nên không dùng bộ nhớ. Nếu bật, sẽ cần khoảng {0} MB cho {1} đài yêu thích của bạn.</value>
+  </data>
+  <data name="TimeShiftMemoryPerFavorite" xml:space="preserve">
+    <value>Cần khoảng {0} MB bộ nhớ cho mỗi đài yêu thích, với đài 128 kbit/s.</value>
+  </data>
+  <data name="AutoStartTurnedOffNotice.Message" xml:space="preserve">
+    <value>Windows đã tắt việc khởi động ZapperRadio khi bạn đăng nhập. Bật lại trong Cài đặt &gt; Ứng dụng &gt; Khởi động.</value>
+  </data>
+  <data name="StartupSettingsLink.Content" xml:space="preserve">
+    <value>Mở cài đặt Khởi động</value>
+  </data>
+</root>

@@ -1,0 +1,540 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!--
+    Microsoft ResX Schema
+
+    Version 2.0
+
+    The primary goals of this format is to allow a simple XML format
+    that is mostly human readable. The generation and parsing of the
+    various data types are done through the TypeConverter classes
+    associated with the data types.
+  -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="FavoriteLogoToolTip.Content" xml:space="preserve">
+    <value>Přetažením nahoru nebo dolů změníte pořadí</value>
+  </data>
+  <data name="ZappCheckBox.Content" xml:space="preserve">
+    <value>Přepínat při reklamě / mluveném slovu</value>
+  </data>
+  <data name="ZappCheckBox.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Pro poslech pouze hudby: když stanice, kterou posloucháte, začne reklamní blok nebo někdo mluví, přepne se na nejvýše položenou oblíbenou stanici, která hraje písničku, a vrátí se, jakmile znovu hraje hudba. Nikdy ale uprostřed písničky: návrat počká, až stanice, na kterou se přepnulo, dojde ke své vlastní přestávce. U stanic, které reklamu neoznačují, se reklamní blok předpokládá, když písnička výrazně přesáhne svou délku a místo hudby je slyšet řeč.</value>
+  </data>
+  <data name="NoFavoritesText.Text" xml:space="preserve">
+    <value>Zatím žádné oblíbené. Najděte stanici vpravo a klikněte na její +.</value>
+  </data>
+  <data name="RemoveFavoriteButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Odebrat z oblíbených</value>
+  </data>
+  <data name="StationsTab.Text" xml:space="preserve">
+    <value>Stanice</value>
+  </data>
+  <data name="PlayHistoryTab.Text" xml:space="preserve">
+    <value>Historie skladeb</value>
+  </data>
+  <data name="SearchBox.PlaceholderText" xml:space="preserve">
+    <value>Hledat podle názvu, žánru nebo země (Ctrl+F)</value>
+  </data>
+  <data name="CountryBox.PlaceholderText" xml:space="preserve">
+    <value>Země</value>
+  </data>
+  <data name="CountryBox.AutomationProperties.Name" xml:space="preserve">
+    <value>Země</value>
+  </data>
+  <data name="ResultsOne" xml:space="preserve">
+    <value>1 stanice</value>
+  </data>
+  <data name="ResultsMany" xml:space="preserve">
+    <value>Stanice: {0:N0}</value>
+  </data>
+  <data name="NoResultsText" xml:space="preserve">
+    <value>Hledání neodpovídá žádná stanice.</value>
+  </data>
+  <data name="NoResultsInCountry" xml:space="preserve">
+    <value>Hledání neodpovídá žádná stanice v zemi {0}.</value>
+  </data>
+  <data name="SearchAllCountriesButton.Content" xml:space="preserve">
+    <value>Hledat ve všech zemích</value>
+  </data>
+  <data name="OfflineSince" xml:space="preserve">
+    <value>Offline od {0:d}</value>
+  </data>
+  <data name="OfflineAtLastCheck" xml:space="preserve">
+    <value>Offline při poslední kontrole</value>
+  </data>
+  <data name="ReloadStationsButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Znovu načíst seznam stanic</value>
+  </data>
+  <data name="PlayStation" xml:space="preserve">
+    <value>Přehrát</value>
+  </data>
+  <data name="StopStation" xml:space="preserve">
+    <value>Zastavit</value>
+  </data>
+  <data name="FavoriteAdd" xml:space="preserve">
+    <value>Přidat do oblíbených</value>
+  </data>
+  <data name="FavoriteRemove" xml:space="preserve">
+    <value>Odebrat z oblíbených</value>
+  </data>
+  <data name="FavoriteTracksHint.Text" xml:space="preserve">
+    <value>Písničky, které jste uložili srdíčkem vedle hrající písničky. Najděte je na Spotify nebo YouTube, nebo zkopírujte název.</value>
+  </data>
+  <data name="NoFavoriteTracksText.Text" xml:space="preserve">
+    <value>Zatím žádné oblíbené skladby. Když stanice hraje písničku, která se vám líbí, klikněte na srdíčko vedle písničky dole.</value>
+  </data>
+  <data name="FindSongButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Najít tuto písničku</value>
+  </data>
+  <data name="FindSongButton.AutomationProperties.Name" xml:space="preserve">
+    <value>Najít tuto písničku</value>
+  </data>
+  <data name="FindOnSpotifyItem.Text" xml:space="preserve">
+    <value>Najít na Spotify</value>
+  </data>
+  <data name="FindOnYouTubeItem.Text" xml:space="preserve">
+    <value>Najít na YouTube</value>
+  </data>
+  <data name="CopyTitleButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Kopírovat název</value>
+  </data>
+  <data name="RemoveFavoriteTrackButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Odebrat z oblíbených skladeb</value>
+  </data>
+  <data name="HistoryHint.Text" xml:space="preserve">
+    <value>Vše, co vaše oblíbené stanice hrály za posledních 12 hodin, od nejnovějšího, bez ohledu na to, zda jste je poslouchali. Kliknutím na srdíčko si písničku ponecháte.</value>
+  </data>
+  <data name="ClearHistoryButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Vymazat historii skladeb</value>
+  </data>
+  <data name="ClearHistoryButton.AutomationProperties.Name" xml:space="preserve">
+    <value>Vymazat historii skladeb</value>
+  </data>
+  <data name="HistorySearchBox.PlaceholderText" xml:space="preserve">
+    <value>Hledat podle písničky, interpreta nebo stanice (Ctrl+F)</value>
+  </data>
+  <data name="HistorySearchBox.AutomationProperties.Name" xml:space="preserve">
+    <value>Hledat v historii skladeb</value>
+  </data>
+  <data name="NoHistoryText.Text" xml:space="preserve">
+    <value>Zatím nic nehrálo. Jakmile vaše oblíbené stanice začnou vysílat, každá písnička, kterou zahrají, se objeví zde.</value>
+  </data>
+  <data name="NoHistoryMatchesText.Text" xml:space="preserve">
+    <value>Hledání neodpovídá žádná písnička v historii.</value>
+  </data>
+  <data name="CompactNoFavorites.Text" xml:space="preserve">
+    <value>Zatím žádné oblíbené. Přepněte na celé okno, vyhledejte stanice a přidejte je pomocí +.</value>
+  </data>
+  <data name="PlayStopButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Přehrát / zastavit (Ctrl+Mezerník)</value>
+  </data>
+  <data name="VolumeSlider.AutomationProperties.Name" xml:space="preserve">
+    <value>Hlasitost</value>
+  </data>
+  <data name="SettingsTab.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Nastavení</value>
+  </data>
+  <data name="SettingsTab.AutomationProperties.Name" xml:space="preserve">
+    <value>Nastavení</value>
+  </data>
+  <data name="StartupHeading.Text" xml:space="preserve">
+    <value>Spuštění</value>
+  </data>
+  <data name="AutoStartCheckBox.Content" xml:space="preserve">
+    <value>Spouštět ZapperRadio při startu Windows</value>
+  </data>
+  <data name="LanguageHeading.Text" xml:space="preserve">
+    <value>Jazyk</value>
+  </data>
+  <data name="LanguageText.Text" xml:space="preserve">
+    <value>Jazyk aplikace. Určuje také, jak se zapisují data a čísla.</value>
+  </data>
+  <data name="LanguageBox.AutomationProperties.Name" xml:space="preserve">
+    <value>Jazyk</value>
+  </data>
+  <data name="LanguageRestartText.Text" xml:space="preserve">
+    <value>Pro přepnutí na tento jazyk restartujte ZapperRadio.</value>
+  </data>
+  <data name="AboutHeading.Text" xml:space="preserve">
+    <value>O aplikaci</value>
+  </data>
+  <data name="AboutText.Text" xml:space="preserve">
+    <value>Internetové rádio, které udržuje streamy vašich oblíbených stanic otevřené, takže přepínání je okamžité a neuslyšíte reklamu, kterou stanice pouští při připojení.</value>
+  </data>
+  <data name="WebsiteLink.Content" xml:space="preserve">
+    <value>Web ZapperRadio</value>
+  </data>
+  <data name="GitHubLink.Content" xml:space="preserve">
+    <value>ZapperRadio na GitHubu</value>
+  </data>
+  <data name="StationListHeading.Text" xml:space="preserve">
+    <value>Seznam stanic</value>
+  </data>
+  <data name="CheckStationListButton.Content" xml:space="preserve">
+    <value>Zkontrolovat novější seznam</value>
+  </data>
+  <data name="ShortcutsHeading.Text" xml:space="preserve">
+    <value>Klávesové zkratky</value>
+  </data>
+  <data name="ShortcutsText.Text" xml:space="preserve">
+    <value>V okně: Ctrl+Mezerník pro zastavení nebo přehrání, Ctrl+M pro ztlumení, Ctrl+F pro hledání. Fungují i tlačítka přehrát, pozastavit a další v panelu hlasitosti Windows a na zamykací obrazovce, mediální klávesy a sluchátka, přičemž další a předchozí přepínají mezi oblíbenými.</value>
+  </data>
+  <data name="GlobalHotkeysCheckBox.Content" xml:space="preserve">
+    <value>Zkratky z libovolné aplikace</value>
+  </data>
+  <data name="GlobalHotkeysCheckBox.ToolTipService.ToolTip" xml:space="preserve">
+    <value>I když pracujete v jiné aplikaci. S Ctrl+Alt místo Ctrl, protože zabrání Ctrl+Mezerník touto aplikací by ho vzalo všem ostatním. Kombinace, kterou už používá jiná aplikace, jí zůstane a je uvedena níže.</value>
+  </data>
+  <data name="GlobalHotkeysText.Text" xml:space="preserve">
+    <value>Ctrl+Alt+P pro zastavení nebo přehrání, Ctrl+Alt+M pro ztlumení, Ctrl+Alt+→ a Ctrl+Alt+← pro další a předchozí oblíbenou stanici, z jakékoli aplikace, ve které pracujete.</value>
+  </data>
+  <data name="LoudnessHeading.Text" xml:space="preserve">
+    <value>Hlasitost</value>
+  </data>
+  <data name="LoudnessText.Text" xml:space="preserve">
+    <value>Jedna stanice je namasterovaná o několik decibelů hlasitěji než další, což je na přepínání to nejotravnější. Zvuk každé oblíbené stanice se stejně dekóduje, takže se z něj měří, jak hlasitá její hudba skutečně je (EBU R128), a hlasité stanice se ztlumí na stejnou úroveň. Počítá se jen hudba, takže reklamy a moderátoři měření nezkreslí; na stanici je potřeba asi minuta hudby. Stanice, které nelze analyzovat (HLS), si ponechají svou hlasitost.</value>
+  </data>
+  <data name="NormalizeLoudnessCheckBox.Content" xml:space="preserve">
+    <value>Vyrovnat hlasitost stanic</value>
+  </data>
+  <data name="NormalizeLoudnessCheckBox.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Přivede každou stanici na zhruba -14 LUFS, úroveň, na kterou normalizují streamovací služby, nejvýše o 12 dB dolů nebo 6 dB nahoru. Stanice, kterou je třeba zesílit, nemůže překročit plnou hlasitost, takže s posuvníkem nahoře může zůstat o něco tišší.</value>
+  </data>
+  <data name="NoFavoritesLoudnessText.Text" xml:space="preserve">
+    <value>Zatím žádné oblíbené.</value>
+  </data>
+  <data name="RemeasureLoudnessButton.Content" xml:space="preserve">
+    <value>Změřit hlasitost znovu</value>
+  </data>
+  <data name="RemeasureLoudnessButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Zapomene, co bylo dosud u každé oblíbené stanice naměřeno, a měří znovu. Hlasitost si ponechá současnou korekci, dokud nezazní asi minuta hudby, a pak přejde na nový výsledek.</value>
+  </data>
+  <data name="CacheHeading.Text" xml:space="preserve">
+    <value>Uložená loga</value>
+  </data>
+  <data name="CacheText.Text" xml:space="preserve">
+    <value>Loga stanic a seznamy nejposlouchanějších se vyhledají jednou a pak se uchovávají. Jejich vymazáním se všechna loga vyhledají znovu, což pomůže, když stanice zobrazuje nesprávné. Samotný seznam stanic zůstane zachován.</value>
+  </data>
+  <data name="ClearCacheButton.Content" xml:space="preserve">
+    <value>Vymazat mezipaměť</value>
+  </data>
+  <data name="AllCountries" xml:space="preserve">
+    <value>Všechny země</value>
+  </data>
+  <data name="LanguageWindows" xml:space="preserve">
+    <value>Jazyk Windows</value>
+  </data>
+  <data name="FavoritesHeader" xml:space="preserve">
+    <value>Oblíbené ({0}/{1})</value>
+  </data>
+  <data name="FavoriteTracksHeader" xml:space="preserve">
+    <value>Oblíbené skladby ({0})</value>
+  </data>
+  <data name="CacheEmpty" xml:space="preserve">
+    <value>Zatím nic uloženo</value>
+  </data>
+  <data name="CacheSummary" xml:space="preserve">
+    <value>Vyhledávání: {0:N0} · {1}</value>
+  </data>
+  <data name="CacheClearFailed" xml:space="preserve">
+    <value>Mezipaměť nelze vymazat: {0}</value>
+  </data>
+  <data name="CatalogLoading" xml:space="preserve">
+    <value>Načítání seznamu stanic…</value>
+  </data>
+  <data name="CatalogStatus" xml:space="preserve">
+    <value>Stanice: {0:N0} · seznam z {1}</value>
+  </data>
+  <data name="CatalogStatusOffline" xml:space="preserve">
+    <value>Stanice: {0:N0} · seznam z {1} (offline kopie)</value>
+  </data>
+  <data name="CatalogUnavailable" xml:space="preserve">
+    <value>Seznam stanic není k dispozici</value>
+  </data>
+  <data name="CatalogDownloadFailed" xml:space="preserve">
+    <value>Seznam stanic nelze stáhnout z {0} a neexistuje místní kopie. ({1})</value>
+  </data>
+  <data name="StationListDownloaded" xml:space="preserve">
+    <value>Staženo {0:d} v {0:t}</value>
+  </data>
+  <data name="FavoritesLimitReached" xml:space="preserve">
+    <value>Můžete mít nejvýše {0} oblíbených, protože všechny stále streamují na pozadí. Nejprve jednu odeberte.</value>
+  </data>
+  <data name="SettingsSaveFailed" xml:space="preserve">
+    <value>Nastavení nelze uložit: {0}</value>
+  </data>
+  <data name="ChooseStation" xml:space="preserve">
+    <value>Vyberte stanici</value>
+  </data>
+  <data name="ClickFavoriteToListen" xml:space="preserve">
+    <value>Kliknutím na oblíbenou stanici ji okamžitě posloucháte živě</value>
+  </data>
+  <data name="Stopped" xml:space="preserve">
+    <value>Zastaveno</value>
+  </data>
+  <data name="NowPlayingMuted" xml:space="preserve">
+    <value>ztlumeno</value>
+  </data>
+  <data name="NowPlayingNotFavorite" xml:space="preserve">
+    <value>není oblíbená, stream se při přepnutí zastaví</value>
+  </data>
+  <data name="JumpListFavorites" xml:space="preserve">
+    <value>Oblíbené</value>
+  </data>
+  <data name="JumpListListenTo" xml:space="preserve">
+    <value>Poslouchat {0}</value>
+  </data>
+  <data name="JumpListListenToSong" xml:space="preserve">
+    <value>Poslouchat {0}
+{1}</value>
+  </data>
+  <data name="JumpListMute" xml:space="preserve">
+    <value>Ztlumit</value>
+  </data>
+  <data name="JumpListUnmute" xml:space="preserve">
+    <value>Zrušit ztlumení</value>
+  </data>
+  <data name="JumpListMuteToolTip" xml:space="preserve">
+    <value>Ztlumit stanici bez jejího zastavení</value>
+  </data>
+  <data name="JumpListUnmuteToolTip" xml:space="preserve">
+    <value>Znovu slyšet stanici</value>
+  </data>
+  <data name="SongAdvertisement" xml:space="preserve">
+    <value>Reklama</value>
+  </data>
+  <data name="SongProbablyAdBreak" xml:space="preserve">
+    <value>Pravděpodobně reklamní blok</value>
+  </data>
+  <data name="LoudnessNotMeasured" xml:space="preserve">
+    <value>Zatím nezměřeno</value>
+  </data>
+  <data name="LoudnessTurnedDown" xml:space="preserve">
+    <value>ztlumeno o {0} dB</value>
+  </data>
+  <data name="LoudnessTurnedUp" xml:space="preserve">
+    <value>zesíleno o {0} dB</value>
+  </data>
+  <data name="LoudnessMeasuringAgain" xml:space="preserve">
+    <value>nové měření…</value>
+  </data>
+  <data name="StatusConnecting" xml:space="preserve">
+    <value>Připojování…</value>
+  </data>
+  <data name="StatusNowPlaying" xml:space="preserve">
+    <value>Právě hraje</value>
+  </data>
+  <data name="StatusLiveMuted" xml:space="preserve">
+    <value>Živě · ztlumeno</value>
+  </data>
+  <data name="StatusBuffering" xml:space="preserve">
+    <value>Načítání do vyrovnávací paměti…</value>
+  </data>
+  <data name="StatusReconnecting" xml:space="preserve">
+    <value>Opětovné připojování…</value>
+  </data>
+  <data name="StatusFailed" xml:space="preserve">
+    <value>Nedostupná, stále se zkouší znovu</value>
+  </data>
+  <data name="SoundMusic" xml:space="preserve">
+    <value>hudba</value>
+  </data>
+  <data name="SoundSpeech" xml:space="preserve">
+    <value>řeč</value>
+  </data>
+  <data name="ViewSwitchToFull" xml:space="preserve">
+    <value>Přepnout na celé okno</value>
+  </data>
+  <data name="ViewSwitchToCompact" xml:space="preserve">
+    <value>Přepnout na kompaktní okno</value>
+  </data>
+  <data name="SaveTrackRemove" xml:space="preserve">
+    <value>Odebrat z oblíbených skladeb</value>
+  </data>
+  <data name="SaveTrackAdd" xml:space="preserve">
+    <value>Přidat do oblíbených skladeb</value>
+  </data>
+  <data name="MuteToolTipUnmute" xml:space="preserve">
+    <value>Zrušit ztlumení (Ctrl+M)</value>
+  </data>
+  <data name="MuteToolTipMute" xml:space="preserve">
+    <value>Ztlumit (Ctrl+M)</value>
+  </data>
+  <data name="HotkeyInUseOne" xml:space="preserve">
+    <value>{0} už používá jiná aplikace a mimo okno nebude fungovat.</value>
+  </data>
+  <data name="HotkeyInUseMany" xml:space="preserve">
+    <value>{0} už používá jiná aplikace a mimo okno nebudou fungovat.</value>
+  </data>
+  <data name="StreamStopped" xml:space="preserve">
+    <value>Stream přestal odpovídat.</value>
+  </data>
+  <data name="StreamEnded" xml:space="preserve">
+    <value>Stream skončil.</value>
+  </data>
+  <data name="UpdateNotice.Message" xml:space="preserve">
+    <value>Restartujte a nainstalujte ji hned. Jinak se nainstaluje, až zavřete ZapperRadio.</value>
+  </data>
+  <data name="RestartToUpdateButton.Content" xml:space="preserve">
+    <value>Restartovat a aktualizovat</value>
+  </data>
+  <data name="UpdatesHeading.Text" xml:space="preserve">
+    <value>Aktualizace</value>
+  </data>
+  <data name="UpdatesText.Text" xml:space="preserve">
+    <value>ZapperRadio každých několik hodin kontroluje novou verzi a stahuje ji na pozadí. Nainstaluje se, když aplikaci zavřete. Oblíbené a nastavení zůstanou zachovány.</value>
+  </data>
+  <data name="CheckForUpdatesButton.Content" xml:space="preserve">
+    <value>Zkontrolovat aktualizace</value>
+  </data>
+  <data name="UpdateChecking" xml:space="preserve">
+    <value>Kontrola aktualizací…</value>
+  </data>
+  <data name="UpdateDownloading" xml:space="preserve">
+    <value>Stahování nové verze… {0} %</value>
+  </data>
+  <data name="UpdateReady" xml:space="preserve">
+    <value>Verze {0} je připravena a nainstaluje se po zavření ZapperRadio.</value>
+  </data>
+  <data name="UpdateUpToDate" xml:space="preserve">
+    <value>ZapperRadio je aktuální.</value>
+  </data>
+  <data name="UpdateFailed" xml:space="preserve">
+    <value>Aktualizace nelze zkontrolovat: {0}</value>
+  </data>
+  <data name="UpdateNoticeTitle" xml:space="preserve">
+    <value>ZapperRadio {0} je připraveno</value>
+  </data>
+  <data name="TimeShiftBox.AutomationProperties.Name" xml:space="preserve">
+    <value>Časový posun</value>
+  </data>
+  <data name="TimeShiftMinutes" xml:space="preserve">
+    <value>{0} min</value>
+  </data>
+  <data name="NowPlayingBehindLive" xml:space="preserve">
+    <value>{0} za živým vysíláním</value>
+  </data>
+  <data name="GoLiveButton.Content" xml:space="preserve">
+    <value>Živě</value>
+  </data>
+  <data name="GoLiveButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Přehrávat tuto stanici znovu živě, tam, kde je teď její vysílání</value>
+  </data>
+  <data name="ZapperTab.Text" xml:space="preserve">
+    <value>Zapper</value>
+  </data>
+  <data name="ZapperHint.Text" xml:space="preserve">
+    <value>Jak zapper opouští reklamní bloky a mluvené slovo na stanici, kterou posloucháte, a co udělá, když přestávka skončí.</value>
+  </data>
+  <data name="ZapperSwitch.Header" xml:space="preserve">
+    <value>Přepínat při reklamě a mluveném slovu</value>
+  </data>
+  <data name="ZapBackHeading.Text" xml:space="preserve">
+    <value>Po přestávce</value>
+  </data>
+  <data name="ZapBackRadio.Content" xml:space="preserve">
+    <value>Vrátit se na stanici s přestávkou, až skončí písnička na stanici, kam se přepnulo</value>
+  </data>
+  <data name="ZapStayRadio.Content" xml:space="preserve">
+    <value>Zůstat na stanici, kam se přepnulo</value>
+  </data>
+  <data name="CrossfadeHeading.Text" xml:space="preserve">
+    <value>Prolínání</value>
+  </data>
+  <data name="CrossfadeText.Text" xml:space="preserve">
+    <value>Plynule přejde z jedné stanice do druhé místo ostrého střihu. Ztlumení skončí před začátkem přestávky, takže žádná reklama neprosákne. Stanice, která hraje živě a ne z vyrovnávací paměti časového posunu, je stále useknuta, protože její přestávku už je slyšet.</value>
+  </data>
+  <data name="CrossfadeCheckBox.Content" xml:space="preserve">
+    <value>Prolínání při přepínání</value>
+  </data>
+  <data name="ZapTargetsHeading.Text" xml:space="preserve">
+    <value>Přepínat na</value>
+  </data>
+  <data name="ZapTargetsText.Text" xml:space="preserve">
+    <value>Oblíbené stanice, na které lze během přestávky přepnout. Vynechte stanici, kde se na hudbu čekat nevyplatí, například zpravodajskou; z ní se stále přepíná pryč a vrací se na ni.</value>
+  </data>
+  <data name="NoZapTargetsText.Text" xml:space="preserve">
+    <value>Zatím žádné oblíbené. Přidejte stanice do oblíbených, abyste mohli zvolit, kam může zapper přepínat.</value>
+  </data>
+  <data name="ZapToSongStartHeading.Text" xml:space="preserve">
+    <value>Přepínat na začátek písničky</value>
+  </data>
+  <data name="ZapToSongStartText.Text" xml:space="preserve">
+    <value>Přepnutí dopadne na stanici, která hraje písničku, obvykle do její poloviny. Aby místo toho začala písnička od začátku, uchovávají se v paměti poslední minuty každé oblíbené stanice (vyrovnávací paměť časového posunu). Také to umožní useknout přestávku přesně tam, kde začíná, protože je známa dřív, než ji uslyšíte. Pak posloucháte trochu za vysíláním, nejvýše o délku písničky, na kterou se přepnulo, a tlačítko Živě to okamžitě dožene. Po vypnutí se vyrovnávací paměti neuchovávají a jejich paměť se uvolní: každá stanice hraje živě a přepnutí dopadne tam, kde písnička právě je.</value>
+  </data>
+  <data name="ZapToSongStartCheckBox.Content" xml:space="preserve">
+    <value>Při přepnutí začít písničku od začátku</value>
+  </data>
+  <data name="TimeShiftMemory" xml:space="preserve">
+    <value>Využívá asi {0} MB paměti pro vaše oblíbené stanice ({1}). Méně minut nebo vypnutí této funkce šetří paměť.</value>
+  </data>
+  <data name="TimeShiftMemoryOff" xml:space="preserve">
+    <value>Vypnuto, takže nevyužívá žádnou paměť. Po zapnutí by zabralo asi {0} MB pro vaše oblíbené stanice ({1}).</value>
+  </data>
+  <data name="TimeShiftMemoryPerFavorite" xml:space="preserve">
+    <value>Zabere asi {0} MB paměti na oblíbenou stanici při 128 kbit/s.</value>
+  </data>
+  <data name="AutoStartTurnedOffNotice.Message" xml:space="preserve">
+    <value>Windows vypnul spouštění ZapperRadio po přihlášení. Znovu ho zapněte v Nastavení &gt; Aplikace &gt; Po spuštění.</value>
+  </data>
+  <data name="StartupSettingsLink.Content" xml:space="preserve">
+    <value>Otevřít nastavení spouštění</value>
+  </data>
+</root>

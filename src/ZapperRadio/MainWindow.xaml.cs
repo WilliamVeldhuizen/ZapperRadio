@@ -21,6 +21,14 @@ public sealed partial class MainWindow : Window
         ViewModel = new MainViewModel(Microsoft.UI.Dispatching.DispatcherQueue.GetForCurrentThread());
         InitializeComponent();
 
+        // Arabic and Hebrew mirror the window. The title bar stays as it is, because the minimize, maximize and
+        // close buttons stay on the right and the view button has to keep clear of them.
+        if (Localizer.IsRightToLeft)
+        {
+            Root.FlowDirection = FlowDirection.RightToLeft;
+            AppTitleBar.FlowDirection = FlowDirection.LeftToRight;
+        }
+
         ExtendsContentIntoTitleBar = true;
         SetTitleBar(TitleBarDragArea);
         AppWindow.SetIcon(Path.Combine(AppContext.BaseDirectory, "Assets", "ZapperRadio.ico"));

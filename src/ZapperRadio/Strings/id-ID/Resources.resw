@@ -1,0 +1,540 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!--
+    Microsoft ResX Schema
+
+    Version 2.0
+
+    The primary goals of this format is to allow a simple XML format
+    that is mostly human readable. The generation and parsing of the
+    various data types are done through the TypeConverter classes
+    associated with the data types.
+  -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="FavoriteLogoToolTip.Content" xml:space="preserve">
+    <value>Seret ke atas atau ke bawah untuk mengubah posisi</value>
+  </data>
+  <data name="ZappCheckBox.Content" xml:space="preserve">
+    <value>Pindah saat iklan / obrolan</value>
+  </data>
+  <data name="ZappCheckBox.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Untuk mendengarkan musik saja: saat stasiun yang Anda dengarkan memulai jeda iklan atau ada yang berbicara, pindah ke favorit teratas yang sedang memutar lagu, lalu kembali saat stasiun itu memutar musik lagi. Namun tidak pernah di tengah lagu: kembalinya menunggu sampai stasiun tujuan mencapai jedanya sendiri. Stasiun yang tidak menandai iklannya dianggap sedang jeda iklan jika sebuah lagu berjalan jauh melewati durasinya dan yang terdengar adalah suara bicara, bukan musik.</value>
+  </data>
+  <data name="NoFavoritesText.Text" xml:space="preserve">
+    <value>Belum ada favorit. Cari stasiun di sebelah kanan lalu klik tanda + miliknya.</value>
+  </data>
+  <data name="RemoveFavoriteButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Hapus dari favorit</value>
+  </data>
+  <data name="StationsTab.Text" xml:space="preserve">
+    <value>Stasiun</value>
+  </data>
+  <data name="PlayHistoryTab.Text" xml:space="preserve">
+    <value>Riwayat lagu</value>
+  </data>
+  <data name="SearchBox.PlaceholderText" xml:space="preserve">
+    <value>Cari berdasarkan nama, genre, atau negara (Ctrl+F)</value>
+  </data>
+  <data name="CountryBox.PlaceholderText" xml:space="preserve">
+    <value>Negara</value>
+  </data>
+  <data name="CountryBox.AutomationProperties.Name" xml:space="preserve">
+    <value>Negara</value>
+  </data>
+  <data name="ResultsOne" xml:space="preserve">
+    <value>1 stasiun</value>
+  </data>
+  <data name="ResultsMany" xml:space="preserve">
+    <value>{0:N0} stasiun</value>
+  </data>
+  <data name="NoResultsText" xml:space="preserve">
+    <value>Tidak ada stasiun yang cocok dengan pencarian Anda.</value>
+  </data>
+  <data name="NoResultsInCountry" xml:space="preserve">
+    <value>Tidak ada stasiun di {0} yang cocok dengan pencarian Anda.</value>
+  </data>
+  <data name="SearchAllCountriesButton.Content" xml:space="preserve">
+    <value>Cari di semua negara</value>
+  </data>
+  <data name="OfflineSince" xml:space="preserve">
+    <value>Offline sejak {0:d}</value>
+  </data>
+  <data name="OfflineAtLastCheck" xml:space="preserve">
+    <value>Offline pada pemeriksaan terakhir</value>
+  </data>
+  <data name="ReloadStationsButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Muat ulang daftar stasiun</value>
+  </data>
+  <data name="PlayStation" xml:space="preserve">
+    <value>Putar</value>
+  </data>
+  <data name="StopStation" xml:space="preserve">
+    <value>Hentikan</value>
+  </data>
+  <data name="FavoriteAdd" xml:space="preserve">
+    <value>Tambahkan ke favorit</value>
+  </data>
+  <data name="FavoriteRemove" xml:space="preserve">
+    <value>Hapus dari favorit</value>
+  </data>
+  <data name="FavoriteTracksHint.Text" xml:space="preserve">
+    <value>Lagu yang Anda simpan dengan ikon hati di samping lagu yang sedang diputar. Cari di Spotify atau YouTube, atau salin judulnya.</value>
+  </data>
+  <data name="NoFavoriteTracksText.Text" xml:space="preserve">
+    <value>Belum ada lagu favorit. Saat stasiun memutar lagu yang Anda sukai, klik ikon hati di samping lagu di bagian bawah.</value>
+  </data>
+  <data name="FindSongButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Cari lagu ini</value>
+  </data>
+  <data name="FindSongButton.AutomationProperties.Name" xml:space="preserve">
+    <value>Cari lagu ini</value>
+  </data>
+  <data name="FindOnSpotifyItem.Text" xml:space="preserve">
+    <value>Cari di Spotify</value>
+  </data>
+  <data name="FindOnYouTubeItem.Text" xml:space="preserve">
+    <value>Cari di YouTube</value>
+  </data>
+  <data name="CopyTitleButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Salin judul</value>
+  </data>
+  <data name="RemoveFavoriteTrackButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Hapus dari lagu favorit</value>
+  </data>
+  <data name="HistoryHint.Text" xml:space="preserve">
+    <value>Semua yang diputar favorit Anda dalam 12 jam terakhir, terbaru di atas, baik Anda mendengarkannya atau tidak. Klik ikon hati untuk menyimpan lagu.</value>
+  </data>
+  <data name="ClearHistoryButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Hapus riwayat lagu</value>
+  </data>
+  <data name="ClearHistoryButton.AutomationProperties.Name" xml:space="preserve">
+    <value>Hapus riwayat lagu</value>
+  </data>
+  <data name="HistorySearchBox.PlaceholderText" xml:space="preserve">
+    <value>Cari berdasarkan lagu, artis, atau stasiun (Ctrl+F)</value>
+  </data>
+  <data name="HistorySearchBox.AutomationProperties.Name" xml:space="preserve">
+    <value>Cari riwayat lagu</value>
+  </data>
+  <data name="NoHistoryText.Text" xml:space="preserve">
+    <value>Belum ada yang diputar. Begitu favorit Anda mulai streaming, setiap lagu yang mereka putar akan tercantum di sini.</value>
+  </data>
+  <data name="NoHistoryMatchesText.Text" xml:space="preserve">
+    <value>Tidak ada lagu di riwayat yang cocok dengan pencarian Anda.</value>
+  </data>
+  <data name="CompactNoFavorites.Text" xml:space="preserve">
+    <value>Belum ada favorit. Beralih ke jendela penuh untuk mencari stasiun dan menambahkannya dengan +.</value>
+  </data>
+  <data name="PlayStopButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Putar / hentikan (Ctrl+Spasi)</value>
+  </data>
+  <data name="VolumeSlider.AutomationProperties.Name" xml:space="preserve">
+    <value>Volume</value>
+  </data>
+  <data name="SettingsTab.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Pengaturan</value>
+  </data>
+  <data name="SettingsTab.AutomationProperties.Name" xml:space="preserve">
+    <value>Pengaturan</value>
+  </data>
+  <data name="StartupHeading.Text" xml:space="preserve">
+    <value>Mulai otomatis</value>
+  </data>
+  <data name="AutoStartCheckBox.Content" xml:space="preserve">
+    <value>Jalankan ZapperRadio saat Windows dimulai</value>
+  </data>
+  <data name="LanguageHeading.Text" xml:space="preserve">
+    <value>Bahasa</value>
+  </data>
+  <data name="LanguageText.Text" xml:space="preserve">
+    <value>Bahasa aplikasi. Juga menentukan cara penulisan tanggal dan angka.</value>
+  </data>
+  <data name="LanguageBox.AutomationProperties.Name" xml:space="preserve">
+    <value>Bahasa</value>
+  </data>
+  <data name="LanguageRestartText.Text" xml:space="preserve">
+    <value>Mulai ulang ZapperRadio untuk beralih ke bahasa ini.</value>
+  </data>
+  <data name="AboutHeading.Text" xml:space="preserve">
+    <value>Tentang</value>
+  </data>
+  <data name="AboutText.Text" xml:space="preserve">
+    <value>Radio internet yang menjaga stream favorit Anda tetap terbuka, sehingga perpindahan terjadi seketika dan Anda tidak mendengar iklan yang diputar stasiun saat Anda terhubung.</value>
+  </data>
+  <data name="WebsiteLink.Content" xml:space="preserve">
+    <value>Situs web ZapperRadio</value>
+  </data>
+  <data name="GitHubLink.Content" xml:space="preserve">
+    <value>ZapperRadio di GitHub</value>
+  </data>
+  <data name="StationListHeading.Text" xml:space="preserve">
+    <value>Daftar stasiun</value>
+  </data>
+  <data name="CheckStationListButton.Content" xml:space="preserve">
+    <value>Periksa daftar yang lebih baru</value>
+  </data>
+  <data name="ShortcutsHeading.Text" xml:space="preserve">
+    <value>Pintasan</value>
+  </data>
+  <data name="ShortcutsText.Text" xml:space="preserve">
+    <value>Di jendela: Ctrl+Spasi untuk menghentikan atau memutar, Ctrl+M untuk membisukan, Ctrl+F untuk mencari. Tombol putar, jeda, dan berikutnya di panel volume Windows dan layar kunci, tombol media, serta headset Anda juga berfungsi; berikutnya dan sebelumnya berpindah antar favorit.</value>
+  </data>
+  <data name="GlobalHotkeysCheckBox.Content" xml:space="preserve">
+    <value>Pintasan dari aplikasi apa pun</value>
+  </data>
+  <data name="GlobalHotkeysCheckBox.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Juga saat Anda bekerja di aplikasi lain. Menggunakan Ctrl+Alt, bukan Ctrl, karena mengambil Ctrl+Spasi untuk aplikasi ini akan merebutnya dari semua aplikasi lain. Kombinasi yang sudah dipakai aplikasi lain dibiarkan untuk aplikasi itu dan disebutkan di bawah.</value>
+  </data>
+  <data name="GlobalHotkeysText.Text" xml:space="preserve">
+    <value>Ctrl+Alt+P untuk menghentikan atau memutar, Ctrl+Alt+M untuk membisukan, Ctrl+Alt+→ dan Ctrl+Alt+← untuk favorit berikutnya dan sebelumnya, dari aplikasi apa pun yang sedang Anda gunakan.</value>
+  </data>
+  <data name="LoudnessHeading.Text" xml:space="preserve">
+    <value>Kenyaringan</value>
+  </data>
+  <data name="LoudnessText.Text" xml:space="preserve">
+    <value>Satu stasiun di-mastering beberapa desibel lebih keras daripada yang lain, dan itulah bagian paling mengganggu saat berpindah. Audio setiap favorit memang sudah didekode, jadi seberapa keras musiknya sebenarnya diukur dari situ (EBU R128), dan stasiun yang keras diturunkan ke tingkat yang sama. Hanya musik yang dihitung, jadi iklan dan penyiar tidak memengaruhinya, dan dibutuhkan sekitar satu menit musik per stasiun. Stasiun yang tidak dapat dianalisis (HLS) tetap pada volume aslinya.</value>
+  </data>
+  <data name="NormalizeLoudnessCheckBox.Content" xml:space="preserve">
+    <value>Samakan kenyaringan stasiun</value>
+  </data>
+  <data name="NormalizeLoudnessCheckBox.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Membawa setiap stasiun ke sekitar -14 LUFS, tingkat yang digunakan layanan streaming untuk normalisasi, dengan penurunan maksimal 12 dB atau kenaikan 6 dB. Stasiun yang perlu dinaikkan tidak dapat melewati volume penuh, jadi dengan penggeser di posisi teratas, stasiun itu mungkin tetap sedikit lebih pelan.</value>
+  </data>
+  <data name="NoFavoritesLoudnessText.Text" xml:space="preserve">
+    <value>Belum ada favorit.</value>
+  </data>
+  <data name="RemeasureLoudnessButton.Content" xml:space="preserve">
+    <value>Ukur kenyaringan lagi</value>
+  </data>
+  <data name="RemeasureLoudnessButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Melupakan hasil pengukuran setiap favorit sejauh ini dan mengukurnya lagi. Volume mempertahankan koreksi saat ini sampai sekitar satu menit musik terdengar, lalu beralih ke hasil baru.</value>
+  </data>
+  <data name="CacheHeading.Text" xml:space="preserve">
+    <value>Logo tersimpan</value>
+  </data>
+  <data name="CacheText.Text" xml:space="preserve">
+    <value>Logo stasiun dan daftar yang paling sering diputar dicari sekali lalu disimpan. Menghapusnya membuat setiap logo dicari lagi, yang membantu jika stasiun menampilkan logo yang salah. Daftar stasiun itu sendiri tetap disimpan.</value>
+  </data>
+  <data name="ClearCacheButton.Content" xml:space="preserve">
+    <value>Hapus cache</value>
+  </data>
+  <data name="AllCountries" xml:space="preserve">
+    <value>Semua negara</value>
+  </data>
+  <data name="LanguageWindows" xml:space="preserve">
+    <value>Bahasa Windows</value>
+  </data>
+  <data name="FavoritesHeader" xml:space="preserve">
+    <value>Favorit ({0}/{1})</value>
+  </data>
+  <data name="FavoriteTracksHeader" xml:space="preserve">
+    <value>Lagu favorit ({0})</value>
+  </data>
+  <data name="CacheEmpty" xml:space="preserve">
+    <value>Belum ada yang tersimpan</value>
+  </data>
+  <data name="CacheSummary" xml:space="preserve">
+    <value>{0:N0} pencarian · {1}</value>
+  </data>
+  <data name="CacheClearFailed" xml:space="preserve">
+    <value>Tidak dapat menghapus cache: {0}</value>
+  </data>
+  <data name="CatalogLoading" xml:space="preserve">
+    <value>Memuat daftar stasiun…</value>
+  </data>
+  <data name="CatalogStatus" xml:space="preserve">
+    <value>{0:N0} stasiun · daftar dari {1}</value>
+  </data>
+  <data name="CatalogStatusOffline" xml:space="preserve">
+    <value>{0:N0} stasiun · daftar dari {1} (salinan offline)</value>
+  </data>
+  <data name="CatalogUnavailable" xml:space="preserve">
+    <value>Daftar stasiun tidak tersedia</value>
+  </data>
+  <data name="CatalogDownloadFailed" xml:space="preserve">
+    <value>Tidak dapat mengunduh daftar stasiun dari {0} dan tidak ada salinan lokal. ({1})</value>
+  </data>
+  <data name="StationListDownloaded" xml:space="preserve">
+    <value>Diunduh pada {0:d} pukul {0:t}</value>
+  </data>
+  <data name="FavoritesLimitReached" xml:space="preserve">
+    <value>Anda dapat memiliki paling banyak {0} favorit, karena semuanya terus streaming di latar belakang. Hapus salah satu terlebih dahulu.</value>
+  </data>
+  <data name="SettingsSaveFailed" xml:space="preserve">
+    <value>Tidak dapat menyimpan pengaturan: {0}</value>
+  </data>
+  <data name="ChooseStation" xml:space="preserve">
+    <value>Pilih stasiun</value>
+  </data>
+  <data name="ClickFavoriteToListen" xml:space="preserve">
+    <value>Klik favorit untuk langsung mendengarkan siaran langsung</value>
+  </data>
+  <data name="Stopped" xml:space="preserve">
+    <value>Dihentikan</value>
+  </data>
+  <data name="NowPlayingMuted" xml:space="preserve">
+    <value>dibisukan</value>
+  </data>
+  <data name="NowPlayingNotFavorite" xml:space="preserve">
+    <value>bukan favorit, stream berhenti saat berpindah</value>
+  </data>
+  <data name="JumpListFavorites" xml:space="preserve">
+    <value>Favorit</value>
+  </data>
+  <data name="JumpListListenTo" xml:space="preserve">
+    <value>Dengarkan {0}</value>
+  </data>
+  <data name="JumpListListenToSong" xml:space="preserve">
+    <value>Dengarkan {0}
+{1}</value>
+  </data>
+  <data name="JumpListMute" xml:space="preserve">
+    <value>Bisukan</value>
+  </data>
+  <data name="JumpListUnmute" xml:space="preserve">
+    <value>Aktifkan suara</value>
+  </data>
+  <data name="JumpListMuteToolTip" xml:space="preserve">
+    <value>Bisukan stasiun tanpa menghentikannya</value>
+  </data>
+  <data name="JumpListUnmuteToolTip" xml:space="preserve">
+    <value>Dengarkan stasiun lagi</value>
+  </data>
+  <data name="SongAdvertisement" xml:space="preserve">
+    <value>Iklan</value>
+  </data>
+  <data name="SongProbablyAdBreak" xml:space="preserve">
+    <value>Mungkin jeda iklan</value>
+  </data>
+  <data name="LoudnessNotMeasured" xml:space="preserve">
+    <value>Belum diukur</value>
+  </data>
+  <data name="LoudnessTurnedDown" xml:space="preserve">
+    <value>diturunkan {0} dB</value>
+  </data>
+  <data name="LoudnessTurnedUp" xml:space="preserve">
+    <value>dinaikkan {0} dB</value>
+  </data>
+  <data name="LoudnessMeasuringAgain" xml:space="preserve">
+    <value>mengukur ulang…</value>
+  </data>
+  <data name="StatusConnecting" xml:space="preserve">
+    <value>Menghubungkan…</value>
+  </data>
+  <data name="StatusNowPlaying" xml:space="preserve">
+    <value>Sedang diputar</value>
+  </data>
+  <data name="StatusLiveMuted" xml:space="preserve">
+    <value>Langsung · dibisukan</value>
+  </data>
+  <data name="StatusBuffering" xml:space="preserve">
+    <value>Buffering…</value>
+  </data>
+  <data name="StatusReconnecting" xml:space="preserve">
+    <value>Menghubungkan ulang…</value>
+  </data>
+  <data name="StatusFailed" xml:space="preserve">
+    <value>Tidak terjangkau, masih mencoba lagi</value>
+  </data>
+  <data name="SoundMusic" xml:space="preserve">
+    <value>musik</value>
+  </data>
+  <data name="SoundSpeech" xml:space="preserve">
+    <value>bicara</value>
+  </data>
+  <data name="ViewSwitchToFull" xml:space="preserve">
+    <value>Beralih ke jendela penuh</value>
+  </data>
+  <data name="ViewSwitchToCompact" xml:space="preserve">
+    <value>Beralih ke jendela ringkas</value>
+  </data>
+  <data name="SaveTrackRemove" xml:space="preserve">
+    <value>Hapus dari lagu favorit</value>
+  </data>
+  <data name="SaveTrackAdd" xml:space="preserve">
+    <value>Tambahkan ke lagu favorit</value>
+  </data>
+  <data name="MuteToolTipUnmute" xml:space="preserve">
+    <value>Aktifkan suara (Ctrl+M)</value>
+  </data>
+  <data name="MuteToolTipMute" xml:space="preserve">
+    <value>Bisukan (Ctrl+M)</value>
+  </data>
+  <data name="HotkeyInUseOne" xml:space="preserve">
+    <value>{0} sudah dipakai aplikasi lain dan tidak akan berfungsi dari luar jendela.</value>
+  </data>
+  <data name="HotkeyInUseMany" xml:space="preserve">
+    <value>{0} sudah dipakai aplikasi lain dan tidak akan berfungsi dari luar jendela.</value>
+  </data>
+  <data name="StreamStopped" xml:space="preserve">
+    <value>Stream berhenti merespons.</value>
+  </data>
+  <data name="StreamEnded" xml:space="preserve">
+    <value>Stream berakhir.</value>
+  </data>
+  <data name="UpdateNotice.Message" xml:space="preserve">
+    <value>Mulai ulang untuk menginstalnya sekarang. Jika tidak, pembaruan diinstal saat Anda menutup ZapperRadio.</value>
+  </data>
+  <data name="RestartToUpdateButton.Content" xml:space="preserve">
+    <value>Mulai ulang untuk memperbarui</value>
+  </data>
+  <data name="UpdatesHeading.Text" xml:space="preserve">
+    <value>Pembaruan</value>
+  </data>
+  <data name="UpdatesText.Text" xml:space="preserve">
+    <value>ZapperRadio memeriksa versi baru setiap beberapa jam dan mengunduhnya di latar belakang. Versi itu diinstal saat Anda menutup aplikasi. Favorit dan pengaturan Anda tetap tersimpan.</value>
+  </data>
+  <data name="CheckForUpdatesButton.Content" xml:space="preserve">
+    <value>Periksa pembaruan</value>
+  </data>
+  <data name="UpdateChecking" xml:space="preserve">
+    <value>Memeriksa pembaruan…</value>
+  </data>
+  <data name="UpdateDownloading" xml:space="preserve">
+    <value>Mengunduh versi baru… {0}%</value>
+  </data>
+  <data name="UpdateReady" xml:space="preserve">
+    <value>Versi {0} sudah siap dan akan diinstal saat ZapperRadio ditutup.</value>
+  </data>
+  <data name="UpdateUpToDate" xml:space="preserve">
+    <value>ZapperRadio sudah versi terbaru.</value>
+  </data>
+  <data name="UpdateFailed" xml:space="preserve">
+    <value>Tidak dapat memeriksa pembaruan: {0}</value>
+  </data>
+  <data name="UpdateNoticeTitle" xml:space="preserve">
+    <value>ZapperRadio {0} sudah siap</value>
+  </data>
+  <data name="TimeShiftBox.AutomationProperties.Name" xml:space="preserve">
+    <value>Pergeseran waktu</value>
+  </data>
+  <data name="TimeShiftMinutes" xml:space="preserve">
+    <value>{0} menit</value>
+  </data>
+  <data name="NowPlayingBehindLive" xml:space="preserve">
+    <value>{0} di belakang siaran langsung</value>
+  </data>
+  <data name="GoLiveButton.Content" xml:space="preserve">
+    <value>Ke siaran langsung</value>
+  </data>
+  <data name="GoLiveButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Putar stasiun ini secara langsung lagi, di posisi siarannya saat ini</value>
+  </data>
+  <data name="ZapperTab.Text" xml:space="preserve">
+    <value>Zapper</value>
+  </data>
+  <data name="ZapperHint.Text" xml:space="preserve">
+    <value>Cara zapper meninggalkan jeda iklan dan obrolan di stasiun yang Anda dengarkan, dan apa yang dilakukannya setelah jeda selesai.</value>
+  </data>
+  <data name="ZapperSwitch.Header" xml:space="preserve">
+    <value>Pindah saat iklan dan obrolan</value>
+  </data>
+  <data name="ZapBackHeading.Text" xml:space="preserve">
+    <value>Setelah jeda</value>
+  </data>
+  <data name="ZapBackRadio.Content" xml:space="preserve">
+    <value>Kembali ke stasiun yang sedang jeda, setelah lagu di stasiun tujuan selesai</value>
+  </data>
+  <data name="ZapStayRadio.Content" xml:space="preserve">
+    <value>Tetap di stasiun tujuan</value>
+  </data>
+  <data name="CrossfadeHeading.Text" xml:space="preserve">
+    <value>Crossfade</value>
+  </data>
+  <data name="CrossfadeText.Text" xml:space="preserve">
+    <value>Memudarkan satu stasiun ke stasiun lain alih-alih memotong langsung. Pemudaran keluar selesai sebelum jeda dimulai, jadi tidak ada iklan yang bocor. Stasiun yang diputar langsung, bukan dari buffer pergeseran waktu, tetap dipotong, karena jedanya sudah terdengar.</value>
+  </data>
+  <data name="CrossfadeCheckBox.Content" xml:space="preserve">
+    <value>Crossfade saat berpindah</value>
+  </data>
+  <data name="ZapTargetsHeading.Text" xml:space="preserve">
+    <value>Pindah ke</value>
+  </data>
+  <data name="ZapTargetsText.Text" xml:space="preserve">
+    <value>Favorit yang boleh menjadi tujuan perpindahan saat jeda. Kecualikan stasiun yang tidak cocok untuk menunggu musik, misalnya stasiun berita; stasiun itu tetap bisa ditinggalkan dan didatangi kembali.</value>
+  </data>
+  <data name="NoZapTargetsText.Text" xml:space="preserve">
+    <value>Belum ada favorit. Tambahkan stasiun ke favorit untuk memilih ke mana zapper boleh pindah.</value>
+  </data>
+  <data name="ZapToSongStartHeading.Text" xml:space="preserve">
+    <value>Pindah ke awal lagu</value>
+  </data>
+  <data name="ZapToSongStartText.Text" xml:space="preserve">
+    <value>Perpindahan mendarat di stasiun yang sedang memutar lagu, biasanya di tengah lagu. Agar lagu itu dimulai dari awal, beberapa menit terakhir setiap favorit disimpan di memori (buffer pergeseran waktu). Ini juga memotong jeda tepat di awalnya, karena jeda sudah diketahui sebelum terdengar. Anda lalu mendengarkan sedikit di belakang siaran, paling lama sepanjang lagu tempat perpindahan mendarat, dan Ke siaran langsung langsung menyusul. Jika dimatikan, tidak ada buffer yang disimpan dan memorinya dibebaskan: setiap stasiun diputar langsung, dan perpindahan mendarat di mana pun lagunya berada.</value>
+  </data>
+  <data name="ZapToSongStartCheckBox.Content" xml:space="preserve">
+    <value>Mulai lagu dari awal saat berpindah</value>
+  </data>
+  <data name="TimeShiftMemory" xml:space="preserve">
+    <value>Menggunakan sekitar {0} MB memori untuk {1} favorit Anda. Menyimpan lebih sedikit menit, atau mematikan fitur ini, menghemat memori.</value>
+  </data>
+  <data name="TimeShiftMemoryOff" xml:space="preserve">
+    <value>Mati, jadi tidak menggunakan memori. Jika dinyalakan, butuh sekitar {0} MB untuk {1} favorit Anda.</value>
+  </data>
+  <data name="TimeShiftMemoryPerFavorite" xml:space="preserve">
+    <value>Menggunakan sekitar {0} MB memori per favorit, untuk stasiun 128 kbit/s.</value>
+  </data>
+  <data name="AutoStartTurnedOffNotice.Message" xml:space="preserve">
+    <value>Windows telah mematikan peluncuran ZapperRadio saat Anda masuk. Nyalakan lagi di Pengaturan &gt; Aplikasi &gt; Startup.</value>
+  </data>
+  <data name="StartupSettingsLink.Content" xml:space="preserve">
+    <value>Buka pengaturan Startup</value>
+  </data>
+</root>

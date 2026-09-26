@@ -61,7 +61,7 @@ Settings and the station cache are stored in `%LOCALAPPDATA%\ZapperRadio`. The a
 
 Every text of the app is in `src/ZapperRadio/Strings/<language>/Resources.resw`, one folder per language, named by its tag (`nl-NL`, `pt-BR`, `zh-CN`). The texts in the XAML are found through `x:Uid` (`SearchBox.PlaceholderText` belongs to the element with `x:Uid="SearchBox"`), and the ones built in code through `Localizer.Get` and `Localizer.Format`, where `{0}`, `{1}` and so on mark the numbers and names that are filled in and `{0:d}` and `{0:t}` a date and a time. `en-US` is the source. A text that is in no `Resources.resw` at all shows up as its own name, which makes a typo in a key easy to spot.
 
-To add a language, copy the `en-US` folder, translate the values, and add the language to `Localizer.Languages`. Change a text only in the `Resources.resw` files, never in the XAML, and keep the same `{n}` placeholders in every language. The installer is still English.
+To add a language, copy the `en-US` folder, translate the values, and add the language to `Localizer.Languages` and to the `<Resources>` of `Package.appxmanifest`, which tells the Microsoft Store which languages the app has. A language written from right to left (Arabic, Hebrew) mirrors the window by itself, so a text that says where something is ("on the right") should say it the mirrored way. Change a text only in the `Resources.resw` files, never in the XAML, and keep the same `{n}` placeholders in every language. The installer is still English.
 
 ## Building the installer
 

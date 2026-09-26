@@ -1,0 +1,540 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!--
+    Microsoft ResX Schema
+
+    Version 2.0
+
+    The primary goals of this format is to allow a simple XML format
+    that is mostly human readable. The generation and parsing of the
+    various data types are done through the TypeConverter classes
+    associated with the data types.
+  -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="FavoriteLogoToolTip.Content" xml:space="preserve">
+    <value>Trageți în sus sau în jos pentru a schimba poziția</value>
+  </data>
+  <data name="ZappCheckBox.Content" xml:space="preserve">
+    <value>Schimbă la reclame / vorbă</value>
+  </data>
+  <data name="ZappCheckBox.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Pentru a asculta doar muzică: când postul pe care îl ascultați începe o pauză publicitară sau vorbește cineva, trece la cel mai de sus favorit care difuzează o melodie și revine când postul cântă din nou muzică. Niciodată însă în mijlocul unei melodii: revenirea așteaptă până când postul pe care s-a ajuns intră în propria pauză. Pentru posturile care nu își marchează reclamele, se presupune o pauză publicitară când o melodie depășește mult durata ei și se aude vorbă în loc de muzică.</value>
+  </data>
+  <data name="NoFavoritesText.Text" xml:space="preserve">
+    <value>Încă nu aveți favorite. Găsiți un post în dreapta și faceți clic pe + al său.</value>
+  </data>
+  <data name="RemoveFavoriteButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Elimină din favorite</value>
+  </data>
+  <data name="StationsTab.Text" xml:space="preserve">
+    <value>Posturi</value>
+  </data>
+  <data name="PlayHistoryTab.Text" xml:space="preserve">
+    <value>Istoric melodii</value>
+  </data>
+  <data name="SearchBox.PlaceholderText" xml:space="preserve">
+    <value>Căutați după nume, gen sau țară (Ctrl+F)</value>
+  </data>
+  <data name="CountryBox.PlaceholderText" xml:space="preserve">
+    <value>Țară</value>
+  </data>
+  <data name="CountryBox.AutomationProperties.Name" xml:space="preserve">
+    <value>Țară</value>
+  </data>
+  <data name="ResultsOne" xml:space="preserve">
+    <value>1 post</value>
+  </data>
+  <data name="ResultsMany" xml:space="preserve">
+    <value>{0:N0} posturi</value>
+  </data>
+  <data name="NoResultsText" xml:space="preserve">
+    <value>Niciun post nu corespunde căutării.</value>
+  </data>
+  <data name="NoResultsInCountry" xml:space="preserve">
+    <value>Niciun post din {0} nu corespunde căutării.</value>
+  </data>
+  <data name="SearchAllCountriesButton.Content" xml:space="preserve">
+    <value>Caută în toate țările</value>
+  </data>
+  <data name="OfflineSince" xml:space="preserve">
+    <value>Offline din {0:d}</value>
+  </data>
+  <data name="OfflineAtLastCheck" xml:space="preserve">
+    <value>Offline la ultima verificare</value>
+  </data>
+  <data name="ReloadStationsButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Reîncarcă lista de posturi</value>
+  </data>
+  <data name="PlayStation" xml:space="preserve">
+    <value>Redă</value>
+  </data>
+  <data name="StopStation" xml:space="preserve">
+    <value>Oprește</value>
+  </data>
+  <data name="FavoriteAdd" xml:space="preserve">
+    <value>Adaugă la favorite</value>
+  </data>
+  <data name="FavoriteRemove" xml:space="preserve">
+    <value>Elimină din favorite</value>
+  </data>
+  <data name="FavoriteTracksHint.Text" xml:space="preserve">
+    <value>Melodiile salvate cu inima de lângă melodia redată. Căutați-le pe Spotify sau YouTube ori copiați titlul.</value>
+  </data>
+  <data name="NoFavoriteTracksText.Text" xml:space="preserve">
+    <value>Încă nu aveți melodii favorite. Când un post difuzează o melodie care vă place, faceți clic pe inima de lângă melodie, jos.</value>
+  </data>
+  <data name="FindSongButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Caută această melodie</value>
+  </data>
+  <data name="FindSongButton.AutomationProperties.Name" xml:space="preserve">
+    <value>Caută această melodie</value>
+  </data>
+  <data name="FindOnSpotifyItem.Text" xml:space="preserve">
+    <value>Caută pe Spotify</value>
+  </data>
+  <data name="FindOnYouTubeItem.Text" xml:space="preserve">
+    <value>Caută pe YouTube</value>
+  </data>
+  <data name="CopyTitleButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Copiază titlul</value>
+  </data>
+  <data name="RemoveFavoriteTrackButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Elimină din melodiile favorite</value>
+  </data>
+  <data name="HistoryHint.Text" xml:space="preserve">
+    <value>Tot ce au difuzat favoritele în ultimele 12 ore, cele mai noi primele, fie că le-ați ascultat sau nu. Faceți clic pe o inimă pentru a păstra o melodie.</value>
+  </data>
+  <data name="ClearHistoryButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Șterge istoricul melodiilor</value>
+  </data>
+  <data name="ClearHistoryButton.AutomationProperties.Name" xml:space="preserve">
+    <value>Șterge istoricul melodiilor</value>
+  </data>
+  <data name="HistorySearchBox.PlaceholderText" xml:space="preserve">
+    <value>Căutați după melodie, artist sau post (Ctrl+F)</value>
+  </data>
+  <data name="HistorySearchBox.AutomationProperties.Name" xml:space="preserve">
+    <value>Caută în istoricul melodiilor</value>
+  </data>
+  <data name="NoHistoryText.Text" xml:space="preserve">
+    <value>Nu s-a difuzat nimic încă. De îndată ce favoritele emit, fiecare melodie difuzată apare aici.</value>
+  </data>
+  <data name="NoHistoryMatchesText.Text" xml:space="preserve">
+    <value>Nicio melodie din istoric nu corespunde căutării.</value>
+  </data>
+  <data name="CompactNoFavorites.Text" xml:space="preserve">
+    <value>Încă nu aveți favorite. Treceți la fereastra completă pentru a căuta posturi și a le adăuga cu +.</value>
+  </data>
+  <data name="PlayStopButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Redă / oprește (Ctrl+Spațiu)</value>
+  </data>
+  <data name="VolumeSlider.AutomationProperties.Name" xml:space="preserve">
+    <value>Volum</value>
+  </data>
+  <data name="SettingsTab.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Setări</value>
+  </data>
+  <data name="SettingsTab.AutomationProperties.Name" xml:space="preserve">
+    <value>Setări</value>
+  </data>
+  <data name="StartupHeading.Text" xml:space="preserve">
+    <value>Pornire</value>
+  </data>
+  <data name="AutoStartCheckBox.Content" xml:space="preserve">
+    <value>Pornește ZapperRadio odată cu Windows</value>
+  </data>
+  <data name="LanguageHeading.Text" xml:space="preserve">
+    <value>Limbă</value>
+  </data>
+  <data name="LanguageText.Text" xml:space="preserve">
+    <value>Limba aplicației. Stabilește și modul de scriere a datelor și numerelor.</value>
+  </data>
+  <data name="LanguageBox.AutomationProperties.Name" xml:space="preserve">
+    <value>Limbă</value>
+  </data>
+  <data name="LanguageRestartText.Text" xml:space="preserve">
+    <value>Reporniți ZapperRadio pentru a trece la această limbă.</value>
+  </data>
+  <data name="AboutHeading.Text" xml:space="preserve">
+    <value>Despre</value>
+  </data>
+  <data name="AboutText.Text" xml:space="preserve">
+    <value>Radio pe internet care ține deschise fluxurile favoritelor, astfel încât schimbarea este instantanee și nu auziți reclama pe care un post o difuzează când vă conectați.</value>
+  </data>
+  <data name="WebsiteLink.Content" xml:space="preserve">
+    <value>Site-ul ZapperRadio</value>
+  </data>
+  <data name="GitHubLink.Content" xml:space="preserve">
+    <value>ZapperRadio pe GitHub</value>
+  </data>
+  <data name="StationListHeading.Text" xml:space="preserve">
+    <value>Lista de posturi</value>
+  </data>
+  <data name="CheckStationListButton.Content" xml:space="preserve">
+    <value>Caută o listă mai nouă</value>
+  </data>
+  <data name="ShortcutsHeading.Text" xml:space="preserve">
+    <value>Comenzi rapide</value>
+  </data>
+  <data name="ShortcutsText.Text" xml:space="preserve">
+    <value>În fereastră: Ctrl+Spațiu pentru oprire sau redare, Ctrl+M pentru dezactivarea sunetului, Ctrl+F pentru căutare. Funcționează și butoanele de redare, pauză și următorul din panoul de volum Windows și de pe ecranul de blocare, tastele media și căștile, unde următorul și anteriorul trec prin favorite.</value>
+  </data>
+  <data name="GlobalHotkeysCheckBox.Content" xml:space="preserve">
+    <value>Comenzi rapide din orice aplicație</value>
+  </data>
+  <data name="GlobalHotkeysCheckBox.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Și în timp ce lucrați în altă aplicație. Cu Ctrl+Alt în loc de Ctrl, deoarece rezervarea Ctrl+Spațiu pentru această aplicație l-ar lua de la toate celelalte. O combinație deja folosită de altă aplicație îi rămâne acesteia și este menționată mai jos.</value>
+  </data>
+  <data name="GlobalHotkeysText.Text" xml:space="preserve">
+    <value>Ctrl+Alt+P pentru oprire sau redare, Ctrl+Alt+M pentru dezactivarea sunetului, Ctrl+Alt+→ și Ctrl+Alt+← pentru favoritul următor și anterior, din orice aplicație în care lucrați.</value>
+  </data>
+  <data name="LoudnessHeading.Text" xml:space="preserve">
+    <value>Intensitate sonoră</value>
+  </data>
+  <data name="LoudnessText.Text" xml:space="preserve">
+    <value>Un post este masterizat cu câțiva decibeli mai tare decât altul, iar asta este partea cea mai enervantă a schimbării posturilor. Sunetul fiecărui favorit este oricum decodat, așa că se măsoară din el cât de tare este de fapt muzica (EBU R128), iar posturile zgomotoase sunt reduse la același nivel. Contează doar muzica, deci reclamele și prezentatorii nu influențează rezultatul; durează cam un minut de muzică pe post. Posturile care nu pot fi analizate (HLS) își păstrează volumul.</value>
+  </data>
+  <data name="NormalizeLoudnessCheckBox.Content" xml:space="preserve">
+    <value>Egalizează intensitatea sonoră a posturilor</value>
+  </data>
+  <data name="NormalizeLoudnessCheckBox.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Aduce fiecare post la aproximativ -14 LUFS, nivelul la care normalizează serviciile de streaming, cu cel mult 12 dB în jos sau 6 dB în sus. Un post care trebuie amplificat nu poate depăși volumul maxim, așa că, cu glisorul la maxim, poate rămâne puțin mai încet.</value>
+  </data>
+  <data name="NoFavoritesLoudnessText.Text" xml:space="preserve">
+    <value>Încă nu aveți favorite.</value>
+  </data>
+  <data name="RemeasureLoudnessButton.Content" xml:space="preserve">
+    <value>Măsoară din nou intensitatea</value>
+  </data>
+  <data name="RemeasureLoudnessButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Uită ce s-a auzit până acum de la fiecare favorit și măsoară din nou. Volumul păstrează corecția actuală până se aude aproximativ un minut de muzică, apoi trece la noul rezultat.</value>
+  </data>
+  <data name="CacheHeading.Text" xml:space="preserve">
+    <value>Logo-uri în cache</value>
+  </data>
+  <data name="CacheText.Text" xml:space="preserve">
+    <value>Logo-urile posturilor și listele celor mai ascultate sunt căutate o dată și apoi păstrate. Ștergerea lor face ca fiecare logo să fie căutat din nou, ceea ce ajută când un post afișează un logo greșit. Lista de posturi în sine se păstrează.</value>
+  </data>
+  <data name="ClearCacheButton.Content" xml:space="preserve">
+    <value>Golește cache-ul</value>
+  </data>
+  <data name="AllCountries" xml:space="preserve">
+    <value>Toate țările</value>
+  </data>
+  <data name="LanguageWindows" xml:space="preserve">
+    <value>Limba Windows</value>
+  </data>
+  <data name="FavoritesHeader" xml:space="preserve">
+    <value>Favorite ({0}/{1})</value>
+  </data>
+  <data name="FavoriteTracksHeader" xml:space="preserve">
+    <value>Melodii favorite ({0})</value>
+  </data>
+  <data name="CacheEmpty" xml:space="preserve">
+    <value>Nimic în cache încă</value>
+  </data>
+  <data name="CacheSummary" xml:space="preserve">
+    <value>{0:N0} căutări · {1}</value>
+  </data>
+  <data name="CacheClearFailed" xml:space="preserve">
+    <value>Cache-ul nu a putut fi golit: {0}</value>
+  </data>
+  <data name="CatalogLoading" xml:space="preserve">
+    <value>Se încarcă lista de posturi…</value>
+  </data>
+  <data name="CatalogStatus" xml:space="preserve">
+    <value>{0:N0} posturi · listă din {1}</value>
+  </data>
+  <data name="CatalogStatusOffline" xml:space="preserve">
+    <value>{0:N0} posturi · listă din {1} (copie offline)</value>
+  </data>
+  <data name="CatalogUnavailable" xml:space="preserve">
+    <value>Lista de posturi nu este disponibilă</value>
+  </data>
+  <data name="CatalogDownloadFailed" xml:space="preserve">
+    <value>Lista de posturi nu a putut fi descărcată de la {0} și nu există o copie locală. ({1})</value>
+  </data>
+  <data name="StationListDownloaded" xml:space="preserve">
+    <value>Descărcată pe {0:d} la {0:t}</value>
+  </data>
+  <data name="FavoritesLimitReached" xml:space="preserve">
+    <value>Puteți avea cel mult {0} favorite, deoarece toate continuă să emită în fundal. Eliminați mai întâi unul.</value>
+  </data>
+  <data name="SettingsSaveFailed" xml:space="preserve">
+    <value>Setările nu au putut fi salvate: {0}</value>
+  </data>
+  <data name="ChooseStation" xml:space="preserve">
+    <value>Alegeți un post</value>
+  </data>
+  <data name="ClickFavoriteToListen" xml:space="preserve">
+    <value>Faceți clic pe un favorit pentru a asculta instantaneu în direct</value>
+  </data>
+  <data name="Stopped" xml:space="preserve">
+    <value>Oprit</value>
+  </data>
+  <data name="NowPlayingMuted" xml:space="preserve">
+    <value>sunet dezactivat</value>
+  </data>
+  <data name="NowPlayingNotFavorite" xml:space="preserve">
+    <value>nu este favorit, fluxul se oprește la schimbare</value>
+  </data>
+  <data name="JumpListFavorites" xml:space="preserve">
+    <value>Favorite</value>
+  </data>
+  <data name="JumpListListenTo" xml:space="preserve">
+    <value>Ascultă {0}</value>
+  </data>
+  <data name="JumpListListenToSong" xml:space="preserve">
+    <value>Ascultă {0}
+{1}</value>
+  </data>
+  <data name="JumpListMute" xml:space="preserve">
+    <value>Dezactivează sunetul</value>
+  </data>
+  <data name="JumpListUnmute" xml:space="preserve">
+    <value>Activează sunetul</value>
+  </data>
+  <data name="JumpListMuteToolTip" xml:space="preserve">
+    <value>Oprește sunetul postului fără a-l opri</value>
+  </data>
+  <data name="JumpListUnmuteToolTip" xml:space="preserve">
+    <value>Ascultă din nou postul</value>
+  </data>
+  <data name="SongAdvertisement" xml:space="preserve">
+    <value>Reclamă</value>
+  </data>
+  <data name="SongProbablyAdBreak" xml:space="preserve">
+    <value>Probabil o pauză publicitară</value>
+  </data>
+  <data name="LoudnessNotMeasured" xml:space="preserve">
+    <value>Nemăsurat încă</value>
+  </data>
+  <data name="LoudnessTurnedDown" xml:space="preserve">
+    <value>redus cu {0} dB</value>
+  </data>
+  <data name="LoudnessTurnedUp" xml:space="preserve">
+    <value>mărit cu {0} dB</value>
+  </data>
+  <data name="LoudnessMeasuringAgain" xml:space="preserve">
+    <value>se măsoară din nou…</value>
+  </data>
+  <data name="StatusConnecting" xml:space="preserve">
+    <value>Se conectează…</value>
+  </data>
+  <data name="StatusNowPlaying" xml:space="preserve">
+    <value>Se redă acum</value>
+  </data>
+  <data name="StatusLiveMuted" xml:space="preserve">
+    <value>În direct · sunet dezactivat</value>
+  </data>
+  <data name="StatusBuffering" xml:space="preserve">
+    <value>Se încarcă în buffer…</value>
+  </data>
+  <data name="StatusReconnecting" xml:space="preserve">
+    <value>Se reconectează…</value>
+  </data>
+  <data name="StatusFailed" xml:space="preserve">
+    <value>Inaccesibil, se reîncearcă</value>
+  </data>
+  <data name="SoundMusic" xml:space="preserve">
+    <value>muzică</value>
+  </data>
+  <data name="SoundSpeech" xml:space="preserve">
+    <value>vorbă</value>
+  </data>
+  <data name="ViewSwitchToFull" xml:space="preserve">
+    <value>Treci la fereastra completă</value>
+  </data>
+  <data name="ViewSwitchToCompact" xml:space="preserve">
+    <value>Treci la fereastra compactă</value>
+  </data>
+  <data name="SaveTrackRemove" xml:space="preserve">
+    <value>Elimină din melodiile favorite</value>
+  </data>
+  <data name="SaveTrackAdd" xml:space="preserve">
+    <value>Adaugă la melodiile favorite</value>
+  </data>
+  <data name="MuteToolTipUnmute" xml:space="preserve">
+    <value>Activează sunetul (Ctrl+M)</value>
+  </data>
+  <data name="MuteToolTipMute" xml:space="preserve">
+    <value>Dezactivează sunetul (Ctrl+M)</value>
+  </data>
+  <data name="HotkeyInUseOne" xml:space="preserve">
+    <value>{0} este deja folosit de altă aplicație și nu va funcționa din afara ferestrei.</value>
+  </data>
+  <data name="HotkeyInUseMany" xml:space="preserve">
+    <value>{0} sunt deja folosite de altă aplicație și nu vor funcționa din afara ferestrei.</value>
+  </data>
+  <data name="StreamStopped" xml:space="preserve">
+    <value>Fluxul a încetat să răspundă.</value>
+  </data>
+  <data name="StreamEnded" xml:space="preserve">
+    <value>Fluxul s-a încheiat.</value>
+  </data>
+  <data name="UpdateNotice.Message" xml:space="preserve">
+    <value>Reporniți pentru a o instala acum. Altfel, se instalează când închideți ZapperRadio.</value>
+  </data>
+  <data name="RestartToUpdateButton.Content" xml:space="preserve">
+    <value>Repornește pentru actualizare</value>
+  </data>
+  <data name="UpdatesHeading.Text" xml:space="preserve">
+    <value>Actualizări</value>
+  </data>
+  <data name="UpdatesText.Text" xml:space="preserve">
+    <value>ZapperRadio caută o versiune nouă la câteva ore și o descarcă în fundal. Aceasta se instalează când închideți aplicația. Favoritele și setările se păstrează.</value>
+  </data>
+  <data name="CheckForUpdatesButton.Content" xml:space="preserve">
+    <value>Caută actualizări</value>
+  </data>
+  <data name="UpdateChecking" xml:space="preserve">
+    <value>Se caută actualizări…</value>
+  </data>
+  <data name="UpdateDownloading" xml:space="preserve">
+    <value>Se descarcă noua versiune… {0}%</value>
+  </data>
+  <data name="UpdateReady" xml:space="preserve">
+    <value>Versiunea {0} este pregătită și se instalează când se închide ZapperRadio.</value>
+  </data>
+  <data name="UpdateUpToDate" xml:space="preserve">
+    <value>ZapperRadio este la zi.</value>
+  </data>
+  <data name="UpdateFailed" xml:space="preserve">
+    <value>Nu s-a putut căuta actualizări: {0}</value>
+  </data>
+  <data name="UpdateNoticeTitle" xml:space="preserve">
+    <value>ZapperRadio {0} este pregătit</value>
+  </data>
+  <data name="TimeShiftBox.AutomationProperties.Name" xml:space="preserve">
+    <value>Decalaj în timp</value>
+  </data>
+  <data name="TimeShiftMinutes" xml:space="preserve">
+    <value>{0} minute</value>
+  </data>
+  <data name="NowPlayingBehindLive" xml:space="preserve">
+    <value>Cu {0} în urma transmisiei live</value>
+  </data>
+  <data name="GoLiveButton.Content" xml:space="preserve">
+    <value>În direct</value>
+  </data>
+  <data name="GoLiveButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Redă din nou postul în direct, acolo unde este acum emisia</value>
+  </data>
+  <data name="ZapperTab.Text" xml:space="preserve">
+    <value>Zapper</value>
+  </data>
+  <data name="ZapperHint.Text" xml:space="preserve">
+    <value>Cum părăsește zapperul pauzele publicitare și vorba de pe postul ascultat și ce face după ce pauza s-a terminat.</value>
+  </data>
+  <data name="ZapperSwitch.Header" xml:space="preserve">
+    <value>Schimbă la reclame și vorbă</value>
+  </data>
+  <data name="ZapBackHeading.Text" xml:space="preserve">
+    <value>După o pauză</value>
+  </data>
+  <data name="ZapBackRadio.Content" xml:space="preserve">
+    <value>Revino la postul cu pauza, după ce se termină melodia de pe postul pe care s-a ajuns</value>
+  </data>
+  <data name="ZapStayRadio.Content" xml:space="preserve">
+    <value>Rămâi pe postul pe care s-a ajuns</value>
+  </data>
+  <data name="CrossfadeHeading.Text" xml:space="preserve">
+    <value>Tranziție graduală</value>
+  </data>
+  <data name="CrossfadeText.Text" xml:space="preserve">
+    <value>Trece treptat de la un post la altul în loc să taie brusc. Estomparea se termină înainte de începutul pauzei, așa că nicio reclamă nu se strecoară. Un post redat în direct, nu din bufferul de decalaj, este tot tăiat, pentru că pauza lui se aude deja.</value>
+  </data>
+  <data name="CrossfadeCheckBox.Content" xml:space="preserve">
+    <value>Tranziție graduală la schimbare</value>
+  </data>
+  <data name="ZapTargetsHeading.Text" xml:space="preserve">
+    <value>Schimbă spre</value>
+  </data>
+  <data name="ZapTargetsText.Text" xml:space="preserve">
+    <value>Favoritele spre care se poate schimba în timpul unei pauze. Excludeți un post care nu e potrivit pentru a aștepta muzica, cum ar fi unul de știri; de pe el se schimbă în continuare și se revine la el.</value>
+  </data>
+  <data name="NoZapTargetsText.Text" xml:space="preserve">
+    <value>Încă nu aveți favorite. Adăugați posturi la favorite pentru a alege unde poate merge zapperul.</value>
+  </data>
+  <data name="ZapToSongStartHeading.Text" xml:space="preserve">
+    <value>Schimbă la începutul melodiei</value>
+  </data>
+  <data name="ZapToSongStartText.Text" xml:space="preserve">
+    <value>O schimbare ajunge pe un post care difuzează o melodie, de obicei la jumătatea ei. Pentru a porni melodia de la început, ultimele minute ale fiecărui favorit sunt păstrate în memorie (un buffer de decalaj). Astfel, pauza este tăiată exact unde începe, pentru că e cunoscută înainte de a se auzi. Ascultați atunci puțin în urma emisiei, cel mult cât durata melodiei pe care s-a ajuns, iar În direct recuperează imediat. Dezactivat, nu se păstrează buffere și memoria lor este eliberată: fiecare post se aude în direct, iar schimbarea ajunge oriunde se află melodia.</value>
+  </data>
+  <data name="ZapToSongStartCheckBox.Content" xml:space="preserve">
+    <value>Pornește melodia de la început la schimbare</value>
+  </data>
+  <data name="TimeShiftMemory" xml:space="preserve">
+    <value>Folosește aproximativ {0} MB de memorie pentru cele {1} favorite. Mai puține minute sau dezactivarea economisesc memorie.</value>
+  </data>
+  <data name="TimeShiftMemoryOff" xml:space="preserve">
+    <value>Dezactivat, deci nu folosește memorie. Activat, ar ocupa aproximativ {0} MB pentru cele {1} favorite.</value>
+  </data>
+  <data name="TimeShiftMemoryPerFavorite" xml:space="preserve">
+    <value>Ocupă aproximativ {0} MB de memorie per favorit, pentru un post de 128 kbit/s.</value>
+  </data>
+  <data name="AutoStartTurnedOffNotice.Message" xml:space="preserve">
+    <value>Windows a dezactivat pornirea ZapperRadio la conectare. Reactivați-o din Setări &gt; Aplicații &gt; Pornire.</value>
+  </data>
+  <data name="StartupSettingsLink.Content" xml:space="preserve">
+    <value>Deschide setările de pornire</value>
+  </data>
+</root>

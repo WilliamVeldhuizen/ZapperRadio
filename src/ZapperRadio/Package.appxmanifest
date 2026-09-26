@@ -37,6 +37,26 @@
     <Resource Language="uk-UA" />
     <Resource Language="zh-CN" />
     <Resource Language="ja-JP" />
+    <Resource Language="pl-PL" />
+    <Resource Language="tr-TR" />
+    <Resource Language="ko-KR" />
+    <Resource Language="zh-TW" />
+    <Resource Language="ru-RU" />
+    <Resource Language="cs-CZ" />
+    <Resource Language="sv-SE" />
+    <Resource Language="id-ID" />
+    <Resource Language="hu-HU" />
+    <Resource Language="ro-RO" />
+    <Resource Language="da-DK" />
+    <Resource Language="nb-NO" />
+    <Resource Language="fi-FI" />
+    <Resource Language="el-GR" />
+    <Resource Language="sk-SK" />
+    <Resource Language="vi-VN" />
+    <Resource Language="th-TH" />
+    <Resource Language="hi-IN" />
+    <Resource Language="ar-SA" />
+    <Resource Language="he-IL" />
   </Resources>
 
   <Applications>
