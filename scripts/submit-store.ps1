@@ -49,10 +49,13 @@ $token = (Invoke-RestMethod -Method Post "https://login.microsoftonline.com/$Ten
 $headers = @{ Authorization = "Bearer $token" }
 
 function Invoke-Api([string] $Method, [string] $Path, $Body) {
-    $call = @{ Method = $Method; Uri = "$api/$Path"; Headers = $headers }
+    # The API wants a JSON content type on every call, also a POST without a body.
+    $call = @{ Method = $Method; Uri = "$api/$Path"; Headers = $headers; ContentType = 'application/json' }
     if ($null -ne $Body) {
-        $call.ContentType = 'application/json; charset=utf-8'
         $call.Body = [Text.Encoding]::UTF8.GetBytes(($Body | ConvertTo-Json -Depth 50))
+    }
+    elseif ($Method -eq 'Post') {
+        $call.Body = '{}'
     }
     Invoke-RestMethod @call
 }
