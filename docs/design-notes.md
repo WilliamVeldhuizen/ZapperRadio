@@ -360,7 +360,7 @@ before it would be heard first. And the zapper does not land on a favorite whose
 its break (`MainViewModel.LandingChannelOf`), because without a buffer to start the song from, the zap
 would land in that break and zap straight on.
 
-## Demo mode for the Store screenshots
+## Demo mode for the Store screenshots (1.31.0)
 
 The Store screenshots showed real station logos, which are the broadcasters' trademarks, used there to
 promote the app. `ZapperRadio.exe --demo` shows the real window with made-up stations instead, so the
@@ -380,7 +380,7 @@ It starts in the state worth showing: the zapper has just left an ad break for a
 favorite, played from its buffer, next to a favorite in an assumed ad break and a talk station that is
 never zapped to. `--demo=<language>` shows it in another language, for screenshots per Store listing.
 
-## Our own station list
+## Our own station list (1.31.0)
 
 The station list came from rb2rs, a hobby server that republished radio-browser.info's stations as a
 file a day, over plain `http`, with no terms and no contact. Every new user depended on it staying up,
