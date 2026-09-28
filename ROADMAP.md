@@ -24,8 +24,6 @@ ZapperRadio is in the Microsoft Store, and every release is submitted to it by t
      real app, as the Store requires, only without anyone else's brand.
    - Replace the current screenshots with ones taken in that mode at the first update, not before: the running
      certification goes on as it is.
-   - Add a line such as "Station names and logos belong to their owners." at the end of the Store description,
-     as on the website.
 
 ## 2. Production ready
 
