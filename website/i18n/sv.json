@@ -85,7 +85,7 @@
   "faq.a6": "Installationsprogrammet från GitHub är inte digitalt signerat, vilket gör SmartScreen försiktig med alla nya appar. Hämta ZapperRadio från Microsoft Store för att slippa varningen, eller välj <em>Mer information</em> och sedan <em>Kör ändå</em>. Hela källkoden finns på GitHub om du vill kontrollera vad du installerar.",
   "faq.q7": "Är den gratis?",
   "faq.a7": "Ja. ZapperRadio är öppen källkod under MIT-licensen.",
-  "foot.text": "Stationsdata från rb2rs och <a href=\"https://www.radio-browser.info/\">radio-browser.info</a>. Ljudklassificering med YAMNet (Google, Apache License 2.0). Stationsnamn och logotyper tillhör sina ägare.",
+  "foot.text": "Stationsdata från <a href=\"https://www.radio-browser.info/\">radio-browser.info</a>. Ljudklassificering med YAMNet (Google, Apache License 2.0). Stationsnamn och logotyper tillhör sina ägare.",
   "foot.releases": "Versioner",
   "foot.license": "MIT-licens",
   "foot.privacy": "Integritet"

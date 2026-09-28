@@ -85,7 +85,7 @@
   "faq.a6": "برنامج التثبيت من GitHub غير موقّع رقميًا، ما يجعل SmartScreen حذرًا مع أي تطبيق جديد. احصل على ZapperRadio من Microsoft Store لتتجنب التحذير، أو اختر <em>مزيد من المعلومات</em> ثم <em>التشغيل على أي حال</em>. الشيفرة المصدرية الكاملة موجودة على GitHub إن أردت التحقق مما تثبّته.",
   "faq.q7": "هل هو مجاني؟",
   "faq.a7": "نعم. ZapperRadio مفتوح المصدر بموجب ترخيص MIT.",
-  "foot.text": "بيانات المحطات من rb2rs و<a href=\"https://www.radio-browser.info/\">radio-browser.info</a>. تصنيف الأصوات بواسطة YAMNet (Google، Apache License 2.0). أسماء المحطات وشعاراتها ملك لأصحابها.",
+  "foot.text": "بيانات المحطات من <a href=\"https://www.radio-browser.info/\">radio-browser.info</a>. تصنيف الأصوات بواسطة YAMNet (Google، Apache License 2.0). أسماء المحطات وشعاراتها ملك لأصحابها.",
   "foot.releases": "الإصدارات",
   "foot.license": "ترخيص MIT",
   "foot.privacy": "الخصوصية"

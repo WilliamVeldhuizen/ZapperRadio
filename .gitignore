@@ -480,3 +480,6 @@ $RECYCLE.BIN/
 
 # Vim temporary swap files
 *.swp
+
+# The station list is built by the Website workflow (tools/StationListBuilder), not kept in git.
+website/stations/

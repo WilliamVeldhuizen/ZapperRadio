@@ -85,7 +85,7 @@
   "faq.a6": "Penginstal dari GitHub tidak ditandatangani secara digital, sehingga SmartScreen berhati-hati terhadap aplikasi baru apa pun. Dapatkan ZapperRadio dari Microsoft Store untuk melewati peringatan, atau pilih <em>Info selengkapnya</em> lalu <em>Tetap jalankan</em>. Seluruh kode sumber ada di GitHub jika Anda ingin memeriksa apa yang Anda instal.",
   "faq.q7": "Apakah gratis?",
   "faq.a7": "Ya. ZapperRadio adalah sumber terbuka dengan lisensi MIT.",
-  "foot.text": "Data stasiun dari rb2rs dan <a href=\"https://www.radio-browser.info/\">radio-browser.info</a>. Klasifikasi suara oleh YAMNet (Google, Apache License 2.0). Nama dan logo stasiun adalah milik pemiliknya masing-masing.",
+  "foot.text": "Data stasiun dari <a href=\"https://www.radio-browser.info/\">radio-browser.info</a>. Klasifikasi suara oleh YAMNet (Google, Apache License 2.0). Nama dan logo stasiun adalah milik pemiliknya masing-masing.",
   "foot.releases": "Rilis",
   "foot.license": "Lisensi MIT",
   "foot.privacy": "Privasi"

@@ -4,8 +4,9 @@ using ZapperRadio.Core.Models;
 namespace ZapperRadio.Core.Catalog;
 
 /// <summary>
-/// Parses the rb2rs <c>.rsd</c> format: a timestamp on the first line, followed by one
-/// tab-separated station per line: name, (unused), tags, country, language, url.
+/// Parses the station list format, which is the <c>.rsd</c> format of rb2rs where the list used to come from: a
+/// timestamp on the first line, followed by one tab-separated station per line: name, (unused), tags, country,
+/// language, url. <see cref="StationListBuilder.Write"/> writes it.
 /// </summary>
 public static class RsdParser
 {

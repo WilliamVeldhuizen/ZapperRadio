@@ -4,7 +4,7 @@ using System.Text.Json;
 namespace ZapperRadio.Core.Catalog;
 
 /// <summary>
-/// The rb2rs station list has no popularity data, but it is generated from radio-browser.info.
+/// The station list has no popularity data, but it is built from radio-browser.info.
 /// This asks the radio-browser API for a country's most clicked stations, or the world's, and ranks them by stream URL.
 /// Results are cached on disk for a day and reused (even when stale) if the API is unreachable.
 /// </summary>

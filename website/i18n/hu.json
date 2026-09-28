@@ -85,7 +85,7 @@
   "faq.a6": "A GitHubról letöltött telepítő nincs digitálisan aláírva, ezért a SmartScreen óvatos minden új alkalmazással. A figyelmeztetés elkerüléséhez szerezze be a ZapperRadiót a Microsoft Store-ból, vagy válassza a <em>További információ</em>, majd a <em>Futtatás mindenképp</em> lehetőséget. A teljes forráskód a GitHubon van, ha ellenőrizni szeretné, mit telepít.",
   "faq.q7": "Ingyenes?",
   "faq.a7": "Igen. A ZapperRadio nyílt forráskódú, MIT-licenc alatt.",
-  "foot.text": "Állomásadatok: rb2rs és <a href=\"https://www.radio-browser.info/\">radio-browser.info</a>. Hangosztályozás: YAMNet (Google, Apache License 2.0). Az állomásnevek és -logók a tulajdonosaikat illetik.",
+  "foot.text": "Állomásadatok: <a href=\"https://www.radio-browser.info/\">radio-browser.info</a>. Hangosztályozás: YAMNet (Google, Apache License 2.0). Az állomásnevek és -logók a tulajdonosaikat illetik.",
   "foot.releases": "Kiadások",
   "foot.license": "MIT-licenc",
   "foot.privacy": "Adatvédelem"

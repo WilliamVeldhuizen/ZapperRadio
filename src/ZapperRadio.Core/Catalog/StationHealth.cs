@@ -4,8 +4,8 @@ using System.Text.Json;
 namespace ZapperRadio.Core.Catalog;
 
 /// <summary>
-/// Which stations are down. The rb2rs station list has no health data, but radio-browser.info, which it is generated
-/// from, checks every station regularly and lists the ones that failed their last check, with the moment each one
+/// Which stations are down. The station list has no health data, but radio-browser.info, which it is built from,
+/// checks every station regularly and lists the ones that failed their last check, with the moment each one
 /// last worked. That list is fetched in one request and matched on stream URL, like the popularity.
 /// It is cached on disk for a day and reused (even when stale) if the API is unreachable.
 /// </summary>

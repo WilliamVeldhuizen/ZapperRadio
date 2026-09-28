@@ -1,5 +1,7 @@
-# Publishes the website/ folder to GitHub Pages (https://zapperradio.com).
-# Runs when something in website/ changes on main, and can be started by hand.
+# Publishes the website/ folder to GitHub Pages (https://zapperradio.com), together with the station list the app
+# downloads (https://zapperradio.com/stations/), which is built fresh from radio-browser.info on every run.
+# Runs every day for the station list, when something in website/ or the list builder changes on main, and can be
+# started by hand.
 name: Website
 
 on:
@@ -7,7 +9,12 @@ on:
     branches: [main]
     paths:
       - 'website/**'
+      - 'tools/StationListBuilder/**'
+      - 'src/ZapperRadio.Core/Catalog/StationListBuilder.cs'
       - '.github/workflows/pages.yml'
+  schedule:
+    # Once a day, at a quiet hour for radio-browser.info and off the full hour most jobs start at.
+    - cron: '23 3 * * *'
   workflow_dispatch:
 
 permissions:
@@ -27,6 +34,22 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v7
+
+      - uses: actions/setup-dotnet@v6
+        with:
+          dotnet-version: '10.0.x'
+
+      - name: Build the station list
+        run: |
+          if ! dotnet run --project tools/StationListBuilder -c Release -- website/stations; then
+            # Every deploy replaces the whole site, so without a new list the one that is online now is published
+            # again: a day-old list is better than none for every app that looks for it.
+            echo "::warning::Could not build the station list; publishing the one that is online again."
+            mkdir -p website/stations
+            curl -fsSL https://zapperradio.com/stations/ -o website/stations/index.html
+            file=$(grep -oE 'stations-[0-9]{4}-[0-9]{2}-[0-9]{2}\.txt' website/stations/index.html | head -n 1)
+            curl -fsSL "https://zapperradio.com/stations/$file" -o "website/stations/$file"
+          fi
 
       - uses: actions/configure-pages@v6
 

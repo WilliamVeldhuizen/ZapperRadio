@@ -379,3 +379,27 @@ run next to ZapperRadio without changing anything of it.
 It starts in the state worth showing: the zapper has just left an ad break for a song on another
 favorite, played from its buffer, next to a favorite in an assumed ad break and a talk station that is
 never zapped to. `--demo=<language>` shows it in another language, for screenshots per Store listing.
+
+## Our own station list
+
+The station list came from rb2rs, a hobby server that republished radio-browser.info's stations as a
+file a day, over plain `http`, with no terms and no contact. Every new user depended on it staying up,
+and anyone on the same network could have changed the list on its way in. The list is now built from
+radio-browser.info itself, once a day, by the Website workflow, and served over `https` from
+zapperradio.com/stations with the website (GitHub Pages compresses it, to about a quarter of its 6 MB).
+
+It is the same format as before, so `RsdParser` reads both and a list from rb2rs left in the cache still
+works offline until the first new one replaces it. The name ends in `.txt` rather than `.rsd` so GitHub
+Pages serves it as text, which it compresses; it is found through an `index.html` next to it, the way the
+app found the newest file in rb2rs's directory listing. The stream URL stays the identity of a station:
+it is radio-browser's `url` field, as in rb2rs, so favorites, the popularity ranking and the health data
+keep matching.
+
+Building the list somewhere else than on every PC is the point: `StationListBuilder` is where cleaning up
+belongs. It leaves out stations that have not worked for 30 days (a shorter outage stays, and the app
+marks it as down, see the search ranking above), keeps one station per stream (rb2rs listed 51,700
+lines for 47,400 streams), and tidies names and tags. The API answers only a thousand stations without a
+limit and refuses to send all of them at once, so they are read in pages of 10,000 in the order of their
+ids. A list of fewer than 20,000 stations is taken as a partial answer and not published; then, as when
+radio-browser cannot be reached, the workflow publishes the list that is online again, because a deploy
+replaces the whole site.

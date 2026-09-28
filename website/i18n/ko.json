@@ -85,7 +85,7 @@
   "faq.a6": "GitHub의 설치 프로그램은 디지털 서명되지 않아 SmartScreen이 새 앱을 조심스럽게 다룹니다. 경고를 피하려면 Microsoft Store에서 ZapperRadio를 받거나, <em>추가 정보</em>를 선택한 다음 <em>실행</em>을 선택하세요. 설치하는 내용을 확인하고 싶다면 전체 소스 코드가 GitHub에 있습니다.",
   "faq.q7": "무료인가요?",
   "faq.a7": "네. ZapperRadio는 MIT 라이선스의 오픈 소스입니다.",
-  "foot.text": "방송국 데이터 출처: rb2rs 및 <a href=\"https://www.radio-browser.info/\">radio-browser.info</a>. 소리 분류: YAMNet (Google, Apache License 2.0). 방송국 이름과 로고는 각 소유자의 것입니다.",
+  "foot.text": "방송국 데이터 출처: <a href=\"https://www.radio-browser.info/\">radio-browser.info</a>. 소리 분류: YAMNet (Google, Apache License 2.0). 방송국 이름과 로고는 각 소유자의 것입니다.",
   "foot.releases": "릴리스",
   "foot.license": "MIT 라이선스",
   "foot.privacy": "개인정보 보호"

@@ -85,7 +85,7 @@
   "faq.a6": "Trình cài đặt từ GitHub không được ký số, khiến SmartScreen thận trọng với mọi ứng dụng mới. Hãy tải ZapperRadio từ Microsoft Store để tránh cảnh báo, hoặc chọn <em>Thông tin thêm</em> rồi <em>Vẫn chạy</em>. Toàn bộ mã nguồn có trên GitHub nếu bạn muốn kiểm tra những gì mình cài đặt.",
   "faq.q7": "Nó có miễn phí không?",
   "faq.a7": "Có. ZapperRadio là mã nguồn mở theo giấy phép MIT.",
-  "foot.text": "Dữ liệu đài từ rb2rs và <a href=\"https://www.radio-browser.info/\">radio-browser.info</a>. Phân loại âm thanh bằng YAMNet (Google, Apache License 2.0). Tên và logo đài thuộc về chủ sở hữu của chúng.",
+  "foot.text": "Dữ liệu đài từ <a href=\"https://www.radio-browser.info/\">radio-browser.info</a>. Phân loại âm thanh bằng YAMNet (Google, Apache License 2.0). Tên và logo đài thuộc về chủ sở hữu của chúng.",
   "foot.releases": "Bản phát hành",
   "foot.license": "Giấy phép MIT",
   "foot.privacy": "Quyền riêng tư"

@@ -85,7 +85,7 @@
   "faq.a6": "GitHub のインストーラーにはデジタル署名がないため、SmartScreen はどんな新しいアプリにも慎重になります。Microsoft Store から ZapperRadio を入手すれば警告は出ません。または<em>詳細情報</em>を選び、<em>実行</em>を選んでください。インストールするものを確かめたい場合は、GitHub にソースコードがすべて公開されています。",
   "faq.q7": "無料ですか？",
   "faq.a7": "はい。ZapperRadio は MIT ライセンスのオープンソースです。",
-  "foot.text": "局のデータは rb2rs と <a href=\"https://www.radio-browser.info/\">radio-browser.info</a> によるものです。音の分類には YAMNet（Google、Apache License 2.0）を使用しています。局名とロゴは各権利者に帰属します。",
+  "foot.text": "局のデータは <a href=\"https://www.radio-browser.info/\">radio-browser.info</a> によるものです。音の分類には YAMNet（Google、Apache License 2.0）を使用しています。局名とロゴは各権利者に帰属します。",
   "foot.releases": "リリース",
   "foot.license": "MIT ライセンス",
   "foot.privacy": "プライバシー"

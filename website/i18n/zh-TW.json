@@ -85,7 +85,7 @@
   "faq.a6": "GitHub 上的安裝程式沒有數位簽章，這讓 SmartScreen 對任何新應用程式都很謹慎。從 Microsoft Store 取得 ZapperRadio 即可略過警告，或選擇<em>其他資訊</em>，再選<em>仍要執行</em>。如果您想確認要安裝的內容，完整的原始碼都在 GitHub 上。",
   "faq.q7": "免費嗎？",
   "faq.a7": "是的。ZapperRadio 以 MIT 授權開放原始碼。",
-  "foot.text": "電台資料來自 rb2rs 和 <a href=\"https://www.radio-browser.info/\">radio-browser.info</a>。聲音分類採用 YAMNet (Google，Apache License 2.0)。電台名稱和標誌屬於其擁有者。",
+  "foot.text": "電台資料來自 <a href=\"https://www.radio-browser.info/\">radio-browser.info</a>。聲音分類採用 YAMNet (Google，Apache License 2.0)。電台名稱和標誌屬於其擁有者。",
   "foot.releases": "發行版本",
   "foot.license": "MIT 授權",
   "foot.privacy": "隱私權"

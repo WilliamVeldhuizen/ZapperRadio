@@ -85,7 +85,7 @@
   "faq.a6": "Programul de instalare de pe GitHub nu este semnat digital, ceea ce face SmartScreen precaut cu orice aplicație nouă. Obține ZapperRadio din Microsoft Store pentru a evita avertismentul sau alege <em>Mai multe informații</em> și apoi <em>Rulează oricum</em>. Codul sursă complet este pe GitHub dacă vrei să verifici ce instalezi.",
   "faq.q7": "Este gratuit?",
   "faq.a7": "Da. ZapperRadio este open source sub licența MIT.",
-  "foot.text": "Datele posturilor de la rb2rs și <a href=\"https://www.radio-browser.info/\">radio-browser.info</a>. Clasificarea sunetului de YAMNet (Google, Apache License 2.0). Numele și logo-urile posturilor aparțin proprietarilor lor.",
+  "foot.text": "Datele posturilor de la <a href=\"https://www.radio-browser.info/\">radio-browser.info</a>. Clasificarea sunetului de YAMNet (Google, Apache License 2.0). Numele și logo-urile posturilor aparțin proprietarilor lor.",
   "foot.releases": "Versiuni",
   "foot.license": "Licența MIT",
   "foot.privacy": "Confidențialitate"

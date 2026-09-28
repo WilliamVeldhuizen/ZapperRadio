@@ -38,6 +38,14 @@ public class CatalogTests
     }
 
     [Fact]
+    public void FindLatestFileName_ReadsTheIndexTheBuilderWrites()
+    {
+        var html = StationListBuilder.IndexHtml("stations-2026-09-28.txt", new DateTime(2026, 9, 28, 3, 23, 0), 50_302);
+
+        Assert.Equal("stations-2026-09-28.txt", StationDirectory.FindLatestFileName(html));
+    }
+
+    [Fact]
     public async Task LoadAsync_DownloadsLatestAndFallsBackToCacheWhenOffline()
     {
         var cache = Path.Combine(Path.GetTempPath(), "ZapperRadioTests", Guid.NewGuid().ToString("N"));
@@ -45,18 +53,19 @@ public class CatalogTests
         {
             var handler = new FakeHandler(uri => uri.AbsolutePath switch
             {
-                "/" => "<a href=\"stations-2026-09-15.rsd\"></a><a href=\"stations-2026-09-16.rsd\"></a>",
-                "/stations-2026-09-16.rsd" => "2026-09-16 12:13:15\nA\t-\t\tNL\t\thttp://a.example/stream\n",
+                "/stations/" => "<a href=\"stations-2026-09-15.txt\"></a><a href=\"stations-2026-09-16.txt\"></a>",
+                "/stations/stations-2026-09-16.txt" => "2026-09-16 12:13:15\nA\t-\t\tNL\t\thttp://a.example/stream\n",
                 _ => null,
             });
+            // A list from rb2rs, from before the list moved to zapperradio.com.
             File.WriteAllText(Path.Combine(cache.EnsureDirectory(), "stations-2026-09-01.rsd"), "old");
 
             var online = await new StationDirectory(new HttpClient(handler), cache).LoadAsync();
 
             Assert.False(online.FromCache);
-            Assert.Equal("stations-2026-09-16.rsd", online.FileName);
+            Assert.Equal("stations-2026-09-16.txt", online.FileName);
             Assert.Single(online.Stations);
-            Assert.Equal(["stations-2026-09-16.rsd"], Directory.GetFiles(cache).Select(Path.GetFileName));
+            Assert.Equal(["stations-2026-09-16.txt"], Directory.GetFiles(cache).Select(Path.GetFileName));
 
             handler.Offline = true;
             var offline = await new StationDirectory(new HttpClient(handler), cache).LoadAsync();
@@ -68,6 +77,99 @@ public class CatalogTests
         {
             if (Directory.Exists(cache)) Directory.Delete(cache, recursive: true);
         }
+    }
+
+    [Fact]
+    public async Task LoadAsync_UsesAnOldRb2rsListWhileOffline()
+    {
+        var cache = Path.Combine(Path.GetTempPath(), "ZapperRadioTests", Guid.NewGuid().ToString("N"));
+        try
+        {
+            var handler = new FakeHandler(_ => null) { Offline = true };
+            File.WriteAllText(Path.Combine(cache.EnsureDirectory(), "stations-2026-09-01.rsd"), "2026-09-01 12:00:00\nA\t-\t\tNL\t\thttp://a.example/stream\n");
+
+            var offline = await new StationDirectory(new HttpClient(handler), cache).LoadAsync();
+
+            Assert.True(offline.FromCache);
+            Assert.Equal("stations-2026-09-01.rsd", offline.FileName);
+        }
+        finally
+        {
+            if (Directory.Exists(cache)) Directory.Delete(cache, recursive: true);
+        }
+    }
+
+    private static RadioBrowserStation Entry(string name, string url, int lastCheckOk = 1, string? lastWorked = null,
+        string tags = "", int clicks = 0) =>
+        new(name, url, tags, "Netherlands", "dutch", lastCheckOk, lastWorked, clicks, 0);
+
+    [Fact]
+    public void StationListBuilder_LeavesOutStationsDownForMoreThanAMonth()
+    {
+        var now = new DateTimeOffset(2026, 9, 28, 3, 0, 0, TimeSpan.Zero);
+
+        Assert.True(StationListBuilder.IsAlive(Entry("A", "http://a.example/"), now));
+        Assert.True(StationListBuilder.IsAlive(Entry("A", "http://a.example/", 0, "2026-09-20T10:00:00Z"), now));
+        Assert.False(StationListBuilder.IsAlive(Entry("A", "http://a.example/", 0, "2026-08-01T10:00:00Z"), now));
+        Assert.False(StationListBuilder.IsAlive(Entry("A", "http://a.example/", 0, null), now));
+    }
+
+    [Fact]
+    public void StationListBuilder_CleansNamesAndTagsAndSkipsWhatCannotPlay()
+    {
+        var station = StationListBuilder.ToStation(Entry("\t Radio\n  One ", " http://one.example/stream ", tags: "pop,rock, pop ,,hits"));
+
+        Assert.Equal(new Station("Radio One", "pop, rock, hits", "Netherlands", "dutch", "http://one.example/stream"), station);
+        Assert.Null(StationListBuilder.ToStation(Entry("   ", "http://one.example/stream")));
+        Assert.Null(StationListBuilder.ToStation(Entry("Radio", "ftp://one.example/stream")));
+        Assert.Null(StationListBuilder.ToStation(Entry("Radio", "not a url")));
+    }
+
+    [Fact]
+    public void StationListBuilder_KeepsOneStationPerStreamNamedByTheMostClicked()
+    {
+        var now = new DateTimeOffset(2026, 9, 28, 3, 0, 0, TimeSpan.Zero);
+        var stations = StationListBuilder.Build(
+        [
+            Entry("Zeta", "http://z.example/"),
+            Entry("Copy of Alpha", "http://a.example/", clicks: 3),
+            Entry("Alpha", "http://a.example/", clicks: 40),
+        ], now);
+
+        Assert.Equal(["Alpha", "Zeta"], stations.Select(s => s.Name));
+    }
+
+    [Fact]
+    public void StationListBuilder_WritesWhatTheParserReads()
+    {
+        var generatedAt = new DateTime(2026, 9, 28, 3, 23, 5);
+        Station[] stations =
+        [
+            new("Alpha", "pop, hits", "Netherlands", "dutch", "http://a.example/"),
+            new("Beta", "", "", "", "https://b.example/live"),
+        ];
+
+        var writer = new StringWriter();
+        StationListBuilder.Write(writer, generatedAt, stations);
+        var list = RsdParser.Parse(new StringReader(writer.ToString()));
+
+        Assert.Equal(generatedAt, list.GeneratedAt);
+        Assert.Equal(stations, list.Stations);
+        Assert.Equal("stations-2026-09-28.txt", StationListBuilder.FileName(generatedAt));
+    }
+
+    [Fact]
+    public async Task StationListBuilder_ReadsAPageOfTheApi()
+    {
+        const string json = """
+            [{"changeuuid":"x","name":"Alpha","url":"http://a.example/","tags":"pop","country":"Netherlands",
+              "language":"dutch","lastcheckok":1,"lastcheckoktime_iso8601":"2026-09-27T10:00:00Z","clickcount":5,"votes":2,
+              "favicon":"http://a.example/logo.png"}]
+            """;
+
+        var entries = await StationListBuilder.ReadAsync(new MemoryStream(System.Text.Encoding.UTF8.GetBytes(json)));
+
+        Assert.Equal(Entry("Alpha", "http://a.example/", 1, "2026-09-27T10:00:00Z", "pop", 5) with { Votes = 2 }, Assert.Single(entries));
     }
 
     [Theory]

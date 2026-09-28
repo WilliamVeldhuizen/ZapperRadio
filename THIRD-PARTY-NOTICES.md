@@ -15,8 +15,8 @@ app. This file is installed next to `ZapperRadio.exe`, together with the `licens
 
 ## Data
 
-The station list and the popularity data are not part of the app; they are downloaded when the app runs, from
-[rb2rs](http://rb2rs.freemyip.com/) and [radio-browser.info](https://www.radio-browser.info/). Station names, logos and
+The station list and the popularity data are not part of the app; they come from
+[radio-browser.info](https://www.radio-browser.info/) and are downloaded when the app runs. Station names, logos and
 streams belong to the stations that broadcast them, and so does every name and mark used with them. Song lengths are
 looked up with Apple's [iTunes Search API](https://performance-partners.apple.com/search-api); only the length is used.
 See [PRIVACY.md](PRIVACY.md) for what is requested from whom.

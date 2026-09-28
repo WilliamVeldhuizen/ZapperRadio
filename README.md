@@ -25,7 +25,7 @@ It does cost bandwidth: each favorite is a continuous stream of roughly 64 to 32
 
 ## Features
 
-- **Station list**: the newest list from http://rb2rs.freemyip.com/ (~52,000 stations), stored locally for offline use.
+- **Station list**: about 50,000 stations from [radio-browser.info](https://www.radio-browser.info/), cleaned up and published every day on https://zapperradio.com/stations/, and stored locally for offline use.
 - **Search** by name, genre or country, with a country filter. Typos are forgiven: `radoi 538` finds "Radio 538". The best matches come first: the whole name, then the start of the name, a word in it, the tags and the country, and a typo last. Among equally good matches the most popular stations ([radio-browser.info](https://www.radio-browser.info/) play count) lead, in the chosen country or worldwide, so the list opens on stations people actually play. Stations that failed radio-browser's last check sink below the working ones and say since when they are down. Each result has a play button, and clicking the row plays it too; `Enter` plays the best match, `↓` moves into the results and `Esc` empties the box; the station being listened to is marked in the results, and when a country hides every match, one click searches all countries.
 - **Favorites**: add with the + in front of a search result (a check marks the ones you have), reorder by dragging. Each shows the song it is playing (or a red "Advertisement" during an ad break), for stations that send Shoutcast/Icecast titles.
 - **Hears music and speech**: every stream is classified locally with Google's [YAMNet](https://www.kaggle.com/models/google/yamnet/tensorFlow2/yamnet/1) and shown as an icon next to each favorite: a note for music, a speech bubble for talking. It reuses the audio that is streamed anyway, so no extra bandwidth. HLS streams are not classified.
@@ -101,10 +101,19 @@ dotnet run --project src/ZapperRadio -- --demo=nl-NL    # in another language
 
 The window then shows made-up favorites, songs, favorite tracks and history (`Demo/DemoMode.cs`), with logos rendered by `design/logos/demo/render-demo-logos.ps1`. Nothing streams, the favorites stay in the state they start in, and picking one only shows it as the station being listened to. The demo keeps its settings in `%TEMP%\ZapperRadio-demo`, which it fills afresh on every start, leaves the jump list and the startup setting alone, and runs as an instance of its own, so it can run next to ZapperRadio itself.
 
+## The station list
+
+The app downloads its station list from https://zapperradio.com/stations/, which the [Website workflow](.github/workflows/pages.yml) builds from [radio-browser.info](https://www.radio-browser.info/) every day and publishes with the website. `tools/StationListBuilder` reads every station from the radio-browser API, in pages, from a server it finds the way radio-browser asks clients to (the names behind `all.api.radio-browser.info`), and `StationListBuilder` in `ZapperRadio.Core` cleans it up: stations that have not worked for 30 days are left out, the same stream listed twice becomes one station, and names and tags are tidied. It writes `stations-<date>.txt` in the tab-separated format `RsdParser` reads, with an `index.html` next to it that links to it. When radio-browser cannot be reached, or returns far fewer stations than usual, the workflow publishes the list that is online again instead. To build it yourself:
+
+```powershell
+dotnet run --project tools/StationListBuilder -- website/stations
+```
+
 ## Structure
 
 - `src/ZapperRadio.Core`: downloading and parsing the station list, search, playlist resolving, the local relay that reads song titles from the streams and plays the time-shift buffers back, the ad break and music/speech rules, the loudness measurement, and settings. No UI, fully tested.
 - `src/ZapperRadio`: WinUI app. `Playback/RadioEngine` manages the muted streams and plays the station you listen to from its buffer when a zap lands on it, `Playback/StationStream` is a single `MediaPlayer` with reconnect logic that also keeps the loudness of its station, `Playback/SoundClassifier` decodes the relayed audio (Media Foundation via NAudio), runs YAMNet with the ONNX Runtime that comes with the Windows App SDK and measures the loudness of the same samples, `Updates/AppUpdater` finds, downloads and installs new versions with Velopack (`ViewModels/MainViewModel.Updates.cs` schedules it and shows the result), `Shell` holds the taskbar jump list, the Windows media card and the global shortcuts, and `Localizer` picks the language and looks up the texts in `Strings`.
+- `tools/StationListBuilder`: builds the station list published on zapperradio.com (see above).
 - `tests/ZapperRadio.Core.Tests`: xUnit tests.
 - `docs/design-notes.md`: why the larger features work the way they do, per version. [ROADMAP.md](ROADMAP.md) holds what is not built yet.
 
@@ -114,4 +123,4 @@ The app has no account, no analytics, no telemetry. Everything the app remembers
 
 ## License
 
-[MIT](LICENSE). The licenses of the components that ship with the app are in [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md), and are installed with it. The station list and popularity data are downloaded at runtime from rb2rs and [radio-browser.info](https://www.radio-browser.info/) and are not part of this repository. The YAMNet model in `src/ZapperRadio/Assets/Models` is by Google, converted to ONNX by [zeropointnine/yamnet-onnx](https://huggingface.co/zeropointnine/yamnet-onnx), and licensed under the Apache License 2.0.
+[MIT](LICENSE). The licenses of the components that ship with the app are in [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md), and are installed with it. The station list and popularity data come from [radio-browser.info](https://www.radio-browser.info/): the app downloads them at runtime, and they are not part of this repository. The YAMNet model in `src/ZapperRadio/Assets/Models` is by Google, converted to ONNX by [zeropointnine/yamnet-onnx](https://huggingface.co/zeropointnine/yamnet-onnx), and licensed under the Apache License 2.0.

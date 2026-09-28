@@ -85,7 +85,7 @@
   "faq.a6": "ตัวติดตั้งจาก GitHub ไม่ได้ลงลายเซ็นดิจิทัล ทำให้ SmartScreen ระมัดระวังกับแอปใหม่ทุกตัว รับ ZapperRadio จาก Microsoft Store เพื่อข้ามคำเตือน หรือเลือก <em>ข้อมูลเพิ่มเติม</em> แล้วเลือก <em>เรียกใช้ต่อไป</em> ซอร์สโค้ดทั้งหมดอยู่บน GitHub หากคุณต้องการตรวจสอบสิ่งที่กำลังติดตั้ง",
   "faq.q7": "ฟรีหรือไม่?",
   "faq.a7": "ใช่ ZapperRadio เป็นโอเพนซอร์สภายใต้สัญญาอนุญาต MIT",
-  "foot.text": "ข้อมูลสถานีจาก rb2rs และ <a href=\"https://www.radio-browser.info/\">radio-browser.info</a> การจำแนกเสียงโดย YAMNet (Google, Apache License 2.0) ชื่อและโลโก้ของสถานีเป็นของเจ้าของ",
+  "foot.text": "ข้อมูลสถานีจาก <a href=\"https://www.radio-browser.info/\">radio-browser.info</a> การจำแนกเสียงโดย YAMNet (Google, Apache License 2.0) ชื่อและโลโก้ของสถานีเป็นของเจ้าของ",
   "foot.releases": "การเผยแพร่",
   "foot.license": "สัญญาอนุญาต MIT",
   "foot.privacy": "ความเป็นส่วนตัว"

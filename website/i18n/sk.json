@@ -85,7 +85,7 @@
   "faq.a6": "Inštalačný program z GitHubu nie je digitálne podpísaný, preto je SmartScreen ku každej novej aplikácii opatrný. Získajte ZapperRadio z Microsoft Storu a varovaniu sa vyhnete, alebo zvoľte <em>Ďalšie informácie</em> a potom <em>Napriek tomu spustiť</em>. Kompletný zdrojový kód je na GitHube, ak si chcete overiť, čo inštalujete.",
   "faq.q7": "Je to zadarmo?",
   "faq.a7": "Áno. ZapperRadio je open source pod licenciou MIT.",
-  "foot.text": "Údaje o staniciach z rb2rs a <a href=\"https://www.radio-browser.info/\">radio-browser.info</a>. Klasifikácia zvuku pomocou YAMNet (Google, Apache License 2.0). Názvy a logá staníc patria ich vlastníkom.",
+  "foot.text": "Údaje o staniciach z <a href=\"https://www.radio-browser.info/\">radio-browser.info</a>. Klasifikácia zvuku pomocou YAMNet (Google, Apache License 2.0). Názvy a logá staníc patria ich vlastníkom.",
   "foot.releases": "Vydania",
   "foot.license": "Licencia MIT",
   "foot.privacy": "Súkromie"

@@ -85,7 +85,7 @@
   "faq.a6": "GitHubin asennusohjelmaa ei ole allekirjoitettu digitaalisesti, minkä vuoksi SmartScreen suhtautuu varovasti jokaiseen uuteen sovellukseen. Hanki ZapperRadio Microsoft Storesta välttääksesi varoituksen, tai valitse <em>Lisätietoja</em> ja sitten <em>Suorita silti</em>. Koko lähdekoodi on GitHubissa, jos haluat tarkistaa, mitä asennat.",
   "faq.q7": "Onko se ilmainen?",
   "faq.a7": "On. ZapperRadio on avointa lähdekoodia MIT-lisenssillä.",
-  "foot.text": "Asematiedot: rb2rs ja <a href=\"https://www.radio-browser.info/\">radio-browser.info</a>. Äänen luokittelu: YAMNet (Google, Apache License 2.0). Asemien nimet ja logot kuuluvat omistajilleen.",
+  "foot.text": "Asematiedot: <a href=\"https://www.radio-browser.info/\">radio-browser.info</a>. Äänen luokittelu: YAMNet (Google, Apache License 2.0). Asemien nimet ja logot kuuluvat omistajilleen.",
   "foot.releases": "Julkaisut",
   "foot.license": "MIT-lisenssi",
   "foot.privacy": "Tietosuoja"

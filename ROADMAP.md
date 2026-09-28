@@ -28,22 +28,27 @@ what went wrong. Ranked by payoff per effort. Auto-update and its release pipeli
    and moves it into place; check what a corrupt or half-written file does on load. It should be backed up and
    replaced by defaults, not crash the app.
 
-4. **Legal and metadata.** `PRIVACY.md`, `THIRD-PARTY-NOTICES.md`, the notices in `licenses/`, the exe
-   metadata and a versioned user agent are in place. Still open:
+4. **Legal and metadata.** `PRIVACY.md` (which also covers the Store version and the website, and is published
+   as a page on the website), `THIRD-PARTY-NOTICES.md`, the notices in `licenses/`, the exe
+   metadata and a versioned user agent are in place, and the Store screenshots show made-up stations instead of
+   the broadcasters' logos. Still open:
 
    - **Installed apps.** Check what the Velopack install shows there (name, publisher, icon) on a machine that
-     has one. Velopack takes the publisher from `--packAuthors`; it has no link to an about page.
-   - **rb2rs.** The station list comes from a bare directory listing on `rb2rs.freemyip.com` that only serves plain
-     `http`, with no terms and no contact on it. Ask its owner whether the app may use it, and whether it can be
-     served over `https`, or mirror the list yourself.
+     has one. Velopack takes the publisher from `--packAuthors`; it has no link to an about page. The Store
+     version shows the publisher display name of the Partner Center account, `williamve`; to show a full name
+     there, change it in the account settings and set the same name as `PublisherDisplayName` in
+     `Package.appxmanifest`.
    - **radio-browser.info.** Its documentation asks clients to find the servers with a DNS lookup of
-     `all.api.radio-browser.info` instead of a fixed list, and to send a `/json/url` request for every station a
-     user plays, which is what marks stations as popular. The app does neither. The second is a new request per
-     play, so it needs a line in `PRIVACY.md` as well.
+     `all.api.radio-browser.info`, picking one of the servers it lists, and to send a `/json/url` request for every
+     station a user plays, which is what marks stations as popular. The station list builder finds its server that
+     way; the app itself asks `all.api.radio-browser.info` directly, with `de1` and `de2` as a fixed fallback
+     (`StationPopularity.DefaultApiServers`), and sends no clicks. Counting clicks is a new request per play, so it needs a line in `PRIVACY.md` as well.
    - **Windows App SDK license.** Section 3 makes the app's own terms the place where end users agree to
      conditions that protect Microsoft at least as much as the Windows App SDK license does, and asks for an
-     indemnity. The MIT license's disclaimer of warranty and liability is the only such text now; decide whether
-     that is enough, or add a short terms page to the Setup program.
+     indemnity. The Store version gives no license terms of its own in Partner Center, so the Microsoft Store's
+     standard application license terms apply to it, which likely covers this. For the GitHub installer the MIT
+     license's disclaimer of warranty and liability is the only such text; decide whether that is enough, or add
+     a short terms page to the Setup program.
    - **Website statistics.** The website counts visitors with GoatCounter (`zapperradio.goatcounter.com`) and
      `PRIVACY.md` has a section on it. There is no data processing agreement (verwerkersovereenkomst) with
      GoatCounter, and its privacy policy does not offer one. It states that it stores no IP address, no full user
@@ -81,7 +86,7 @@ be to date the marker forward to where the music stops, in `StreamTimeline.Start
 
 ## 4. Better search
 
-Finding a station among the ~52,000 in the list is where a new user starts, and it is what decides
+Finding a station among the ~50,000 in the list is where a new user starts, and it is what decides
 which favorites the zapper gets to work with.
 
 - **Cluster the stations of one broadcaster.** Many stations come with a row of variants, such as the
@@ -91,6 +96,11 @@ which favorites the zapper gets to work with.
   country's most clicked stations the moment the country is picked, and caches the answer for a day.
   Preparing those rankings (the position and whatever else is worth showing) ahead of time would make
   the first pick instant and let it work offline too.
+
+Both belong in the station list builder (`tools/StationListBuilder`, see the README), which already reads
+every station with its clicks and votes once a day: done there, they are worked out once for everyone
+instead of on every PC, and travel to the app in the list it downloads anyway. New columns go after the
+six the list has now, which older apps ignore.
 
 ## 5. Translated country and genre names
 

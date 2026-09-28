@@ -10,7 +10,7 @@ can go in an [issue](https://github.com/WilliamVeldhuizen/ZapperRadio/issues). T
 [zapperradio.com/privacy](https://zapperradio.com/privacy/), which is the version to link to; the text here is the
 same, and its history is the history of this file.
 
-Last updated: 23 September 2026.
+Last updated: 28 September 2026.
 
 ## What stays on your PC
 
@@ -47,7 +47,7 @@ app, `ZapperRadio/<version>`. Nothing else identifies you or your PC.
 | What | Who receives it | What is sent | When |
 | --- | --- | --- | --- |
 | Radio streams | The station's own streaming server | Just a request for the stream. All your favorites (up to 20) stay connected while the app runs, muted ones too, so each of those stations sees you as a listener. | While the app runs |
-| Station list | [rb2rs.freemyip.com](http://rb2rs.freemyip.com/) | A request for the list of files, and then for the newest list. Nothing about you. This server only offers plain `http`. | When the app starts |
+| Station list | [zapperradio.com](https://zapperradio.com/stations/), the website of this project, which [GitHub Pages](https://docs.github.com/en/pages) serves ([privacy statement](https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement)) | A request for the index of the list, and then for the newest list. Nothing about you. The list is built every day from [radio-browser.info](https://www.radio-browser.info/)'s stations, on GitHub, not on your PC. | When the app starts; a new list is downloaded once a day |
 | Popularity of stations | [radio-browser.info](https://www.radio-browser.info/) | The country you are looking at, or nothing for all countries | When you look at the stations of a country, or of all countries; kept for a day |
 | Stations that are down | radio-browser.info | A request for the list of stations that failed their last check. Nothing about you. | When the app starts; kept for a day |
 | Station logos | radio-browser.info, then the server the station gave for its logo | The name and country of the station, then a request for the logo image | The first time a station is shown as a favorite or as the one playing; kept until you clear it in the settings |

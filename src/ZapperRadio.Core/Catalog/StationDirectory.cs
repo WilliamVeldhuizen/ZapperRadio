@@ -4,17 +4,22 @@ using ZapperRadio.Core.Models;
 namespace ZapperRadio.Core.Catalog;
 
 /// <summary>
-/// Finds the newest <c>stations-yyyy-MM-dd.rsd</c> file in the rb2rs directory listing,
-/// downloads it into a local cache and parses it. Falls back to the cache when offline.
+/// Finds the newest <c>stations-yyyy-MM-dd.txt</c> file linked from the index of the station list on
+/// zapperradio.com (built every day by <see cref="StationListBuilder"/>), downloads it into a local cache and parses
+/// it. Falls back to the cache when offline. The list used to come from rb2rs as <c>stations-yyyy-MM-dd.rsd</c>, which is the
+/// same format; such a file left in the cache still serves offline, until the first new list replaces it.
 /// </summary>
 public sealed partial class StationDirectory(HttpClient http, string cacheFolder, Uri? indexUri = null)
 {
-    public static readonly Uri DefaultIndexUri = new("http://rb2rs.freemyip.com/");
+    public static readonly Uri DefaultIndexUri = new("https://zapperradio.com/stations/");
 
     private readonly Uri _indexUri = indexUri ?? DefaultIndexUri;
 
-    [GeneratedRegex("href=\"(?<file>stations-\\d{4}-\\d{2}-\\d{2}\\.rsd)\"", RegexOptions.IgnoreCase)]
+    [GeneratedRegex("href=\"(?<file>stations-\\d{4}-\\d{2}-\\d{2}\\.(?:txt|rsd))\"", RegexOptions.IgnoreCase)]
     private static partial Regex StationFileLink();
+
+    [GeneratedRegex("^stations-\\d{4}-\\d{2}-\\d{2}\\.(?:txt|rsd)$", RegexOptions.IgnoreCase)]
+    private static partial Regex StationFileName();
 
     /// <summary>Returns the newest station file name linked from the directory listing, or null.</summary>
     public static string? FindLatestFileName(string indexHtml) =>
@@ -78,13 +83,15 @@ public sealed partial class StationDirectory(HttpClient http, string cacheFolder
     }
 
     private string? FindNewestCachedFile() =>
-        Directory.EnumerateFiles(cacheFolder, "stations-*.rsd")
+        Directory.EnumerateFiles(cacheFolder, "stations-*")
+            .Where(file => StationFileName().IsMatch(Path.GetFileName(file)))
+            // By the date in the name, whichever the extension.
             .OrderDescending(StringComparer.OrdinalIgnoreCase)
             .FirstOrDefault();
 
     private void DeleteCachedFilesExcept(string keep)
     {
-        foreach (var file in Directory.EnumerateFiles(cacheFolder, "stations-*.rsd*"))
+        foreach (var file in Directory.EnumerateFiles(cacheFolder, "stations-*"))
         {
             if (!string.Equals(file, keep, StringComparison.OrdinalIgnoreCase))
             {

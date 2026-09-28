@@ -85,7 +85,7 @@
   "faq.a6": "GitHub'daki yükleyici dijital olarak imzalı değildir, bu da SmartScreen'in her yeni uygulamaya karşı temkinli olmasına yol açar. Uyarıyı atlamak için ZapperRadio'yu Microsoft Store'dan edinin veya <em>Daha fazla bilgi</em>'yi, ardından <em>Yine de çalıştır</em>'ı seçin. Ne yüklediğinizi kontrol etmek isterseniz kaynak kodun tamamı GitHub'dadır.",
   "faq.q7": "Ücretsiz mi?",
   "faq.a7": "Evet. ZapperRadio, MIT lisansı altında açık kaynaklıdır.",
-  "foot.text": "İstasyon verileri rb2rs ve <a href=\"https://www.radio-browser.info/\">radio-browser.info</a> kaynaklıdır. Ses sınıflandırması YAMNet ile (Google, Apache License 2.0). İstasyon adları ve logoları sahiplerine aittir.",
+  "foot.text": "İstasyon verileri <a href=\"https://www.radio-browser.info/\">radio-browser.info</a> kaynaklıdır. Ses sınıflandırması YAMNet ile (Google, Apache License 2.0). İstasyon adları ve logoları sahiplerine aittir.",
   "foot.releases": "Sürümler",
   "foot.license": "MIT lisansı",
   "foot.privacy": "Gizlilik"

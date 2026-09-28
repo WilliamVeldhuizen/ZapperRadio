@@ -85,7 +85,7 @@
   "faq.a6": "תוכנית ההתקנה מ-GitHub אינה חתומה דיגיטלית, ולכן SmartScreen נזהרת מכל אפליקציה חדשה. הורידו את ZapperRadio מ-Microsoft Store כדי לדלג על האזהרה, או בחרו <em>מידע נוסף</em> ואז <em>הפעל בכל זאת</em>. קוד המקור המלא נמצא ב-GitHub אם תרצו לבדוק מה אתם מתקינים.",
   "faq.q7": "היא בחינם?",
   "faq.a7": "כן. ZapperRadio היא קוד פתוח ברישיון MIT.",
-  "foot.text": "נתוני התחנות מ-rb2rs ומ-<a href=\"https://www.radio-browser.info/\">radio-browser.info</a>. סיווג צלילים באמצעות YAMNet (Google, Apache License 2.0). שמות התחנות והסמלילים שלהן שייכים לבעליהם.",
+  "foot.text": "נתוני התחנות מ-<a href=\"https://www.radio-browser.info/\">radio-browser.info</a>. סיווג צלילים באמצעות YAMNet (Google, Apache License 2.0). שמות התחנות והסמלילים שלהן שייכים לבעליהם.",
   "foot.releases": "גרסאות",
   "foot.license": "רישיון MIT",
   "foot.privacy": "פרטיות"

@@ -4,7 +4,7 @@ using ZapperRadio.Core.Models;
 namespace ZapperRadio.Core.Catalog;
 
 /// <summary>
-/// The rb2rs station list has no logos, but it is generated from radio-browser.info, whose stations
+/// The station list has no logos, but it is built from radio-browser.info, whose stations
 /// carry a "favicon" URL. This looks a station up by name, prefers the entry whose stream URL matches,
 /// and confirms the favicon actually loads before using it. Results are cached on disk per station URL
 /// and reused indefinitely, since a station's logo (or the lack of one) rarely changes.
