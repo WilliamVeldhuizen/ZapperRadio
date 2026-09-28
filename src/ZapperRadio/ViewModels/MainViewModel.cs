@@ -12,6 +12,7 @@ using ZapperRadio.Core.Playback;
 using ZapperRadio.Core.Settings;
 using ZapperRadio.Core.Shell;
 using ZapperRadio.Core.Streaming;
+using ZapperRadio.Demo;
 using ZapperRadio.Playback;
 using ZapperRadio.Shell;
 
@@ -79,7 +80,14 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
 
         var localAppData = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
         var dataFolder = Path.Combine(localAppData, "ZapperRadio");
-        MoveOldDataFolder(Path.Combine(localAppData, "WinRadioPlayer"), dataFolder);
+        if (DemoMode.IsOn)
+        {
+            dataFolder = DemoMode.PrepareDataFolder();
+        }
+        else
+        {
+            MoveOldDataFolder(Path.Combine(localAppData, "WinRadioPlayer"), dataFolder);
+        }
         _http = new HttpClient(new SocketsHttpHandler { AutomaticDecompression = DecompressionMethods.All })
         {
             Timeout = TimeSpan.FromMinutes(2),
@@ -584,6 +592,12 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
             return;
         }
 
+        if (DemoMode.IsOn)
+        {
+            await LoadDemoCatalogAsync();
+            return;
+        }
+
         IsLoading = true;
         _popularityByCountry.Clear();
         _ = LoadHealthAsync();
@@ -668,6 +682,12 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
 
     public void Play(Station station)
     {
+        if (DemoMode.IsOn)
+        {
+            PlayDemo(station);
+            return;
+        }
+
         _lastPlayed = station;
         // A station picked by hand, with a click, a shortcut, a media key or the jump list, plays live: you chose what
         // is on right now. Only the zapper starts a station at the beginning of its song.
@@ -681,7 +701,16 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
 
     /// <summary>Plays the station being listened to live again, leaving what the buffer still holds of it.</summary>
     [RelayCommand]
-    private void GoLive() => _engine.GoLive();
+    private void GoLive()
+    {
+        if (DemoMode.IsOn)
+        {
+            GoLiveDemo();
+            return;
+        }
+
+        _engine.GoLive();
+    }
 
     /// <summary>
     /// Where to start a station so it is heard from the beginning of the song it plays, or null to play it live: when
@@ -707,7 +736,7 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
         var urls = Favorites.Select(f => f.Station.Url).ToList();
         // While zapping is on, next and previous pass over the favorites in an ad break or talking, which is what
         // the zapper would leave anyway.
-        if (FavoriteRing.Step(urls, _engine.Active?.Station.Url, step, IsInBreak) is { } url
+        if (FavoriteRing.Step(urls, ListeningTo?.Url, step, IsInBreak) is { } url
             && Favorites.FirstOrDefault(f => f.Station.Url == url) is { } favorite)
         {
             Play(favorite.Station);
@@ -720,6 +749,12 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
 
     public void Stop()
     {
+        if (DemoMode.IsOn)
+        {
+            StopDemo();
+            return;
+        }
+
         _engine.Stop();
         _zapper.OnStopped();
     }
@@ -727,7 +762,7 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
     [RelayCommand]
     private void TogglePlayback()
     {
-        if (_engine.Active is not null)
+        if (ListeningTo is not null)
         {
             Stop();
         }
@@ -767,7 +802,7 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
 
     private async Task LoadFavoriteLogoAsync(FavoriteViewModel favorite)
     {
-        var url = await _logos.GetLogoUrlAsync(favorite.Station);
+        var url = DemoMode.IsOn ? DemoMode.LogoUrl(favorite.Station) : await _logos.GetLogoUrlAsync(favorite.Station);
         // The favorite might have been removed again while the lookup was running.
         if (Favorites.Contains(favorite))
         {
@@ -779,7 +814,7 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
     [RelayCommand]
     private void ToggleNowPlayingTrackSaved()
     {
-        if (NowPlayingTrack is not { } title || _engine.Active is not { } active)
+        if (NowPlayingTrack is not { } title || ListeningTo is not { } station)
         {
             return;
         }
@@ -790,7 +825,7 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
         }
         else
         {
-            FavoriteTracks.Insert(0, new FavoriteTrack(title, active.Station.Name, DateTimeOffset.Now));
+            FavoriteTracks.Insert(0, new FavoriteTrack(title, station.Name, DateTimeOffset.Now));
         }
     }
 
@@ -1015,7 +1050,8 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
 
     partial void OnAutoStartChanged(bool value)
     {
-        if (!_showingAutoStart)
+        // The demo leaves the startup of the real app alone.
+        if (!_showingAutoStart && !DemoMode.IsOn)
         {
             _ = ShowAutoStartAsync(StartupRegistration.SetEnabledAsync(value));
         }
@@ -1096,7 +1132,8 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
             return;
         }
 
-        var megabytes = Math.Max(1, Math.Round(_engine.BufferBytes(length) / (1024.0 * 1024)));
+        var bytes = DemoMode.IsOn ? DemoBufferBytes(length) : _engine.BufferBytes(length);
+        var megabytes = Math.Max(1, Math.Round(bytes / (1024.0 * 1024)));
         TimeShiftMemory = Localizer.Format(ZapToSongStart ? "TimeShiftMemory" : "TimeShiftMemoryOff", megabytes, Favorites.Count);
     }
 
@@ -1118,6 +1155,12 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
     /// <summary>Refreshes what the loudness section of the settings says about each favorite.</summary>
     private void UpdateLoudnessTexts()
     {
+        if (DemoMode.IsOn)
+        {
+            UpdateDemoLoudnessTexts();
+            return;
+        }
+
         foreach (var favorite in Favorites)
         {
             favorite.LoudnessText = _engine.Find(favorite.Station.Url) is { } stream
@@ -1271,7 +1314,8 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
         var source = _allStations;
 
         // Without a country the worldwide ranking is used, so the list does not open on whatever sorts first by name.
-        if (!_popularityByCountry.TryGetValue(country ?? WorldwidePopularity, out var ranks))
+        // The made-up stations of the demo are in no ranking.
+        if (!_popularityByCountry.TryGetValue(country ?? WorldwidePopularity, out var ranks) && !DemoMode.IsOn)
         {
             _ = LoadPopularityAsync(country);
         }
@@ -1390,15 +1434,21 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
     private void SyncFavorites()
     {
         _favoritesSyncPending = false;
-        _engine.SetFavorites(Favorites.Select(f => f.Station));
-
-        foreach (var favorite in Favorites)
+        if (DemoMode.IsOn)
         {
-            if (_engine.Find(favorite.Station.Url) is { } stream)
+            ShowDemoFavorites();
+        }
+        else
+        {
+            _engine.SetFavorites(Favorites.Select(f => f.Station));
+            foreach (var favorite in Favorites)
             {
-                RecordPlayed(stream);
-                favorite.Status = stream.Status;
-                ShowOnFavorite(favorite, stream);
+                if (_engine.Find(favorite.Station.Url) is { } stream)
+                {
+                    RecordPlayed(stream);
+                    favorite.Status = stream.Status;
+                    ShowOnFavorite(favorite, stream);
+                }
             }
         }
 
@@ -1438,6 +1488,12 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
 
     private void UpdateJumpList(bool withSongs)
     {
+        // The jump list belongs to the real app, and would keep the made-up favorites after the demo is closed.
+        if (DemoMode.IsOn)
+        {
+            return;
+        }
+
         var favorites = Favorites
             .Select(f => new JumpListItem(
                 JumpListCommand.Title(f.Name, withSongs ? f.Song : ""),
@@ -1544,6 +1600,12 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
 
     private void UpdateNowPlaying()
     {
+        if (DemoMode.IsOn)
+        {
+            ShowDemoNowPlaying();
+            return;
+        }
+
         var active = _engine.Active;
         foreach (var favorite in Favorites)
         {
@@ -1606,7 +1668,7 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
 
     private async Task LoadNowPlayingLogoAsync(Station station)
     {
-        var url = await _logos.GetLogoUrlAsync(station);
+        var url = DemoMode.IsOn ? DemoMode.LogoUrl(station) : await _logos.GetLogoUrlAsync(station);
         // Only apply it if this is still the displayed station once the lookup completes.
         if (_nowPlayingLogoStationUrl == station.Url)
         {

@@ -359,3 +359,23 @@ song start, and from the buffer when it has not reached the song start yet: live
 before it would be heard first. And the zapper does not land on a favorite whose own player still plays
 its break (`MainViewModel.LandingChannelOf`), because without a buffer to start the song from, the zap
 would land in that break and zap straight on.
+
+## Demo mode for the Store screenshots
+
+The Store screenshots showed real station logos, which are the broadcasters' trademarks, used there to
+promote the app. `ZapperRadio.exe --demo` shows the real window with made-up stations instead, so the
+screenshots still show the app itself, as the Store requires. The alternative, drawing the screenshots,
+would drift away from the app with every change of the layout.
+
+The demo does not fake the engine. `DemoMode` writes a settings file and a history into a folder of its
+own (`%TEMP%\ZapperRadio-demo`, emptied on every start), so the favorites, favorite tracks and history
+reach the window through the same code as always, and the real ones are never touched. What the engine
+would report is then set on the favorites directly (`MainViewModel.Demo.cs`): the row states, the station
+being listened to, and the loudness measurements. The engine gets no favorites, so nothing streams, and
+the few places that asked the engine what is being listened to ask `ListeningTo` instead. The demo is a
+separate app instance and leaves the jump list, the startup setting and the update checks alone, so it can
+run next to ZapperRadio without changing anything of it.
+
+It starts in the state worth showing: the zapper has just left an ad break for a song on another
+favorite, played from its buffer, next to a favorite in an assumed ad break and a talk station that is
+never zapped to. `--demo=<language>` shows it in another language, for screenshots per Store listing.

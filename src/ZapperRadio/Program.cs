@@ -29,7 +29,8 @@ public static class Program
 
         // One instance plays the radio. Starting the app again, for example from the jump list,
         // hands the command line to that instance instead of opening a second window.
-        var mainInstance = AppInstance.FindOrRegisterForKey("ZapperRadio");
+        // The demo is an instance of its own, so it can run next to the real app without taking over its window.
+        var mainInstance = AppInstance.FindOrRegisterForKey(Demo.DemoMode.IsOn ? "ZapperRadio-demo" : "ZapperRadio");
         if (!mainInstance.IsCurrent)
         {
             // Let the running instance bring its window to the front.

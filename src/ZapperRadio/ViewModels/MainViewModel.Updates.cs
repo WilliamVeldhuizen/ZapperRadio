@@ -43,7 +43,8 @@ public sealed partial class MainViewModel
 
     private void StartUpdateChecks()
     {
-        if (!_updater.IsSupported)
+        // The demo is not the app to update.
+        if (!_updater.IsSupported || Demo.DemoMode.IsOn)
         {
             return;
         }

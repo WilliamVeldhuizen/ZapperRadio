@@ -92,6 +92,15 @@ After every new release, the [Store MSIX workflow](.github/workflows/store-msix.
 .\scripts\test-msix.ps1 -Remove   # uninstalls it and removes the test certificate
 ```
 
+The Store screenshots are taken in the demo mode, so they show the real app without the names and logos of real stations, which are the broadcasters' trademarks:
+
+```powershell
+dotnet run --project src/ZapperRadio -- --demo          # in the language of Windows
+dotnet run --project src/ZapperRadio -- --demo=nl-NL    # in another language
+```
+
+The window then shows made-up favorites, songs, favorite tracks and history (`Demo/DemoMode.cs`), with logos rendered by `design/logos/demo/render-demo-logos.ps1`. Nothing streams, the favorites stay in the state they start in, and picking one only shows it as the station being listened to. The demo keeps its settings in `%TEMP%\ZapperRadio-demo`, which it fills afresh on every start, leaves the jump list and the startup setting alone, and runs as an instance of its own, so it can run next to ZapperRadio itself.
+
 ## Structure
 
 - `src/ZapperRadio.Core`: downloading and parsing the station list, search, playlist resolving, the local relay that reads song titles from the streams and plays the time-shift buffers back, the ad break and music/speech rules, the loudness measurement, and settings. No UI, fully tested.
