@@ -8,7 +8,44 @@ Nothing here is promised or scheduled; it is a working list. Items leave it once
 they do is then in the README, and why they work the way they do in
 [docs/design-notes.md](docs/design-notes.md).
 
-## 1. Production ready
+## 1. Findability in the Microsoft Store
+
+No work in the app: this is what makes people find it. The app is in the Store and its page opens
+(https://apps.microsoft.com/detail/9NLNJGRFGPGH, `winget show 9NLNJGRFGPGH`), but the Store search does
+not return it, not even for its own name: `winget search ZapperRadio --source msstore` finds nothing.
+Ranked by payoff per effort.
+
+1. **Check that the listing is discoverable.** Partner Center, Pricing and availability, Discoverability:
+   "available but not discoverable" leaves the app out of every search and only reachable by its link,
+   which is exactly what the search shows now. It has to be "available and discoverable". If it is,
+   the search index is still catching up with a new app, which can take days to a week or so; check again
+   with `winget search` before changing anything else.
+2. **"zapper radio" as a search term.** The name is one word, so a search for the two words does not
+   match it for sure. All seven search terms are in use in every language; replace the weakest one
+   ("live radio" and its translations) with `zapper radio`, the same in every language. The CSV export
+   and import of the listings does all 30 languages at once.
+3. **Screenshot captions and the short description.** `DesktopScreenshotCaption1` to `6` and
+   `ShortDescription` are empty in every language. A caption per screenshot ("Zaps away from ads to a song
+   on another favorite") says in the search results what the picture shows. Both go in the same CSV.
+4. **Screenshots per language.** The six screenshots are English in all 30 listings. The demo mode takes
+   them in any language (`--demo=de-DE`), so at least the biggest markets can show the app in their own
+   language.
+5. **Promotional images and a trailer.** The Store uses the 1920x1080 and 2400x1200 promotional images and
+   the 720x1080 and 1080x1080 logos for its own collections and editors' picks; without them the app
+   cannot be featured. A trailer of 30 seconds showing a zap away from an ad break, and back, explains
+   the app better than any text, and plays at the top of the listing.
+6. **Links into the Store with a campaign id.** The website's Store buttons can carry `?cid=website`
+   (and the README's a `?cid=github`), so Partner Center's acquisition report shows where installs come
+   from. Use Microsoft's official "Get it from Microsoft" badge for them.
+7. **Ratings.** The Store ranks by ratings too, and a new app has none. Ask for one where people already
+   read about the app (the website, the README and release notes), not with a prompt in the app.
+8. **The publisher name.** The listing shows `williamve`; a full name looks less like a throwaway account
+   (see Legal and metadata under Production ready).
+9. **Outside the Store.** A post where people look for radio players (Reddit's r/windows and
+   r/radio, AlternativeTo as an alternative to other radio apps) brings people who search by what the app
+   does rather than by its name. A manifest for the GitHub installer in winget-pkgs makes
+   `winget install ZapperRadio` work next to the Store version.
+## 2. Production ready
 
 No new features: this is the work that makes what exists safe to ship to people who cannot ask the author
 what went wrong. Ranked by payoff per effort. Auto-update and its release pipeline are built (1.19.0).
@@ -66,7 +103,7 @@ what went wrong. Ranked by payoff per effort. Auto-update and its release pipeli
    on x64, including the auto-start entry. `vpk pack` leaves out the PDBs by default; keep them as release
    artifacts, so a stack trace from a crash can be read.
 
-## 2. Bandwidth and power guard
+## 3. Bandwidth and power guard
 
 The permanent 2 to 6 Mbit/s of background streaming is the one real cost of the design. An eco
 mode keeps only the top few favorites open on a metered connection or on battery below a set
@@ -74,7 +111,7 @@ percentage, and re-opens the rest on Wi-Fi or AC power. A live "currently using 
 readout in the settings makes the cost visible instead of implied. Uses `NetworkInformation` and
 the system power status, mostly inside `RadioEngine`.
 
-## 3. Ad markers that run ahead of the audio
+## 4. Ad markers that run ahead of the audio
 
 Not yet confirmed: an ad marker in the stream title counts from the moment it comes in, and
 is not dated back like a break heard as speech. Some stations send their titles 10 to 20 seconds
@@ -84,7 +121,7 @@ behind the audio coming in are already accounted for (see the design notes), so 
 marker is now down to the station. Worth fixing only once a station is seen doing it; the fix would
 be to date the marker forward to where the music stops, in `StreamTimeline.StartOf`.
 
-## 4. Better search
+## 5. Better search
 
 Finding a station among the ~50,000 in the list is where a new user starts, and it is what decides
 which favorites the zapper gets to work with.
@@ -102,14 +139,14 @@ every station with its clicks and votes once a day: done there, they are worked 
 instead of on every PC, and travel to the app in the list it downloads anyway. New columns go after the
 six the list has now, which older apps ignore.
 
-## 5. Translated country and genre names
+## 6. Translated country and genre names
 
 The app speaks ten languages since 1.18.0, but the country and genre names come from the station
 list in English and stay that way, so the country box is the one part of the window that does not
 follow the language. A mapping per language for the few dozen countries that matter would make it
 read like the rest of the window.
 
-## 6. Learn from the listeners: train the break detection locally, improve it together
+## 7. Learn from the listeners: train the break detection locally, improve it together
 
 A large item for the longer term, and only worth starting once the app has users. The music, speech
 and ad break detection is YAMNet, a general sound classifier, with hand-written rules on top. Every
