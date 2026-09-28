@@ -403,3 +403,10 @@ limit and refuses to send all of them at once, so they are read in pages of 10,0
 ids. A list of fewer than 20,000 stations is taken as a partial answer and not published; then, as when
 radio-browser cannot be reached, the workflow publishes the list that is online again, because a deploy
 replaces the whole site.
+
+Every release carries the list of the day it was built, fetched from the site by
+`scripts/fetch-station-list.ps1` just before the build, not generated again, so the packages have the same list as
+the site. `StationDirectory` treats that folder as a second cache: offline it takes whichever list is newest, the
+one it came with or the one it downloaded, and online it copies the bundled list instead of downloading it while
+that is still the newest. A fresh install needs no network for its stations, and a lost site is never an empty
+station list, at the cost of about 6 MB in the package (less in the installer, which compresses it).

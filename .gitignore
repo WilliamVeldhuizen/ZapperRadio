@@ -483,3 +483,5 @@ $RECYCLE.BIN/
 
 # The station list is built by the Website workflow (tools/StationListBuilder), not kept in git.
 website/stations/
+# The station list a release carries, put there by scripts/fetch-station-list.ps1.
+src/ZapperRadio/Assets/Stations/

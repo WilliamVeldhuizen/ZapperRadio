@@ -38,6 +38,8 @@
     <Content Include="Assets\Models\yamnet.onnx;Assets\Models\LICENSE-yamnet.txt" CopyToOutputDirectory="PreserveNewest" />
     <!-- The logos of the made-up stations of the demo mode, rendered by design\logos\demo\render-demo-logos.ps1. -->
     <Content Include="Assets\Demo\*.png" CopyToOutputDirectory="PreserveNewest" />
+    <!-- The newest station list, put there by scripts\fetch-station-list.ps1 for a release; a dev build has none. -->
+    <Content Include="Assets\Stations\stations-*.txt" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 
   <!-- The licenses and notices that go with the app, so they are in the install folder (see THIRD-PARTY-NOTICES.md). -->

@@ -99,6 +99,8 @@ jobs:
       - name: Build the Store package
         shell: pwsh
         run: |
+          # Every package carries the newest station list, so a fresh install has its stations at once.
+          ./scripts/fetch-station-list.ps1
           msbuild src/ZapperRadio/ZapperRadio.csproj -restore -nologo -verbosity:minimal `
               -p:Configuration=Release `
               -p:Platform=${{ matrix.platform }} `

@@ -106,6 +106,7 @@ $msbuild = if (Test-Path $vswhere) {
 if (-not $msbuild) { throw 'MSBuild not found. Install Visual Studio (Community is fine) with the .NET desktop workload.' }
 
 if (Test-Path $outputDir) { Remove-Item $outputDir -Recurse -Force }
+& (Join-Path $PSScriptRoot 'fetch-station-list.ps1')
 Write-Host "Building the MSIX of ZapperRadio $Version (x64)..." -ForegroundColor Cyan
 & $msbuild $project -restore -nologo -verbosity:minimal `
     -p:Configuration=Release -p:Platform=x64 -p:StoreMsix=true -p:Version=$Version `

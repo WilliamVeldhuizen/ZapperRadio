@@ -99,6 +99,46 @@ public class CatalogTests
         }
     }
 
+    [Fact]
+    public async Task LoadAsync_UsesTheBundledListWhenItIsTheNewestAndCopiesItInsteadOfDownloading()
+    {
+        var root = Path.Combine(Path.GetTempPath(), "ZapperRadioTests", Guid.NewGuid().ToString("N"));
+        var cache = Path.Combine(root, "cache");
+        var bundled = Path.Combine(root, "bundled");
+        try
+        {
+            const string list = "2026-09-20 03:23:00\nBundled\t-\t\tNL\t\thttp://b.example/stream\n";
+            File.WriteAllText(Path.Combine(bundled.EnsureDirectory(), "stations-2026-09-20.txt"), list);
+            File.WriteAllText(Path.Combine(cache.EnsureDirectory(), "stations-2026-09-01.rsd"), "2026-09-01 12:00:00\nOld\t-\t\tNL\t\thttp://a.example/stream\n");
+
+            // Offline, the bundled list is newer than the one in the cache.
+            var offline = await new StationDirectory(new HttpClient(new FakeHandler(_ => null) { Offline = true }), cache, bundledFolder: bundled).LoadAsync();
+            Assert.True(offline.FromCache);
+            Assert.Equal("Bundled", offline.Stations[0].Name);
+
+            // Online, while the bundled list is still the newest one, it is copied rather than downloaded.
+            var downloads = 0;
+            var handler = new FakeHandler(uri =>
+            {
+                if (uri.AbsolutePath == "/stations/")
+                {
+                    return "<a href=\"stations-2026-09-20.txt\"></a>";
+                }
+
+                downloads++;
+                return null;
+            });
+            var online = await new StationDirectory(new HttpClient(handler), cache, bundledFolder: bundled).LoadAsync();
+            Assert.False(online.FromCache);
+            Assert.Equal(0, downloads);
+            Assert.Equal(["stations-2026-09-20.txt"], Directory.GetFiles(cache).Select(Path.GetFileName));
+        }
+        finally
+        {
+            if (Directory.Exists(root)) Directory.Delete(root, recursive: true);
+        }
+    }
+
     private static RadioBrowserStation Entry(string name, string url, int lastCheckOk = 1, string? lastWorked = null,
         string tags = "", int clicks = 0) =>
         new(name, url, tags, "Netherlands", "dutch", lastCheckOk, lastWorked, clicks, 0);

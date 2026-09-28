@@ -112,7 +112,7 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
             .ToList();
 
         _cacheFolder = Path.Combine(dataFolder, "cache");
-        _directory = new StationDirectory(_http, _cacheFolder);
+        _directory = new StationDirectory(_http, _cacheFolder, bundledFolder: Path.Combine(AppContext.BaseDirectory, "Assets", "Stations"));
         _popularity = new StationPopularity(_http, _cacheFolder);
         _health = new StationHealth(_http, _cacheFolder);
         _logos = new StationLogos(_http, _cacheFolder);

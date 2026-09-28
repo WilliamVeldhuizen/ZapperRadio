@@ -30,6 +30,9 @@ if (-not (Get-Command vpk -ErrorAction SilentlyContinue)) {
 
 if (Test-Path $publishDir) { Remove-Item $publishDir -Recurse -Force }
 
+# Every release carries the newest station list, so a fresh install has its stations at once.
+& (Join-Path $root 'scripts\fetch-station-list.ps1')
+
 Write-Host "Publishing ZapperRadio $Version ($Arch)..." -ForegroundColor Cyan
 dotnet publish (Join-Path $root 'src\ZapperRadio\ZapperRadio.csproj') `
     -c Release -r "win-$Arch" --self-contained true `

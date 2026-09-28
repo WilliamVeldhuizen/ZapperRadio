@@ -8,8 +8,10 @@ namespace ZapperRadio.Core.Catalog;
 /// zapperradio.com (built every day by <see cref="StationListBuilder"/>), downloads it into a local cache and parses
 /// it. Falls back to the cache when offline. The list used to come from rb2rs as <c>stations-yyyy-MM-dd.rsd</c>, which is the
 /// same format; such a file left in the cache still serves offline, until the first new list replaces it.
+/// A release carries the list of the day it was built (see scripts/fetch-station-list.ps1), in the folder given as
+/// <paramref name="bundledFolder"/>: a fresh install then has its stations without downloading them, also offline.
 /// </summary>
-public sealed partial class StationDirectory(HttpClient http, string cacheFolder, Uri? indexUri = null)
+public sealed partial class StationDirectory(HttpClient http, string cacheFolder, Uri? indexUri = null, string? bundledFolder = null)
 {
     public static readonly Uri DefaultIndexUri = new("https://zapperradio.com/stations/");
 
@@ -61,9 +63,15 @@ public sealed partial class StationDirectory(HttpClient http, string cacheFolder
     {
         var indexHtml = await http.GetStringAsync(_indexUri, cancellationToken);
         var fileName = FindLatestFileName(indexHtml)
-                       ?? throw new StationDirectoryException($"No stations-*.rsd file found at {_indexUri}.");
+                       ?? throw new StationDirectoryException($"No stations-*.txt file found at {_indexUri}.");
 
         var target = Path.Combine(cacheFolder, fileName);
+        if (!File.Exists(target) && BundledFile(fileName) is { } bundled)
+        {
+            // The list the app came with is still the newest, so it need not be downloaded again.
+            File.Copy(bundled, target);
+        }
+
         if (!File.Exists(target))
         {
             var temp = target + ".download";
@@ -82,12 +90,20 @@ public sealed partial class StationDirectory(HttpClient http, string cacheFolder
         return target;
     }
 
+    /// <summary>The newest list on this PC: downloaded before, or the one the app came with, whichever is newer.</summary>
     private string? FindNewestCachedFile() =>
-        Directory.EnumerateFiles(cacheFolder, "stations-*")
-            .Where(file => StationFileName().IsMatch(Path.GetFileName(file)))
-            // By the date in the name, whichever the extension.
-            .OrderDescending(StringComparer.OrdinalIgnoreCase)
+        StationFiles(cacheFolder).Concat(StationFiles(bundledFolder))
+            // By the date in the name, whichever the extension or folder.
+            .OrderByDescending(Path.GetFileName, StringComparer.OrdinalIgnoreCase)
             .FirstOrDefault();
+
+    private static IEnumerable<string> StationFiles(string? folder) =>
+        folder is not null && Directory.Exists(folder)
+            ? Directory.EnumerateFiles(folder, "stations-*").Where(file => StationFileName().IsMatch(Path.GetFileName(file)))
+            : [];
+
+    private string? BundledFile(string fileName) =>
+        StationFiles(bundledFolder).FirstOrDefault(file => string.Equals(Path.GetFileName(file), fileName, StringComparison.OrdinalIgnoreCase));
 
     private void DeleteCachedFilesExcept(string keep)
     {
