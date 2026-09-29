@@ -411,7 +411,7 @@ one it came with or the one it downloaded, and online it copies the bundled list
 that is still the newest. A fresh install needs no network for its stations, and a lost site is never an empty
 station list, at the cost of about 6 MB in the package (less in the installer, which compresses it).
 
-## Playback that holds up over a day of listening
+## Playback that holds up over a day of listening (1.31.1)
 
 The app is meant to run all day, and several things only showed after hours of it.
 
