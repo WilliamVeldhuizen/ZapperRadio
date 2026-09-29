@@ -101,4 +101,28 @@ public class AudioDurationTests
 
         Assert.Equal(TimeSpan.Zero, Measure(stream, 100));
     }
+
+    [Fact]
+    public void FindsWhereTheMp3FramesBegin()
+    {
+        // The tail of a frame, then a sync word in the audio data that no frame follows.
+        var start = new byte[] { 0x12, 0x34, 0xFF, 0xFB, 0x90, 0x00, 0x56 };
+        var stream = start.Concat(Repeat(_ => Mp3Frame(), 3)).ToArray();
+
+        Assert.Equal(new AudioFrames(start.Length, IsMp3: true), AudioDuration.FindFrames(stream));
+    }
+
+    [Fact]
+    public void FindsWhereTheAacFramesBegin()
+    {
+        var stream = new byte[] { 0x12, 0x34, 0x56 }.Concat(Repeat(_ => AdtsFrame(), 3)).ToArray();
+
+        Assert.Equal(new AudioFrames(3, IsMp3: false), AudioDuration.FindFrames(stream));
+    }
+
+    [Fact]
+    public void FindsNoFramesWithoutTwoInARow()
+    {
+        Assert.Null(AudioDuration.FindFrames(Mp3Frame()));
+    }
 }

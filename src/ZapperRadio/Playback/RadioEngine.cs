@@ -23,6 +23,13 @@ public sealed class RadioEngine : IDisposable
     private static readonly TimeSpan MinTimeShift = TimeSpan.FromSeconds(3);
 
     /// <summary>
+    /// How much audio a replay needs ahead of it before it starts. A zap back to a station whose song just began lands
+    /// seconds from the live edge, and a replay that close runs dry between the chunks a station sends and falls
+    /// silent again and again; one short pause before the song is better than dropouts in it.
+    /// </summary>
+    private static readonly TimeSpan ReplayLead = TimeSpan.FromSeconds(8);
+
+    /// <summary>
     /// How long a zap takes to fade from one station into the next. The zapper acts a little ahead of what is heard,
     /// and the fade out has to fit in that lead, so it is over before the break it leaves begins.
     /// </summary>
@@ -48,6 +55,12 @@ public sealed class RadioEngine : IDisposable
 
     /// <summary>When the audio the replay started with came in from the station.</summary>
     private DateTimeOffset _replayFrom;
+
+    /// <summary>Where the replay started in the playing time the buffer counts, or null when it counts none.</summary>
+    private TimeSpan? _replayAudio;
+
+    /// <summary>Whether the replay has played, so its player's position belongs to it rather than to what it played before.</summary>
+    private bool _replayHasPlayed;
 
     /// <summary>How long the replay played before <see cref="_replayPlayingSince"/>: the time it spent opening or buffering does not count.</summary>
     private TimeSpan _replayPlayed;
@@ -173,7 +186,13 @@ public sealed class RadioEngine : IDisposable
     /// <summary>Whether the station being listened to is played from its buffer, behind the broadcast.</summary>
     public bool IsTimeShifted => _replayUrl is not null;
 
-    /// <summary>How far behind the broadcast the station being listened to is heard; zero while it plays live.</summary>
+    /// <summary>
+    /// How far behind the broadcast the station being listened to is heard; zero while it plays live. It goes by how far
+    /// the replay's player got into the audio, and by when the buffer says that audio came in. Counting the time the
+    /// replay has played instead goes wrong where the audio did not come in at the pace it plays: after a reconnect
+    /// the buffer can hold seconds that came in at once, and the zapper would run that far ahead of what is heard.
+    /// Formats whose frames the buffer does not count are timed by how long the replay has played.
+    /// </summary>
     public TimeSpan Delay
     {
         get
@@ -184,10 +203,29 @@ public sealed class RadioEngine : IDisposable
             }
 
             var now = DateTimeOffset.UtcNow;
-            var played = _replayPlayed + (_replayPlayingSince is { } since ? now - since : TimeSpan.Zero);
-            var delay = now - (_replayFrom + played);
+            var heard = HeardInBuffer();
+            if (heard is null)
+            {
+                var played = _replayPlayed + (_replayPlayingSince is { } since ? now - since : TimeSpan.Zero);
+                heard = _replayFrom + played;
+            }
+
+            var delay = now - heard.Value;
             return delay > TimeSpan.Zero ? delay : TimeSpan.Zero;
         }
+    }
+
+    /// <summary>When the audio the replay plays now came in, from its player's position; null when that cannot be told.</summary>
+    private DateTimeOffset? HeardInBuffer()
+    {
+        if (Active is not { } active || _replayAudio is not { } start)
+        {
+            return null;
+        }
+
+        // Until it has played, the player may still report where it was in what it played before.
+        var position = _replayHasPlayed ? _replayPlayer!.PlaybackSession.Position : TimeSpan.Zero;
+        return active.Buffer.TimeOfAudio(start + position);
     }
 
     /// <summary>
@@ -406,8 +444,10 @@ public sealed class RadioEngine : IDisposable
     private void StartReplay(StationStream stream, long position, bool fadeIn = false)
     {
         _replayPlayer ??= TakeSpareReplayPlayer();
-        _replayUrl = _proxy!.RegisterReplay(stream.Buffer, position, new Uri(stream.Station.Url));
+        _replayUrl = _proxy!.RegisterReplay(stream.Buffer, position, new Uri(stream.Station.Url), ReplayLead);
         _replayFrom = stream.Buffer.TimeAt(position) ?? DateTimeOffset.UtcNow;
+        _replayAudio = stream.Buffer.AudioAt(position);
+        _replayHasPlayed = false;
         _replayPlayed = TimeSpan.Zero;
         _replayPlayingSince = null;
         _replayFade = fadeIn ? 0 : 1;
@@ -619,6 +659,7 @@ public sealed class RadioEngine : IDisposable
         var now = DateTimeOffset.UtcNow;
         if (state == MediaPlaybackState.Playing)
         {
+            _replayHasPlayed = true;
             _replayPlayingSince ??= now;
             if (_fadeInReplay && _fadeInStart is null)
             {

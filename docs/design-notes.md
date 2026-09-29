@@ -236,9 +236,9 @@ own pace and stays as far behind as where it started. `RadioEngine` has one extr
 for whichever station is being listened to. The station's own player stays muted and keeps streaming
 meanwhile, because it is what keeps the titles, the classifier and the reconnects going. A station
 closer to its song start than 3 seconds, or whose song began before the buffer reaches back, plays live
-as before, from its own player, so a zap there is still instant. `RadioEngine.Delay` counts only the
-time the replay actually plays, so the seconds it spends opening or buffering show up as delay rather
-than being lost.
+as before, from its own player, so a zap there is still instant. `RadioEngine.Delay` goes by how far
+the replay's player got into the audio, so the seconds it spends opening or buffering show up as delay
+rather than being lost (see the reconnects below for why it is not the time it has been playing).
 
 Only the zapper starts a station at the beginning of its song. A station picked by hand, with a click,
 a shortcut, a media key or the jump list, plays live, even when its buffer holds the start of the song:
@@ -278,8 +278,8 @@ wants it. Replaying what you just missed by hand, and recording a song from the 
 deliberately: they hang next to the zapper instead of making it better.
 
 What was accepted: the mark of a position is the time it came in, so the burst of audio a server sends
-on connect is dated a few seconds too late, and a reconnect in the middle of a replay makes the delay a
-little off until the next zap. Both only move where the zap lands by seconds.
+on connect is dated a few seconds too late. That only moves where a zap lands by seconds. A reconnect in
+the middle of a replay was accepted too at first, but it did more than that; see below.
 
 ## Zap rules and the Zapper tab
 
@@ -403,10 +403,70 @@ limit and refuses to send all of them at once, so they are read in pages of 10,0
 ids. A list of fewer than 20,000 stations is taken as a partial answer and not published; then, as when
 radio-browser cannot be reached, the workflow publishes the list that is online again, because a deploy
 replaces the whole site.
-
+
 Every release carries the list of the day it was built, fetched from the site by
 `scripts/fetch-station-list.ps1` just before the build, not generated again, so the packages have the same list as
 the site. `StationDirectory` treats that folder as a second cache: offline it takes whichever list is newest, the
 one it came with or the one it downloaded, and online it copies the bundled list instead of downloading it while
 that is still the newest. A fresh install needs no network for its stations, and a lost site is never an empty
-station list, at the cost of about 6 MB in the package (less in the installer, which compresses it).
+station list, at the cost of about 6 MB in the package (less in the installer, which compresses it).
+
+## Playback that holds up over a day of listening
+
+The app is meant to run all day, and several things only showed after hours of it.
+
+**Handles.** Media Foundation leaks four event handles every time it opens MP3, which the sound classifier
+did for every 5-second window of every MP3 favorite: after two hours of fifteen favorites the process held
+67,000 of them, growing by 480 a minute. `SoundClassifier` now decodes MP3 frame by frame with the MP3
+decoder of Windows (NAudio's `Mp3FileReaderBase` with `DmoMp3FrameDecompressor`), which gives the same samples
+and leaks nothing, and leaves AAC to Media Foundation, which does not leak. A window starts wherever the last
+one ended, usually halfway into a frame; it is now cut to its first whole frame (`AudioDuration.FindFrames`),
+because Media Foundation failed to open about one AAC window in five that did not start on one, and the
+classifier lost those windows without a word.
+
+**Reconnects.** A server starts a connection with the last 10 to 30 seconds of the station, and the
+time-shift buffer appended that burst behind what it already held. A replay that crossed a reconnect heard
+those seconds twice, and from there on played the station that much later than the times in the buffer
+said, so the zapper judged a moment up to half a minute ahead of what was heard and zapped that much too
+early. `TimeShiftBuffer.Connect` now has the new connection join the audio before it: the start of what it
+sends is looked for in the last minute of the buffer, followed for as long as the two are the same, and left
+out once it runs past the end. Some servers first repeat the burst of the previous connect and only then
+send the last seconds, so a stretch that parts before the end is looked for again. A connection that never
+gets past the end is taken as it came, because some stations start every connection with the same pre-roll
+ad, and its title would otherwise fall on the station's music; the same goes for one that has not got there
+after 3 seconds, so a replay close to the live edge is not held still. Of fifteen Dutch stations, eight
+join byte for byte; the StreamTheWorld stations send every connection from another server, with other
+bytes, and keep the old behaviour. Qmusic announces 95 or 96 kbit/s depending on the connection, which
+used to throw the whole buffer away on every reconnect; only a size a quarter off is reallocated now.
+
+**Where a replay is.** `RadioEngine.Delay` used to add up the time the replay had been playing, which assumes
+the audio came in at the pace it plays. Every mark of the buffer now also holds the playing time of the
+audio before it, counted from the frames as they come in (`TimeShiftBuffer.AudioAt` and `TimeOfAudio`), and
+the delay is where the replay's player is in that count, dated by when that audio came in. That stays right
+across a reconnect the buffer could not join, and across whatever else makes a station send its audio
+unevenly. A format whose frames are not counted is still timed by how long the replay has played.
+
+What was looked at and left alone: every player's HTTP source keeps what it downloaded in a file in the
+`INetCache`, about a gigabyte an hour for fifteen favorites, deleted when the player closes the stream. A
+player fed at 400 times real time played on without a hitch past 4 GB; Windows stops growing the file at
+about 2.6 GB and carries on from there. It costs disk writes, not playback, and a player the app does not
+close (when it is ended from the Task Manager, say) leaves its file behind.
+
+**A replay close to the live edge.** A zap back to a station whose song just began lands a few seconds from
+the live edge, because the song started only moments ago. The station sends its audio in chunks up to two
+seconds apart, and a player that close runs dry between them: measured on the relay with the station's own
+chunks, a replay 1 to 5 seconds from the edge fell silent for about a second 6 to 10 times in 4 minutes,
+mostly in the first minute; 10 seconds from the edge, hardly ever. `IcyProxy.ReplayAsync` now sends nothing
+until the buffer reaches `RadioEngine.ReplayLead` (8 seconds) past where the replay starts
+(`TimeShiftBuffer.AheadOf`). Such a zap waits a few seconds before the song begins, which is a pause between
+two items instead of dropouts in the song; a zap into a song that has been playing for a while has its lead
+at once and starts as before.
+
+**Where the zapper cuts.** Replaying 75 minutes of all fifteen favorites through the same windows, `SoundHistory`
+and `StreamTimeline` dating, and comparing with YAMNet's own half-second frames over the whole recording:
+of 137 breaks heard as speech, 90% were cut within half a second of where the talking began, 3 cut 2 seconds
+or more into the music before it, and 34 a little after the talking began. The dating back is not what made
+zaps early; the replay running ahead after a reconnect was. About 6 of the 137 were singing that YAMNet took
+for talking, with the song going on after it; YAMNet's own Singing and Rapping classes stay near zero on those,
+so they cannot tell them apart. The ad markers of the AdsWizz stations come in with the ad itself, which the
+server splices into the stream at the marker, so they are not early either.

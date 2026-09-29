@@ -2,6 +2,9 @@ using System.Runtime.InteropServices;
 
 namespace ZapperRadio.Core.Streaming;
 
+/// <summary>Where the frames of a piece of audio begin, and whether they are MP3 (MPEG layer III) rather than AAC or MPEG layer I or II.</summary>
+public readonly record struct AudioFrames(int Offset, bool IsMp3);
+
 /// <summary>
 /// Counts how much playing time a stream of MP3 or AAC (ADTS) audio holds, from the headers of its frames, as the
 /// bytes come in. A bitrate cannot do this: a stream announced as 128 kbit/s rarely comes to exactly that, and over
@@ -135,6 +138,25 @@ public sealed class AudioDuration
         {
             _searched.RemoveRange(0, _searched.Count - MaxSearched);
         }
+    }
+
+    /// <summary>
+    /// Where the audio in <paramref name="audio"/> begins, such as in a piece cut from a stream halfway into a frame: the
+    /// first frame that the next frame follows, so a sync word in the audio data is not taken for one. Null when there
+    /// are no such frames.
+    /// </summary>
+    public static AudioFrames? FindFrames(ReadOnlySpan<byte> audio)
+    {
+        for (var at = 0; audio.Length - at >= 2; at++)
+        {
+            if (FrameAt(audio, at) is { Length: > 0 } frame && FrameAt(audio, at + frame.Length) is { Length: > 0 })
+            {
+                // Layer III has the layer bits at 01; ADTS has them at 00.
+                return new AudioFrames(at, IsMp3: (audio[at + 1] & 0x06) == 0x02);
+            }
+        }
+
+        return null;
     }
 
     /// <summary>The frame whose header is at <paramref name="at"/>, null when there is none, or of length 0 when there are too few bytes to tell.</summary>

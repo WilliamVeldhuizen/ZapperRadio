@@ -1,9 +1,11 @@
 using Microsoft.ML.OnnxRuntime;
 using Microsoft.ML.OnnxRuntime.Tensors;
+using NAudio.FileFormats.Mp3;
 using NAudio.MediaFoundation;
 using NAudio.Wave;
 using NAudio.Wave.SampleProviders;
 using ZapperRadio.Core.Audio;
+using ZapperRadio.Core.Streaming;
 
 namespace ZapperRadio.Playback;
 
@@ -111,10 +113,20 @@ public sealed class SoundClassifier : IDisposable
         }
     }
 
-    /// <summary>Decodes MP3 or AAC audio with Media Foundation, which finds the first frame by itself.</summary>
+    /// <summary>
+    /// Decodes MP3 frame by frame with the MP3 decoder of Windows, and anything else (AAC) with Media Foundation. Media
+    /// Foundation leaks four event handles every time it opens MP3, which is every window of every MP3 station: tens of
+    /// thousands an hour. A window starts wherever the last one ended, so it is cut to its first whole frame; Media
+    /// Foundation fails to open about one AAC window in five that starts halfway into a frame.
+    /// </summary>
     private static float[] Decode(byte[] audio)
     {
-        using var reader = new StreamMediaFoundationReader(new MemoryStream(audio));
+        var frames = AudioDuration.FindFrames(audio);
+        var start = frames?.Offset ?? 0;
+        var stream = new MemoryStream(audio, start, audio.Length - start);
+        using WaveStream reader = frames is { IsMp3: true }
+            ? new Mp3FileReaderBase(stream, format => new DmoMp3FrameDecompressor(format))
+            : new StreamMediaFoundationReader(stream);
         var samples = reader.ToSampleProvider();
         if (samples.WaveFormat.Channels == 2)
         {

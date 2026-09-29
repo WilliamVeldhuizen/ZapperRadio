@@ -47,8 +47,9 @@ public sealed class IcyProxy : IDisposable
     /// its own pace, so it stays as far behind the broadcast as where it started.
     /// </summary>
     /// <param name="station">The station's own URL, whose file name the player may use as a format hint.</param>
-    public Uri RegisterReplay(TimeShiftBuffer buffer, long position, Uri station) =>
-        Listen(new Registration(null, null, null, null, buffer, position), station);
+    /// <param name="lead">How far ahead of the position the buffer has to reach before any of it is sent; see <see cref="ReplayAsync"/>.</param>
+    public Uri RegisterReplay(TimeShiftBuffer buffer, long position, Uri station, TimeSpan lead = default) =>
+        Listen(new Registration(null, null, null, null, buffer, position) { ReplayLead = lead }, station);
 
     private Uri Listen(Registration registration, Uri original)
     {
@@ -193,7 +194,7 @@ public sealed class IcyProxy : IDisposable
             if (registration.Replay is { } replay)
             {
                 var isHead = parts[0].Equals("HEAD", StringComparison.OrdinalIgnoreCase);
-                await ReplayAsync(network, replay, registration.ReplayFrom, isHead, cts.Token);
+                await ReplayAsync(network, replay, registration.ReplayFrom, isHead, cts.Token, registration.ReplayLead);
                 return;
             }
 
@@ -252,13 +253,23 @@ public sealed class IcyProxy : IDisposable
     /// <summary>
     /// Plays a buffer back from a position, and keeps following it as the station's audio comes in. Should the player
     /// fall so far behind that the ring overwrote where it was, it goes on from the oldest audio that is left.
+    /// Nothing is sent until the buffer reaches <paramref name="lead"/> past the position. A player that starts close to
+    /// the live edge gets the audio as the station sends it, in chunks a second or more apart, runs dry between them and
+    /// falls silent for a moment, again and again: 6 to 10 times in 4 minutes at 2 to 5 seconds from the edge. Waiting
+    /// for the lead once, before it starts, spares it that.
     /// </summary>
-    public static async Task ReplayAsync(Stream network, TimeShiftBuffer buffer, long position, bool isHead, CancellationToken cancellationToken)
+    public static async Task ReplayAsync(
+        Stream network, TimeShiftBuffer buffer, long position, bool isHead, CancellationToken cancellationToken, TimeSpan lead = default)
     {
         await WriteOkAsync(network, buffer.ContentType ?? "application/octet-stream", cancellationToken);
         if (isHead)
         {
             return;
+        }
+
+        while (buffer.AheadOf(position) < lead)
+        {
+            await buffer.WaitForDataAsync(buffer.End, cancellationToken);
         }
 
         var chunk = new byte[16 * 1024];
@@ -368,6 +379,9 @@ public sealed class IcyProxy : IDisposable
         public TcpListener Listener { get; set; } = null!;
 
         public CancellationTokenSource Cancellation { get; } = new();
+
+        /// <summary>How far ahead of <see cref="ReplayFrom"/> the buffer has to reach before the replay starts.</summary>
+        public TimeSpan ReplayLead { get; init; }
 
         public void Stop()
         {
