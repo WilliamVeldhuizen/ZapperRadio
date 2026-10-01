@@ -471,7 +471,7 @@ for talking, with the song going on after it; YAMNet's own Singing and Rapping c
 so they cannot tell them apart. The ad markers of the AdsWizz stations come in with the ad itself, which the
 server splices into the stream at the marker, so they are not early either.
 
-## The break clock
+## The break clock (1.32.0)
 
 Most stations run to a fixed clock: the news on the hour, the ads in set slots before it and around half past.
 The zapper used to land on the highest favorite playing a song, even one about to reach exactly such a slot, and
