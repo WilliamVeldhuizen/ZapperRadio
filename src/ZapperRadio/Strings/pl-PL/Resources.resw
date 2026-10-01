@@ -537,4 +537,22 @@
   <data name="StartupSettingsLink.Content" xml:space="preserve">
     <value>Otwórz ustawienia uruchamiania</value>
   </data>
+  <data name="BreakClockHeading.Text" xml:space="preserve">
+    <value>Stałe przerwy</value>
+  </data>
+  <data name="BreakClockText.Text" xml:space="preserve">
+    <value>Wyuczone dla każdej ulubionej stacji na podstawie tego, co gra, gdy działa ZapperRadio, minuta po minucie w godzinie, tak by wyróżniały się wiadomości o pełnej godzinie czy reklamy o wpół. Przełączenie woli ulubioną stację bez stałej przerwy w najbliższych minutach.</value>
+  </data>
+  <data name="BreakClockLearning" xml:space="preserve">
+    <value>Nauka · {0} z {1} godz. wysłuchanych</value>
+  </data>
+  <data name="BreakClockNone" xml:space="preserve">
+    <value>Brak stałych przerw</value>
+  </data>
+  <data name="BreakClockUsual" xml:space="preserve">
+    <value>Zwykle przerwa o {0}</value>
+  </data>
+  <data name="BreakClockMostOfTheHour" xml:space="preserve">
+    <value>Przerwa lub rozmowa przez większość godziny</value>
+  </data>
 </root>

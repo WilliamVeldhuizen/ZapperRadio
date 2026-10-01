@@ -105,6 +105,48 @@ public static class DemoMode
 
     public static DemoStation? Find(string url) => Favorites.FirstOrDefault(f => f.Station.Url == url);
 
+    /// <summary>
+    /// The minutes of the hour each made-up favorite usually breaks at, by its logo, as its break clock would have
+    /// learned them; a station that is left out has not been heard long enough yet.
+    /// </summary>
+    private static readonly Dictionary<string, int[]> BreakMinutes = new()
+    {
+        ["nightwave"] = [58, 59, 0, 1, 2, 3, 28, 29, 30],
+        ["sunrise"] = [0, 1, 2, 3, 4, 20, 21, 22, 45, 46, 47],
+        ["meridian"] = Enumerable.Range(0, 60).Where(m => m % 20 != 9).ToArray(),
+        ["velvet"] = [],
+        ["kestrel"] = [0, 1, 30, 31, 32],
+        ["polar"] = [12, 13, 14, 15, 42, 43, 44],
+        ["neon"] = [55, 56, 57, 58],
+        ["driftwood"] = [0, 1, 2, 3],
+        ["lumen"] = [20, 21, 22, 50, 51, 52],
+    };
+
+    /// <summary>
+    /// Break clocks for the made-up favorites, made the way the app learns them: some hours of listening, with the
+    /// usual break minutes a break in most of them and now and then a break somewhere else.
+    /// </summary>
+    public static Dictionary<string, BreakClock> BreakClocks()
+    {
+        var clocks = new Dictionary<string, BreakClock>(StringComparer.Ordinal);
+        var start = new DateTimeOffset(2026, 1, 1, 0, 0, 0, TimeSpan.Zero);
+        var step = TimeSpan.FromMinutes(1);
+        foreach (var favorite in Favorites)
+        {
+            var clock = clocks[favorite.Station.Url] = new BreakClock();
+            var breaks = BreakMinutes.GetValueOrDefault(favorite.Logo);
+            var hours = breaks is null ? 3 : 12;
+            for (var minute = 0; minute < hours * BreakClock.MinutesPerHour; minute++)
+            {
+                var at = start.AddMinutes(minute);
+                var usual = breaks?.Contains(at.Minute) == true && (minute / 60 + at.Minute) % 4 != 0;
+                clock.Record(at, step, usual || (minute * 7 + 3) % 97 == 0);
+            }
+        }
+
+        return clocks;
+    }
+
     /// <summary>The bundled logo of a made-up station, or null for one without a logo (it then shows its initials).</summary>
     public static string? LogoUrl(Station station) =>
         Find(station.Url) is { } demo

@@ -537,4 +537,22 @@
   <data name="StartupSettingsLink.Content" xml:space="preserve">
     <value>Άνοιγμα ρυθμίσεων εκκίνησης</value>
   </data>
+  <data name="BreakClockHeading.Text" xml:space="preserve">
+    <value>Συνήθη διαλείμματα</value>
+  </data>
+  <data name="BreakClockText.Text" xml:space="preserve">
+    <value>Μαθαίνονται για κάθε αγαπημένο από ό,τι παίζει όσο τρέχει το ZapperRadio, ανά λεπτό της ώρας, ώστε να ξεχωρίζουν οι ειδήσεις στην αρχή της ώρας ή οι διαφημίσεις στη μισή. Μια μετάβαση προτιμά αγαπημένο χωρίς συνηθισμένο διάλειμμα τα επόμενα λεπτά.</value>
+  </data>
+  <data name="BreakClockLearning" xml:space="preserve">
+    <value>Εκμάθηση · {0} από {1} ώρες ακρόασης</value>
+  </data>
+  <data name="BreakClockNone" xml:space="preserve">
+    <value>Κανένα σταθερό διάλειμμα</value>
+  </data>
+  <data name="BreakClockUsual" xml:space="preserve">
+    <value>Συνήθως διάλειμμα στο {0}</value>
+  </data>
+  <data name="BreakClockMostOfTheHour" xml:space="preserve">
+    <value>Διάλειμμα ή ομιλία το μεγαλύτερο μέρος της ώρας</value>
+  </data>
 </root>

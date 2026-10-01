@@ -537,4 +537,22 @@
   <data name="StartupSettingsLink.Content" xml:space="preserve">
     <value>Avaa käynnistysasetukset</value>
   </data>
+  <data name="BreakClockHeading.Text" xml:space="preserve">
+    <value>Säännölliset katkot</value>
+  </data>
+  <data name="BreakClockText.Text" xml:space="preserve">
+    <value>Opittu jokaiselle suosikille siitä, mitä se soittaa ZapperRadion ollessa käynnissä, tunnin minuutti kerrallaan, jotta tasatunnin uutiset tai puolen tunnin mainokset erottuvat. Vaihto suosii suosikkia, jolla ei ole säännöllistä katkoa seuraavien minuuttien aikana.</value>
+  </data>
+  <data name="BreakClockLearning" xml:space="preserve">
+    <value>Opitaan · {0}/{1} tuntia kuunneltu</value>
+  </data>
+  <data name="BreakClockNone" xml:space="preserve">
+    <value>Ei säännöllisiä katkoja</value>
+  </data>
+  <data name="BreakClockUsual" xml:space="preserve">
+    <value>Yleensä katko kohdassa {0}</value>
+  </data>
+  <data name="BreakClockMostOfTheHour" xml:space="preserve">
+    <value>Katko tai puhetta suurimman osan tunnista</value>
+  </data>
 </root>

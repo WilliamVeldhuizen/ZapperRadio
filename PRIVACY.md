@@ -10,7 +10,7 @@ can go in an [issue](https://github.com/WilliamVeldhuizen/ZapperRadio/issues). T
 [zapperradio.com/privacy](https://zapperradio.com/privacy/), which is the version to link to; the text here is the
 same, and its history is the history of this file.
 
-Last updated: 28 September 2026.
+Last updated: 1 October 2026.
 
 ## What stays on your PC
 
@@ -18,6 +18,7 @@ Everything the app remembers is stored in `%LOCALAPPDATA%\ZapperRadio` and never
 
 - `settings.json`: your settings, favorite stations, favorite songs, window positions and the loudness measured per station;
 - `play-history.json`: the songs your favorites played in the last 12 hours;
+- `break-clocks.json`: at which minutes of the hour each favorite usually has its breaks, as the zapper learned it;
 - `cache\`: the station list and the logos, the popularity lookups and the list of stations that are down (see below).
 
 Deleting that folder removes all of it. Uninstalling the app does not, on purpose, so that your favorites survive a

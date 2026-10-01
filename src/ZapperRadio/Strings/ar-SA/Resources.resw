@@ -537,4 +537,22 @@
   <data name="StartupSettingsLink.Content" xml:space="preserve">
     <value>فتح إعدادات بدء التشغيل</value>
   </data>
+  <data name="BreakClockHeading.Text" xml:space="preserve">
+    <value>الفواصل المعتادة</value>
+  </data>
+  <data name="BreakClockText.Text" xml:space="preserve">
+    <value>تُتعلَّم لكل مفضلة مما تبثه أثناء تشغيل ZapperRadio، بحسب دقيقة الساعة، فتبرز نشرة الأخبار عند رأس الساعة أو الإعلانات عند نصفها. يفضّل التبديل مفضلةً لا يقترب فيها فاصل معتاد خلال الدقائق القليلة القادمة.</value>
+  </data>
+  <data name="BreakClockLearning" xml:space="preserve">
+    <value>جارٍ التعلّم · {0} من {1} ساعات استماع</value>
+  </data>
+  <data name="BreakClockNone" xml:space="preserve">
+    <value>لا فواصل منتظمة</value>
+  </data>
+  <data name="BreakClockUsual" xml:space="preserve">
+    <value>عادةً فاصل عند {0}</value>
+  </data>
+  <data name="BreakClockMostOfTheHour" xml:space="preserve">
+    <value>فاصل أو كلام معظم الساعة</value>
+  </data>
 </root>

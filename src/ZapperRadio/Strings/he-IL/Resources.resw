@@ -537,4 +537,22 @@
   <data name="StartupSettingsLink.Content" xml:space="preserve">
     <value>פתיחת הגדרות ההפעלה</value>
   </data>
+  <data name="BreakClockHeading.Text" xml:space="preserve">
+    <value>הפסקות קבועות</value>
+  </data>
+  <data name="BreakClockText.Text" xml:space="preserve">
+    <value>נלמדות לכל מועדף ממה שהוא משדר בזמן ש-ZapperRadio פועל, לפי דקות השעה, כך שהחדשות בשעה עגולה או הפרסומות בחצי בולטות. מעבר מעדיף מועדף שאין לו הפסקה קבועה בדקות הקרובות.</value>
+  </data>
+  <data name="BreakClockLearning" xml:space="preserve">
+    <value>בלמידה · {0} מתוך {1} שעות האזנה</value>
+  </data>
+  <data name="BreakClockNone" xml:space="preserve">
+    <value>אין הפסקות קבועות</value>
+  </data>
+  <data name="BreakClockUsual" xml:space="preserve">
+    <value>בדרך כלל הפסקה ב-{0}</value>
+  </data>
+  <data name="BreakClockMostOfTheHour" xml:space="preserve">
+    <value>הפסקה או דיבור רוב השעה</value>
+  </data>
 </root>

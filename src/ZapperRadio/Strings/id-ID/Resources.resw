@@ -537,4 +537,22 @@
   <data name="StartupSettingsLink.Content" xml:space="preserve">
     <value>Buka pengaturan Startup</value>
   </data>
+  <data name="BreakClockHeading.Text" xml:space="preserve">
+    <value>Jeda rutin</value>
+  </data>
+  <data name="BreakClockText.Text" xml:space="preserve">
+    <value>Dipelajari per favorit dari apa yang diputarnya selama ZapperRadio berjalan, per menit dalam jam, sehingga berita tiap jam atau iklan di setengah jam terlihat menonjol. Perpindahan lebih memilih favorit yang tidak punya jeda rutin dalam beberapa menit ke depan.</value>
+  </data>
+  <data name="BreakClockLearning" xml:space="preserve">
+    <value>Sedang belajar · {0} dari {1} jam didengar</value>
+  </data>
+  <data name="BreakClockNone" xml:space="preserve">
+    <value>Tidak ada jeda rutin</value>
+  </data>
+  <data name="BreakClockUsual" xml:space="preserve">
+    <value>Biasanya jeda pada {0}</value>
+  </data>
+  <data name="BreakClockMostOfTheHour" xml:space="preserve">
+    <value>Jeda atau obrolan hampir sepanjang jam</value>
+  </data>
 </root>

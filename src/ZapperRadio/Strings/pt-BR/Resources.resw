@@ -537,4 +537,22 @@
   <data name="StartupSettingsLink.Content" xml:space="preserve">
     <value>Abrir configurações de inicialização</value>
   </data>
+  <data name="BreakClockHeading.Text" xml:space="preserve">
+    <value>Intervalos habituais</value>
+  </data>
+  <data name="BreakClockText.Text" xml:space="preserve">
+    <value>Aprendidos por favorito a partir do que ele toca enquanto o ZapperRadio está aberto, minuto a minuto da hora, para que as notícias na hora cheia ou os anúncios na meia hora se destaquem. Um zap prefere um favorito sem intervalo habitual nos próximos minutos.</value>
+  </data>
+  <data name="BreakClockLearning" xml:space="preserve">
+    <value>Aprendendo · {0} de {1} horas ouvidas</value>
+  </data>
+  <data name="BreakClockNone" xml:space="preserve">
+    <value>Sem intervalos fixos</value>
+  </data>
+  <data name="BreakClockUsual" xml:space="preserve">
+    <value>Intervalo habitual em {0}</value>
+  </data>
+  <data name="BreakClockMostOfTheHour" xml:space="preserve">
+    <value>Intervalo ou fala quase a hora toda</value>
+  </data>
 </root>

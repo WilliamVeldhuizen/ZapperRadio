@@ -537,4 +537,22 @@
   <data name="StartupSettingsLink.Content" xml:space="preserve">
     <value>Відкрити параметри автозавантаження</value>
   </data>
+  <data name="BreakClockHeading.Text" xml:space="preserve">
+    <value>Звичні паузи</value>
+  </data>
+  <data name="BreakClockText.Text" xml:space="preserve">
+    <value>Вивчаються для кожної обраної станції з того, що вона грає, поки працює ZapperRadio, по хвилинах години, тож виділяються новини на початку години чи реклама о пів. Перемикання надає перевагу станції, у якої найближчими хвилинами немає звичної паузи.</value>
+  </data>
+  <data name="BreakClockLearning" xml:space="preserve">
+    <value>Вивчення · прослухано {0} з {1} год</value>
+  </data>
+  <data name="BreakClockNone" xml:space="preserve">
+    <value>Регулярних пауз немає</value>
+  </data>
+  <data name="BreakClockUsual" xml:space="preserve">
+    <value>Зазвичай пауза о {0}</value>
+  </data>
+  <data name="BreakClockMostOfTheHour" xml:space="preserve">
+    <value>Пауза або розмова більшу частину години</value>
+  </data>
 </root>

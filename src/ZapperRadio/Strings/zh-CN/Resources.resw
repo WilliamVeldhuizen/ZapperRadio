@@ -537,4 +537,22 @@
   <data name="StartupSettingsLink.Content" xml:space="preserve">
     <value>打开启动设置</value>
   </data>
+  <data name="BreakClockHeading.Text" xml:space="preserve">
+    <value>常规插播</value>
+  </data>
+  <data name="BreakClockText.Text" xml:space="preserve">
+    <value>在 ZapperRadio 运行时，按每小时的分钟从每个收藏电台播放的内容中学习，整点新闻或半点广告会一目了然。切换时优先选择接下来几分钟内没有常规插播的收藏电台。</value>
+  </data>
+  <data name="BreakClockLearning" xml:space="preserve">
+    <value>学习中 · 已收听 {0}/{1} 小时</value>
+  </data>
+  <data name="BreakClockNone" xml:space="preserve">
+    <value>没有固定插播</value>
+  </data>
+  <data name="BreakClockUsual" xml:space="preserve">
+    <value>通常在 {0} 插播</value>
+  </data>
+  <data name="BreakClockMostOfTheHour" xml:space="preserve">
+    <value>一小时大部分时间都是插播或谈话</value>
+  </data>
 </root>

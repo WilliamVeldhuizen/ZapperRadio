@@ -92,6 +92,59 @@ public sealed partial class FavoriteViewModel(Station station) : ObservableObjec
     /// <summary>What was measured of this station's loudness, as the settings show it.</summary>
     [ObservableProperty]
     public partial string LoudnessText { get; set; } = LoudnessTexts.NotMeasured;
+
+    /// <summary>
+    /// How often the station breaks at each minute of the local hour, as the Zapper tab draws it; NaN where it is not
+    /// known yet, because the bindings of the XAML compiler cannot take an array of nullable numbers.
+    /// </summary>
+    [ObservableProperty]
+    public partial double[] BreakShares { get; set; } = Unknown();
+
+    /// <summary>When in the hour the station usually breaks, or how far it is with learning that.</summary>
+    [ObservableProperty]
+    public partial string BreakClockText { get; set; } = BreakClockTexts.For(new BreakClock(), TimeSpan.Zero);
+
+    /// <summary>Shows what was learned of when the station breaks, on the local clock.</summary>
+    public void ShowBreakClock(BreakClock clock, TimeSpan utcOffset)
+    {
+        BreakShares = clock.IsLearned ? clock.Shares(utcOffset).Select(s => s ?? double.NaN).ToArray() : Unknown();
+        BreakClockText = BreakClockTexts.For(clock, utcOffset);
+    }
+
+    private static double[] Unknown() => Enumerable.Repeat(double.NaN, BreakClock.MinutesPerHour).ToArray();
+}
+
+/// <summary>What the Zapper tab says about when a station usually breaks.</summary>
+public static class BreakClockTexts
+{
+    /// <summary>
+    /// Such as "Usually a break at :58–:02, :28–:31", or how many of the hours it takes have been heard. The minutes
+    /// read the same in every language, so only the sentence around them is translated.
+    /// </summary>
+    public static string For(BreakClock clock, TimeSpan utcOffset)
+    {
+        if (!clock.IsLearned)
+        {
+            return Localizer.Format("BreakClockLearning", (int)clock.HoursHeard, (int)BreakClock.MinHours);
+        }
+
+        var breaks = clock.UsualBreaks(utcOffset);
+        if (breaks.Count == 0)
+        {
+            return Localizer.Get("BreakClockNone");
+        }
+
+        // A talk station, or one that hardly plays a song: a list of minutes would say less than this.
+        if (breaks.Sum(b => b.Length) >= BreakClock.MinutesPerHour * 3 / 4)
+        {
+            return Localizer.Get("BreakClockMostOfTheHour");
+        }
+
+        return Localizer.Format("BreakClockUsual", string.Join(", ", breaks.Select(Range)));
+    }
+
+    private static string Range((int Start, int Length) run) =>
+        run.Length == 1 ? $":{run.Start:00}" : $":{run.Start:00}–:{(run.Start + run.Length - 1) % BreakClock.MinutesPerHour:00}";
 }
 
 public static class SongTexts

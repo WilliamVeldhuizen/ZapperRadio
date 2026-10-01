@@ -537,4 +537,22 @@
   <data name="StartupSettingsLink.Content" xml:space="preserve">
     <value>Åbn startindstillinger</value>
   </data>
+  <data name="BreakClockHeading.Text" xml:space="preserve">
+    <value>Faste pauser</value>
+  </data>
+  <data name="BreakClockText.Text" xml:space="preserve">
+    <value>Lært for hver favorit ud fra, hvad den spiller, mens ZapperRadio kører, minut for minut i timen, så nyhederne ved hel time eller reklamerne ved halv står frem. Et zap foretrækker en favorit uden fast pause i de næste minutter.</value>
+  </data>
+  <data name="BreakClockLearning" xml:space="preserve">
+    <value>Lærer stadig · {0} af {1} timer hørt</value>
+  </data>
+  <data name="BreakClockNone" xml:space="preserve">
+    <value>Ingen faste pauser</value>
+  </data>
+  <data name="BreakClockUsual" xml:space="preserve">
+    <value>Normalt en pause ved {0}</value>
+  </data>
+  <data name="BreakClockMostOfTheHour" xml:space="preserve">
+    <value>Pause eller snak det meste af timen</value>
+  </data>
 </root>

@@ -537,4 +537,22 @@
   <data name="StartupSettingsLink.Content" xml:space="preserve">
     <value>開啟啟動設定</value>
   </data>
+  <data name="BreakClockHeading.Text" xml:space="preserve">
+    <value>固定廣告時段</value>
+  </data>
+  <data name="BreakClockText.Text" xml:space="preserve">
+    <value>在 ZapperRadio 執行時，依每小時的分鐘從每個最愛電台播放的內容中學習，整點新聞或半點廣告會一目了然。轉台時會優先選擇接下來幾分鐘內沒有固定廣告時段的最愛電台。</value>
+  </data>
+  <data name="BreakClockLearning" xml:space="preserve">
+    <value>學習中 · 已收聽 {0}/{1} 小時</value>
+  </data>
+  <data name="BreakClockNone" xml:space="preserve">
+    <value>沒有固定廣告時段</value>
+  </data>
+  <data name="BreakClockUsual" xml:space="preserve">
+    <value>通常在 {0} 插播</value>
+  </data>
+  <data name="BreakClockMostOfTheHour" xml:space="preserve">
+    <value>一小時大部分時間都是廣告或談話</value>
+  </data>
 </root>

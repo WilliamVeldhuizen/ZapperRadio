@@ -21,7 +21,8 @@ public enum ChannelState
     Song,
 }
 
-public readonly record struct Channel(string Url, ChannelState State)
+/// <param name="IsBreakDue">Whether the station usually has a break in the next few minutes (see <see cref="BreakClock"/>).</param>
+public readonly record struct Channel(string Url, ChannelState State, bool IsBreakDue = false)
 {
     /// <summary>
     /// A title alone does not prove that a song is playing: some stations send their own name or a program name,
@@ -45,6 +46,8 @@ public readonly record struct Channel(string Url, ChannelState State)
 /// even if it is in a break right then.
 /// Two rules shape that: the favorites in <see cref="NeverZapTo"/> are never landed on, and without
 /// <see cref="ReturnAfterBreak"/> the station it landed on stays on instead of the zapper going back.
+/// A favorite whose usual break is due (<see cref="Channel.IsBreakDue"/>) is passed over while another one has none
+/// coming, because it would be left again within a song.
 /// </summary>
 public sealed class AdBreakZapper
 {
@@ -131,8 +134,7 @@ public sealed class AdBreakZapper
             return null;
         }
 
-        var next = favorites.FirstOrDefault(f => CanLandOn(f, active) && f.State == ChannelState.Song).Url
-                   ?? favorites.FirstOrDefault(f => CanLandOn(f, active) && f.State == ChannelState.Unknown).Url;
+        var next = LandingSpot(favorites, active, ChannelState.Song) ?? LandingSpot(favorites, active, ChannelState.Unknown);
         if (next is not null && ZappedFrom is null && ReturnAfterBreak)
         {
             ZappedFrom = active.Url;
@@ -140,6 +142,16 @@ public sealed class AdBreakZapper
         }
 
         return next;
+    }
+
+    /// <summary>
+    /// The highest favorite in <paramref name="state"/> to land on. One whose usual break is about to start would be
+    /// left again within a song, so it is passed over while another one has no break coming.
+    /// </summary>
+    private string? LandingSpot(IReadOnlyList<Channel> favorites, Channel active, ChannelState state)
+    {
+        var candidates = favorites.Where(f => CanLandOn(f, active) && f.State == state).ToList();
+        return candidates.FirstOrDefault(f => !f.IsBreakDue).Url ?? candidates.FirstOrDefault().Url;
     }
 
     private bool CanLandOn(Channel favorite, Channel active) => favorite.Url != active.Url && !NeverZapTo.Contains(favorite.Url);

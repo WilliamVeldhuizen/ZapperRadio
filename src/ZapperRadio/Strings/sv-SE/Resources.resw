@@ -537,4 +537,22 @@
   <data name="StartupSettingsLink.Content" xml:space="preserve">
     <value>Öppna startinställningar</value>
   </data>
+  <data name="BreakClockHeading.Text" xml:space="preserve">
+    <value>Fasta avbrott</value>
+  </data>
+  <data name="BreakClockText.Text" xml:space="preserve">
+    <value>Inlärt per favorit utifrån vad den spelar medan ZapperRadio körs, minut för minut i timmen, så att nyheterna vid hel timme eller reklamen vid halv sticker ut. En zappning föredrar en favorit utan fast avbrott de närmaste minuterna.</value>
+  </data>
+  <data name="BreakClockLearning" xml:space="preserve">
+    <value>Lär sig · {0} av {1} timmar hörda</value>
+  </data>
+  <data name="BreakClockNone" xml:space="preserve">
+    <value>Inga fasta avbrott</value>
+  </data>
+  <data name="BreakClockUsual" xml:space="preserve">
+    <value>Oftast ett avbrott vid {0}</value>
+  </data>
+  <data name="BreakClockMostOfTheHour" xml:space="preserve">
+    <value>Avbrott eller prat större delen av timmen</value>
+  </data>
 </root>

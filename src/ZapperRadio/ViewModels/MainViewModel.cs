@@ -49,6 +49,15 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
     private readonly DispatcherQueueTimer _historySearchDebounce;
     private readonly DispatcherQueueTimer _heardTimer;
 
+    /// <summary>When in the hour each favorite usually breaks, by stream URL, learned from what it plays.</summary>
+    private readonly Dictionary<string, BreakClock> _breakClocks;
+    private readonly BreakClockStore _breakClockStore;
+    private readonly DispatcherQueueTimer _breakClockTimer;
+    private int _breakClockTicks;
+
+    /// <summary>How often every favorite is looked at for its break clock; a break lasts minutes, so this is plenty.</summary>
+    private static readonly TimeSpan BreakClockStep = TimeSpan.FromSeconds(10);
+
     /// <summary>
     /// How far ahead of what is heard the zapper looks, so a break is cut at its boundary rather than a moment into it.
     /// Losing half a second of a song's fade is better than hearing half a second of an ad.
@@ -158,6 +167,16 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
 
         _historyStore = new PlayHistoryStore(Path.Combine(dataFolder, "play-history.json"));
 
+        _breakClockStore = new BreakClockStore(Path.Combine(dataFolder, "break-clocks.json"));
+        _breakClocks = DemoMode.IsOn ? DemoMode.BreakClocks() : _breakClockStore.Load();
+        _breakClockTimer = dispatcher.CreateTimer();
+        _breakClockTimer.Interval = BreakClockStep;
+        _breakClockTimer.Tick += (_, _) => RecordBreakClocks();
+        if (!DemoMode.IsOn)
+        {
+            _breakClockTimer.Start();
+        }
+
         // Every song of every favorite changes the history, which is far too often to write the file for.
         _historySaveTimer = dispatcher.CreateTimer();
         _historySaveTimer.Interval = TimeSpan.FromMinutes(2);
@@ -265,6 +284,8 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
     public string FavoritesHeader => Localizer.Format("FavoritesHeader", Favorites.Count, AppSettings.MaxFavorites);
 
     public bool HasNoFavorites => Favorites.Count == 0;
+
+    public bool HasFavorites => Favorites.Count > 0;
 
     /// <summary>Songs saved with the heart while listening, newest first.</summary>
     public ObservableCollection<FavoriteTrack> FavoriteTracks { get; } = [];
@@ -1195,16 +1216,96 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
 
         // The other favorites are judged by what a zap to them lands on. The station being listened to is judged by
         // what is heard of it, which is behind the broadcast: seconds behind from its own player, more from its buffer.
+        var now = DateTimeOffset.UtcNow;
         var favorites = Favorites
             .Select(f => _engine.Find(f.Station.Url))
             .OfType<StationStream>()
-            .Select(s => new Channel(s.Station.Url, LandingChannelOf(s)))
+            .Select(s => new Channel(s.Station.Url, LandingChannelOf(s), IsBreakDue(s.Station.Url, now)))
             .ToList();
-        if (_zapper.Next(new Channel(active.Station.Url, HeardChannelOf(active)), favorites, DateTimeOffset.UtcNow) is { } url
+        if (_zapper.Next(new Channel(active.Station.Url, HeardChannelOf(active)), favorites, now) is { } url
             && _engine.Find(url) is { } next)
         {
             _lastPlayed = next.Station;
             Switch(next.Station, SongStartOf(next), CrossfadeZaps);
+        }
+    }
+
+    /// <summary>Whether a favorite usually has a break in the next few minutes, by what its break clock has learned.</summary>
+    private bool IsBreakDue(string url, DateTimeOffset now) =>
+        _breakClocks.TryGetValue(url, out var clock) && clock.IsBreakDue(now);
+
+    /// <summary>
+    /// Notes for every favorite whether it is in a break, which over the hours shows when in the hour it usually is.
+    /// Only what can be told counts: a stream that is down, or that plays nothing known, says nothing about its clock.
+    /// The live state is what counts, because a break is a moment of the broadcast, not of what is heard of it.
+    /// </summary>
+    private void RecordBreakClocks()
+    {
+        var now = DateTimeOffset.UtcNow;
+        foreach (var favorite in Favorites)
+        {
+            if (_engine.Find(favorite.Station.Url) is not { } stream)
+            {
+                continue;
+            }
+
+            var state = ChannelOf(stream);
+            if (state is not (ChannelState.Song or ChannelState.Ad or ChannelState.Speech))
+            {
+                continue;
+            }
+
+            if (!_breakClocks.TryGetValue(favorite.Station.Url, out var clock))
+            {
+                _breakClocks[favorite.Station.Url] = clock = new BreakClock();
+            }
+
+            clock.Record(now, BreakClockStep, state != ChannelState.Song);
+        }
+
+        // The tab only needs to follow once a minute, and the file once every few.
+        _breakClockTicks++;
+        if (_breakClockTicks % 6 == 0)
+        {
+            ShowBreakClocks();
+        }
+
+        if (_breakClockTicks % 30 == 0)
+        {
+            SaveBreakClocks();
+        }
+    }
+
+    private void ShowBreakClocks()
+    {
+        var offset = TimeZoneInfo.Local.GetUtcOffset(DateTimeOffset.UtcNow);
+        foreach (var favorite in Favorites)
+        {
+            favorite.ShowBreakClock(_breakClocks.GetValueOrDefault(favorite.Station.Url) ?? new BreakClock(), offset);
+        }
+    }
+
+    private void SaveBreakClocks()
+    {
+        if (DemoMode.IsOn)
+        {
+            return;
+        }
+
+        // Like the loudness, a station that is no longer a favorite does not keep its clock forever.
+        var favorites = Favorites.Select(f => f.Station.Url).ToHashSet(StringComparer.Ordinal);
+        foreach (var url in _breakClocks.Keys.Where(u => !favorites.Contains(u)).ToList())
+        {
+            _breakClocks.Remove(url);
+        }
+
+        try
+        {
+            _breakClockStore.Save(_breakClocks);
+        }
+        catch (Exception ex) when (ex is IOException or UnauthorizedAccessException)
+        {
+            // The next save tries again, and the clocks are a help to the zapper, not worth interrupting for.
         }
     }
 
@@ -1408,6 +1509,7 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
     {
         OnPropertyChanged(nameof(FavoritesHeader));
         OnPropertyChanged(nameof(HasNoFavorites));
+        OnPropertyChanged(nameof(HasFavorites));
 
         // Drag-reordering in the list is a Remove followed by an Add. Syncing after the current
         // dispatcher turn avoids closing and reopening that station's stream (and hearing an ad).
@@ -1454,6 +1556,7 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
 
         RefreshFavoriteMarks();
         UpdateLoudnessTexts();
+        ShowBreakClocks();
         RefreshTimeShiftMemory();
         UpdateNowPlaying();
         ScheduleJumpListUpdate();
@@ -1713,6 +1816,8 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
         SaveSettings();
         _historyPruneTimer.Stop();
         _heardTimer.Stop();
+        _breakClockTimer.Stop();
+        SaveBreakClocks();
         SaveHistory();
         _updateTimer?.Stop();
         // A downloaded update is installed once this process has exited, whether the user closed the app or asked to restart it.

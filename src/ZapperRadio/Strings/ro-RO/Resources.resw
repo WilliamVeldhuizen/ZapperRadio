@@ -537,4 +537,22 @@
   <data name="StartupSettingsLink.Content" xml:space="preserve">
     <value>Deschide setările de pornire</value>
   </data>
+  <data name="BreakClockHeading.Text" xml:space="preserve">
+    <value>Pauze obișnuite</value>
+  </data>
+  <data name="BreakClockText.Text" xml:space="preserve">
+    <value>Învățate pentru fiecare favorit din ce difuzează cât timp rulează ZapperRadio, pe minute ale orei, astfel încât știrile de la ora fixă sau reclamele de la jumătate să iasă în evidență. O schimbare preferă un favorit fără pauză obișnuită în următoarele minute.</value>
+  </data>
+  <data name="BreakClockLearning" xml:space="preserve">
+    <value>Se învață · {0} din {1} ore ascultate</value>
+  </data>
+  <data name="BreakClockNone" xml:space="preserve">
+    <value>Fără pauze regulate</value>
+  </data>
+  <data name="BreakClockUsual" xml:space="preserve">
+    <value>De obicei o pauză la {0}</value>
+  </data>
+  <data name="BreakClockMostOfTheHour" xml:space="preserve">
+    <value>Pauză sau vorbă cea mai mare parte a orei</value>
+  </data>
 </root>

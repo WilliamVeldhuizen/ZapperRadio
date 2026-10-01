@@ -537,4 +537,22 @@
   <data name="StartupSettingsLink.Content" xml:space="preserve">
     <value>เปิดการตั้งค่าการเริ่มต้น</value>
   </data>
+  <data name="BreakClockHeading.Text" xml:space="preserve">
+    <value>ช่วงพักประจำ</value>
+  </data>
+  <data name="BreakClockText.Text" xml:space="preserve">
+    <value>เรียนรู้แยกตามสถานีโปรดจากสิ่งที่สถานีเล่นขณะ ZapperRadio ทำงาน ตามนาทีของชั่วโมง จึงเห็นข่าวต้นชั่วโมงหรือโฆษณาตอนครึ่งชั่วโมงได้ชัด การเปลี่ยนสถานีจะเลือกสถานีโปรดที่ไม่มีช่วงพักประจำในไม่กี่นาทีข้างหน้าก่อน</value>
+  </data>
+  <data name="BreakClockLearning" xml:space="preserve">
+    <value>กำลังเรียนรู้ · ฟังแล้ว {0} จาก {1} ชั่วโมง</value>
+  </data>
+  <data name="BreakClockNone" xml:space="preserve">
+    <value>ไม่มีช่วงพักประจำ</value>
+  </data>
+  <data name="BreakClockUsual" xml:space="preserve">
+    <value>มักพักที่ {0}</value>
+  </data>
+  <data name="BreakClockMostOfTheHour" xml:space="preserve">
+    <value>พักหรือพูดคุยเกือบทั้งชั่วโมง</value>
+  </data>
 </root>

@@ -537,4 +537,22 @@
   <data name="StartupSettingsLink.Content" xml:space="preserve">
     <value>Autostart-Einstellungen öffnen</value>
   </data>
+  <data name="BreakClockHeading.Text" xml:space="preserve">
+    <value>Übliche Pausen</value>
+  </data>
+  <data name="BreakClockText.Text" xml:space="preserve">
+    <value>Pro Favorit aus dem gelernt, was er spielt, während ZapperRadio läuft, nach Minute der Stunde, sodass die Nachrichten zur vollen Stunde oder die Werbung zur halben auffallen. Ein Zap bevorzugt einen Favoriten, bei dem in den nächsten Minuten keine übliche Pause ansteht.</value>
+  </data>
+  <data name="BreakClockLearning" xml:space="preserve">
+    <value>Lernt noch · {0} von {1} Stunden gehört</value>
+  </data>
+  <data name="BreakClockNone" xml:space="preserve">
+    <value>Keine festen Pausen</value>
+  </data>
+  <data name="BreakClockUsual" xml:space="preserve">
+    <value>Meist eine Pause um {0}</value>
+  </data>
+  <data name="BreakClockMostOfTheHour" xml:space="preserve">
+    <value>Fast die ganze Stunde Pause oder Wortbeitrag</value>
+  </data>
 </root>

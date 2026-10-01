@@ -537,4 +537,22 @@
   <data name="StartupSettingsLink.Content" xml:space="preserve">
     <value>Indítási beállítások megnyitása</value>
   </data>
+  <data name="BreakClockHeading.Text" xml:space="preserve">
+    <value>Szokásos szünetek</value>
+  </data>
+  <data name="BreakClockText.Text" xml:space="preserve">
+    <value>Kedvencenként abból tanulja, amit a ZapperRadio futása közben játszik, az óra percei szerint, így kiemelkednek az egész órai hírek vagy a fél órai reklámok. A váltás olyan kedvencet részesít előnyben, amelynél a következő percekben nem jön szokásos szünet.</value>
+  </data>
+  <data name="BreakClockLearning" xml:space="preserve">
+    <value>Tanulás · {1} órából {0} meghallgatva</value>
+  </data>
+  <data name="BreakClockNone" xml:space="preserve">
+    <value>Nincsenek rendszeres szünetek</value>
+  </data>
+  <data name="BreakClockUsual" xml:space="preserve">
+    <value>Általában szünet: {0}</value>
+  </data>
+  <data name="BreakClockMostOfTheHour" xml:space="preserve">
+    <value>Szünet vagy beszéd az óra nagy részében</value>
+  </data>
 </root>

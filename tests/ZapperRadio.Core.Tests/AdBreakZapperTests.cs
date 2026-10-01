@@ -226,4 +226,32 @@ public class AdBreakZapperTests
         Assert.Equal("b", zapper.Next(Ad("x"), [Song("b")], Now));
         Assert.Null(zapper.Next(Song("b"), [Song("b")], Now.AddMinutes(1)));
     }
+
+    [Fact]
+    public void PassesOverAFavoriteWhoseUsualBreakIsDue()
+    {
+        var zapper = new AdBreakZapper();
+        var dueSoon = new Channel("b", ChannelState.Song, IsBreakDue: true);
+
+        Assert.Equal("c", zapper.Next(Ad("a"), [Ad("a"), dueSoon, Song("c")], Now));
+    }
+
+    [Fact]
+    public void LandsOnAFavoriteWhoseBreakIsDueWhenEveryOneIs()
+    {
+        var zapper = new AdBreakZapper();
+        var b = new Channel("b", ChannelState.Song, IsBreakDue: true);
+        var c = new Channel("c", ChannelState.Song, IsBreakDue: true);
+
+        Assert.Equal("b", zapper.Next(Ad("a"), [Ad("a"), b, c], Now));
+    }
+
+    [Fact]
+    public void PrefersASongWithItsBreakDueOverAStationThatPlaysNothingKnown()
+    {
+        var zapper = new AdBreakZapper();
+        var dueSoon = new Channel("c", ChannelState.Song, IsBreakDue: true);
+
+        Assert.Equal("c", zapper.Next(Ad("a"), [Ad("a"), Unknown("b"), dueSoon], Now));
+    }
 }

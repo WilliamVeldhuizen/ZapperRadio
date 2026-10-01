@@ -537,4 +537,22 @@
   <data name="StartupSettingsLink.Content" xml:space="preserve">
     <value>Apri le impostazioni di avvio</value>
   </data>
+  <data name="BreakClockHeading.Text" xml:space="preserve">
+    <value>Pause abituali</value>
+  </data>
+  <data name="BreakClockText.Text" xml:space="preserve">
+    <value>Apprese per ogni preferito da ciò che trasmette mentre ZapperRadio è in esecuzione, minuto per minuto dell’ora, così che il notiziario allo scoccare dell’ora o la pubblicità alla mezza risaltino. Lo zapping preferisce un preferito senza una pausa abituale nei prossimi minuti.</value>
+  </data>
+  <data name="BreakClockLearning" xml:space="preserve">
+    <value>In apprendimento · {0} di {1} ore ascoltate</value>
+  </data>
+  <data name="BreakClockNone" xml:space="preserve">
+    <value>Nessuna pausa fissa</value>
+  </data>
+  <data name="BreakClockUsual" xml:space="preserve">
+    <value>Di solito una pausa a {0}</value>
+  </data>
+  <data name="BreakClockMostOfTheHour" xml:space="preserve">
+    <value>Pausa o parlato per quasi tutta l’ora</value>
+  </data>
 </root>

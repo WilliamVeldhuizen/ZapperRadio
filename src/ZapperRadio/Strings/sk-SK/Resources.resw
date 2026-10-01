@@ -537,4 +537,22 @@
   <data name="StartupSettingsLink.Content" xml:space="preserve">
     <value>Otvoriť nastavenia spustenia</value>
   </data>
+  <data name="BreakClockHeading.Text" xml:space="preserve">
+    <value>Pravidelné prestávky</value>
+  </data>
+  <data name="BreakClockText.Text" xml:space="preserve">
+    <value>Naučené pre každú obľúbenú stanicu z toho, čo hrá, keď beží ZapperRadio, po minútach hodiny, takže vyniknú správy o celej alebo reklamy o pol. Prepnutie uprednostní stanicu, ktorá v najbližších minútach nemá pravidelnú prestávku.</value>
+  </data>
+  <data name="BreakClockLearning" xml:space="preserve">
+    <value>Učí sa · počutých {0} z {1} hodín</value>
+  </data>
+  <data name="BreakClockNone" xml:space="preserve">
+    <value>Žiadne pravidelné prestávky</value>
+  </data>
+  <data name="BreakClockUsual" xml:space="preserve">
+    <value>Zvyčajne prestávka o {0}</value>
+  </data>
+  <data name="BreakClockMostOfTheHour" xml:space="preserve">
+    <value>Prestávka alebo hovorené slovo väčšinu hodiny</value>
+  </data>
 </root>

@@ -537,4 +537,22 @@
   <data name="StartupSettingsLink.Content" xml:space="preserve">
     <value>スタートアップの設定を開く</value>
   </data>
+  <data name="BreakClockHeading.Text" xml:space="preserve">
+    <value>いつもの区切り</value>
+  </data>
+  <data name="BreakClockText.Text" xml:space="preserve">
+    <value>ZapperRadio の起動中に各お気に入りが流した内容から、1 時間の分ごとに学習します。正時のニュースや 30 分の広告が目立って見えます。ザップでは、この数分のうちにいつもの区切りが来ないお気に入りが優先されます。</value>
+  </data>
+  <data name="BreakClockLearning" xml:space="preserve">
+    <value>学習中 · {1} 時間中 {0} 時間聴取</value>
+  </data>
+  <data name="BreakClockNone" xml:space="preserve">
+    <value>決まった区切りはありません</value>
+  </data>
+  <data name="BreakClockUsual" xml:space="preserve">
+    <value>普段は {0} に区切り</value>
+  </data>
+  <data name="BreakClockMostOfTheHour" xml:space="preserve">
+    <value>1 時間のほとんどが区切りかトーク</value>
+  </data>
 </root>

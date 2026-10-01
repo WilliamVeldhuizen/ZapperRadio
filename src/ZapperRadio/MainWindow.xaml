@@ -5,6 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:ZapperRadio"
     xmlns:vm="using:ZapperRadio.ViewModels"
+    xmlns:controls="using:ZapperRadio.Controls"
     xmlns:models="using:ZapperRadio.Core.Models"
     Title="ZapperRadio">
 
@@ -526,6 +527,55 @@
                                             <CheckBox IsChecked="{x:Bind CanZapTo, Mode=TwoWay}">
                                                 <TextBlock Text="{x:Bind Name}" TextTrimming="CharacterEllipsis" />
                                             </CheckBox>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </StackPanel>
+
+                            <!-- When in the hour each favorite usually breaks, as the zapper has learned it. -->
+                            <StackPanel Spacing="2" Visibility="{x:Bind ViewModel.HasFavorites, Mode=OneWay}">
+                                <TextBlock x:Uid="BreakClockHeading" Style="{StaticResource BodyStrongTextBlockStyle}" />
+                                <TextBlock
+                                    x:Uid="BreakClockText"
+                                    Style="{StaticResource CaptionTextBlockStyle}"
+                                    Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                                    TextWrapping="Wrap" />
+                                <ItemsControl Margin="0,8,0,0" ItemsSource="{x:Bind ViewModel.Favorites}">
+                                    <ItemsControl.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <StackPanel Spacing="14" />
+                                        </ItemsPanelTemplate>
+                                    </ItemsControl.ItemsPanel>
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate x:DataType="vm:FavoriteViewModel">
+                                            <!-- The hour takes the width there is, up to a size where a minute is still a bar rather than a block. -->
+                                            <Grid RowSpacing="2">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*" MaxWidth="360" />
+                                                    <ColumnDefinition Width="Auto" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                </Grid.RowDefinitions>
+                                                <TextBlock Text="{x:Bind Name}" TextTrimming="CharacterEllipsis" />
+                                                <TextBlock
+                                                    Grid.Row="1"
+                                                    Text="{x:Bind BreakClockText, Mode=OneWay}"
+                                                    Style="{StaticResource CaptionTextBlockStyle}"
+                                                    Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                                                    TextWrapping="Wrap" />
+                                                <controls:BreakClockView
+                                                    Grid.Row="2"
+                                                    Margin="0,4,0,0"
+                                                    Shares="{x:Bind BreakShares, Mode=OneWay}"
+                                                    BreakBrush="{ThemeResource SystemFillColorCautionBrush}"
+                                                    OtherBrush="{ThemeResource ControlStrongFillColorDisabledBrush}"
+                                                    UnknownBrush="{ThemeResource ControlStrokeColorDefaultBrush}"
+                                                    Foreground="{ThemeResource TextFillColorTertiaryBrush}"
+                                                    AutomationProperties.Name="{x:Bind BreakClockText, Mode=OneWay}" />
+                                            </Grid>
                                         </DataTemplate>
                                     </ItemsControl.ItemTemplate>
                                 </ItemsControl>

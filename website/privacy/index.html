@@ -142,7 +142,7 @@ a:focus-visible { outline: 3px solid var(--amber); outline-offset: 3px; border-r
       <span class="eyebrow">ZapperRadio</span>
       <h1>Privacy</h1>
       <p class="lede">No account, no analytics, no telemetry. The app collects nothing about you and has no server of its own to report to. What it does do is talk to a handful of other services for the station list, the audio and a few small extras — every one of them is on this page, so you can judge for yourself.</p>
-      <p class="updated">Last updated: 28 September 2026</p>
+      <p class="updated">Last updated: 1 October 2026</p>
     </div>
   </div>
 </header>
@@ -167,6 +167,7 @@ a:focus-visible { outline: 3px solid var(--amber); outline-offset: 3px; border-r
       <ul>
         <li><code>settings.json</code>: your settings, favorite stations, favorite songs, window positions and the loudness measured per station;</li>
         <li><code>play-history.json</code>: the songs your favorites played in the last 12 hours;</li>
+        <li><code>break-clocks.json</code>: at which minutes of the hour each favorite usually has its breaks, as the zapper learned it;</li>
         <li><code>cache\</code>: the station list and the logos, the popularity lookups and the list of stations that are down (see below).</li>
       </ul>
       <p>Deleting that folder removes all of it. Uninstalling the app does not, on purpose, so that your favorites survive a reinstall. When you switch on <strong>Start with Windows</strong>, the app adds one entry to your user's <code>Run</code> registry key, and it removes that entry again when the app is uninstalled; the Store version asks Windows to start it instead, through the startup task in its package, and writes nothing to the registry. The taskbar jump list, which lists your favorites and the song each is playing, is kept by Windows itself, under <code>%APPDATA%\Microsoft\Windows\Recent\CustomDestinations</code>; it holds nothing beyond the station names and song titles the window already shows.</p>

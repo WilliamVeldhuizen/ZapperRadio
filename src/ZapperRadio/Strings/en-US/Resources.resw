@@ -537,4 +537,22 @@
   <data name="StartupSettingsLink.Content" xml:space="preserve">
     <value>Open Startup settings</value>
   </data>
+  <data name="BreakClockHeading.Text" xml:space="preserve">
+    <value>Usual breaks</value>
+  </data>
+  <data name="BreakClockText.Text" xml:space="preserve">
+    <value>Learned per favorite from what it plays while ZapperRadio runs, by the minute of the hour, so the news on the hour or the ads at half past stand out. A zap prefers a favorite with no usual break in the next few minutes.</value>
+  </data>
+  <data name="BreakClockLearning" xml:space="preserve">
+    <value>Learning · {0} of {1} hours heard</value>
+  </data>
+  <data name="BreakClockNone" xml:space="preserve">
+    <value>No regular breaks</value>
+  </data>
+  <data name="BreakClockUsual" xml:space="preserve">
+    <value>Usually a break at {0}</value>
+  </data>
+  <data name="BreakClockMostOfTheHour" xml:space="preserve">
+    <value>A break or talk most of the hour</value>
+  </data>
 </root>

@@ -537,4 +537,22 @@
   <data name="StartupSettingsLink.Content" xml:space="preserve">
     <value>Opstartinstellingen openen</value>
   </data>
+  <data name="BreakClockHeading.Text" xml:space="preserve">
+    <value>Vaste blokken</value>
+  </data>
+  <data name="BreakClockText.Text" xml:space="preserve">
+    <value>Per favoriet geleerd uit wat die speelt terwijl ZapperRadio draait, per minuut van het uur, zodat het nieuws op het hele uur of de reclame om half opvalt. Een zap kiest liever een favoriet waar de komende minuten geen vast blok aankomt.</value>
+  </data>
+  <data name="BreakClockLearning" xml:space="preserve">
+    <value>Aan het leren · {0} van {1} uur gehoord</value>
+  </data>
+  <data name="BreakClockNone" xml:space="preserve">
+    <value>Geen vaste blokken</value>
+  </data>
+  <data name="BreakClockUsual" xml:space="preserve">
+    <value>Meestal een blok om {0}</value>
+  </data>
+  <data name="BreakClockMostOfTheHour" xml:space="preserve">
+    <value>Het grootste deel van het uur een blok of gepraat</value>
+  </data>
 </root>

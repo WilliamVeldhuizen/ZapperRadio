@@ -470,3 +470,44 @@ zaps early; the replay running ahead after a reconnect was. About 6 of the 137 w
 for talking, with the song going on after it; YAMNet's own Singing and Rapping classes stay near zero on those,
 so they cannot tell them apart. The ad markers of the AdsWizz stations come in with the ad itself, which the
 server splices into the stream at the marker, so they are not early either.
+
+## The break clock
+
+Most stations run to a fixed clock: the news on the hour, the ads in set slots before it and around half past.
+The zapper used to land on the highest favorite playing a song, even one about to reach exactly such a slot, and
+was zapped on again before the song it landed in was over.
+
+`Core/Playback/BreakClock` keeps, per favorite, sixty buckets, one per minute of the hour: how long the station
+was heard at that minute and how much of it was a break. `MainViewModel.RecordBreakClocks` looks at every
+favorite every 10 seconds and records its live state: an ad break or speech is a break, a song is not, and a
+stream that is down or plays nothing known is left out, because it says nothing about the clock. The live state
+rather than what is heard, because a break is a moment of the broadcast. A minute counts once it has been heard
+for 3 minutes, so in 3 different hours, and the clock is used and shown from 6 hours of listening. A minute is
+one of the usual break minutes when the station was in a break in at least 40% of what was heard of it: a break
+slot moves by a minute or two from hour to hour, so the minutes of a real slot are not a break every hour. What
+was heard fades with a half-life of 48 hours of listening, so a station that changes its clock is followed
+within days. It fades by listening, not by the date, so a week without the app does not throw away what was
+learned.
+
+The minutes are those of the hour in UTC. A station's slots are at fixed minutes of its own hour, and in nearly
+every time zone the minutes of the hour are the same as in UTC, so the clock stays right when the PC's time zone
+or summer time changes. Only the display turns them into local minutes, which matters in the zones half or a
+quarter of an hour off, such as India: the news on the hour of a station there is at :30 in UTC. Hours of the day
+were left out on purpose: a clock per hour of the day would need weeks of listening to fill, while the slots of
+most stations are at the same minutes all day, and a slot that is not there at night (the news, often) is simply
+a minute that is a break in fewer of the hours heard.
+
+`AdBreakZapper` gets `Channel.IsBreakDue` per favorite: whether one of its usual break minutes falls in the next
+3 minutes (`BreakClock.LookAhead`), about the length of the song a zap lands in. Among the favorites playing a
+song it lands on the highest one whose break is not due, and only when all of them have their break coming on the
+highest one regardless. A song with its break due still goes before a station that plays nothing known. The order
+of the favorites stays the main rule, because it is the user's own; the clock only breaks ties against a break
+that is about to come. There is no switch for it: it only ever passes over a favorite when another one plays a
+song too.
+
+The clocks are kept in `break-clocks.json`, apart from the settings, because they change all the time; they are
+saved every 5 minutes and on closing, and a station that stops being a favorite loses its clock, as it loses its
+loudness. The Zapper tab shows each favorite's hour as sixty bars (`Controls/BreakClockView`), the usual break
+minutes in the caution color, with the slots spelled out above it ("Usually a break at :58–:03, :28–:30"), and
+how many of the 6 hours have been heard while it is still learning. The demo makes its clocks the same way
+(`DemoMode.BreakClocks`), from made-up hours of listening.

@@ -537,4 +537,22 @@
   <data name="StartupSettingsLink.Content" xml:space="preserve">
     <value>स्टार्टअप सेटिंग्स खोलें</value>
   </data>
+  <data name="BreakClockHeading.Text" xml:space="preserve">
+    <value>नियमित ब्रेक</value>
+  </data>
+  <data name="BreakClockText.Text" xml:space="preserve">
+    <value>ZapperRadio चलते समय हर पसंदीदा जो बजाता है, उससे घंटे के हर मिनट के हिसाब से सीखा जाता है, ताकि घंटे की शुरुआत की खबरें या आधे घंटे पर विज्ञापन अलग दिखें। ज़ैप ऐसे पसंदीदा को चुनना पसंद करता है जिसमें अगले कुछ मिनटों में कोई नियमित ब्रेक न हो।</value>
+  </data>
+  <data name="BreakClockLearning" xml:space="preserve">
+    <value>सीख रहा है · {1} में से {0} घंटे सुने गए</value>
+  </data>
+  <data name="BreakClockNone" xml:space="preserve">
+    <value>कोई नियमित ब्रेक नहीं</value>
+  </data>
+  <data name="BreakClockUsual" xml:space="preserve">
+    <value>आमतौर पर {0} पर ब्रेक</value>
+  </data>
+  <data name="BreakClockMostOfTheHour" xml:space="preserve">
+    <value>लगभग पूरे घंटे ब्रेक या बातचीत</value>
+  </data>
 </root>

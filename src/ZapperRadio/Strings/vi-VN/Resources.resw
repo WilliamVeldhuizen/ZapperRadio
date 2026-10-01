@@ -537,4 +537,22 @@
   <data name="StartupSettingsLink.Content" xml:space="preserve">
     <value>Mở cài đặt Khởi động</value>
   </data>
+  <data name="BreakClockHeading.Text" xml:space="preserve">
+    <value>Giờ nghỉ thường lệ</value>
+  </data>
+  <data name="BreakClockText.Text" xml:space="preserve">
+    <value>Được học riêng cho từng đài yêu thích từ những gì đài phát khi ZapperRadio đang chạy, theo từng phút của giờ, nên bản tin đầu giờ hay quảng cáo lúc giờ rưỡi sẽ nổi bật. Khi chuyển đài, ưu tiên đài yêu thích không có giờ nghỉ thường lệ trong vài phút tới.</value>
+  </data>
+  <data name="BreakClockLearning" xml:space="preserve">
+    <value>Đang học · đã nghe {0}/{1} giờ</value>
+  </data>
+  <data name="BreakClockNone" xml:space="preserve">
+    <value>Không có giờ nghỉ cố định</value>
+  </data>
+  <data name="BreakClockUsual" xml:space="preserve">
+    <value>Thường nghỉ lúc {0}</value>
+  </data>
+  <data name="BreakClockMostOfTheHour" xml:space="preserve">
+    <value>Nghỉ hoặc nói chuyện gần hết giờ</value>
+  </data>
 </root>
