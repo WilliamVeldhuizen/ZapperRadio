@@ -34,7 +34,7 @@
   "features.title": "Küçük oynatıcı, yapay zekâ kulakları",
   "features.lede": "Her favori zaten çözüldüğü için ZapperRadio, doğrudan bilgisayarınızda yapay zekâ ile birlikte dinleyebilir ve sıradan bir radyo oynatıcısının yapamadığı şeyleri yapabilir.",
   "f1.title": "Reklam ve konuşmadan kaçan yapay zekâ",
-  "f1.text": "Bir sinir ağı her favoriyi dinler ve bir istasyonun müzikten reklam arasına veya sunucuya geçtiğini duyar. ZapperRadio o zaman şarkı çalan bir favoriye atlar ve müzik geri gelince döner.",
+  "f1.text": "Bir sinir ağı her favoriyi dinler ve bir istasyonun müzikten reklam arasına veya sunucuya geçtiğini duyar. ZapperRadio o zaman şarkı çalan bir favoriye atlar ve müzik geri gelince döner. Ayrıca her istasyonun haber ve reklam saatlerini öğrenir ve arası başlamak üzere olan bir istasyonu atlar.",
   "f2.title": "Her yerde aynı ses yüksekliği",
   "f2.text": "Yüksek sesli bir istasyona geçince kulaklarınız patlamaz. Her favori yayıncılıktaki gibi ölçülür (EBU R128) ve yaklaşık −14 LUFS'e eşitlenir.",
   "f3.title": "Hepsinde ne çaldığını görün",

@@ -508,10 +508,17 @@
                                 <CheckBox x:Uid="CrossfadeCheckBox" Margin="0,4,0,0" IsChecked="{x:Bind ViewModel.CrossfadeZaps, Mode=TwoWay}" />
                             </StackPanel>
 
+                            <!-- Per favorite: whether a break may be zapped to it, and when in the hour it usually breaks. -->
                             <StackPanel Spacing="2">
-                                <TextBlock x:Uid="ZapTargetsHeading" Style="{StaticResource BodyStrongTextBlockStyle}" />
+                                <TextBlock x:Uid="ZapperFavoritesHeading" Style="{StaticResource BodyStrongTextBlockStyle}" />
                                 <TextBlock
                                     x:Uid="ZapTargetsText"
+                                    Style="{StaticResource CaptionTextBlockStyle}"
+                                    Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                                    TextWrapping="Wrap" />
+                                <TextBlock
+                                    x:Uid="BreakClockText"
+                                    Margin="0,4,0,0"
                                     Style="{StaticResource CaptionTextBlockStyle}"
                                     Foreground="{ThemeResource TextFillColorSecondaryBrush}"
                                     TextWrapping="Wrap" />
@@ -521,54 +528,53 @@
                                     TextWrapping="Wrap"
                                     Foreground="{ThemeResource TextFillColorTertiaryBrush}"
                                     Visibility="{x:Bind ViewModel.HasNoFavorites, Mode=OneWay}" />
-                                <ItemsControl Margin="0,4,0,0" ItemsSource="{x:Bind ViewModel.Favorites}">
-                                    <ItemsControl.ItemTemplate>
-                                        <DataTemplate x:DataType="vm:FavoriteViewModel">
-                                            <CheckBox IsChecked="{x:Bind CanZapTo, Mode=TwoWay}">
-                                                <TextBlock Text="{x:Bind Name}" TextTrimming="CharacterEllipsis" />
-                                            </CheckBox>
-                                        </DataTemplate>
-                                    </ItemsControl.ItemTemplate>
-                                </ItemsControl>
-                            </StackPanel>
 
-                            <!-- When in the hour each favorite usually breaks, as the zapper has learned it. -->
-                            <StackPanel Spacing="2" Visibility="{x:Bind ViewModel.HasFavorites, Mode=OneWay}">
-                                <TextBlock x:Uid="BreakClockHeading" Style="{StaticResource BodyStrongTextBlockStyle}" />
-                                <TextBlock
-                                    x:Uid="BreakClockText"
-                                    Style="{StaticResource CaptionTextBlockStyle}"
-                                    Foreground="{ThemeResource TextFillColorSecondaryBrush}"
-                                    TextWrapping="Wrap" />
-                                <ItemsControl Margin="0,8,0,0" ItemsSource="{x:Bind ViewModel.Favorites}">
-                                    <ItemsControl.ItemsPanel>
-                                        <ItemsPanelTemplate>
-                                            <StackPanel Spacing="14" />
-                                        </ItemsPanelTemplate>
-                                    </ItemsControl.ItemsPanel>
+                                <!-- The header and every row share the same columns, so they line up as a table. -->
+                                <Grid
+                                    Margin="0,10,0,0"
+                                    Padding="0,0,0,6"
+                                    ColumnSpacing="12"
+                                    BorderBrush="{ThemeResource DividerStrokeColorDefaultBrush}"
+                                    BorderThickness="0,0,0,1"
+                                    Visibility="{x:Bind ViewModel.HasFavorites, Mode=OneWay}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="56" />
+                                        <ColumnDefinition Width="*" MinWidth="140" />
+                                        <ColumnDefinition Width="*" MaxWidth="360" />
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock x:Uid="ZapTargetsHeading" Style="{StaticResource CaptionTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+                                    <TextBlock x:Uid="StationColumn" Grid.Column="1" Style="{StaticResource CaptionTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+                                    <TextBlock x:Uid="BreakClockHeading" Grid.Column="2" Style="{StaticResource CaptionTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+                                </Grid>
+                                <ItemsControl ItemsSource="{x:Bind ViewModel.Favorites}">
                                     <ItemsControl.ItemTemplate>
                                         <DataTemplate x:DataType="vm:FavoriteViewModel">
-                                            <!-- The hour takes the width there is, up to a size where a minute is still a bar rather than a block. -->
-                                            <Grid RowSpacing="2">
+                                            <Grid
+                                                Padding="0,8"
+                                                ColumnSpacing="12"
+                                                BorderBrush="{ThemeResource DividerStrokeColorDefaultBrush}"
+                                                BorderThickness="0,0,0,1">
                                                 <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="56" />
+                                                    <ColumnDefinition Width="*" MinWidth="140" />
                                                     <ColumnDefinition Width="*" MaxWidth="360" />
-                                                    <ColumnDefinition Width="Auto" />
                                                 </Grid.ColumnDefinitions>
-                                                <Grid.RowDefinitions>
-                                                    <RowDefinition Height="Auto" />
-                                                    <RowDefinition Height="Auto" />
-                                                    <RowDefinition Height="Auto" />
-                                                </Grid.RowDefinitions>
-                                                <TextBlock Text="{x:Bind Name}" TextTrimming="CharacterEllipsis" />
-                                                <TextBlock
-                                                    Grid.Row="1"
-                                                    Text="{x:Bind BreakClockText, Mode=OneWay}"
-                                                    Style="{StaticResource CaptionTextBlockStyle}"
-                                                    Foreground="{ThemeResource TextFillColorSecondaryBrush}"
-                                                    TextWrapping="Wrap" />
+                                                <CheckBox
+                                                    MinWidth="0"
+                                                    VerticalAlignment="Center"
+                                                    IsChecked="{x:Bind CanZapTo, Mode=TwoWay}"
+                                                    AutomationProperties.Name="{x:Bind Name}" />
+                                                <StackPanel Grid.Column="1" VerticalAlignment="Center" Spacing="2">
+                                                    <TextBlock Text="{x:Bind Name}" TextTrimming="CharacterEllipsis" />
+                                                    <TextBlock
+                                                        Text="{x:Bind BreakClockText, Mode=OneWay}"
+                                                        Style="{StaticResource CaptionTextBlockStyle}"
+                                                        Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                                                        TextWrapping="Wrap" />
+                                                </StackPanel>
                                                 <controls:BreakClockView
-                                                    Grid.Row="2"
-                                                    Margin="0,4,0,0"
+                                                    Grid.Column="2"
+                                                    VerticalAlignment="Center"
                                                     Shares="{x:Bind BreakShares, Mode=OneWay}"
                                                     BreakBrush="{ThemeResource SystemFillColorCautionBrush}"
                                                     OtherBrush="{ThemeResource ControlStrongFillColorDisabledBrush}"

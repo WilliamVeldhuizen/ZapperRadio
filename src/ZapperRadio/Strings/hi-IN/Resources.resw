@@ -555,4 +555,10 @@
   <data name="BreakClockMostOfTheHour" xml:space="preserve">
     <value>लगभग पूरे घंटे ब्रेक या बातचीत</value>
   </data>
+  <data name="ZapperFavoritesHeading.Text" xml:space="preserve">
+    <value>पसंदीदा</value>
+  </data>
+  <data name="StationColumn.Text" xml:space="preserve">
+    <value>स्टेशन</value>
+  </data>
 </root>

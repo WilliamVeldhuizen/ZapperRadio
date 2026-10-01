@@ -34,7 +34,7 @@
   "features.title": "Malý prehrávač, uši AI",
   "features.lede": "Keďže sa každá obľúbená stanica už dekóduje, ZapperRadio môže s AI počúvať s vami, priamo vo vašom počítači, a robiť veci, ktoré bežný prehrávač rádia nedokáže.",
   "f1.title": "AI, ktorá utečie od reklám a hovoreného slova",
-  "f1.text": "Neurónová sieť počúva každú obľúbenú stanicu a počuje, kedy stanica prejde od hudby k reklamnému bloku alebo moderátorovi. ZapperRadio potom preskočí na obľúbenú stanicu, ktorá hrá pesničku, a vráti sa, keď sa hudba vráti.",
+  "f1.text": "Neurónová sieť počúva každú obľúbenú stanicu a počuje, kedy stanica prejde od hudby k reklamnému bloku alebo moderátorovi. ZapperRadio potom preskočí na obľúbenú stanicu, ktorá hrá pesničku, a vráti sa, keď sa hudba vráti. Navyše sa učí, kedy má každá stanica správy a reklamy, a vynechá stanicu, ktorej práve začína prestávka.",
   "f2.title": "Všade rovnaká hlasitosť",
   "f2.text": "Už žiadne ohlušenie pri prepnutí na hlasnú stanicu. Každá obľúbená stanica sa meria ako vo vysielaní (EBU R128) a vyrovná sa na približne −14 LUFS.",
   "f3.title": "Vidíte, čo hrá na všetkých",

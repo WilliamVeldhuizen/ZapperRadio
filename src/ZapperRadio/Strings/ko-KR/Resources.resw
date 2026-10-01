@@ -555,4 +555,10 @@
   <data name="BreakClockMostOfTheHour" xml:space="preserve">
     <value>거의 한 시간 내내 광고나 말</value>
   </data>
+  <data name="ZapperFavoritesHeading.Text" xml:space="preserve">
+    <value>즐겨찾기</value>
+  </data>
+  <data name="StationColumn.Text" xml:space="preserve">
+    <value>방송국</value>
+  </data>
 </root>

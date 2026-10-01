@@ -34,7 +34,7 @@
   "features.title": "Mały odtwarzacz, uszy AI",
   "features.lede": "Ponieważ każda ulubiona stacja jest już dekodowana, ZapperRadio może słuchać razem z Tobą dzięki AI, bezpośrednio na Twoim komputerze, i robić rzeczy, których zwykły odtwarzacz radia nie potrafi.",
   "f1.title": "AI, która ucieka od reklam i rozmów",
-  "f1.text": "Sieć neuronowa słucha każdej ulubionej stacji i słyszy, kiedy stacja przechodzi od muzyki do bloku reklamowego lub prezentera. ZapperRadio przełącza wtedy na ulubioną stację, która gra piosenkę, i wraca, gdy muzyka powróci.",
+  "f1.text": "Sieć neuronowa słucha każdej ulubionej stacji i słyszy, kiedy stacja przechodzi od muzyki do bloku reklamowego lub prezentera. ZapperRadio przełącza wtedy na ulubioną stację, która gra piosenkę, i wraca, gdy muzyka powróci. Uczy się też, kiedy każda stacja nadaje wiadomości i reklamy, i pomija stację, na której zaraz zacznie się przerwa.",
   "f2.title": "Wszędzie ta sama głośność",
   "f2.text": "Koniec z ogłuszeniem po przełączeniu na głośną stację. Każda ulubiona stacja jest mierzona jak w radiofonii (EBU R128) i wyrównywana do ok. −14 LUFS.",
   "f3.title": "Zobacz, co gra na wszystkich",

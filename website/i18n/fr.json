@@ -34,7 +34,7 @@
   "features.title": "Petit lecteur, oreilles d’IA",
   "features.lede": "Comme chaque favori est déjà décodé, ZapperRadio peut écouter avec une IA, directement sur votre PC, et faire ce qu’un lecteur radio classique ne sait pas faire.",
   "f1.title": "Une IA qui zappe loin des pubs et du blabla",
-  "f1.text": "Un réseau de neurones écoute chaque favori et entend quand une station passe de la musique à une page de pub ou à un animateur. ZapperRadio passe alors sur un favori qui joue un morceau, et revient quand la musique reprend.",
+  "f1.text": "Un réseau de neurones écoute chaque favori et entend quand une station passe de la musique à une page de pub ou à un animateur. ZapperRadio passe alors sur un favori qui joue un morceau, et revient quand la musique reprend. Il apprend aussi quand chaque station diffuse son journal et ses pubs, et passe une station dont la pause va commencer.",
   "f2.title": "Le même volume partout",
   "f2.text": "Fini les oreilles qui sifflent quand vous zappez vers une station trop forte. Chaque favori est mesuré comme en radiodiffusion (EBU R128) et ramené à environ −14 LUFS.",
   "f3.title": "Voyez ce qui passe partout",

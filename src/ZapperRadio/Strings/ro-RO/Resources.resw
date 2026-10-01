@@ -555,4 +555,10 @@
   <data name="BreakClockMostOfTheHour" xml:space="preserve">
     <value>Pauză sau vorbă cea mai mare parte a orei</value>
   </data>
+  <data name="ZapperFavoritesHeading.Text" xml:space="preserve">
+    <value>Favorite</value>
+  </data>
+  <data name="StationColumn.Text" xml:space="preserve">
+    <value>Post</value>
+  </data>
 </root>

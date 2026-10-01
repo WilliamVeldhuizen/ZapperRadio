@@ -508,6 +508,7 @@ song too.
 The clocks are kept in `break-clocks.json`, apart from the settings, because they change all the time; they are
 saved every 5 minutes and on closing, and a station that stops being a favorite loses its clock, as it loses its
 loudness. The Zapper tab shows each favorite's hour as sixty bars (`Controls/BreakClockView`), the usual break
-minutes in the caution color, with the slots spelled out above it ("Usually a break at :58–:03, :28–:30"), and
-how many of the 6 hours have been heard while it is still learning. The demo makes its clocks the same way
+minutes in the caution color, with the slots spelled out under the station's name ("Usually a break at :58–:03, :28–:30"), and
+how many of the 6 hours have been heard while it is still learning. It shares a table with the choice to zap to a
+favorite or not, one row per favorite, because both are about where a zap may land. The demo makes its clocks the same way
 (`DemoMode.BreakClocks`), from made-up hours of listening.

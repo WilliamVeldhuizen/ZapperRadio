@@ -34,7 +34,7 @@
   "features.title": "Kleine speler, AI-oren",
   "features.lede": "Omdat elke favoriet al gedecodeerd wordt, kan ZapperRadio met AI meeluisteren, gewoon op je eigen pc, en dingen doen die een gewone radiospeler niet kan.",
   "f1.title": "AI die wegzapt van reclame en gepraat",
-  "f1.text": "Een neuraal netwerk luistert mee met elke favoriet en hoort wanneer een zender van muziek overgaat naar een reclameblok of een presentator. ZapperRadio springt dan naar een favoriet waar een nummer speelt en keert terug als de muziek weer begint.",
+  "f1.text": "Een neuraal netwerk luistert mee met elke favoriet en hoort wanneer een zender van muziek overgaat naar een reclameblok of een presentator. ZapperRadio springt dan naar een favoriet waar een nummer speelt en keert terug als de muziek weer begint. Ook leert het wanneer elke zender zijn nieuws en reclame heeft, en slaat het een zender over waar zo een blok begint.",
   "f2.title": "Overal even luid",
   "f2.text": "Nooit meer knallende oren als je naar een luide zender zapt. Elke favoriet wordt gemeten zoals bij de omroepen (EBU R128) en op ongeveer −14 LUFS gebracht.",
   "f3.title": "Zie wat er op alle zenders speelt",

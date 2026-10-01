@@ -34,7 +34,7 @@
   "features.title": "Pieni soitin, tekoälykorvat",
   "features.lede": "Koska jokainen suosikki puretaan jo valmiiksi, ZapperRadio voi kuunnella mukana tekoälyn avulla suoraan PC:lläsi ja tehdä asioita, joihin tavallinen radiosoitin ei pysty.",
   "f1.title": "Tekoäly, joka vaihtaa pois mainoksista ja puheesta",
-  "f1.text": "Neuroverkko kuuntelee jokaista suosikkia ja kuulee, kun asema siirtyy musiikista mainoskatkoon tai juontajaan. ZapperRadio hyppää silloin suosikkiin, jolla soi kappale, ja palaa, kun musiikki palaa.",
+  "f1.text": "Neuroverkko kuuntelee jokaista suosikkia ja kuulee, kun asema siirtyy musiikista mainoskatkoon tai juontajaan. ZapperRadio hyppää silloin suosikkiin, jolla soi kappale, ja palaa, kun musiikki palaa. Se oppii myös, milloin kullakin asemalla on uutiset ja mainokset, ja ohittaa aseman, jonka katko on juuri alkamassa.",
   "f2.title": "Sama äänekkyys kaikkialla",
   "f2.text": "Ei enää korviin sattuvia yllätyksiä, kun vaihdat kovaääniselle asemalle. Jokainen suosikki mitataan yleisradiotapaan (EBU R128) ja tasataan noin tasolle −14 LUFS.",
   "f3.title": "Näe, mitä kaikilla soi",

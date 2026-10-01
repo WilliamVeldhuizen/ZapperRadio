@@ -555,4 +555,10 @@
   <data name="BreakClockMostOfTheHour" xml:space="preserve">
     <value>Fast die ganze Stunde Pause oder Wortbeitrag</value>
   </data>
+  <data name="ZapperFavoritesHeading.Text" xml:space="preserve">
+    <value>Favoriten</value>
+  </data>
+  <data name="StationColumn.Text" xml:space="preserve">
+    <value>Sender</value>
+  </data>
 </root>

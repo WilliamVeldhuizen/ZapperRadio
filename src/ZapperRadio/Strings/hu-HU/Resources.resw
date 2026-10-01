@@ -555,4 +555,10 @@
   <data name="BreakClockMostOfTheHour" xml:space="preserve">
     <value>Szünet vagy beszéd az óra nagy részében</value>
   </data>
+  <data name="ZapperFavoritesHeading.Text" xml:space="preserve">
+    <value>Kedvencek</value>
+  </data>
+  <data name="StationColumn.Text" xml:space="preserve">
+    <value>Állomás</value>
+  </data>
 </root>

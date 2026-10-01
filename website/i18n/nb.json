@@ -34,7 +34,7 @@
   "features.title": "Liten spiller, AI-ører",
   "features.lede": "Fordi hver favoritt allerede dekodes, kan ZapperRadio lytte med ved hjelp av AI, rett på PC-en din, og gjøre ting en vanlig radiospiller ikke kan.",
   "f1.title": "AI som zapper bort fra reklame og prat",
-  "f1.text": "Et nevralt nettverk lytter med på hver favoritt og hører når en stasjon går fra musikk til en reklamepause eller en programleder. ZapperRadio hopper da til en favoritt som spiller en sang, og går tilbake når musikken kommer tilbake.",
+  "f1.text": "Et nevralt nettverk lytter med på hver favoritt og hører når en stasjon går fra musikk til en reklamepause eller en programleder. ZapperRadio hopper da til en favoritt som spiller en sang, og går tilbake når musikken kommer tilbake. Den lærer også når hver stasjon har nyheter og reklame, og hopper over en stasjon der pausen er i ferd med å starte.",
   "f2.title": "Samme lydnivå overalt",
   "f2.text": "Ingen flere sprengte ører når du zapper til en høy stasjon. Hver favoritt måles slik kringkastere gjør (EBU R128) og jevnes ut til omtrent −14 LUFS.",
   "f3.title": "Se hva som spilles på alle",

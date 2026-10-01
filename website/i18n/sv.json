@@ -34,7 +34,7 @@
   "features.title": "Liten spelare, AI-öron",
   "features.lede": "Eftersom varje favorit redan avkodas kan ZapperRadio lyssna med hjälp av AI, direkt på din dator, och göra saker som en vanlig radiospelare inte kan.",
   "f1.title": "AI som zappar bort från reklam och prat",
-  "f1.text": "Ett neuralt nätverk lyssnar på varje favorit och hör när en station går från musik till ett reklamavbrott eller en programledare. ZapperRadio hoppar då till en favorit som spelar en låt och går tillbaka när musiken kommer tillbaka.",
+  "f1.text": "Ett neuralt nätverk lyssnar på varje favorit och hör när en station går från musik till ett reklamavbrott eller en programledare. ZapperRadio hoppar då till en favorit som spelar en låt och går tillbaka när musiken kommer tillbaka. Den lär sig också när varje station har nyheter och reklam, och hoppar över en station vars avbrott är på väg att börja.",
   "f2.title": "Samma ljudstyrka överallt",
   "f2.text": "Inga fler sprängda öron när du zappar till en stark station. Varje favorit mäts som i radio och tv (EBU R128) och jämnas ut till ungefär −14 LUFS.",
   "f3.title": "Se vad som spelas på alla",

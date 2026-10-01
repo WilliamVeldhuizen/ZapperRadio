@@ -555,4 +555,10 @@
   <data name="BreakClockMostOfTheHour" xml:space="preserve">
     <value>Saatin çoğunda ara veya konuşma</value>
   </data>
+  <data name="ZapperFavoritesHeading.Text" xml:space="preserve">
+    <value>Favoriler</value>
+  </data>
+  <data name="StationColumn.Text" xml:space="preserve">
+    <value>İstasyon</value>
+  </data>
 </root>

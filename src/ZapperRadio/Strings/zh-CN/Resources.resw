@@ -555,4 +555,10 @@
   <data name="BreakClockMostOfTheHour" xml:space="preserve">
     <value>一小时大部分时间都是插播或谈话</value>
   </data>
+  <data name="ZapperFavoritesHeading.Text" xml:space="preserve">
+    <value>收藏</value>
+  </data>
+  <data name="StationColumn.Text" xml:space="preserve">
+    <value>电台</value>
+  </data>
 </root>

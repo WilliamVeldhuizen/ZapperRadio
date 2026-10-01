@@ -34,7 +34,7 @@
   "features.title": "Kleiner Player, KI-Ohren",
   "features.lede": "Weil jeder Favorit ohnehin schon dekodiert wird, kann ZapperRadio mit KI mithören, direkt auf deinem PC, und Dinge tun, die ein normaler Radioplayer nicht kann.",
   "f1.title": "KI, die bei Werbung und Gerede wegzappt",
-  "f1.text": "Ein neuronales Netz hört bei jedem Favoriten mit und erkennt, wenn ein Sender von Musik zu Werbung oder Moderation wechselt. ZapperRadio springt dann zu einem Favoriten, auf dem gerade ein Song läuft, und kehrt zurück, sobald die Musik wieder einsetzt.",
+  "f1.text": "Ein neuronales Netz hört bei jedem Favoriten mit und erkennt, wenn ein Sender von Musik zu Werbung oder Moderation wechselt. ZapperRadio springt dann zu einem Favoriten, auf dem gerade ein Song läuft, und kehrt zurück, sobald die Musik wieder einsetzt. Außerdem lernt es, wann jeder Sender Nachrichten und Werbung bringt, und lässt einen Sender aus, dessen Pause gleich beginnt.",
   "f2.title": "Überall gleich laut",
   "f2.text": "Keine dröhnenden Ohren mehr, wenn du zu einem lauten Sender zappst. Jeder Favorit wird wie im Rundfunk gemessen (EBU R128) und auf etwa −14 LUFS angeglichen.",
   "f3.title": "Sieh, was auf allen läuft",

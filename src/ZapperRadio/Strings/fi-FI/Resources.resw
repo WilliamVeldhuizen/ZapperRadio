@@ -555,4 +555,10 @@
   <data name="BreakClockMostOfTheHour" xml:space="preserve">
     <value>Katko tai puhetta suurimman osan tunnista</value>
   </data>
+  <data name="ZapperFavoritesHeading.Text" xml:space="preserve">
+    <value>Suosikit</value>
+  </data>
+  <data name="StationColumn.Text" xml:space="preserve">
+    <value>Asema</value>
+  </data>
 </root>

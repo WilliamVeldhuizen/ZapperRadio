@@ -555,4 +555,10 @@
   <data name="BreakClockMostOfTheHour" xml:space="preserve">
     <value>Διάλειμμα ή ομιλία το μεγαλύτερο μέρος της ώρας</value>
   </data>
+  <data name="ZapperFavoritesHeading.Text" xml:space="preserve">
+    <value>Αγαπημένα</value>
+  </data>
+  <data name="StationColumn.Text" xml:space="preserve">
+    <value>Σταθμός</value>
+  </data>
 </root>

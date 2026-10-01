@@ -34,7 +34,7 @@
   "features.title": "Pemutar kecil, telinga AI",
   "features.lede": "Karena setiap favorit sudah didekode, ZapperRadio dapat ikut mendengarkan dengan AI, langsung di PC Anda, dan melakukan hal yang tidak bisa dilakukan pemutar radio biasa.",
   "f1.title": "AI yang menghindari iklan dan obrolan",
-  "f1.text": "Jaringan saraf ikut mendengarkan setiap favorit dan tahu saat stasiun beralih dari musik ke jeda iklan atau penyiar. ZapperRadio lalu melompat ke favorit yang sedang memutar lagu, dan kembali saat musik kembali.",
+  "f1.text": "Jaringan saraf ikut mendengarkan setiap favorit dan tahu saat stasiun beralih dari musik ke jeda iklan atau penyiar. ZapperRadio lalu melompat ke favorit yang sedang memutar lagu, dan kembali saat musik kembali. Ia juga mempelajari kapan setiap stasiun menyiarkan berita dan iklannya, dan melewati stasiun yang jedanya akan segera dimulai.",
   "f2.title": "Kenyaringan sama di mana-mana",
   "f2.text": "Tidak ada lagi telinga kaget saat pindah ke stasiun yang keras. Setiap favorit diukur dengan cara penyiaran (EBU R128) dan disamakan ke sekitar −14 LUFS.",
   "f3.title": "Lihat apa yang diputar di semua stasiun",

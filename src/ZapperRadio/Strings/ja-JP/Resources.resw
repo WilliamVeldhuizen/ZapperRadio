@@ -555,4 +555,10 @@
   <data name="BreakClockMostOfTheHour" xml:space="preserve">
     <value>1 時間のほとんどが区切りかトーク</value>
   </data>
+  <data name="ZapperFavoritesHeading.Text" xml:space="preserve">
+    <value>お気に入り</value>
+  </data>
+  <data name="StationColumn.Text" xml:space="preserve">
+    <value>局</value>
+  </data>
 </root>

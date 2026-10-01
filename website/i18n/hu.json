@@ -34,7 +34,7 @@
   "features.title": "Kis lejátszó, MI-fülek",
   "features.lede": "Mivel minden kedvenc már dekódolva van, a ZapperRadio MI segítségével együtt hallgathat Önnel, közvetlenül a gépén, és olyan dolgokra képes, amelyekre egy átlagos rádiólejátszó nem.",
   "f1.title": "MI, amely elkapcsol a reklámok és a beszéd elől",
-  "f1.text": "Egy neurális hálózat minden kedvencet hallgat, és hallja, amikor egy állomás zenéről reklámblokkra vagy műsorvezetőre vált. A ZapperRadio ekkor átugrik egy dalt játszó kedvencre, és visszatér, amikor a zene visszajön.",
+  "f1.text": "Egy neurális hálózat minden kedvencet hallgat, és hallja, amikor egy állomás zenéről reklámblokkra vagy műsorvezetőre vált. A ZapperRadio ekkor átugrik egy dalt játszó kedvencre, és visszatér, amikor a zene visszajön. Azt is megtanulja, mikor vannak az egyes állomásokon hírek és reklámok, és kihagyja azt, amelyiken épp szünet kezdődik.",
   "f2.title": "Mindenhol ugyanaz a hangosság",
   "f2.text": "Nincs többé fülsüketítő meglepetés, ha hangos állomásra vált. Minden kedvencet a műsorszórásban használt módon mér (EBU R128), és körülbelül −14 LUFS-ra egyenlít ki.",
   "f3.title": "Lássa, mi szól mindegyiken",

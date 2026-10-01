@@ -34,7 +34,7 @@
   "features.title": "Player mic, urechi AI",
   "features.lede": "Pentru că fiecare favorit este deja decodat, ZapperRadio poate asculta alături de tine cu AI, direct pe PC-ul tău, și poate face lucruri pe care un player radio obișnuit nu le poate face.",
   "f1.title": "AI care fuge de reclame și vorbă",
-  "f1.text": "O rețea neuronală ascultă fiecare favorit și aude când un post trece de la muzică la o pauză publicitară sau la un prezentator. ZapperRadio sare atunci la un favorit care difuzează o melodie și revine când muzica se întoarce.",
+  "f1.text": "O rețea neuronală ascultă fiecare favorit și aude când un post trece de la muzică la o pauză publicitară sau la un prezentator. ZapperRadio sare atunci la un favorit care difuzează o melodie și revine când muzica se întoarce. Învață și când are fiecare post știrile și reclamele, și sare peste un post a cărui pauză e pe cale să înceapă.",
   "f2.title": "Aceeași intensitate peste tot",
   "f2.text": "Gata cu urechile asurzite când treci pe un post zgomotos. Fiecare favorit este măsurat ca în radiodifuziune (EBU R128) și adus la aproximativ −14 LUFS.",
   "f3.title": "Vezi ce se aude pe toate",

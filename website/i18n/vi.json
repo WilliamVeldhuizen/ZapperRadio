@@ -34,7 +34,7 @@
   "features.title": "Trình phát nhỏ, đôi tai AI",
   "features.lede": "Vì mỗi đài yêu thích đều đã được giải mã, ZapperRadio có thể nghe cùng bạn bằng AI, ngay trên máy tính của bạn, và làm những điều mà trình phát radio thông thường không làm được.",
   "f1.title": "AI tránh quảng cáo và lời nói",
-  "f1.text": "Một mạng nơ-ron nghe cùng mọi đài yêu thích và nhận ra khi đài chuyển từ nhạc sang quảng cáo hoặc người dẫn chương trình. ZapperRadio khi đó chuyển sang một đài yêu thích đang phát bài hát, và quay lại khi nhạc trở lại.",
+  "f1.text": "Một mạng nơ-ron nghe cùng mọi đài yêu thích và nhận ra khi đài chuyển từ nhạc sang quảng cáo hoặc người dẫn chương trình. ZapperRadio khi đó chuyển sang một đài yêu thích đang phát bài hát, và quay lại khi nhạc trở lại. Nó cũng học xem mỗi đài phát tin tức và quảng cáo lúc nào, và bỏ qua đài sắp vào giờ nghỉ.",
   "f2.title": "Độ lớn như nhau ở mọi đài",
   "f2.text": "Không còn giật mình khi chuyển sang một đài quá to. Mỗi đài yêu thích được đo theo cách của ngành phát thanh (EBU R128) và cân bằng về khoảng −14 LUFS.",
   "f3.title": "Xem mọi đài đang phát gì",

@@ -34,7 +34,7 @@
   "features.title": "Reproductor pequeño, oídos de IA",
   "features.lede": "Como cada favorita ya está decodificada, ZapperRadio puede escuchar con IA, en tu propio PC, y hacer cosas que un reproductor de radio normal no puede.",
   "f1.title": "Una IA que se aleja de anuncios y charla",
-  "f1.text": "Una red neuronal escucha cada favorita y oye cuándo una emisora pasa de la música a una pausa publicitaria o a un locutor. ZapperRadio salta entonces a una favorita que esté sonando una canción, y vuelve cuando regresa la música.",
+  "f1.text": "Una red neuronal escucha cada favorita y oye cuándo una emisora pasa de la música a una pausa publicitaria o a un locutor. ZapperRadio salta entonces a una favorita que esté sonando una canción, y vuelve cuando regresa la música. También aprende cuándo pone cada emisora sus noticias y anuncios, y se salta una emisora cuya pausa está a punto de empezar.",
   "f2.title": "El mismo volumen en todas",
   "f2.text": "Se acabaron los oídos machacados al cambiar a una emisora que suena fuerte. Cada favorita se mide como en la radiodifusión (EBU R128) y se nivela a unos −14 LUFS.",
   "f3.title": "Mira qué suena en todas",

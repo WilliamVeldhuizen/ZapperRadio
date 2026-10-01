@@ -555,4 +555,10 @@
   <data name="BreakClockMostOfTheHour" xml:space="preserve">
     <value>Prestávka alebo hovorené slovo väčšinu hodiny</value>
   </data>
+  <data name="ZapperFavoritesHeading.Text" xml:space="preserve">
+    <value>Obľúbené</value>
+  </data>
+  <data name="StationColumn.Text" xml:space="preserve">
+    <value>Stanica</value>
+  </data>
 </root>
