@@ -561,4 +561,10 @@
   <data name="StationColumn.Text" xml:space="preserve">
     <value>局</value>
   </data>
+  <data name="HomeStationColumn.Text" xml:space="preserve">
+    <value>ホーム</value>
+  </data>
+  <data name="HomeStationText.Text" xml:space="preserve">
+    <value>ホーム局（最大 1 局）: 他の局がブレイクに入ると最初にこの局へザッピングし、この局自身のブレイクが終わるとすぐ、曲の途中でもこの局へ戻ります。自分で選んだ局は、そのブレイクまで流れ続けます。</value>
+  </data>
 </root>

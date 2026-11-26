@@ -517,6 +517,12 @@
                                     Foreground="{ThemeResource TextFillColorSecondaryBrush}"
                                     TextWrapping="Wrap" />
                                 <TextBlock
+                                    x:Uid="HomeStationText"
+                                    Margin="0,4,0,0"
+                                    Style="{StaticResource CaptionTextBlockStyle}"
+                                    Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                                    TextWrapping="Wrap" />
+                                <TextBlock
                                     x:Uid="BreakClockText"
                                     Margin="0,4,0,0"
                                     Style="{StaticResource CaptionTextBlockStyle}"
@@ -539,12 +545,14 @@
                                     Visibility="{x:Bind ViewModel.HasFavorites, Mode=OneWay}">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="56" />
+                                        <ColumnDefinition Width="56" />
                                         <ColumnDefinition Width="*" MinWidth="140" />
                                         <ColumnDefinition Width="*" MaxWidth="360" />
                                     </Grid.ColumnDefinitions>
                                     <TextBlock x:Uid="ZapTargetsHeading" Style="{StaticResource CaptionTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
-                                    <TextBlock x:Uid="StationColumn" Grid.Column="1" Style="{StaticResource CaptionTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
-                                    <TextBlock x:Uid="BreakClockHeading" Grid.Column="2" Style="{StaticResource CaptionTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+                                    <TextBlock x:Uid="HomeStationColumn" Grid.Column="1" Style="{StaticResource CaptionTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+                                    <TextBlock x:Uid="StationColumn" Grid.Column="2" Style="{StaticResource CaptionTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+                                    <TextBlock x:Uid="BreakClockHeading" Grid.Column="3" Style="{StaticResource CaptionTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
                                 </Grid>
                                 <ItemsControl ItemsSource="{x:Bind ViewModel.Favorites}">
                                     <ItemsControl.ItemTemplate>
@@ -556,6 +564,7 @@
                                                 BorderThickness="0,0,0,1">
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="56" />
+                                                    <ColumnDefinition Width="56" />
                                                     <ColumnDefinition Width="*" MinWidth="140" />
                                                     <ColumnDefinition Width="*" MaxWidth="360" />
                                                 </Grid.ColumnDefinitions>
@@ -564,7 +573,14 @@
                                                     VerticalAlignment="Center"
                                                     IsChecked="{x:Bind CanZapTo, Mode=TwoWay}"
                                                     AutomationProperties.Name="{x:Bind Name}" />
-                                                <StackPanel Grid.Column="1" VerticalAlignment="Center" Spacing="2">
+                                                <!-- At most one home: checking one unchecks the others, and it can be unchecked to have none. -->
+                                                <CheckBox
+                                                    Grid.Column="1"
+                                                    MinWidth="0"
+                                                    VerticalAlignment="Center"
+                                                    IsChecked="{x:Bind IsHome, Mode=TwoWay}"
+                                                    AutomationProperties.Name="{x:Bind Name}" />
+                                                <StackPanel Grid.Column="2" VerticalAlignment="Center" Spacing="2">
                                                     <TextBlock Text="{x:Bind Name}" TextTrimming="CharacterEllipsis" />
                                                     <TextBlock
                                                         Text="{x:Bind BreakClockText, Mode=OneWay}"
@@ -573,7 +589,7 @@
                                                         TextWrapping="Wrap" />
                                                 </StackPanel>
                                                 <controls:BreakClockView
-                                                    Grid.Column="2"
+                                                    Grid.Column="3"
                                                     VerticalAlignment="Center"
                                                     Shares="{x:Bind BreakShares, Mode=OneWay}"
                                                     BreakBrush="{ThemeResource SystemFillColorCautionBrush}"

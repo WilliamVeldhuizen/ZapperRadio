@@ -561,4 +561,10 @@
   <data name="StationColumn.Text" xml:space="preserve">
     <value>Station</value>
   </data>
+  <data name="HomeStationColumn.Text" xml:space="preserve">
+    <value>Hem</value>
+  </data>
+  <data name="HomeStationText.Text" xml:space="preserve">
+    <value>Din hemstation, högst en: vid ett avbrott någon annanstans zappas det först dit, och så fort dess eget avbrott är över zappas det genast tillbaka, även mitt i en låt. En station du själv väljer stannar kvar till sitt avbrott.</value>
+  </data>
 </root>

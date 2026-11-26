@@ -561,4 +561,10 @@
   <data name="StationColumn.Text" xml:space="preserve">
     <value>電台</value>
   </data>
+  <data name="HomeStationColumn.Text" xml:space="preserve">
+    <value>主台</value>
+  </data>
+  <data name="HomeStationText.Text" xml:space="preserve">
+    <value>你的主台，最多一個：其他電台進入插播時優先切到它，它自己的插播一結束就立即切回，即使正在播一首歌。你自己選的電台會一直播到它的插播。</value>
+  </data>
 </root>

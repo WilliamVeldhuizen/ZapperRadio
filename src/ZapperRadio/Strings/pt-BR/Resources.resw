@@ -561,4 +561,10 @@
   <data name="StationColumn.Text" xml:space="preserve">
     <value>Estação</value>
   </data>
+  <data name="HomeStationColumn.Text" xml:space="preserve">
+    <value>Casa</value>
+  </data>
+  <data name="HomeStationText.Text" xml:space="preserve">
+    <value>Sua estação de casa, no máximo uma: num intervalo em outra estação, o zap vai primeiro para ela, e assim que o intervalo dela termina, volta para ela na hora, mesmo no meio de uma música. Uma estação que você escolhe fica até o intervalo dela.</value>
+  </data>
 </root>

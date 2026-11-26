@@ -561,4 +561,10 @@
   <data name="StationColumn.Text" xml:space="preserve">
     <value>Stanice</value>
   </data>
+  <data name="HomeStationColumn.Text" xml:space="preserve">
+    <value>Domov</value>
+  </data>
+  <data name="HomeStationText.Text" xml:space="preserve">
+    <value>Tvoje domovská stanice, nejvýš jedna: při přestávce jinde se přepne nejdřív na ni, a jakmile skončí její vlastní přestávka, hned se na ni vrátí, i uprostřed skladby. Stanice, kterou si vybereš sám, hraje až do své přestávky.</value>
+  </data>
 </root>

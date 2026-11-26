@@ -294,6 +294,15 @@ landing spot: a break on it is still zapped away from, and when the zapping star
 returned to, because you picked it. The list is rebuilt from the favorites on every save, so a station
 that stops being a favorite does not linger in it.
 
+**Home station.** One favorite can be the home station (`AppSettings.HomeStation`, fed to
+`AdBreakZapper.HomeStation`): the one you want to hear whenever it is not in a break. It breaks the rule
+that a zap back waits for the song elsewhere to end, because for a home station "back as soon as the
+ads are over" is the point; it is not limited by `MaxAdBreak` either. A break anywhere lands on it first
+when it plays a song, even when it is left out of Zap to (checking Home checks Zap to, and unchecking
+Zap to unchecks Home). A station you pick yourself is still respected: picking another one suspends the
+pull of home until the zapper has to leave that station for a break. It is a check box per row rather
+than a radio button so it can be unchecked to have none; checking one unchecks the others.
+
 **After a break.** By default the zapper returns to the station it came from once that plays a song
 again and the station it landed on reaches its own break. `AdBreakZapper.ReturnAfterBreak` switched off
 simply never remembers where it came from: the station it landed on stays on, and its own break is zapped

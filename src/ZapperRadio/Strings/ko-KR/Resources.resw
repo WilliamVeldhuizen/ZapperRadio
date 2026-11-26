@@ -561,4 +561,10 @@
   <data name="StationColumn.Text" xml:space="preserve">
     <value>방송국</value>
   </data>
+  <data name="HomeStationColumn.Text" xml:space="preserve">
+    <value>홈</value>
+  </data>
+  <data name="HomeStationText.Text" xml:space="preserve">
+    <value>홈 방송국(최대 하나): 다른 곳이 광고 시간에 들어가면 먼저 이 방송국으로 재핑하고, 이 방송국의 광고 시간이 끝나면 노래 중간이라도 바로 돌아옵니다. 직접 고른 방송국은 그 광고 시간까지 계속 재생됩니다.</value>
+  </data>
 </root>

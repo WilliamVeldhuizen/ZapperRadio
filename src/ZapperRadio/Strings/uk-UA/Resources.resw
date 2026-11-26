@@ -561,4 +561,10 @@
   <data name="StationColumn.Text" xml:space="preserve">
     <value>Станція</value>
   </data>
+  <data name="HomeStationColumn.Text" xml:space="preserve">
+    <value>Дім</value>
+  </data>
+  <data name="HomeStationText.Text" xml:space="preserve">
+    <value>Ваша домашня станція, не більше однієї: під час перерви деінде спершу перемикається на неї, а щойно її власна перерва скінчиться, одразу повертається до неї, навіть посеред пісні. Станція, яку ви обрали самі, грає до своєї перерви.</value>
+  </data>
 </root>

@@ -27,6 +27,9 @@ public sealed class AppSettings
     /// <summary>The stream URLs of the favorites a break is never zapped to, such as a news station.</summary>
     public List<string> NeverZapTo { get; set; } = [];
 
+    /// <summary>The stream URL of the favorite the zapper falls back to whenever it plays a song, or null for none.</summary>
+    public string? HomeStation { get; set; }
+
     /// <summary>Whether the zapper goes back to the station it zapped away from once its break is over, or stays where it landed.</summary>
     public bool ZapBackAfterBreak { get; set; } = true;
 

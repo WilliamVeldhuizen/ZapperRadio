@@ -254,4 +254,78 @@ public class AdBreakZapperTests
 
         Assert.Equal("c", zapper.Next(Ad("a"), [Ad("a"), Unknown("b"), dueSoon], Now));
     }
+    [Fact]
+    public void LandsOnTheHomeStationFirst()
+    {
+        var zapper = new AdBreakZapper { HomeStation = "c" };
+
+        Assert.Equal("c", zapper.Next(Ad("a"), [Ad("a"), Song("b"), Song("c")], Now));
+    }
+
+    [Fact]
+    public void ZapsBackHomeAsSoonAsItsBreakIsOverEvenWithinASong()
+    {
+        var zapper = new AdBreakZapper { HomeStation = "a" };
+        zapper.OnPicked("a", ChannelState.Song);
+
+        Assert.Equal("b", zapper.Next(Ad("a"), [Ad("a"), Song("b")], Now));
+        Assert.Null(zapper.Next(Song("b"), [Ad("a"), Song("b")], Now.AddMinutes(1)));
+        Assert.Equal("a", zapper.Next(Song("b"), [Song("a"), Song("b")], Now.AddMinutes(2)));
+    }
+
+    [Fact]
+    public void ZapsBackHomeAfterLongerThanAnAdBreak()
+    {
+        var zapper = new AdBreakZapper { HomeStation = "a" };
+        zapper.Next(Speech("a"), [Speech("a"), Song("b")], Now);
+
+        Assert.Equal("a", zapper.Next(Song("b"), [Song("a"), Song("b")], Now.AddMinutes(30)));
+    }
+
+    [Fact]
+    public void ZapsBackHomeFromAStationItWasZappedToByAnotherBreak()
+    {
+        var zapper = new AdBreakZapper { HomeStation = "a", ReturnAfterBreak = false };
+        zapper.Next(Ad("a"), [Ad("a"), Song("b"), Song("c")], Now);
+        Assert.Equal("c", zapper.Next(Ad("b"), [Ad("a"), Ad("b"), Song("c")], Now.AddMinutes(1)));
+
+        Assert.Equal("a", zapper.Next(Song("c"), [Song("a"), Ad("b"), Song("c")], Now.AddMinutes(2)));
+    }
+
+    [Fact]
+    public void LeavesAStationYouPickedYourselfUntilItsBreak()
+    {
+        var zapper = new AdBreakZapper { HomeStation = "a" };
+        zapper.OnPicked("b", ChannelState.Song);
+
+        Assert.Null(zapper.Next(Song("b"), [Song("a"), Song("b")], Now));
+        Assert.Equal("a", zapper.Next(Ad("b"), [Song("a"), Ad("b")], Now.AddMinutes(1)));
+    }
+
+    [Fact]
+    public void PullsBackHomeAgainAfterAStationYouPickedHadItsBreak()
+    {
+        var zapper = new AdBreakZapper { HomeStation = "a" };
+        zapper.OnPicked("b", ChannelState.Song);
+
+        Assert.Equal("c", zapper.Next(Ad("b"), [Ad("a"), Ad("b"), Song("c")], Now));
+        Assert.Equal("a", zapper.Next(Song("c"), [Song("a"), Ad("b"), Song("c")], Now.AddMinutes(1)));
+    }
+
+    [Fact]
+    public void LandsOnTheHomeStationEvenWhenItIsNotAZapTarget()
+    {
+        var zapper = new AdBreakZapper { HomeStation = "b", NeverZapTo = new HashSet<string> { "b" } };
+
+        Assert.Equal("b", zapper.Next(Ad("a"), [Ad("a"), Song("b"), Song("c")], Now));
+    }
+
+    [Fact]
+    public void DoesNotZapToTheHomeStationWhileItIsInABreak()
+    {
+        var zapper = new AdBreakZapper { HomeStation = "a" };
+
+        Assert.Null(zapper.Next(Song("b"), [Ad("a"), Song("b")], Now));
+        Assert.Null(zapper.Next(Song("b"), [Unknown("a"), Song("b")], Now));
+    }
 }

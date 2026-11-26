@@ -561,4 +561,10 @@
   <data name="StationColumn.Text" xml:space="preserve">
     <value>สถานี</value>
   </data>
+  <data name="HomeStationColumn.Text" xml:space="preserve">
+    <value>หลัก</value>
+  </data>
+  <data name="HomeStationText.Text" xml:space="preserve">
+    <value>สถานีหลักของคุณ ได้ไม่เกินหนึ่งสถานี: เมื่อที่อื่นเข้าช่วงพัก จะสลับมาที่สถานีนี้ก่อน และทันทีที่ช่วงพักของสถานีนี้จบ จะสลับกลับมาทันที แม้อยู่กลางเพลง สถานีที่คุณเลือกเองจะเล่นต่อจนถึงช่วงพักของมัน</value>
+  </data>
 </root>

@@ -48,6 +48,8 @@ public readonly record struct Channel(string Url, ChannelState State, bool IsBre
 /// <see cref="ReturnAfterBreak"/> the station it landed on stays on instead of the zapper going back.
 /// A favorite whose usual break is due (<see cref="Channel.IsBreakDue"/>) is passed over while another one has none
 /// coming, because it would be left again within a song.
+/// A <see cref="HomeStation"/> overrides the waiting: it is what you want to hear whenever it is not in a break, so a
+/// break elsewhere lands on it first, and once its own break is over it is zapped back to at once, even within a song.
 /// </summary>
 public sealed class AdBreakZapper
 {
@@ -60,6 +62,29 @@ public sealed class AdBreakZapper
 
     private DateTimeOffset _zappedAt;
     private bool _returnAfterBreak = true;
+    private string? _homeStation;
+
+    /// <summary>
+    /// Whether the home station pulls the zapper back. A station you pick yourself stays on, so this is off after
+    /// picking another one, and on again once the zapper has to leave that one for a break.
+    /// </summary>
+    private bool _homeHeld = true;
+
+    /// <summary>
+    /// The favorite to fall back to whenever it plays a song: it is landed on first when a break is zapped away from,
+    /// and zapped back to as soon as its own break is over, without waiting for the song elsewhere to end. It is
+    /// landed on even when it is in <see cref="NeverZapTo"/>, and pulls back whether or not
+    /// <see cref="ReturnAfterBreak"/> is on.
+    /// </summary>
+    public string? HomeStation
+    {
+        get => _homeStation;
+        set
+        {
+            _homeStation = value;
+            _homeHeld = true;
+        }
+    }
 
     /// <summary>
     /// Favorites a break is never zapped to, such as a news station, which is no place to wait for the music. They
@@ -94,6 +119,7 @@ public sealed class AdBreakZapper
     public void OnPicked(string url, ChannelState state)
     {
         ZappedFrom = null;
+        _homeHeld = url == HomeStation;
         KeptDuringBreak = IsBreak(state) ? url : null;
     }
 
@@ -113,6 +139,14 @@ public sealed class AdBreakZapper
         if (KeptDuringBreak is { } kept && !IsBreak(StateOf(kept, active, favorites)))
         {
             KeptDuringBreak = null;
+        }
+
+        if (HomeStation is { } home && _homeHeld && home != active.Url && active.Url != KeptDuringBreak
+            && StateOf(home, active, favorites) == ChannelState.Song)
+        {
+            // Home is what you want to hear whenever it is not in a break, so there is no waiting for a song to end.
+            ZappedFrom = null;
+            return home;
         }
 
         if (ZappedFrom is { } origin)
@@ -135,10 +169,15 @@ public sealed class AdBreakZapper
         }
 
         var next = LandingSpot(favorites, active, ChannelState.Song) ?? LandingSpot(favorites, active, ChannelState.Unknown);
-        if (next is not null && ZappedFrom is null && ReturnAfterBreak)
+        if (next is not null)
         {
-            ZappedFrom = active.Url;
-            _zappedAt = now;
+            // Leaving a break picks up the pull of home again, also from a station you picked yourself.
+            _homeHeld = true;
+            if (ZappedFrom is null && ReturnAfterBreak && active.Url != HomeStation)
+            {
+                ZappedFrom = active.Url;
+                _zappedAt = now;
+            }
         }
 
         return next;
@@ -151,10 +190,16 @@ public sealed class AdBreakZapper
     private string? LandingSpot(IReadOnlyList<Channel> favorites, Channel active, ChannelState state)
     {
         var candidates = favorites.Where(f => CanLandOn(f, active) && f.State == state).ToList();
+        if (candidates.Any(f => f.Url == HomeStation))
+        {
+            return HomeStation;
+        }
+
         return candidates.FirstOrDefault(f => !f.IsBreakDue).Url ?? candidates.FirstOrDefault().Url;
     }
 
-    private bool CanLandOn(Channel favorite, Channel active) => favorite.Url != active.Url && !NeverZapTo.Contains(favorite.Url);
+    private bool CanLandOn(Channel favorite, Channel active) =>
+        favorite.Url != active.Url && (favorite.Url == HomeStation || !NeverZapTo.Contains(favorite.Url));
 
     private static bool IsBreak(ChannelState state) => state is ChannelState.Ad or ChannelState.Speech;
 

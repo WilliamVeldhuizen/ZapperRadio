@@ -561,4 +561,10 @@
   <data name="StationColumn.Text" xml:space="preserve">
     <value>المحطة</value>
   </data>
+  <data name="HomeStationColumn.Text" xml:space="preserve">
+    <value>الرئيسية</value>
+  </data>
+  <data name="HomeStationText.Text" xml:space="preserve">
+    <value>محطتك الرئيسية، واحدة على الأكثر: عند فاصل في محطة أخرى يتم التنقل إليها أولاً، وبمجرد انتهاء فاصلها يتم الرجوع إليها فوراً، حتى في منتصف أغنية. المحطة التي تختارها بنفسك تبقى حتى فاصلها.</value>
+  </data>
 </root>

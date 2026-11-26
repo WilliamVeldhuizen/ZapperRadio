@@ -561,4 +561,10 @@
   <data name="StationColumn.Text" xml:space="preserve">
     <value>İstasyon</value>
   </data>
+  <data name="HomeStationColumn.Text" xml:space="preserve">
+    <value>Ev</value>
+  </data>
+  <data name="HomeStationText.Text" xml:space="preserve">
+    <value>Ev istasyonun, en fazla bir tane: başka yerde bir ara olduğunda önce ona geçilir ve kendi arası biter bitmez, bir şarkının ortasında bile hemen ona dönülür. Kendin seçtiğin bir istasyon kendi arasına kadar çalar.</value>
+  </data>
 </root>

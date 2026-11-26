@@ -561,4 +561,10 @@
   <data name="StationColumn.Text" xml:space="preserve">
     <value>Stacja</value>
   </data>
+  <data name="HomeStationColumn.Text" xml:space="preserve">
+    <value>Dom</value>
+  </data>
+  <data name="HomeStationText.Text" xml:space="preserve">
+    <value>Twoja stacja domowa, najwyżej jedna: podczas przerwy gdzie indziej najpierw przełącza się na nią, a gdy tylko skończy się jej własna przerwa, od razu do niej wraca, nawet w środku utworu. Stacja wybrana przez ciebie gra do swojej przerwy.</value>
+  </data>
 </root>

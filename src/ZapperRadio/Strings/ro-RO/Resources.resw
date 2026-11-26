@@ -561,4 +561,10 @@
   <data name="StationColumn.Text" xml:space="preserve">
     <value>Post</value>
   </data>
+  <data name="HomeStationColumn.Text" xml:space="preserve">
+    <value>Acasă</value>
+  </data>
+  <data name="HomeStationText.Text" xml:space="preserve">
+    <value>Postul tău de acasă, cel mult unul: la o pauză în altă parte se trece mai întâi pe el, iar imediat ce i se termină propria pauză se revine la el, chiar și în mijlocul unei piese. Un post ales de tine rămâne până la pauza lui.</value>
+  </data>
 </root>

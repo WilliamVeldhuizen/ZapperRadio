@@ -561,4 +561,10 @@
   <data name="StationColumn.Text" xml:space="preserve">
     <value>Đài</value>
   </data>
+  <data name="HomeStationColumn.Text" xml:space="preserve">
+    <value>Chính</value>
+  </data>
+  <data name="HomeStationText.Text" xml:space="preserve">
+    <value>Đài chính của bạn, tối đa một đài: khi đài khác vào giờ nghỉ, sẽ chuyển sang đài này trước, và ngay khi giờ nghỉ của chính nó kết thúc, sẽ quay lại ngay, kể cả giữa bài hát. Đài bạn tự chọn sẽ phát đến giờ nghỉ của nó.</value>
+  </data>
 </root>

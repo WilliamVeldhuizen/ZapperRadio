@@ -561,4 +561,10 @@
   <data name="StationColumn.Text" xml:space="preserve">
     <value>स्टेशन</value>
   </data>
+  <data name="HomeStationColumn.Text" xml:space="preserve">
+    <value>होम</value>
+  </data>
+  <data name="HomeStationText.Text" xml:space="preserve">
+    <value>आपका होम स्टेशन, अधिकतम एक: कहीं और ब्रेक आने पर पहले उसी पर ज़ैप किया जाता है, और उसका अपना ब्रेक ख़त्म होते ही तुरंत उस पर लौटा जाता है, गाने के बीच में भी। जो स्टेशन आप ख़ुद चुनते हैं, वह उसके ब्रेक तक चलता रहता है।</value>
+  </data>
 </root>

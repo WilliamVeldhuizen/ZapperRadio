@@ -561,4 +561,10 @@
   <data name="StationColumn.Text" xml:space="preserve">
     <value>Stazione</value>
   </data>
+  <data name="HomeStationColumn.Text" xml:space="preserve">
+    <value>Casa</value>
+  </data>
+  <data name="HomeStationText.Text" xml:space="preserve">
+    <value>La tua stazione di casa, al massimo una: durante una pausa altrove si passa prima a lei, e appena finisce la sua pausa ci si torna subito, anche a metà di un brano. Una stazione che scegli tu resta fino alla sua pausa.</value>
+  </data>
 </root>

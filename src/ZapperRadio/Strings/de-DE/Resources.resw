@@ -561,4 +561,10 @@
   <data name="StationColumn.Text" xml:space="preserve">
     <value>Sender</value>
   </data>
+  <data name="HomeStationColumn.Text" xml:space="preserve">
+    <value>Heimat</value>
+  </data>
+  <data name="HomeStationText.Text" xml:space="preserve">
+    <value>Dein Heimatsender, höchstens einer: Bei einer Pause anderswo wird zuerst zu ihm gezappt, und sobald seine eigene Pause vorbei ist, wird sofort zu ihm zurückgezappt, auch mitten in einem Song. Ein Sender, den du selbst wählst, bleibt bis zu seiner Pause an.</value>
+  </data>
 </root>

@@ -87,7 +87,33 @@ public sealed partial class FavoriteViewModel(Station station) : ObservableObjec
     /// <summary>Raised when <see cref="CanZapTo"/> is switched.</summary>
     public event EventHandler? CanZapToChanged;
 
-    partial void OnCanZapToChanged(bool value) => CanZapToChanged?.Invoke(this, EventArgs.Empty);
+    partial void OnCanZapToChanged(bool value)
+    {
+        // Home is always landed on, so a home that may not be zapped to is no home anymore.
+        if (!value)
+        {
+            IsHome = false;
+        }
+
+        CanZapToChanged?.Invoke(this, EventArgs.Empty);
+    }
+
+    /// <summary>Whether this is the home station, which the zapper falls back to whenever it plays a song; at most one is.</summary>
+    [ObservableProperty]
+    public partial bool IsHome { get; set; }
+
+    /// <summary>Raised when <see cref="IsHome"/> is switched.</summary>
+    public event EventHandler? IsHomeChanged;
+
+    partial void OnIsHomeChanged(bool value)
+    {
+        if (value)
+        {
+            CanZapTo = true;
+        }
+
+        IsHomeChanged?.Invoke(this, EventArgs.Empty);
+    }
 
     /// <summary>What was measured of this station's loudness, as the settings show it.</summary>
     [ObservableProperty]

@@ -561,4 +561,10 @@
   <data name="StationColumn.Text" xml:space="preserve">
     <value>Stasiun</value>
   </data>
+  <data name="HomeStationColumn.Text" xml:space="preserve">
+    <value>Utama</value>
+  </data>
+  <data name="HomeStationText.Text" xml:space="preserve">
+    <value>Stasiun utama Anda, paling banyak satu: saat jeda di tempat lain, zap ke stasiun ini lebih dulu, dan begitu jedanya sendiri selesai, langsung kembali ke sini, bahkan di tengah lagu. Stasiun yang Anda pilih sendiri tetap diputar sampai jedanya.</value>
+  </data>
 </root>

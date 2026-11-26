@@ -561,4 +561,10 @@
   <data name="StationColumn.Text" xml:space="preserve">
     <value>Emisora</value>
   </data>
+  <data name="HomeStationColumn.Text" xml:space="preserve">
+    <value>Casa</value>
+  </data>
+  <data name="HomeStationText.Text" xml:space="preserve">
+    <value>Tu emisora de casa, como mucho una: en una pausa de otra emisora se zapea primero a ella, y en cuanto termina su propia pausa se vuelve a ella enseguida, incluso a mitad de una canción. Una emisora que eliges tú se mantiene hasta su pausa.</value>
+  </data>
 </root>

@@ -561,4 +561,10 @@
   <data name="StationColumn.Text" xml:space="preserve">
     <value>Zender</value>
   </data>
+  <data name="HomeStationColumn.Text" xml:space="preserve">
+    <value>Thuis</value>
+  </data>
+  <data name="HomeStationText.Text" xml:space="preserve">
+    <value>Je thuiszender, hooguit één: bij een blok elders wordt daar eerst naartoe gezapt, en zodra zijn eigen blok voorbij is wordt er meteen naar teruggezapt, ook midden in een nummer. Een zender die je zelf kiest blijft aan tot zijn blok.</value>
+  </data>
 </root>

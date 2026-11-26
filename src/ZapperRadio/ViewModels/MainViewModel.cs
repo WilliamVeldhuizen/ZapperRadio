@@ -225,6 +225,7 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
         ZapBackAfterBreak = _settings.ZapBackAfterBreak;
         CrossfadeZaps = _settings.CrossfadeZaps;
         UpdateNeverZapTo();
+        UpdateHomeStation();
         NormalizeLoudness = _settings.NormalizeLoudness;
         // The switch first: the length only applies to the engine once it is chosen, so it is applied once, as set.
         ZapToSongStart = _settings.ZapToSongStart;
@@ -813,8 +814,13 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
 
     private void AddFavorite(Station station)
     {
-        var favorite = new FavoriteViewModel(station) { CanZapTo = !_settings.NeverZapTo.Contains(station.Url) };
+        var favorite = new FavoriteViewModel(station)
+        {
+            CanZapTo = !_settings.NeverZapTo.Contains(station.Url),
+            IsHome = station.Url == _settings.HomeStation,
+        };
         favorite.CanZapToChanged += OnCanZapToChanged;
+        favorite.IsHomeChanged += OnIsHomeChanged;
         Favorites.Add(favorite);
         _ = LoadFavoriteLogoAsync(favorite);
     }
@@ -1106,6 +1112,31 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
     {
         UpdateNeverZapTo();
         SaveSettings();
+    }
+
+    /// <summary>A favorite was made the home station or no longer is; there is only one home.</summary>
+    private void OnIsHomeChanged(object? sender, EventArgs e)
+    {
+        if (sender is FavoriteViewModel { IsHome: true } home)
+        {
+            foreach (var other in Favorites.Where(f => f != home && f.IsHome))
+            {
+                other.IsHome = false;
+            }
+        }
+
+        UpdateHomeStation();
+        SaveSettings();
+        ZapOnAdBreak();
+    }
+
+    private void UpdateHomeStation()
+    {
+        var home = Favorites.FirstOrDefault(f => f.IsHome)?.Station.Url;
+        if (home != _zapper.HomeStation)
+        {
+            _zapper.HomeStation = home;
+        }
     }
 
     private void UpdateNeverZapTo() =>
@@ -1536,6 +1567,8 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
     private void SyncFavorites()
     {
         _favoritesSyncPending = false;
+        // A removed home station is no home anymore.
+        UpdateHomeStation();
         if (DemoMode.IsOn)
         {
             ShowDemoFavorites();
@@ -1792,6 +1825,7 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
         _settings.FavoriteTracks = FavoriteTracks.ToList();
         // Taken from the favorites, so a station that is no longer one does not stay in the list.
         _settings.NeverZapTo = Favorites.Where(f => !f.CanZapTo).Select(f => f.Station.Url).ToList();
+        _settings.HomeStation = Favorites.FirstOrDefault(f => f.IsHome)?.Station.Url;
         _settings.Volume = _engine.Volume;
 
         // A station that was played once should not keep its measurement in the settings file forever.

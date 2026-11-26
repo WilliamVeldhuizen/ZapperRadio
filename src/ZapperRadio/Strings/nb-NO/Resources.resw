@@ -561,4 +561,10 @@
   <data name="StationColumn.Text" xml:space="preserve">
     <value>Stasjon</value>
   </data>
+  <data name="HomeStationColumn.Text" xml:space="preserve">
+    <value>Hjem</value>
+  </data>
+  <data name="HomeStationText.Text" xml:space="preserve">
+    <value>Hjemmestasjonen din, høyst én: ved en pause et annet sted zappes det først dit, og så snart dens egen pause er over, zappes det straks tilbake, også midt i en sang. En stasjon du velger selv, blir stående til pausen sin.</value>
+  </data>
 </root>
