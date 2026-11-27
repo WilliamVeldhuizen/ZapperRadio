@@ -321,6 +321,29 @@ public class AdBreakZapperTests
     }
 
     [Fact]
+    public void DoesNotZapBackHomeWhenItsBreakWasLeftWhileItAlreadyPlaysASong()
+    {
+        // A zap home starts at the song a bit early, which can be the tail of the ad break before it: that is heard as
+        // a break and zapped away from, while home itself already plays the song. Going back at once would bounce
+        // between the two stations for as long as the song plays.
+        var zapper = new AdBreakZapper { HomeStation = "a" };
+        zapper.OnPicked("a", ChannelState.Song);
+
+        Assert.Equal("b", zapper.Next(Ad("a"), [Song("a"), Song("b")], Now));
+        Assert.Null(zapper.Next(Song("b"), [Song("a"), Song("b")], Now.AddSeconds(1)));
+    }
+
+    [Fact]
+    public void ZapsBackHomeOnceItsNextBreakIsOverAfterLeavingItWhileItPlayedASong()
+    {
+        var zapper = new AdBreakZapper { HomeStation = "a" };
+        zapper.Next(Ad("a"), [Song("a"), Song("b")], Now);
+
+        Assert.Null(zapper.Next(Song("b"), [Ad("a"), Song("b")], Now.AddMinutes(1)));
+        Assert.Equal("a", zapper.Next(Song("b"), [Song("a"), Song("b")], Now.AddMinutes(2)));
+    }
+
+    [Fact]
     public void DoesNotZapToTheHomeStationWhileItIsInABreak()
     {
         var zapper = new AdBreakZapper { HomeStation = "a" };

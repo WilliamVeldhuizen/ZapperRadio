@@ -71,6 +71,14 @@ public sealed class AdBreakZapper
     private bool _homeHeld = true;
 
     /// <summary>
+    /// Whether home has been seen out of its song since the zapper left it for a break. A zap home lands a little
+    /// before the song, which can be the tail of the break before it; that is heard as a break and zapped away from
+    /// while home already plays the song, so home only pulls back once it has had a break of its own since. Without
+    /// this the zapper bounces between home and another station for as long as the song plays.
+    /// </summary>
+    private bool _homeBreakSeen = true;
+
+    /// <summary>
     /// The favorite to fall back to whenever it plays a song: it is landed on first when a break is zapped away from,
     /// and zapped back to as soon as its own break is over, without waiting for the song elsewhere to end. It is
     /// landed on even when it is in <see cref="NeverZapTo"/>, and pulls back whether or not
@@ -83,6 +91,7 @@ public sealed class AdBreakZapper
         {
             _homeStation = value;
             _homeHeld = true;
+            _homeBreakSeen = true;
         }
     }
 
@@ -141,7 +150,12 @@ public sealed class AdBreakZapper
             KeptDuringBreak = null;
         }
 
-        if (HomeStation is { } home && _homeHeld && home != active.Url && active.Url != KeptDuringBreak
+        if (HomeStation is { } seen && seen != active.Url && StateOf(seen, active, favorites) != ChannelState.Song)
+        {
+            _homeBreakSeen = true;
+        }
+
+        if (HomeStation is { } home && _homeHeld && _homeBreakSeen && home != active.Url && active.Url != KeptDuringBreak
             && StateOf(home, active, favorites) == ChannelState.Song)
         {
             // Home is what you want to hear whenever it is not in a break, so there is no waiting for a song to end.
@@ -173,6 +187,12 @@ public sealed class AdBreakZapper
         {
             // Leaving a break picks up the pull of home again, also from a station you picked yourself.
             _homeHeld = true;
+            if (active.Url == HomeStation)
+            {
+                // What a zap back would land on, rather than what is heard of home now.
+                _homeBreakSeen = favorites.FirstOrDefault(f => f.Url == HomeStation).State != ChannelState.Song;
+            }
+
             if (ZappedFrom is null && ReturnAfterBreak && active.Url != HomeStation)
             {
                 ZappedFrom = active.Url;
